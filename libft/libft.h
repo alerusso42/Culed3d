@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2025/06/10 16:43:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:42:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include "game_bfs.h"
+# include "../getnextline/get_next_line.h"
 
 typedef struct s_bfs	t_bfs;
 

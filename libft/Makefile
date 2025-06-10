@@ -13,6 +13,7 @@ SRC = 	free_matrix.c    ft_isspace.c     ft_rejoin.c    ft_strlen.c      game_bf
 		ft_isdigit.c     ft_putendl_fd.c  ft_strjoin.c   ft_toupper.c \
 		ft_isprint.c     ft_putnbr_fd.c   ft_strlcat.c   game_bfs.c \
 		ft_is_quotes.c   ft_putstr_fd.c   ft_strlcpy.c \
+		get_next_line.c	 get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 
