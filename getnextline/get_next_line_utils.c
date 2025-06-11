@@ -3,143 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:13:51 by alerusso          #+#    #+#             */
-/*   Updated: 2024/12/09 16:13:54 by alerusso         ###   ########.fr       */
+/*   Created: 2024/12/21 16:48:58 by lparolis          #+#    #+#             */
+/*   Updated: 2024/12/21 16:48:58 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*calloc_memcpy(int size, void *dest, const void *src, int ft)
+char	*get_strdup(char *s1)
 {
-	int		total_size;
-	char	*string_pointer;
-	void	*pointer;
+	char			*dest;
+	unsigned int	i;
 
-	pointer = NULL;
-	if (ft == CALLOC)
-	{
-		total_size = size * sizeof(char);
-		pointer = malloc(total_size);
-		if (!pointer)
-			return (NULL);
-		string_pointer = (char *)pointer;
-		while (total_size--)
-			*string_pointer++ = 0;
-	}
-	if ((ft == MEMCPY) && ((dest) || (src)))
-	{
-		pointer = dest;
-		while ((size-- > 0) && (dest + 1) && (src + 1))
-		{
-			*((char *)dest++) = *((char *)src++);
-		}
-		*((char *)dest) = 0;
-	}
-	return (pointer);
-}
-
-int	find_end_line(size_t *start, char *string)
-{
-	int	save;
-	int	index;
-
-	save = -1;
-	index = *start;
-	while (index >= 0)
-	{
-		if ((string[index] == '\n') || (string[index] == '\n'))
-			save = index;
-		index -= 1;
-	}
-	if (save == -1)
-		return (EOF_OR_NEWLINE_NOT_FOUND);
-	*start = (size_t)save;
-	return (EOF_OR_NEWLINE_FOUND);
-}
-
-int	alloc_ft(void **content, void *new_content, size_t start, int mode)
-{
-	size_t	nmemb;
-	void	*re_content;
-
-	nmemb = (start + 1) * sizeof(char);
-	if (mode == MALLOC)
-	{
-		*content = calloc_memcpy(((nmemb + 1) * 2), NULL, NULL, CALLOC);
-		if (!(*content))
-			return (FULL_MEMORY);
-		return (SUCCESS);
-	}
-	if (mode == REALLOC)
-	{
-		re_content = calloc_memcpy((nmemb) * 2, NULL, NULL, CALLOC);
-		if (!(re_content))
-			return (FULL_MEMORY);
-		calloc_memcpy(nmemb, re_content, new_content, MEMCPY);
-		free(*content);
-		*content = re_content;
-		return (SUCCESS);
-	}
-	if ((mode == FREE) && (*content))
-		free(*content);
-	*content = NULL;
-	return (END_OR_CORRUPTION);
-}
-
-void	trim_readbytes(char *buffer)
-{
-	int	old_index;
-	int	new_index;
-
-	if (!buffer)
-	{
-		return ;
-	}
-	old_index = 0;
-	new_index = 0;
-	while (buffer[old_index] != '\0' && buffer[old_index] != '\n')
-	{
-		++old_index;
-	}
-	if (buffer[old_index] == '\n')
-	{
-		++old_index;
-	}
-	while (buffer[old_index] != '\0')
-	{
-		buffer[new_index++] = buffer[old_index++];
-	}
-	buffer[new_index] = '\0';
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*stringona;
-	int		index;
-	int		size;
-
-	if ((!s1) || (!s2))
+	dest = (char *) malloc(get_strlen(s1) + 1);
+	if (!dest)
 		return (NULL);
-	index = 0;
-	while (s1[index])
-		++index;
-	size = index;
-	index = 0;
-	while (s2[index])
-		++index;
-	size += index;
-	if (alloc_ft((void **)(&stringona), NULL, size + 1, MALLOC) == FULL_MEMORY)
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+size_t	get_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*get_substr(char *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*str;
+
+	if (!s)
 		return (NULL);
-	index = -1;
-	while (s1[++index])
-		stringona[index] = s1[index];
-	size = -1;
-	while (s2[++size])
-		stringona[index++] = s2[size];
-	free(s1);
-	free(s2);
-	return (stringona);
+	if (start > get_strlen(s))
+		return (malloc(1));
+	if (len > get_strlen(s + start))
+		len = get_strlen(s + start);
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = 0;
+	return (str);
+}
+
+char	*get_strjoin(char *s1, char *s2)
+{
+	char			*res;
+	unsigned int	i;
+	unsigned int	j;
+
+	res = (char *) malloc((get_strlen(s1) + get_strlen(s2) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[j])
+		res[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		res[i++] = s2[j++];
+	res[i] = '\0';
+	return (res);
 }

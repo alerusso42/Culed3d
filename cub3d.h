@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/10 17:20:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:19:07 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,26 @@
 # include <math.h>
 # include <sys/time.h>
 # include <stdbool.h>
-# include "game_bfs.h"
+# include "./minilibx-linux/mlx.h"
+# include <math.h>
+# include <stdlib.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include "libft/libft.h"
 
-# endif
+typedef struct s_data
+{
+	int		lunghezza_pene;
+	bool	is_black;
+}	t_data;
+
+enum	e_errors
+{
+	E_MALLOC,
+	E_OPEN,
+	E_PARS_WALLS,
+};
+
+void	spread_democracy(t_data *data);
+
+#endif

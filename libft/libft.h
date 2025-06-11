@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2025/06/10 17:42:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/11 11:58:56 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,7 @@ int		sub_strcpy(char *dest, char *src, char *charset, int mode);
 void	bfs(t_bfs *bfs);
 
 int		fd_printf(int fd, const char *str, ...);
+
+int		l_printf(const char *str, ...);
 
 #endif

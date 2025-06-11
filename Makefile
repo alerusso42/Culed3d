@@ -1,5 +1,6 @@
 #–– Top‑level target
 NAME     = cub3d
+SRC_PATH = srcs/
 
 #–– Compiler settings
 CC       = cc
@@ -12,18 +13,19 @@ LIBFT     = $(LIBFT_DIR)/libft.a
 PARS_DIR  = parsing
 
 #–– All source files, with their relative paths
-SRCS = \
+SRCS = $(addprefix $(SRC_PATH), \
   main.c \
-
+  init/init_handler.c \
+  parsing/error.c \
+)
 # #–– Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
 # OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(LIBFT) $(LDFLAGS) -o $@
+	$(CC) $(SRCS) $(LIBFT) $(LDFLAGS) -o $@
 
 #–– Build libft (bonus) before anything else
 $(LIBFT): 
@@ -50,10 +52,15 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
+	rm -rf minilibx-linux
 
 bonus: fclean $(NAME)
 
 re: fclean all
 
+mini: 
+	@ls | grep minilibx > /dev/null || git clone git@github.com:42paris/minilibx-linux.git && printf "Mini already exist\n"
+
 #–– phony targets
 .PHONY: all clean fclean re libft
+#.SILENT:

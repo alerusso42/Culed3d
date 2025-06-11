@@ -3,51 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:14:13 by alerusso          #+#    #+#             */
-/*   Updated: 2024/12/16 17:26:49 by alerusso         ###   ########.fr       */
+/*   Created: 2024/12/21 17:01:33 by lparolis          #+#    #+#             */
+/*   Updated: 2024/12/21 17:01:33 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Memoria statica usata ---> BUFFER_SIZE * 4000
-// Define per il debug
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 222222
+#  define BUFFER_SIZE 20
 # endif
-# define COUNTER 3
-# define FORCE_READ_ONE_TEXT 3
-// Define usati nel programma
-# define MALLOC 1
-# define REALLOC 2
-# define FREE 3
-# define CALLOC 4
-# define MEMCPY 5
-# define FULL_MEMORY -1
-# define SUCCESS 1
-# define NO_NEWLINE_FOUND 0
-# define EOF_OR_NEWLINE_FOUND 1
-# define EOF_OR_NEWLINE_NOT_FOUND -1
-# define EMPTY_BUFFER 0
-# define END_OR_CORRUPTION -1
-// Librerie
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
+# include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <malloc.h>
 # include <fcntl.h>
-# include <limits.h>
+# include <stdio.h>
 
-char	*get_next_line(int fd);
-char	*get_next_line_main_function(int fd, char buffer[BUFFER_SIZE + 1]);
-char	*get(char **store_bytes, char buffer[BUFFER_SIZE + 1], int nl, int fd);
-int		go_read(int fd, char buffer[BUFFER_SIZE + 1], char **new_line);
-int		loop_read(char **new_line, int *control_read, size_t *end, int fd);
-int		alloc_ft(void **content, void *new_content, size_t start, int mode);
-int		find_end_line(size_t *start, char *string);
-void	*calloc_memcpy(int size, void *dest, const void *src, int ft);
-void	trim_readbytes(char *buffer);
-char	*ft_strjoin(char *s1, char *s2);
+char		*get_strchr(char *s, char c);
+char		*ft_schiavista(int fd, char *statik, char *buffer);
+char		*get_substr(char *s, unsigned int start, size_t len);
+char		*get_strjoin(char *s1, char *s2);
+char		*ft_cacatore(char *line);
+char		*get_next_line(int fd);
+char		*get_strdup(char *s);
+size_t		get_strlen(char *s);
 
 #endif
