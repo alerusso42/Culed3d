@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strings.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:16:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/10 16:43:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:05:21 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	cut_string(char *string, size_t start, size_t end)
 	return (0);
 }
 
+// restituisce la lunghezza fino alla prima occorenza del 
+// primo carattere che gli passi
 int	sub_strlen(char *s, char *charset, int mode)
 {
 	int	i;

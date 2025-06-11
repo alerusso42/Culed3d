@@ -46,3 +46,4 @@ bonus: $(OBJ) $(BONUSOBJ)
 	ar rcs $(NAME) $(OBJ) $(BONUSOBJ)
 
 .PHONY: all clean fclean re bonus
+.SILENT:

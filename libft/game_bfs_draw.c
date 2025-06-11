@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_bfs_draw.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:02:21 by alerusso          #+#    #+#             */
-/*   Updated: 2025/02/21 11:23:32 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:34:25 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,11 +194,11 @@ int	draw_path(t_bfs *bfs)
 	bfs->position[bfs->x][bfs->y].distance[bfs->n] = bfs->mark;
 	if (find_shortest_route(bfs, bfs->x, bfs->y) == -1)
 	{
-		return (normalize_path(bfs, bfs->map_x, bfs->map_y), NO);
+		return (normalize_path(bfs, bfs->map_x, bfs->map_y), false);
 	}
 	while ((bfs->x != stop_x) || (bfs->y != stop_y))
 	{
-		if (found_end(bfs->x, bfs->y, stop_x, stop_y) == YES)
+		if (found_end(bfs->x, bfs->y, stop_x, stop_y) == true)
 		{
 			bfs->position[bfs->en_x][bfs->en_y].distance[bfs->n] = bfs->mark;
 			break ;
@@ -206,5 +206,5 @@ int	draw_path(t_bfs *bfs)
 		record = find_shortest_route(bfs, bfs->x, bfs->y);
 		update_one(bfs, &bfs->x, &bfs->y, record);
 	}
-	return (normalize_path(bfs, bfs->map_x, bfs->map_y), YES);
+	return (normalize_path(bfs, bfs->map_x, bfs->map_y), true);
 }

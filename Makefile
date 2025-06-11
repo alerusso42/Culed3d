@@ -5,7 +5,6 @@ SRC_PATH = srcs/
 #–– Compiler settings
 CC       = cc
 CFLAGS   = -g -Wall -Werror -Wextra -I./libft
-LDFLAGS  = -lreadline -lhistory -lncurses
 
 #–– Library
 LIBFT_DIR = libft
@@ -16,7 +15,11 @@ PARS_DIR  = parsing
 SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
+  parsing/parsing.c \
   parsing/error.c \
+  parsing/get_type.c \
+  parsing/get_map.c \
+  utils/strings.c \
 )
 # #–– Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
@@ -25,7 +28,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(SRCS) $(LIBFT) $(LDFLAGS) -o $@
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 
 #–– Build libft (bonus) before anything else
 $(LIBFT): 
@@ -38,9 +41,8 @@ $(LIBFT):
 # 	$(CC) $(CFLAGS) -c $< -o $@
 
 # manca il file a.gdb
-gdb:
-	$(MAKE) gdb -C
-	a.gdb ./cub3d
+gdb: $(NAME)
+	gdb --tui -x ./$(NAME)
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./minishell

@@ -1,30 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/11 19:33:19 by lparolis         ###   ########.fr       */
+/*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
+/*   Updated: 2025/06/11 17:33:43 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	error(t_data *data, int err, char *file)
-{
-	spread_democracy(data);
-	fd_printf(2, "Error\n");
-	if (err == E_MALLOC)
-		fd_printf(2, "Malloc_failure.\n");
-	else if (err == E_OPEN)
-		fd_printf(2, "Open_failure.\n");
-	if (err == E_ARGC)
-		fd_printf(2, "Bad_agrumi.\n");
-	if (err == E_EXT)
-		fd_printf(2, "Belin l'estensione di %s.\n", file);
-	if (err == E_TYPE)
-		fd_printf(2, "Belin il type.\n");
-	exit(err);
-}
