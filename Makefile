@@ -15,7 +15,7 @@ PARS_DIR  = parsing
 #–– All source files, with their relative paths
 SRCS = $(addprefix $(SRC_PATH), \
   main.c \
-  init/init_handler.c \
+  init/mem_handler.c \
   parsing/error.c \
 )
 # #–– Object files go under obj/, mirroring the tree
@@ -59,7 +59,7 @@ bonus: fclean $(NAME)
 re: fclean all
 
 mini: 
-	@ls | grep minilibx > /dev/null || git clone git@github.com:42paris/minilibx-linux.git && printf "Mini already exist\n"
+	@ls | grep minilibx > /dev/null  && printf "Mini already exist\n" || git clone git@github.com:42paris/minilibx-linux.git ; rm -rf minilibx-linux/.git
 
 #–– phony targets
 .PHONY: all clean fclean re libft

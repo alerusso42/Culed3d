@@ -6,11 +6,11 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/11 12:13:51 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:22:56 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	error(t_data *data, int err)
 {
