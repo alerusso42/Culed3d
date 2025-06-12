@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2025/06/11 19:26:58 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:09:50 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,10 @@ char		**ft_dup_matrix(char **matrix);
 void		free_matrix(char **m);
 
 int			matrix_len(char **matrix);
+
+size_t		matrix_longest_line(char **matrix);
+
+void		print_matrix(char **m);
 
 char		**ft_rematrix(char **old, char **new);
 

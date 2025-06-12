@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 10:18:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:03:59 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
+# define VALID_CHARS " 01NSEW"
+
 typedef struct s_data
 {
+	char	**map;
 	char	*texture_north;
 	char	*texture_west;
 	char	*texture_south;
 	char	*texture_east;
 	char	*texture_floor;
 	char	*texture_ceiling;
-	int		lunghezza_pene;
-	bool	is_black;
+	int		max_x;
+	int		max_y;
 }	t_data;
 
 typedef enum e_timecode
@@ -65,6 +68,9 @@ enum	e_errors
 	E_EXT,
 	E_TYPE,
 	E_TEXTURE,
+	E_CHAR,
+	E_NO_PLAYER,
+	E_MULTIPLAYER,
 };
 
 enum	e_type_identifers
@@ -87,10 +93,12 @@ void	error(t_data *data, int err, char *file);
 void	get_type(t_data *data, int fd);
 void	check_textures(t_data *data, int fd);
 void	get_map(t_data *data, int fd);
+void	parse_map(t_data *data);
+void	check_chars(t_data *data);
+void	check_walls(t_data *data);
 
 //SECTION	utils
 
-int		double_cmp(char *s1, char *s2, int s1_len);
 void	ft_sleep(long long microsecond);
 
 #endif

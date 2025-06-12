@@ -16,11 +16,12 @@ SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
   parsing/parsing.c \
-  parsing/error.c \
   parsing/get_type.c \
   parsing/get_map.c \
   parsing/check_textures.c \
+  parsing/check_map.c \
   utils/strings.c \
+  utils/error.c \
   utils/time.c \
 )
 # #–– Object files go under obj/, mirroring the tree

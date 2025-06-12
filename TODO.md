@@ -1,11 +1,11 @@
 []	Parsing
     {} The map must be closed/surrounded by walls, if not the program must return
         an error.
-    {} Except for the map content, each type of element can be separated by one or
+    {X} Except for the map content, each type of element can be separated by one or
         more empty lines.
-    {} Except for the map content which always has to be the last, each type of
+    {X} Except for the map content which always has to be the last, each type of
         element can be set in any order in the file.
-    {} Except for the map, each type of information from an element can be separated
+    {X} Except for the map, each type of information from an element can be separated
         by one or more spaces.
     {} The map must be parsed as it looks in the file. Spaces are a valid part of the
         map and are up to you to handle. You must be able to parse any kind of map,

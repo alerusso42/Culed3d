@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings.c                                          :+:      :+:    :+:   */
+/*   print_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 12:17:11 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 12:21:20 by lparolis         ###   ########.fr       */
+/*   Created: 2025/06/12 10:43:00 by lparolis          #+#    #+#             */
+/*   Updated: 2025/06/12 10:44:21 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "libft.h"
 
-/*
-1)	malloc for difference MAX - STR
-2)	ft_memset NEWSTR, SPACE
-3)	join
-4)	profit
+void	print_matrix(char **m)
+{
+	int	i;
 
-*/
-char	**RESIZE()
+	i = 0;
+	while (m && m[i])
+	{
+		l_printf("[%s]\n", m[i]);
+		i++;
+	}
+}

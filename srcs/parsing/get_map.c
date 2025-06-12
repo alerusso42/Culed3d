@@ -3,15 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 10:16:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:14:30 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-/* REVIEW
+static void	resize_map(t_data *data);
 
+/* REVIEW
+Nella parte iniziale mergiamo tutte le chiamate di gnl in una
+singola stringa per poi chiamarci split con \n come carattere separatore
  */
+
+void	get_map(t_data *data, int fd)
+{
+	char	*pre_split;
+	char	*line;
+
+	pre_split = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		pre_split = ft_rejoin(pre_split, line, true, true);
+		line = get_next_line(fd);
+	}
+	data->map = ft_split(pre_split, '\n');
+	free(pre_split);
+	resize_map(data);
+}
+
+void	parse_map(t_data *data)
+{
+	check_chars(data);
+	check_walls(data);
+	//check_map_access(data);
+}
+
+static void	resize_map(t_data *data)
+{
+	
+}
+
+

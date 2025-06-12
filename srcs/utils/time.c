@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 10:02:23 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:50:51 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static long long	get_time(t_timecode timecode)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		error_exit("gettimeofday failed \n");
+		fd_printf(2, "gettimeofday failed \n");
 	if (timecode == SECONDS)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
 	else if (timecode == MILLISECONDS)
@@ -41,6 +41,6 @@ static long long	get_time(t_timecode timecode)
 	else if (timecode == MICROSECONDS)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
-		error_exit("Bad get_time call\n");
+		fd_printf(2, "Bad get_time call\n");
 	return (123456);
 }

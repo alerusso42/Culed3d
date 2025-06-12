@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 10:18:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:04:27 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	check_file_extension(char *file)
 static void	parse_cub(t_data *data, int fd)
 {
 	get_type(data, fd);
-	check_textures(data, fd);
+	//check_textures(data, fd);
 	get_map(data, fd);
+	parse_map(data);
+	print_matrix(data->map);
 }
