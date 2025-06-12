@@ -4,7 +4,7 @@ SRC_PATH = srcs/
 
 #–– Compiler settings
 CC       = cc
-CFLAGS   = -g -Wall -Werror -Wextra -I./libft
+CFLAGS   = -Wall -Werror -Wextra -g -I./libft
 
 #–– Library
 LIBFT_DIR = libft
@@ -20,9 +20,11 @@ SRCS = $(addprefix $(SRC_PATH), \
   parsing/get_map.c \
   parsing/check_textures.c \
   parsing/check_map.c \
+  parsing/check_map_access.c \
   utils/strings.c \
   utils/error.c \
   utils/time.c \
+  utils/alloc_utils.c \
 )
 # #–– Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
@@ -45,7 +47,7 @@ $(LIBFT):
 
 # manca il file a.gdb
 gdb: $(NAME)
-	gdb --tui -x ./$(NAME)
+	gdb --tui -x a.gdb --args ./cub3d test.cub
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
@@ -64,7 +66,7 @@ bonus: fclean $(NAME)
 re: fclean all
 
 mini: 
-	@ls | grep minilibx > /dev/null  && printf "Mini already exist\n" || git clone git@github.com:42paris/minilibx-linux.git ; rm -rf minilibx-linux/.git
+	@ls | grep minilibx > /dev/null  && printf "Mini already exist\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
 
 #–– phony targets
 .PHONY: all clean fclean re libft

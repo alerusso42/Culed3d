@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 11:51:10 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:07:35 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	error(t_data *data, int err, char *file)
 		fd_printf(2, "Wanna play with no hands?.\n");
 	else if (err == E_MULTIPLAYER)
 		three_dots(2, "This is not multiplayer", " yet😏\n");
+	else if (err == E_INVALID_MAP)
+		fd_printf(2, "This map looks suspicious\n");
+	else if (err == E_INVALID_PATH)
+		fd_printf(2, "Can't access the whole map\n");
 	fd_printf(2, RST);
 	exit(err);
 }

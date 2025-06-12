@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 12:03:59 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:41:43 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
 # define VALID_CHARS " 01NSEW"
+# define CONTENT_CHARS "NSEW"
+# define FFILL_CHARS "0NSEW"
 
 typedef struct s_data
 {
@@ -49,6 +51,7 @@ typedef struct s_data
 	char	*texture_east;
 	char	*texture_floor;
 	char	*texture_ceiling;
+	int		p_pos[2];
 	int		max_x;
 	int		max_y;
 }	t_data;
@@ -71,6 +74,8 @@ enum	e_errors
 	E_CHAR,
 	E_NO_PLAYER,
 	E_MULTIPLAYER,
+	E_INVALID_MAP,
+	E_INVALID_PATH,
 };
 
 enum	e_type_identifers
@@ -96,9 +101,11 @@ void	get_map(t_data *data, int fd);
 void	parse_map(t_data *data);
 void	check_chars(t_data *data);
 void	check_walls(t_data *data);
+void	check_map_access(t_data *data);
 
 //SECTION	utils
 
+void	*safe_malloc(size_t size);
 void	ft_sleep(long long microsecond);
 
 #endif
