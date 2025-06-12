@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/11 19:29:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:18:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@
 # include <X11/keysym.h>
 # include "libft/libft.h"	
 
+# define RST		"\033[0m" /* Reset to default color */
+# define RED		"\033[1;31m" /* Bold Red */
+# define BGREEN		"\033[1;32m" /* Bold Green */
+# define BYELLOW	"\033[1;33m" /* Bold Yellow*/
+# define BBLUE		"\033[1;34m" /* Bold Blue*/
+# define BMAGENTA	"\033[1;35m" /* Bold Magenta*/
+# define BCYAN		"\033[1;36m" /* Bold Cyan*/
+# define BWHITE		"\033[1;37m" /* Bold White*/
+
 typedef struct s_data
 {
 	char	*texture_north;
@@ -41,6 +50,13 @@ typedef struct s_data
 	bool	is_black;
 }	t_data;
 
+typedef enum e_timecode
+{
+	SECONDS,
+	MILLISECONDS,
+	MICROSECONDS,
+}	t_timecode;
+
 enum	e_errors
 {
 	E_MALLOC = 1,
@@ -48,6 +64,7 @@ enum	e_errors
 	E_ARGC,
 	E_EXT,
 	E_TYPE,
+	E_TEXTURE,
 };
 
 enum	e_type_identifers
@@ -58,6 +75,7 @@ enum	e_type_identifers
 	WE,
 	F,
 	C,
+	TYPE_IDENTIFERS_NUM,
 };
 
 void	spread_democracy(t_data *data);
@@ -67,10 +85,12 @@ void	error(t_data *data, int err, char *file);
 //SECTION	parsing
 
 void	get_type(t_data *data, int fd);
+void	check_textures(t_data *data, int fd);
 void	get_map(t_data *data, int fd);
 
 //SECTION	utils
 
-int	double_cmp(char *s1, char *s2, int s1_len);
+int		double_cmp(char *s1, char *s2, int s1_len);
+void	ft_sleep(long long microsecond);
 
 #endif

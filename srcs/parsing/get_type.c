@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/11 21:22:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:18:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,37 @@
 static bool	assign_type(t_data *data, char *line);
 static bool	cub3d_substr(t_data *data, char *line, int type);
 
+/* REVIEW
+Funzione che cerca all'interno del file .cub passato come argomento
+i vari type identifiers per le varie textures e eventualmente le controlla
+usando le altre funzioni
+ */
+
 void	get_type(t_data *data, int fd)
 {
 	int			count_types;
 	char		*line;
-	char		*start_line;
+	int			i;
 
 	count_types = 0;
 	line = get_next_line(fd);
-	while (count_types != 6 && line)
+	while (count_types != TYPE_IDENTIFERS_NUM && line)
 	{
-		start_line = line;
-		line += sub_strlen(line, " ", INCLUDE);
-		if (*line == '\0')
-			return (free(start_line), close(fd), error(data, E_TYPE, NULL));
-		else if (*line == '\n')
+		i = 0;
+		i += sub_strlen(line, " ", INCLUDE);
+		if (line[i] == '\0')
+			return (free(line), close(fd), error(data, E_TYPE, NULL));
+		else if (line[i] == '\n')
 		{
-			line = ft_restr(start_line, get_next_line(fd));
+			line = ft_restr(line, get_next_line(fd));
 			continue ;
 		}
-		if (assign_type(data, line) == false)
-			return (free(start_line), close(fd), error(data, E_TYPE, NULL));
+		if (assign_type(data, line + i) == false)
+			return (free(line), close(fd), error(data, E_TYPE, NULL));
 		++count_types;
-		line = ft_restr(start_line, get_next_line(fd));
+		line = ft_restr(line, get_next_line(fd));
 	}
-	start_line = line;
-	free(start_line);
+	free(line);
 	if (count_types != 6)
 		return (close(fd), error(data, E_TYPE, NULL));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/11 19:25:28 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:18:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 static int	check_file_extension(char *file);
 static void	parse_cub(t_data *data, int fd);
+
+/* REVIEW
+1)	Controllo numero di argomenti
+2)	Controllo estensione del file passato come argomento
+3)	Controllo che l'argomento esista
+4)	Assegnazione dei vari type identifiers e della mappa 
+
+	Type identifiers = SO, NO, WE, EA, F, C.
+*/
 
 void	parsing(t_data *data, int argc, char **argv)
 {
@@ -41,5 +50,6 @@ static int	check_file_extension(char *file)
 static void	parse_cub(t_data *data, int fd)
 {
 	get_type(data, fd);
-	//get_map(data, fd);
+	check_textures(data, fd);
+	get_map(data, fd);
 }

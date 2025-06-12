@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/11 19:33:19 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:13:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
+/*REVIEW
+Funzione personalizzata per la stampa piu chiara
+degli errori
+*/
 void	error(t_data *data, int err, char *file)
 {
 	spread_democracy(data);

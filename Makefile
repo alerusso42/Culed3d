@@ -19,7 +19,9 @@ SRCS = $(addprefix $(SRC_PATH), \
   parsing/error.c \
   parsing/get_type.c \
   parsing/get_map.c \
+  parsing/check_textures.c \
   utils/strings.c \
+  utils/time.c \
 )
 # #–– Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
@@ -45,7 +47,7 @@ gdb: $(NAME)
 	gdb --tui -x ./$(NAME)
 
 val: 
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
 
 clean:
 	rm -rf $(OBJ_DIR)
