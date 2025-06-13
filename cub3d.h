@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/13 14:54:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 17:34:18 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,9 @@ void	finish_him(int fd);
 
 void	*safe_malloc(size_t size);
 void	ft_sleep(long long microsecond);
+
+// INIT
+
+void	free_texture(t_data *data);
 
 #endif

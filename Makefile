@@ -16,6 +16,7 @@ PARS_DIR  = parsing
 SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
+  init/get_texture.c \
   parsing/parsing.c \
   parsing/get_type.c \
   parsing/get_map.c \
@@ -32,7 +33,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 # OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
-$(NAME): $(LIBFT)
+$(NAME): mini $(LIBFT) $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) $(LFLAGS) $(LIBFT) -o $(NAME)
 
 # Build libft (bonus) before anything else
@@ -41,10 +42,10 @@ $(LIBFT):
 
 # manca il file a.gdb
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3d min.cub
+	gdb -x a.gdb --args ./cub3d
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3d min.cub
+	gdb --tui -x a.gdb --args ./cub3d
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
@@ -68,4 +69,4 @@ mini:
 
 # phony targets
 .PHONY: all clean fclean re libft
-# .SILENT:
+.SILENT:

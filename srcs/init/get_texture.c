@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/13 14:54:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 17:34:01 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	get_texture(t_data *data)
 	y = 42;
 	p = data->textures[NORTH];
 	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_north, &x, &y);
-	p = data->textures[EAST];
-	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_east, &x, &y);
 	p = data->textures[SOUTH];
 	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_south, &x, &y);
+	p = data->textures[EAST];
+	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_east, &x, &y);
 	p = data->textures[WEST];
-	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_south, &x, &y);
+	p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_west, &x, &y);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
@@ -44,7 +44,7 @@ void	free_texture(t_data *data)
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
-		if (data->textures[i])
+		if (data->textures && data->textures[i])
 		{
 			mlx_destroy_image(data->mlx_connection, data->textures[i]);
 			free(data->textures[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 14:46:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:38:56 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	spread_democracy(t_data *data)
 	if (data->mlx_connection)
 		free(data->mlx_connection);
 	data->mlx_connection = NULL;
+	free_texture(data);
 	return ;
 }
 
