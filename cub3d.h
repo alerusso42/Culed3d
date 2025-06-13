@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 21:41:43 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:07:51 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 
 typedef struct s_data
 {
+	void	*mlx_connection;
+	void	*mlx_window;
 	char	**map;
 	char	*texture_north;
 	char	*texture_west;
@@ -70,7 +72,9 @@ enum	e_errors
 	E_ARGC,
 	E_EXT,
 	E_TYPE,
+	E_FORMAT,
 	E_TEXTURE,
+	E_NO_MAP,
 	E_CHAR,
 	E_NO_PLAYER,
 	E_MULTIPLAYER,
@@ -89,6 +93,7 @@ enum	e_type_identifers
 	TYPE_IDENTIFERS_NUM,
 };
 
+void	lets_start_the_party(t_data *data);
 void	spread_democracy(t_data *data);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
@@ -102,6 +107,7 @@ void	parse_map(t_data *data);
 void	check_chars(t_data *data);
 void	check_walls(t_data *data);
 void	check_map_access(t_data *data);
+void	finish_him(int fd);
 
 //SECTION	utils
 

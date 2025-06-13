@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 11:45:12 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:32:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
 static int	check_file(char *texture_name);
-static void	finish_him(int fd);
 
 /*REVIEW
 Funzione che controlla che i path passati per i file
@@ -49,7 +48,7 @@ static int	check_file(char *texture_name)
 /*
 	KILL GNL BUFFER
 */
-static void	finish_him(int fd)
+void	finish_him(int fd)
 {
 	char	*line;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 21:00:49 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:36:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	resize_map(t_data *data);
 /* REVIEW
 Nella parte iniziale mergiamo tutte le chiamate di gnl in una
 singola stringa per poi chiamarci split con \n come carattere separatore
+Nella seconda parte resiziamo la mappa per poter riempire gli spazi non allocati
+con il carattere spazio
  */
 
 void	get_map(t_data *data, int fd)
@@ -31,6 +33,9 @@ void	get_map(t_data *data, int fd)
 		pre_split = ft_rejoin(pre_split, line, true, true);
 		line = get_next_line(fd);
 	}
+	close(fd);
+	if (!pre_split)
+		return (error(data, E_NO_MAP, NULL));
 	data->map = ft_split(pre_split, '\n');
 	free(pre_split);
 	resize_map(data);
@@ -43,6 +48,13 @@ void	parse_map(t_data *data)
 	check_map_access(data);
 }
 
+/*
+//	REVIEW
+	Map needs to be resized because lines length may differ.
+	We alloc a new string with size of longest_line - current_line,
+	we set it to SPACE, we join it at the current_line.
+	Lastly, matrix is updated.
+*/
 static void	resize_map(t_data *data)
 {
 	char	**resized_map;
@@ -54,6 +66,7 @@ static void	resize_map(t_data *data)
 	i = -1;
 	tmp = NULL;
 	max_size = matrix_longest_line(data->map);
+	data->max_x = max_size - 1;
 	resized_map = safe_malloc(sizeof(char *) * (matrix_len(data->map) + 1));
 	while (data->map[++i])
 	{
@@ -64,6 +77,7 @@ static void	resize_map(t_data *data)
 		resized_map[i] = ft_strjoin(data->map[i], tmp);
 		free(tmp);
 	}
+	data->max_y = i - 1;
 	resized_map[i] = NULL;
 	data->map = ft_rematrix(data->map, resized_map);
 }

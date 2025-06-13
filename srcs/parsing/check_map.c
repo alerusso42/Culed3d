@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 21:01:05 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:47:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void	is_it_valid(t_data *data, int i, int j);
+static void	is_it_valid(t_data *data, int x, int y);
 
 // printf("char invalido(cioe che non puo camminare): [%c]", data->map[j][i]);
 /* REVIEW
@@ -27,6 +27,7 @@ void	check_chars(t_data *data)
 	int		j;
 	int		player_count;
 
+	print_matrix(data->map);
 	i = -1;
 	player_count = 0;
 	while (data->map && data->map[++i])
@@ -36,7 +37,8 @@ void	check_chars(t_data *data)
 		{
 			if (ft_strchr(VALID_CHARS, data->map[i][j]) == NULL)
 				error(data, E_CHAR, NULL);
-			player_count += ft_strchr("NSWE", data->map[i][j]) != NULL;
+			if (ft_strchr(CONTENT_CHARS, data->map[i][j]))
+				player_count++;
 		}
 	}
 	if (player_count == 0)
@@ -56,20 +58,19 @@ void	check_walls(t_data *data)
 		j = -1;
 		while (data->map && data->map[i][++j])
 		{
-			if (data->map[i][j] == '0' || \
-				ft_strchr(CONTENT_CHARS, data->map[i][j]))
-				is_it_valid(data, i, j);
+			if (ft_strchr(FFILL_CHARS, data->map[i][j]))
+				is_it_valid(data, j, i);
 		}
 	}
 }
 
-static void	is_it_valid(t_data *data, int i, int j)
+static void	is_it_valid(t_data *data, int x, int y)
 {
-	if (i == 0 || i == data->max_y || j == 0 || j == data->max_x)
+	if (x == 0 || x == data->max_x || y == 0 || y == data->max_y)
 		error(data, E_INVALID_MAP, NULL);
-	if (data->map[i + 1][j] == ' ' || \
-		data->map[i - 1][j] == ' ' || \
-		data->map[i][j + 1] == ' ' || \
-		data->map[i][j - 1] == ' ')
+	if (data->map[y + 1][x] == ' ' || \
+		data->map[y - 1][x] == ' ' || \
+		data->map[y][x + 1] == ' ' || \
+		data->map[y][x - 1] == ' ')
 		error(data, E_INVALID_MAP, NULL);
 }

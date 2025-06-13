@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_access.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 22:08:03 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:39:04 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	check_map_access(t_data *data)
 
 static void	path_finder(t_data *data, char **map_copy, int x, int y)
 {
-	if (x == data->max_x || y == data->max_y)
-		return ;
+	// if (x == data->max_x || y == data->max_y)
+	// 	return ;
 	if (map_copy[x][y] == 'X' || map_copy[x][y] == '1')
 		return ;
 	map_copy[x][y] = 'X';
@@ -80,7 +80,10 @@ static void	path_checker(t_data *data, char **map)
 		while (map[x][++y])
 		{
 			if (ft_strchr(FFILL_CHARS, map[x][y]))
+			{
+				free_matrix(map);
 				error(data, E_INVALID_PATH, NULL);
+			}
 		}
 	}
 }

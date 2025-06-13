@@ -1,5 +1,6 @@
 alias -a I = info local
 alias -a V = display
+alias -a mike = make fclean && make mini && make
 
 define FC
 	focus next

@@ -47,7 +47,7 @@ $(LIBFT):
 
 # manca il file a.gdb
 gdb: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3d test.cub
+	gdb --tui -x a.gdb --args ./cub3d min.cub
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
@@ -66,7 +66,7 @@ bonus: fclean $(NAME)
 re: fclean all
 
 mini: 
-	@ls | grep minilibx > /dev/null  && printf "Mini already exist\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
+	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
 
 #–– phony targets
 .PHONY: all clean fclean re libft

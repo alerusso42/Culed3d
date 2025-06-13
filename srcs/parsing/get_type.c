@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/12 10:18:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:32:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	assign_type(t_data *data, char *line);
 static bool	cub3d_substr(t_data *data, char *line, int type);
+static bool	end_line_check(t_data *data, char **line, int fd);
 
 /* REVIEW
 Funzione che cerca all'interno del file .cub passato come argomento
@@ -45,9 +46,8 @@ void	get_type(t_data *data, int fd)
 		++count_types;
 		line = ft_restr(line, get_next_line(fd));
 	}
-	free(line);
-	if (count_types != 6)
-		return (close(fd), error(data, E_TYPE, NULL));
+	if (count_types != 6 || end_line_check(data, &line, fd) == false)
+		return (finish_him(fd), close(fd), error(data, E_TYPE, NULL));
 }
 
 static bool	assign_type(t_data *data, char *line)
@@ -86,4 +86,20 @@ static bool	cub3d_substr(t_data *data, char *line, int type)
 	else
 		return (false);
 	return (true);
+}
+
+static bool	end_line_check(t_data *data, char **line, int fd)
+{
+	char	end_line;
+
+	if (!*line)
+		return (false);
+	end_line = **line;
+	free(*line);
+	if (end_line == '\n')
+		return (true);
+	finish_him(fd);
+	close(fd);
+	error(data, E_FORMAT, NULL);
+	return (false);
 }
