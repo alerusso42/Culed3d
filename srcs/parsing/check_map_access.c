@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 11:39:04 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:22:00 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_map_access(t_data *data)
 	map_copy = ft_dup_matrix(data->map);
 	player_finder(data);
 	path_finder(data, map_copy, data->p_pos[1], data->p_pos[0]);
-	print_matrix(map_copy);
+	// print_matrix(map_copy);
 	path_checker(data, map_copy);
 	free_matrix(map_copy);
 }

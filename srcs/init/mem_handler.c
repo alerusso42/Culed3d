@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 12:06:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:46:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ https://www.youtube.com/watch?v=U06jlgpMtQs
 */
 void	spread_democracy(t_data *data)
 {
-	free(data->texture_north);
-	data->texture_north = NULL;
-	free(data->texture_south);
-	data->texture_south = NULL;
-	free(data->texture_east);
-	data->texture_east = NULL;
-	free(data->texture_west);
-	data->texture_west = NULL;
-	free(data->texture_floor);
-	data->texture_floor = NULL;
-	free(data->texture_ceiling);
-	data->texture_ceiling = NULL;
+	free(data->txtr_north);
+	data->txtr_north = NULL;
+	free(data->txtr_south);
+	data->txtr_south = NULL;
+	free(data->txtr_east);
+	data->txtr_east = NULL;
+	free(data->txtr_west);
+	data->txtr_west = NULL;
+	free(data->txtr_floor);
+	data->txtr_floor = NULL;
+	free(data->txtr_ceiling);
+	data->txtr_ceiling = NULL;
+	free(data->textures);
+	data->textures = NULL;
 	free_matrix(data->map);
 	data->map = NULL;
 	if (data->mlx_window)
@@ -48,4 +50,9 @@ void	lets_start_the_party(t_data *data)
 	data->mlx_window = mlx_new_window(data->mlx_connection, 0, 0, "INSERT A NAME");
 	if (!data->mlx_window)
 		error(data, 0, NULL);
+	data->textures = ft_calloc(TEXTURES_NUM, sizeof(void *));
+	if (!data->textures)
+		error(data, E_MALLOC, NULL);
 }
+
+

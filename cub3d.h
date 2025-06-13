@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/13 12:07:51 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:54:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ typedef struct s_data
 {
 	void	*mlx_connection;
 	void	*mlx_window;
+	void	**textures;
 	char	**map;
-	char	*texture_north;
-	char	*texture_west;
-	char	*texture_south;
-	char	*texture_east;
-	char	*texture_floor;
-	char	*texture_ceiling;
+	char	*txtr_north;
+	char	*txtr_west;
+	char	*txtr_south;
+	char	*txtr_east;
+	char	*txtr_floor;
+	char	*txtr_ceiling;
+	int		floor_rgb[3];
+	int		ceiling_rgb[3];
 	int		p_pos[2];
 	int		max_x;
 	int		max_y;
@@ -64,6 +67,15 @@ typedef enum e_timecode
 	MILLISECONDS,
 	MICROSECONDS,
 }	t_timecode;
+
+enum e_textures
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+	TEXTURES_NUM,
+};
 
 enum	e_errors
 {
@@ -79,6 +91,7 @@ enum	e_errors
 	E_NO_PLAYER,
 	E_MULTIPLAYER,
 	E_INVALID_MAP,
+	E_MLX_TEXTURE,
 	E_INVALID_PATH,
 };
 

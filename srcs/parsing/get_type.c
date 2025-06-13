@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 11:32:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:44:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ static bool	cub3d_substr(t_data *data, char *line, int type)
 {
 	while (ft_isspace(line[0]))
 		line += 1;
-	if (type == NO && data->texture_north == NULL)
-		data->texture_north = ft_strdup(line);
-	else if (type == SO && data->texture_south == NULL)
-		data->texture_south = ft_strdup(line);
-	else if (type == WE && data->texture_west == NULL)
-		data->texture_west = ft_strdup(line);
-	else if (type == EA && data->texture_east == NULL)
-		data->texture_east = ft_strdup(line);
-	else if (type == F && data->texture_floor == NULL)
-		data->texture_floor = ft_strdup(line);
-	else if (type == C && data->texture_ceiling == NULL)
-		data->texture_ceiling = ft_strdup(line);
+	if (type == NO && data->txtr_north == NULL)
+		data->txtr_north = ft_strdup(line);
+	else if (type == SO && data->txtr_south == NULL)
+		data->txtr_south = ft_strdup(line);
+	else if (type == WE && data->txtr_west == NULL)
+		data->txtr_west = ft_strdup(line);
+	else if (type == EA && data->txtr_east == NULL)
+		data->txtr_east = ft_strdup(line);
+	else if (type == F && data->txtr_floor == NULL)
+		data->txtr_floor = ft_strdup(line);
+	else if (type == C && data->txtr_ceiling == NULL)
+		data->txtr_ceiling = ft_strdup(line);
 	else
 		return (false);
 	return (true);

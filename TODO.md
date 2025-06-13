@@ -11,6 +11,9 @@
         map and are up to you to handle. You must be able to parse any kind of map,
         as long as it respects the rules of the map.
 []	Minilibx structure
+    {} Inizializzare immagini e texture
+    {} Creare la finestra e far partire il mlx loop hook
+    
 []	Struttura dati
 []	Inizializzazione
 []	Studiare raycasting

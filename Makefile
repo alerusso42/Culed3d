@@ -1,17 +1,18 @@
-#–– Top‑level target
+# Top level target
 NAME     = cub3d
 SRC_PATH = srcs/
 
-#–– Compiler settings
+# Compiler settings
 CC       = cc
-CFLAGS   = -Wall -Werror -Wextra -g -I./libft
+CFLAGS   = -Wall -Werror -Wextra -g
+LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx
 
-#–– Library
+# Library 
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
 PARS_DIR  = parsing
 
-#–– All source files, with their relative paths
+# All source files, with their relative paths c
 SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
@@ -26,27 +27,23 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/time.c \
   utils/alloc_utils.c \
 )
-# #–– Object files go under obj/, mirroring the tree
+# # Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
 # OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
-
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(LFLAGS) $(LIBFT) -o $(NAME)
 
-#–– Build libft (bonus) before anything else
+# Build libft (bonus) before anything else
 $(LIBFT): 
 	$(MAKE) bonus -C $(LIBFT_DIR)
 
-#–– Single pattern rule for every .c → .o
-#––   - mkdir -p $(dir $@) makes sure subdirs exist
-# $(OBJ_DIR)/%.o: %.c
-# 	@mkdir -p $(dir $@)
-# 	$(CC) $(CFLAGS) -c $< -o $@
-
 # manca il file a.gdb
 gdb: $(NAME)
+	gdb -x a.gdb --args ./cub3d min.cub
+
+gdbtui: $(NAME)
 	gdb --tui -x a.gdb --args ./cub3d min.cub
 
 val: 
@@ -67,7 +64,8 @@ re: fclean all
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
+	$(MAKE) -C ./minilibx-linux
 
-#–– phony targets
+# phony targets
 .PHONY: all clean fclean re libft
-#.SILENT:
+# .SILENT:

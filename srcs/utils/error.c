@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 11:29:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:51:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	error(t_data *data, int err, char *file)
 		three_dots(2, "This is not multiplayer", " yet😏\n");
 	else if (err == E_INVALID_MAP)
 		fd_printf(2, "This map looks suspicious\n");
+	else if (err == E_MLX_TEXTURE)
+		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN\n");
 	else if (err == E_INVALID_PATH)
 		fd_printf(2, "Can't access the whole map\n");
 	fd_printf(2, RST);
