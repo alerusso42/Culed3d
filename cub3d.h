@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/25 12:21:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:44:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
+# define FPS 30
+# define FRAME_TIME (1000000 / FPS)
+
 # define DEBUG true
 # define VALID_CHARS " 01NSEW"
 # define CONTENT_CHARS "NSEW"
@@ -51,10 +54,15 @@
 # endif
 
 # define HIMG 48
+# define PIX_PLAYER HIMG + (HIMG / 2)
+# define PLAYER_OFFSET (HIMG / 2)
 # define WIMG 48
+
+typedef struct timeval	t_time;
 
 typedef struct s_data
 {
+	t_time	start;
 	void	*mlx_connection;
 	void	*mlx_window;
 	void	**textures;
@@ -72,6 +80,24 @@ typedef struct s_data
 	int		max_x;
 	int		max_y;
 }	t_data;
+
+typedef struct s_drawline
+{
+	double		delta_x;
+	double		delta_y;
+	double		curr_x;
+	double		curr_y;
+	int			pixel_p[2];
+	int			pixel_win[2];
+	int			int_x;
+	int			int_y;
+	int			next_x;
+	int			next_y;
+	int			final_x;
+	int			final_y;
+	char		x_sign:2;
+	char		y_sign:2;
+}	t_drawline;
 
 typedef enum e_timecode
 {
@@ -120,6 +146,14 @@ enum	e_type_identifers
 	TYPE_IDENTIFERS_NUM,
 };
 
+enum e_utils
+{
+	X,
+	Y,
+	POSITIVE = 1,
+	NEGATIVE = -1,
+};
+
 void	lets_start_the_party(t_data *data);
 void	spread_democracy(t_data *data);
 void	free_texture(t_data *data);
@@ -145,6 +179,8 @@ void	ft_sleep(long long microsecond);
 //SECTION debug
 
 int		map_start(t_data *data);
+int		draw_line(t_data *data, int x, int y);
+int		debug_loop(t_data *data);
 
 //SECTION render
 
