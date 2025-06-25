@@ -27,13 +27,14 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/error.c \
   utils/time.c \
   utils/alloc_utils.c \
+  render/test.c \
 )
 # # Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
 # OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
-$(NAME): mini $(LIBFT) $(SRCS)
+$(NAME): $(LIBFT) $(SRCS) cub3d.h
 	$(CC) $(CFLAGS) $(SRCS) $(LFLAGS) $(LIBFT) -o $(NAME)
 
 # Build libft (bonus) before anything else
@@ -42,10 +43,10 @@ $(LIBFT):
 
 # manca il file a.gdb
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3d
+	gdb -x a.gdb --args ./cub3d min.cub
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3d
+	gdb --tui -x a.gdb --args ./cub3d min.cub
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
@@ -69,4 +70,4 @@ mini:
 
 # phony targets
 .PHONY: all clean fclean re libft
-.SILENT:
+# .SILENT:
