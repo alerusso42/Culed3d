@@ -16,6 +16,7 @@ PARS_DIR  = parsing
 SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
+  init/get_texture.c \
   parsing/parsing.c \
   parsing/get_type.c \
   parsing/get_map.c \
@@ -26,13 +27,14 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/error.c \
   utils/time.c \
   utils/alloc_utils.c \
+  render/test.c \
 )
 # # Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
 # OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
-$(NAME): $(LIBFT)
+$(NAME): $(LIBFT) $(SRCS) cub3d.h
 	$(CC) $(CFLAGS) $(SRCS) $(LFLAGS) $(LIBFT) -o $(NAME)
 
 # Build libft (bonus) before anything else

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 13:19:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/25 10:48:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ static void	parse_cub(t_data *data, int fd)
 	get_map(data, fd);
 	parse_map(data);
 	// print_matrix(data->map);
+	//	rifondare_impero_romano(data);
 }

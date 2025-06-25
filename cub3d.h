@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/13 14:54:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:21:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,20 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
+# define DEBUG true
 # define VALID_CHARS " 01NSEW"
 # define CONTENT_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
+
+# ifdef DEBUG
+#   define PLAYER_TXTR "textures/pisnelo.xpm"
+#   define DEBUG_WALL_TXTR "textures/debug_wall.xpm"
+# else
+#  define PLAYER_TXTR "GRANDE CAZZO"
+# endif
+
+# define HIMG 48
+# define WIMG 48
 
 typedef struct s_data
 {
@@ -54,6 +65,7 @@ typedef struct s_data
 	char	*txtr_east;
 	char	*txtr_floor;
 	char	*txtr_ceiling;
+	char	*txtr_player;
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 	int		p_pos[2];
@@ -74,6 +86,8 @@ enum e_textures
 	EAST,
 	SOUTH,
 	WEST,
+	PLAYER,
+	DEBUG_WALL,
 	TEXTURES_NUM,
 };
 
@@ -108,6 +122,7 @@ enum	e_type_identifers
 
 void	lets_start_the_party(t_data *data);
 void	spread_democracy(t_data *data);
+void	free_texture(t_data *data);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
 
@@ -126,5 +141,13 @@ void	finish_him(int fd);
 
 void	*safe_malloc(size_t size);
 void	ft_sleep(long long microsecond);
+
+//SECTION debug
+
+int		map_start(t_data *data);
+
+//SECTION render
+
+void	get_texture(t_data *data);
 
 #endif

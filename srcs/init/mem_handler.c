@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 14:46:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:08:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@ https://www.youtube.com/watch?v=U06jlgpMtQs
 */
 void	spread_democracy(t_data *data)
 {
-	free(data->txtr_north);
-	data->txtr_north = NULL;
-	free(data->txtr_south);
-	data->txtr_south = NULL;
-	free(data->txtr_east);
-	data->txtr_east = NULL;
-	free(data->txtr_west);
-	data->txtr_west = NULL;
-	free(data->txtr_floor);
-	data->txtr_floor = NULL;
-	free(data->txtr_ceiling);
-	data->txtr_ceiling = NULL;
-	free(data->textures);
-	data->textures = NULL;
+	free_texture(data);
 	free_matrix(data->map);
 	data->map = NULL;
 	if (data->mlx_window)
@@ -44,15 +31,21 @@ void	spread_democracy(t_data *data)
 
 void	lets_start_the_party(t_data *data)
 {
+	int	size_x;
+	int	size_y;
+
+	size_x = data->max_x * WIMG;
+	size_y = data->max_y * HIMG;
 	data->mlx_connection = mlx_init();
 	if (!data->mlx_connection)
 		error(data, 0, NULL);
-	data->mlx_window = mlx_new_window(data->mlx_connection, 0, 0, "INSERT A NAME");
+	data->mlx_window = mlx_new_window(data->mlx_connection, size_x, size_y, "GIORNO GIOVANNA");
 	if (!data->mlx_window)
 		error(data, 0, NULL);
 	data->textures = ft_calloc(TEXTURES_NUM, sizeof(void *));
 	if (!data->textures)
 		error(data, E_MALLOC, NULL);
+	get_texture(data);
 }
 
 
