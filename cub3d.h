@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/25 16:44:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:36:24 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
-# define FPS 30
+# define FPS 60
 # define FRAME_TIME (1000000 / FPS)
 
 # define DEBUG true
@@ -83,20 +83,22 @@ typedef struct s_data
 
 typedef struct s_drawline
 {
-	double		delta_x;
-	double		delta_y;
-	double		curr_x;
-	double		curr_y;
-	int			pixel_p[2];
-	int			pixel_win[2];
-	int			int_x;
-	int			int_y;
-	int			next_x;
-	int			next_y;
-	int			final_x;
-	int			final_y;
-	char		x_sign:2;
-	char		y_sign:2;
+	int				line[WIMG + 1][2];
+	double			delta_x;
+	double			delta_y;
+	double			curr_x;
+	double			curr_y;
+	int				pixel_p[2];
+	int				pixel_win[2];
+	int				int_x;
+	int				int_y;
+	int				next_x;
+	int				next_y;
+	int				final_x;
+	int				final_y;
+	char			x_sign:2;
+	char			y_sign:2;
+	unsigned char	radiant:1;
 }	t_drawline;
 
 typedef enum e_timecode

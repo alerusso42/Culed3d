@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/25 12:08:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:48:22 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	lets_start_the_party(t_data *data)
 	int	size_x;
 	int	size_y;
 
-	size_x = data->max_x * WIMG;
-	size_y = data->max_y * HIMG;
+	size_x = (data->max_x + 1) * WIMG;
+	size_y = (data->max_y + 1) * HIMG;
 	data->mlx_connection = mlx_init();
 	if (!data->mlx_connection)
 		error(data, 0, NULL);

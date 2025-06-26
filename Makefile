@@ -2,10 +2,10 @@
 NAME     = cub3d
 SRC_PATH = srcs/
 
-# Compiler settings
+# Compiler settings (lm == math.h)
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
-LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx
+LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx -lm
 
 # Library 
 LIBFT_DIR = libft
@@ -43,7 +43,7 @@ $(LIBFT):
 
 # manca il file a.gdb
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3d min.cub
+	gdb -x a.gdb --args ./cub3d debug.cub
 
 gdbtui: $(NAME)
 	gdb --tui -x a.gdb --args ./cub3d min.cub
