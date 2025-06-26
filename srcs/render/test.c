@@ -24,7 +24,7 @@ int	map_start(t_data *data)
 
 long	elapsed_time(t_time start);
 static void	update_coord(t_drawline *line_data);
-static void	add_coord(int line[WIMG + 1][2], double x, double y);
+static void	add_coord(int line[WIMG + 1][2], int x, int y);
 static void	reset_coord(int line[WIMG + 1][2]);
 static void	print_coord(t_data *data, int line[WIMG + 1][2]);
 static void	print_last_coord(t_data *data, t_drawline *line_data);
@@ -85,8 +85,8 @@ static void	quadrant(t_drawline *line_data);
 
 static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	(void)line_data;
 	if (*stepper != WIMG)
@@ -139,7 +139,7 @@ static void	quadrant(t_drawline *line_data)
 		line_data->radiant = X;
 		line_data->curr_x = floor(line_data->curr_x / 48) * 48;
 		line_data->curr_x += WIMG * (line_data->curr_x == 0);
-	} 
+	}
 }
 
 static double	proportion(double delta, double sum);
@@ -233,17 +233,17 @@ static double	proportion(double delta, double sum)
 	return (delta / sum);
 }
 
-static void	add_coord(int line[WIMG + 1][2], double x, double y)
+static void	add_coord(int line[WIMG + 1][2], int x, int y)
 {
 	int	i;
 
 	i = 0;
-	while (line[i][X] != INT_MAX && i < WIMG)
+	while (line[i][X] != INT_MAX && i < (WIMG))
 		++i;
 	line[i][X] = x;
 	line[i][Y] = y;
 }
-static void	add_coord(int line[WIMG + 1][2], double x, double y);
+static void	add_coord(int line[WIMG + 1][2], int x, int y);
 static void	reset_coord(int line[WIMG + 1][2]);
 static void	print_coord(t_data *data, int line[WIMG + 1][2]);
 
@@ -252,7 +252,7 @@ static void	reset_coord(int line[WIMG + 1][2])
 	int	i;
 
 	i = -1;
-	while (++i < WIMG + 1)
+	while (++i < (WIMG) + 1)
 	{
 		line[i][X] = INT_MAX;
 		line[i][Y] = INT_MAX;
@@ -264,7 +264,7 @@ static void	print_coord(t_data *data, int line[WIMG + 1][2])
 	int	i;
  
 	i = -1;
-	while (line[++i][X] != INT_MAX && i < WIMG)
+	while (line[++i][X] != INT_MAX && i < (WIMG))
 	{
 		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
 						line[i][X], line[i][Y], 0xff000d);
@@ -278,10 +278,12 @@ static void	print_last_coord(t_data *data, t_drawline *line_data)
 	i = -1;
 	while (line_data->line[++i][X] != INT_MAX && i < WIMG)
 	{
+		printf("print_x:%d\t_y:%d\n", line_data->line[i][X], line_data->line[i][Y]);
 		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
-						line_data->line[i][X], line_data->line[i][Y], 0x1000f5);
-		if ((line_data->radiant == X && line_data->line[i][X] == line_data->curr_x) || \
-			(line_data->radiant == Y && line_data->line[i][Y] == line_data->curr_y))
-			break;
+			line_data->line[i][X], line_data->line[i][Y], 0x53dd03);
+			if ((line_data->radiant == X && line_data->line[i][X] == (int)line_data->curr_x) || \
+				(line_data->radiant == Y && line_data->line[i][Y] == (int)line_data->curr_y))
+				break ;
 	}
+	printf("last_x:%d\tlast_y:%d\n", line_data->line[i][X], line_data->line[i][Y]);
 }
