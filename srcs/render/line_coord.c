@@ -1,7 +1,7 @@
 #include "../../cub3d.h"
 
 //	Increments print coordinates, when the next integer points
-//	is surpassed
+//	is surpassed.
 void	update_coord(t_drawline *line_data)
 {
 	line_data->curr_x += line_data->delta_x;
