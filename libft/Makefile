@@ -26,7 +26,7 @@ BONUSOBJ = $(BONUS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -fPIE
+CFLAGS = -Wall -Werror -Wextra -g
 
 RM = rm -rf
 
