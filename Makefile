@@ -26,8 +26,11 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/strings.c \
   utils/error.c \
   utils/time.c \
+  utils/math.c \
   utils/alloc_utils.c \
   render/test.c \
+  render/draw_line.c \
+  render/line_coord.c \
 )
 # # Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj
@@ -35,7 +38,10 @@ SRCS = $(addprefix $(SRC_PATH), \
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(SRCS) cub3d.h
-	$(CC) $(CFLAGS) $(SRCS) $(LFLAGS) $(LIBFT) -o $(NAME)
+#	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(LFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) \
+      -Lminilibx-linux -lmlx -lXext -lX11 -lm \
+      -o $(NAME)
 
 # Build libft (bonus) before anything else
 $(LIBFT): 

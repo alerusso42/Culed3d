@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/12 10:50:51 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:53:04 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,20 @@ static long long	get_time(t_timecode timecode)
 	else
 		fd_printf(2, "Bad get_time call\n");
 	return (123456);
+}
+
+//REVIEW - 	elapsed_time
+/*
+	Returns time passed, in microseconds, between now and start time.
+	Start time is a struct timeval already set with gettimeofday.
+*/
+long	elapsed_time(t_time start)
+{
+	struct timeval	tv;
+	long			diff;
+
+	gettimeofday(&tv, NULL);
+	diff = (tv.tv_sec - start.tv_sec) * 1000000
+		 + (tv.tv_usec - start.tv_usec);
+	return (diff);
 }

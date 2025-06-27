@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/26 15:53:43 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:13:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
-# define FPS 60
+# define FPS 20
 # define FRAME_TIME (1000000 / FPS)
 
 # define DEBUG true
@@ -46,11 +46,12 @@
 # define CONTENT_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
 
-# ifdef DEBUG
+# if DEBUG == true
 #   define PLAYER_TXTR "textures/pisnelo.xpm"
-#   define DEBUG_WALL_TXTR "textures/debug_wall.xpm"
+#   define WALL_TXTR "textures/debug_wall.xpm"
 # else
-#  define PLAYER_TXTR "GRANDE CAZZO"
+#   define PLAYER_TXTR "textures/pisnelo.xpm"
+#   define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
 # define HIMG 48
@@ -115,7 +116,7 @@ enum e_textures
 	SOUTH,
 	WEST,
 	PLAYER,
-	DEBUG_WALL,
+	WALL,
 	TEXTURES_NUM,
 };
 
@@ -177,6 +178,8 @@ void	finish_him(int fd);
 
 void	*safe_malloc(size_t size);
 void	ft_sleep(long long microsecond);
+long	elapsed_time(t_time start);
+double	safe_division(double delta, double sum);
 
 //SECTION debug
 
@@ -187,5 +190,12 @@ int		debug_loop(t_data *data);
 //SECTION render
 
 void	get_texture(t_data *data);
+int		draw_line(t_data *data, int x, int y);
+void	update_coord(t_drawline *line_data);
+void	add_coord(int line[WIMG + 1][2], int x, int y);
+void	reset_coord(int line[WIMG + 1][2]);
+void	print_coord(t_data *data, int line[WIMG + 1][2]);
+void	print_last_coord(t_data *data, t_drawline *line_data);
+
 
 #endif

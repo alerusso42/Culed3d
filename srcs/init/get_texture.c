@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/25 12:22:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:14:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	get_texture(t_data *data)
 	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_west, &x, &y);
 	p = &data->textures[PLAYER];
 	*p = mlx_xpm_file_to_image(data->mlx_connection, PLAYER_TXTR, &x, &y);
-	p = &data->textures[DEBUG_WALL];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, DEBUG_WALL_TXTR, &x, &y);
+	p = &data->textures[WALL];
+	*p = mlx_xpm_file_to_image(data->mlx_connection, WALL_TXTR, &x, &y);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
