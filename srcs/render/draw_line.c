@@ -10,7 +10,7 @@ int	draw_line(t_data *data, int x, int y)
 	int			stepper;
 
 	line_data = (t_drawline){0};
-	stepper = WIMG;
+	stepper = WIMG - 1;
 	reset_coord(line_data.line);
 	line_data.pixel_p[X] = (data->p_pos[X] * WIMG) + PLAYER_OFFSET;
 	line_data.pixel_p[Y] = (data->p_pos[Y] * HIMG) + PLAYER_OFFSET;
@@ -28,8 +28,6 @@ int	draw_line(t_data *data, int x, int y)
 	{
 		if (the_wall_checker(&stepper, &line_data, data) == true)
 			break ;
-		//mlx_pixel_put(data->mlx_connection, data->mlx_window, 
-		//				line_data.int_x, line_data.int_y, 0x1000f5);
 		add_coord(line_data.line, line_data.int_x, line_data.int_y);
 		update_coord(&line_data);
 	}
@@ -41,18 +39,16 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 	int			x;
 	int			y;
 
-	(void)line_data;
-	if (*stepper != WIMG)
+	if (/* *stepper != WIMG && *stepper != WIMG + 1 &&  */*stepper != WIMG - 1)
 	{
 		(*stepper)++;
 		return (false);
 	}
 	(*stepper) = 0;
-	x = (int)(line_data->curr_x / WIMG);
-	y = (int)(line_data->curr_y / HIMG);
+	x = (int)floor(line_data->curr_x / WIMG);
+	y = (int)floor(line_data->curr_y / HIMG);
 	if (data->map[y][x] == '1')
 	{
-		//quadrant(line_data);
 		printf("Wall at double X:%f\tY:%f\n", line_data->curr_x, line_data->curr_y);
 		printf("Wall at int X:%d\tY:%d\n", x, y);
 		print_last_coord(data, line_data);
