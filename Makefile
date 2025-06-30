@@ -28,9 +28,9 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/time.c \
   utils/math.c \
   utils/alloc_utils.c \
-  render/test.c \
-  render/draw_line.c \
-  render/line_coord.c \
+  render/game_loop.c \
+  render/raycast.c \
+  render/ray_utils.c \
 )
 # # Object files go under obj/, mirroring the tree
 # OBJ_DIR = obj

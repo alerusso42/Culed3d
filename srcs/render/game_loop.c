@@ -24,21 +24,20 @@ int	map_start(t_data *data)
 
 int	game_loop(t_data *data)
 {
-	int	x;		//line_data->curr_x = (int)line_data->curr_x;
-	int	y;
+	double	pov[2];
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
 		mlx_clear_window(data->mlx_connection, data->mlx_window);
 		map_start(data);
-		mlx_mouse_get_pos(data->mlx_connection, data->mlx_window, &x, &y);
-		// x = data->p_pos[X] * WIMG;
-		// y = (data->p_pos[X] + 360) * WIMG;
-		// mlx_mouse_move(data->mlx_connection, data->mlx_window, x, y);
-		// move_view(&x, &y);
+		//mlx_mouse_get_pos(data->mlx_connection, data->mlx_window, &x, &y);
+		pov[X] = 0;
+		pov[Y] = 0;
 		// printf("X:%d\tY:%d\n", x, y);
-		draw_line(data, x, y);
+		//move_view
+		draw_line(data, pov[X], pov[Y]);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
 }
+

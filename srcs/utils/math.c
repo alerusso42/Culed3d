@@ -6,3 +6,13 @@ double	safe_division(double delta, double sum)
 		return (0);
 	return (delta / sum);
 }
+
+double	grad2rad(double grad)
+{
+	return (grad * (PI / 180));
+}
+double rad2deg(double rad)
+{
+	// return (rad / (PI / 180));
+	return (rad * (180 / PI));
+}

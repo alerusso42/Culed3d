@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/30 12:13:34 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:10:49 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,17 +182,18 @@ void	*safe_malloc(size_t size);
 void	ft_sleep(long long microsecond);
 long	elapsed_time(t_time start);
 double	safe_division(double delta, double sum);
+double	grad2rad(double rad);
+double	rad2deg(double rad);
 
 //SECTION debug
 
 int		map_start(t_data *data);
-int		draw_line(t_data *data, int x, int y);
-int		debug_loop(t_data *data);
+int		game_loop(t_data *data);
 
 //SECTION render
 
 void	get_texture(t_data *data);
-int		draw_line(t_data *data, int x, int y);
+int		draw_line(t_data *data, double pov_x, double pov_y);
 void	update_coord(t_drawline *line_data);
 void	add_coord(int line[WIMG + 1][2], int x, int y);
 void	reset_coord(int line[WIMG + 1][2]);

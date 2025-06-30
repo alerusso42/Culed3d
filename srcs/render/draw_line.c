@@ -123,9 +123,3 @@ static void	quadrant(t_drawline *line_data)
 		printf(BYELLOW"true_int_y: %d\n"RST, line_data->int_y);
 	}
 }
-
-static double rad2deg(double radianti)
-
-{
-    return radianti * (180.0 / PI);
-}
