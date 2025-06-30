@@ -1,9 +1,12 @@
 #include "../../cub3d.h"
 
 /* static void	quadrant(t_drawline *line_data); */
-static int	GAY(t_drawline *line_data, t_data *data, int x, int y);
 static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data);
+static int	buliccio(t_drawline *line_data, t_data *data, int x, int y);
+static void	quadrant(t_drawline *line_data);
+static double rad2deg(double radianti);
 
+//	tan
 int	draw_line(t_data *data, int x, int y)
 {
 	t_drawline	line_data;
@@ -20,8 +23,7 @@ int	draw_line(t_data *data, int x, int y)
 		x < 0 || y < 0 || \
 		(line_data.pixel_p[X] == x && line_data.pixel_p[Y] == y))
 		return (printf("ORA ORA ORA!"));
-	GAY(&line_data, data, x, y);
-	// printf("X:%f\tY:%f\n", line_data.delta_x, line_data.delta_y);
+	buliccio(&line_data, data, x, y);
 	while (line_data.int_x >= 0 && line_data.int_y >= 0 && \
 			line_data.int_x <= line_data.pixel_win[X] && \
 			line_data.int_y <= line_data.pixel_win[Y])
@@ -39,7 +41,7 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 	int			x;
 	int			y;
 
-	if (/* *stepper != WIMG && *stepper != WIMG + 1 &&  */*stepper != WIMG - 1)
+	if (*stepper != WIMG - 1)
 	{
 		(*stepper)++;
 		return (false);
@@ -49,8 +51,8 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 	y = (int)floor(line_data->curr_y / HIMG);
 	if (data->map[y][x] == '1')
 	{
-		printf("Wall at double X:%f\tY:%f\n", line_data->curr_x, line_data->curr_y);
-		printf("Wall at int X:%d\tY:%d\n", x, y);
+		// printf("Wall at double X:%f\tY:%f\n", line_data->curr_x, line_data->curr_y);
+		// printf("Wall at int X:%d\tY:%d\n", x, y);
 		print_last_coord(data, line_data);
 		return (true);
 	}
@@ -59,7 +61,7 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 	return (false);
 }
 
-static int GAY(t_drawline *line_data, t_data *data, int x, int y)
+static int buliccio(t_drawline *line_data, t_data *data, int x, int y)
 {
 	double	delta_sum;
 
@@ -84,37 +86,46 @@ static int GAY(t_drawline *line_data, t_data *data, int x, int y)
 	line_data->delta_y = safe_division(fabs(line_data->delta_y), delta_sum);
 	line_data->delta_x *= line_data->x_sign;
 	line_data->delta_y *= line_data->y_sign;
+	quadrant(line_data);
 	return (0);
 }
 
-/* static void	quadrant(t_drawline *line_data)
+static void	quadrant(t_drawline *line_data)
 {
-	//QUADRANTE 1
-	if (line_data->delta_y < -0.5 && (line_data->delta_x >= -0.5 && line_data->delta_x <= 0.5))
+	double	excess;
+	double	rad;
+	double	x;
+	double	y;
+
+	rad = atan2(line_data->delta_y, line_data->delta_x);
+	x = cos(rad);
+	y = sin(rad);
+	if (line_data->delta_y <= 0)
 	{
-		line_data->radiant = Y;
-		line_data->curr_y = floor(line_data->curr_y / 48) * 48;
-		line_data->curr_y += WIMG * (line_data->curr_y == 0);
+		printf(BGREEN"delta_x: %f, delta_y: %f\n"RST, line_data->delta_x, line_data->delta_y);
+		printf(RED"RADIANTI: %f\n"RST, atan2(line_data->delta_y, line_data->delta_x));
+		printf(BYELLOW"GRADI: %f\n"RST, fabs(rad2deg(atan2(line_data->delta_y, line_data->delta_x))));
+		printf(RED"int_x: %f\n"RST, x);
+		printf(RED"int_y: %f\n"RST, y);
+		printf(BYELLOW"true_int_x: %d\n"RST, line_data->int_x);
+		printf(BYELLOW"true_int_y: %d\n"RST, line_data->int_y);
+		return ;
 	}
-	//QUADRANTE 2
-	else if (line_data->delta_x > 0.5 && (line_data->delta_y >= -0.5 && line_data->delta_y <= 0.5))
+	else
 	{
-		line_data->radiant = X;
-		line_data->curr_x = floor(line_data->curr_x / 48) * 48;
-		line_data->curr_x += WIMG * (line_data->curr_x == 0);
+		excess = 180 - rad2deg(atan2(line_data->delta_y, line_data->delta_x));
+		printf(BGREEN"delta_x: %f, delta_y: %f\n"RST, line_data->delta_x, line_data->delta_y);
+		printf(RED"RADIANTI: %f\n"RST, atan2(line_data->delta_y, line_data->delta_x));
+		printf(BYELLOW"GRADI: %f\n"RST, ((excess * 2) + rad2deg(atan2(line_data->delta_y, line_data->delta_x))));
+		printf(RED"int_x: %f\n"RST, x);
+		printf(RED"int_y: %f\n"RST, y);
+		printf(BYELLOW"true_int_x: %d\n"RST, line_data->int_x);
+		printf(BYELLOW"true_int_y: %d\n"RST, line_data->int_y);
 	}
-	//QUADRANTE 3
-	else if (line_data->delta_y > 0.5 && (line_data->delta_x >= -0.5 && line_data->delta_x <= 0.5))
-	{
-		line_data->radiant = Y;
-		line_data->curr_y = floor(line_data->curr_y / 48) * 48;
-		line_data->curr_y += WIMG * (line_data->curr_y == 0);
-	}
-	//QUADRANTE 4
-	else if (line_data->delta_x < -0.5 && (line_data->delta_y >= -0.5 && line_data->delta_y <= 0.5))
-	{
-		line_data->radiant = X;
-		line_data->curr_x = floor(line_data->curr_x / 48) * 48;
-		line_data->curr_x += WIMG * (line_data->curr_x == 0);
-	}
-} */
+}
+
+static double rad2deg(double radianti)
+
+{
+    return radianti * (180.0 / PI);
+}
