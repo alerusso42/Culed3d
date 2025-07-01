@@ -13,6 +13,14 @@ double	grad2rad(double grad)
 }
 double rad2deg(double rad)
 {
+	if (rad > 0 && rad < 0.001)
+		return (0);
+	else if (rad > 0 && rad > 0.999)
+		return (1);
+	else if (rad < 0 && rad > -0.001)
+		return (0);
+	else if (rad < 0 && rad < -0.999)
+		return (-1);
 	// return (rad / (PI / 180));
-	return (rad * (180 / PI));
+	return (rad);
 }

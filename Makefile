@@ -4,7 +4,7 @@ SRC_PATH = srcs/
 
 # Compiler settings (lm == math.h)
 CC       = cc
-CFLAGS   = -Wall -Werror -Wextra -g
+CFLAGS   = -Wall -Werror -Wextra -g -fPIE
 LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx -lm
 
 # Library 

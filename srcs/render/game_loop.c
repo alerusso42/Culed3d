@@ -31,11 +31,12 @@ int	game_loop(t_data *data)
 		mlx_clear_window(data->mlx_connection, data->mlx_window);
 		map_start(data);
 		//mlx_mouse_get_pos(data->mlx_connection, data->mlx_window, &x, &y);
-		pov[X] = 0;
+		pov[X] = 0.25 * PI;
 		pov[Y] = 0;
 		// printf("X:%d\tY:%d\n", x, y);
 		//move_view
 		draw_line(data, pov[X], pov[Y]);
+		mlx_do_sync(data->mlx_connection);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);

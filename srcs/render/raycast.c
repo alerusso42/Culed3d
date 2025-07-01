@@ -11,7 +11,7 @@ int	draw_line(t_data *data, double pov_x, double pov_y)
 	t_drawline	line_data;
 	int			stepper;
 
-	if (!data || pov_x < 0 || pov_x > 360 || pov_y < 0 || pov_y > 360)
+	if (!data || pov_x > 360 || pov_y > 360)
 		return (printf("ORA ORA ORA!"));
 	init_line_data(data, &line_data, &stepper);
 	buliccio(&line_data, data, pov_x, pov_y);
@@ -52,29 +52,25 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 
 static int	buliccio(t_drawline *line_data, t_data *data, double x, double y)
 {
-	double	delta_sum;
-	double	cos_x;
-	double	sin_x;
-
 	line_data->int_x = (data->p_pos[X] * WIMG) + (WIMG / 2);
 	line_data->int_y = (data->p_pos[Y] * HIMG) + (HIMG / 2);
 	line_data->curr_x = (int)(data->p_pos[X] * WIMG) + (WIMG / 2);
 	line_data->curr_y = (int)(data->p_pos[Y] * HIMG) + (HIMG / 2);
-	line_data->x_sign = POSITIVE;
-	line_data->y_sign = POSITIVE;
-	if ((data->p_pos[X] * WIMG) + WIMG / 2 > x)
-		line_data->x_sign = NEGATIVE;
-	if ((data->p_pos[Y] * HIMG) + HIMG / 2 > y)
-		line_data->y_sign = NEGATIVE;
 	line_data->next_x = line_data->int_x + line_data->x_sign;
 	line_data->next_y = line_data->int_y + line_data->y_sign;
-	cos_x = rad2deg(cos(x));
-	sin_x = rad2deg(sin(x));
-	delta_sum = fabs(cos_x) + fabs(sin_x);
-	line_data->delta_x = safe_division(fabs(cos_x), delta_sum);
+	line_data->delta_x = rad2deg(cos(x));
+	line_data->delta_y = rad2deg(sin(x)) * -1;
+	line_data->x_sign = POSITIVE;
+	line_data->y_sign = POSITIVE;
+	if (line_data->delta_x < 0)
+		line_data->x_sign = NEGATIVE;
+	if (line_data->delta_y < 0)
+		line_data->y_sign = NEGATIVE;
+	//delta_sum = fabs(cos_x) + fabs(sin_x);
+	/*line_data->delta_x = safe_division(fabs(cos_x), delta_sum);
 	line_data->delta_y = safe_division(fabs(sin_x), delta_sum);
 	line_data->delta_x *= line_data->x_sign;
-	line_data->delta_y *= line_data->y_sign;
+	line_data->delta_y *= line_data->y_sign;*/
 	//quadrant(line_data);
 	return (0);
 }
