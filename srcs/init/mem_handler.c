@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/27 14:00:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:00:05 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,17 @@ void	spread_democracy(t_data *data)
 
 void	lets_start_the_party(t_data *data)
 {
-	int	size_x;
-	int	size_y;
-
-	size_x = (data->max_x + 1) * WIMG;
-	size_y = (data->max_y + 1) * HIMG;
 	data->mlx_connection = mlx_init();
 	if (!data->mlx_connection)
 		error(data, 0, NULL);
-	data->mlx_window = mlx_new_window(data->mlx_connection, size_x, size_y, "GIORNO GIOVANNA");
+	data->mlx_window = mlx_new_window(data->mlx_connection, WSCREEN, HSCREEN, "GABIBBO");
 	if (!data->mlx_window)
 		error(data, 0, NULL);
 	data->textures = ft_calloc(TEXTURES_NUM, sizeof(void *));
 	if (!data->textures)
 		error(data, E_MALLOC, NULL);
 	get_texture(data);
+	data->screen = mlx_get_data_addr(data->textures[SCREEN], &data->bpp, &data->size_line, &data->endian);
 }
 
 

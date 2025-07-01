@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/01 12:51:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:55:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@
 # define CONTENT_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
 
+# define SCREEN_TXTR "textures/screen.xpm"
 # if DEBUG == true
-#   define PLAYER_TXTR "textures/void.xpm"
+#   define PLAYER_TXTR "textures/pisnelo.xpm"
 #   define WALL_TXTR "textures/debug_wall.xpm"
 # else
 #   define PLAYER_TXTR "textures/pisnelo.xpm"
@@ -58,6 +59,9 @@
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
 # define WIMG 48
+# define WSCREEN 1920
+# define HSCREEN 1080
+
 //# define RADIANT 0.008726
 
 //(((2 * PI) / 360) * 0.2)
@@ -75,6 +79,7 @@ typedef struct s_data
 	void	*mlx_connection;
 	void	*mlx_window;
 	void	**textures;
+	char	*screen;
 	char	**map;
 	char	*txtr_north;
 	char	*txtr_west;
@@ -83,6 +88,9 @@ typedef struct s_data
 	char	*txtr_floor;
 	char	*txtr_ceiling;
 	char	*txtr_player;
+	int		bpp;
+	int		size_line;
+	int		endian;
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 	int		p_pos[2];
@@ -120,6 +128,7 @@ typedef enum e_timecode
 
 enum e_textures
 {
+	SCREEN,
 	NORTH,
 	EAST,
 	SOUTH,
@@ -192,6 +201,7 @@ double	safe_division(double delta, double sum);
 double	grad2rad(double rad);
 double 	round_rad(double rad);
 double	rad2deg(double rad);
+void 	put_pixel(t_data *data, int x, int y, int color);
 
 //SECTION debug
 

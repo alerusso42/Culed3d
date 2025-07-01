@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/27 12:14:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:17:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ void	get_texture(t_data *data)
 	int		i;
 	void	**p;
 
-	x = 42;
-	y = 42;
+	x = WSCREEN;
+	y = HSCREEN;
 	set_to_null(data);
+	p = &data->textures[SCREEN];
+	*p = mlx_xpm_file_to_image(data->mlx_connection, SCREEN_TXTR, &x, &y);
+	x = WIMG;
+	y = HIMG;
 	p = &data->textures[NORTH];
 	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_north, &x, &y);
 	p = &data->textures[EAST];

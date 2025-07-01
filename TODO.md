@@ -10,12 +10,22 @@
     {X} The map must be parsed as it looks in the file. Spaces are a valid part of the
         map and are up to you to handle. You must be able to parse any kind of map,
         as long as it respects the rules of the map.
-[]	Minilibx structure
-    {} Inizializzare immagini e texture
-    {} Creare la finestra e far partire il mlx loop hook
+[X]	Minilibx structure
+    {X} Inizializzare immagini e texture
+    {X} Creare la finestra e far partire il mlx loop hook
     
-[]	Struttura dati
-[]	Inizializzazione
-[]	Studiare raycasting
+[X]	Struttura dati
+[X]	Inizializzazione
+[Leo si, ale no]	Studiare raycasting
     ----> https://hackmd.io/@nszl/H1LXByIE2
-[]	Chiusura tutto
+[X]	Chiusura tutto
+
+
+[] RAYCASTING
+	{}	Muovere player
+	{}	Ottimizzare algoritmo linea con intersezioni in x e y
+	{}	Ottenere get_data_address textures
+	{}	Creare cornice
+	{}	Modificare get_data_address cornice
+	{}	Salvare punti di collisione, calcolare lunghezza raggio
+	{}	Castare nella cornice

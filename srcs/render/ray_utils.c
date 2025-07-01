@@ -71,11 +71,9 @@ void	print_coord(t_data *data, int line[WIMG + 1][2])
 	i = -1;
 	while (line[++i][X] != INT_MAX && i < (WIMG))
 	{
-		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
-						line[i][X], line[i][Y], data->color);
-		mlx_do_sync(data->mlx_connection);
+		put_pixel(data, line[i][X], line[i][Y], data->color);
 	}
-}//0xff000d
+}
 
 void	print_last_coord(t_data *data, t_drawline *line_data)
 {
@@ -84,14 +82,13 @@ void	print_last_coord(t_data *data, t_drawline *line_data)
 	i = -1;
 	while (line_data->line[++i][X] != INT_MAX && i < WIMG)
 	{
-		// printf("print_x:%d\t_y:%d\n", line_data->line[i][X], line_data->line[i][Y]);
-		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
-			line_data->line[i][X], line_data->line[i][Y], 0xff000d);
 		if (data->map[line_data->line[i][Y] / HIMG]\
 			[line_data->line[i][X] / WIMG] == '1')
 				break ;
+		// mlx_pixel_put(data->mlx_connection, data->mlx_window,
+		// 	line_data->line[i][X], line_data->line[i][Y], 0xff000d);
+		put_pixel(data, line_data->line[i][X], line_data->line[i][Y], data->color);
 	}
-	// printf("last_x:%d\tlast_y:%d\n", line_data->line[i][X], line_data->line[i][Y]);
 }
 
 // 0x53dd03
