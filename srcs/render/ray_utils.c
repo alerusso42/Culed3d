@@ -8,7 +8,7 @@ void	update_coord(t_drawline *line_data)
 	line_data->curr_y += line_data->delta_y;
 	if (line_data->x_sign == POSITIVE)
 	{
-		if (line_data->curr_x >= (double)line_data->next_x)
+		if (line_data->curr_x > (double)line_data->next_x)
 		{
 			line_data->int_x += line_data->x_sign;
 			line_data->next_x += line_data->x_sign;
@@ -16,7 +16,7 @@ void	update_coord(t_drawline *line_data)
 	}
 	else
 	{
-		if (line_data->curr_x <= (double)line_data->next_x)
+		if (line_data->curr_x < (double)line_data->next_x)
 		{
 			line_data->int_x += line_data->x_sign;
 			line_data->next_x += line_data->x_sign;
@@ -24,7 +24,7 @@ void	update_coord(t_drawline *line_data)
 	}
 	if (line_data->y_sign == POSITIVE)
 	{
-		if (line_data->curr_y >= (double)line_data->next_y)
+		if (line_data->curr_y > (double)line_data->next_y)
 		{
 			line_data->int_y += line_data->y_sign;
 			line_data->next_y += line_data->y_sign;
@@ -32,7 +32,7 @@ void	update_coord(t_drawline *line_data)
 	}
 	else
 	{
-		if (line_data->curr_y <= (double)line_data->next_y)
+		if (line_data->curr_y < (double)line_data->next_y)
 		{
 			line_data->int_y += line_data->y_sign;
 			line_data->next_y += line_data->y_sign;
@@ -67,13 +67,15 @@ void	print_coord(t_data *data, int line[WIMG + 1][2])
 {
 	int	i;
  
+	(void)data;
 	i = -1;
 	while (line[++i][X] != INT_MAX && i < (WIMG))
 	{
 		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
-						line[i][X], line[i][Y], 0xff000d);
+						line[i][X], line[i][Y], data->color);
+		mlx_do_sync(data->mlx_connection);
 	}
-}
+}//0xff000d
 
 void	print_last_coord(t_data *data, t_drawline *line_data)
 {

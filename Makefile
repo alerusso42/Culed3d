@@ -4,7 +4,7 @@ SRC_PATH = srcs/
 
 # Compiler settings (lm == math.h)
 CC       = cc
-CFLAGS   = -Wall -Werror -Wextra -g -fPIE
+CFLAGS   = -Wall -Werror -Wextra -g
 LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx -lm
 
 # Library 
@@ -52,7 +52,7 @@ gdb: $(NAME)
 	gdb -x a.gdb --args ./cub3d debug.cub
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3d min.cub
+	gdb --tui -x a.gdb --args ./cub3d debug.cub
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/30 22:49:18 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:51:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define FFILL_CHARS "0NSEW"
 
 # if DEBUG == true
-#   define PLAYER_TXTR "textures/pisnelo.xpm"
+#   define PLAYER_TXTR "textures/void.xpm"
 #   define WALL_TXTR "textures/debug_wall.xpm"
 # else
 #   define PLAYER_TXTR "textures/pisnelo.xpm"
@@ -58,8 +58,14 @@
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
 # define WIMG 48
+//# define RADIANT 0.008726
 
-#define PI 3.1415926
+//(((2 * PI) / 360) * 0.2)
+# define RADIANT (PI / 3600)
+
+//	*5: adapt to RADIANT
+# define FOV 60 * 5
+# define PI 3.1415926
 
 typedef struct timeval	t_time;
 
@@ -82,6 +88,7 @@ typedef struct s_data
 	int		p_pos[2];
 	int		max_x;
 	int		max_y;
+	int		color;
 }	t_data;
 
 typedef struct s_drawline
@@ -183,6 +190,7 @@ void	ft_sleep(long long microsecond);
 long	elapsed_time(t_time start);
 double	safe_division(double delta, double sum);
 double	grad2rad(double rad);
+double 	round_rad(double rad);
 double	rad2deg(double rad);
 
 //SECTION debug

@@ -25,18 +25,21 @@ int	map_start(t_data *data)
 int	game_loop(t_data *data)
 {
 	double	pov[2];
+	int i;
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
 		mlx_clear_window(data->mlx_connection, data->mlx_window);
 		map_start(data);
-		//mlx_mouse_get_pos(data->mlx_connection, data->mlx_window, &x, &y);
-		pov[X] = 0.25 * PI;
+		pov[X] = RADIANT * (225 * 20);
 		pov[Y] = 0;
-		// printf("X:%d\tY:%d\n", x, y);
-		//move_view
-		draw_line(data, pov[X], pov[Y]);
-		mlx_do_sync(data->mlx_connection);
+		i = -1;
+		data->color = 0xff000d;
+		while (++i < 1000)
+		{
+			data->color = 0xff000d;
+			draw_line(data, RADIANT * i, 0);
+		}
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);

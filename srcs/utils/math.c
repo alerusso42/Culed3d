@@ -11,16 +11,20 @@ double	grad2rad(double grad)
 {
 	return (grad * (PI / 180));
 }
+double round_rad(double rad)
+{
+	if (rad > 0 && rad < 0.0001)
+		return (0);
+	else if (rad > 0 && rad > 0.9999)
+		return (1);
+	else if (rad < 0 && rad > -0.0001)
+		return (0);
+	else if (rad < 0 && rad < -0.9999)
+		return (-1);
+	return (rad);
+}
+
 double rad2deg(double rad)
 {
-	if (rad > 0 && rad < 0.001)
-		return (0);
-	else if (rad > 0 && rad > 0.999)
-		return (1);
-	else if (rad < 0 && rad > -0.001)
-		return (0);
-	else if (rad < 0 && rad < -0.999)
-		return (-1);
-	// return (rad / (PI / 180));
-	return (rad);
+	return (rad / (PI / 180));
 }

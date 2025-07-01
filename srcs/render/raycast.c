@@ -20,6 +20,9 @@ int	draw_line(t_data *data, double pov_x, double pov_y)
 		if (the_wall_checker(&stepper, &line_data, data) == true)
 			break ;
 		add_coord(line_data.line, line_data.int_x, line_data.int_y);
+		// mlx_pixel_put(data->mlx_connection, data->mlx_window, \
+		// 				line_data.line[i][X], line_data.line[i][Y], data->color);
+		// mlx_do_sync(data->mlx_connection);
 		update_coord(&line_data);
 	}
 	return (0);
@@ -27,10 +30,10 @@ int	draw_line(t_data *data, double pov_x, double pov_y)
 
 static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 {
-	int			x;
-	int			y;
+	int	x;
+	int	y;
 
-	if (*stepper != WIMG - 1)
+	if (*stepper != 1)
 	{
 		(*stepper)++;
 		return (false);
@@ -52,14 +55,15 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 
 static int	buliccio(t_drawline *line_data, t_data *data, double x, double y)
 {
+	(void)y;
 	line_data->int_x = (data->p_pos[X] * WIMG) + (WIMG / 2);
 	line_data->int_y = (data->p_pos[Y] * HIMG) + (HIMG / 2);
 	line_data->curr_x = (int)(data->p_pos[X] * WIMG) + (WIMG / 2);
 	line_data->curr_y = (int)(data->p_pos[Y] * HIMG) + (HIMG / 2);
 	line_data->next_x = line_data->int_x + line_data->x_sign;
 	line_data->next_y = line_data->int_y + line_data->y_sign;
-	line_data->delta_x = rad2deg(cos(x));
-	line_data->delta_y = rad2deg(sin(x)) * -1;
+	line_data->delta_x = round_rad(cos(x));
+	line_data->delta_y = round_rad(sin(x)) * -1;
 	line_data->x_sign = POSITIVE;
 	line_data->y_sign = POSITIVE;
 	if (line_data->delta_x < 0)
@@ -78,7 +82,7 @@ static int	buliccio(t_drawline *line_data, t_data *data, double x, double y)
 static void	init_line_data(t_data *data, t_drawline *line_data, int *stepper)
 {
 	*line_data = (t_drawline){0};
-	*stepper = WIMG - 1;
+	*stepper = 0;
 	reset_coord(line_data->line);
 	line_data->pixel_p[X] = (data->p_pos[X] * WIMG) + PLAYER_OFFSET;
 	line_data->pixel_p[Y] = (data->p_pos[Y] * HIMG) + PLAYER_OFFSET;
