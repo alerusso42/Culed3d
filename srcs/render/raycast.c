@@ -38,6 +38,7 @@ static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
 	y = (int)floor(line_data->curr_y / HIMG);
 	if (data->map[y][x] == '1')
 	{
+		// printf("dovrei entrare\n");
 		print_last_coord(data, line_data);
 		return (true);
 	}

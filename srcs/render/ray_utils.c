@@ -77,18 +77,37 @@ void	print_coord(t_data *data, int line[WIMG + 1][2])
 
 void	print_last_coord(t_data *data, t_drawline *line_data)
 {
+	int	ray;
 	int	i;
  
 	i = -1;
-	while (line_data->line[++i][X] != INT_MAX && i < WIMG)
-	{
-		if (data->map[line_data->line[i][Y] / HIMG]\
-			[line_data->line[i][X] / WIMG] == '1')
-				break ;
-		// mlx_pixel_put(data->mlx_connection, data->mlx_window,
-		// 	line_data->line[i][X], line_data->line[i][Y], 0xff000d);
-		put_pixel(data, line_data->line[i][X], line_data->line[i][Y], data->color);
-	}
+	// printf("ray coords: x = %d\t y = %d\n", line_data->line[i + 1][X], line_data->line[i + 1][Y]);
+	// while (line_data->line[++i][X] != INT_MAX && i < WIMG)
+	// {
+	// 	if (data->map[line_data->line[i][Y] / HIMG]\
+	// 		[line_data->line[i][X] / WIMG] == '1')
+	// 			break ;
+	// 	// mlx_pixel_put(data->mlx_connection, data->mlx_window,
+	// 	// 	line_data->line[i][X], line_data->line[i][Y], 0xff000d);
+	// 	printf("ray coords: x = %d\t y = %d\n", line_data->line[i][X], line_data->line[i][Y]);
+	// 	put_pixel(data, line_data->line[i][X], line_data->line[i][Y], data->color);
+	// }
+	ray = ray_lenght(data, line_data->line[i + 1][X], line_data->line[i + 1][Y]);
 }
 
 // 0x53dd03
+int	ray_lenght(t_data *data, int rx, int ry)
+{
+	int	ray;
+	int	px;
+	int	py;
+
+	px = data->p_pos[X] * WIMG;
+	py = data->p_pos[Y] * HIMG;
+	rx = abs(rx);
+	ry = abs(ry);
+	printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
+	ray = sqrt(pow((rx - px), 2) + pow((ry - py), 2));
+	printf("ray lenght: %d\n", ray);
+	return (ray);
+}

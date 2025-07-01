@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/01 16:55:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:29:48 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ double	grad2rad(double rad);
 double 	round_rad(double rad);
 double	rad2deg(double rad);
 void 	put_pixel(t_data *data, int x, int y, int color);
+int		ray_lenght(t_data *data, int rx, int ry);
 
 //SECTION debug
 
