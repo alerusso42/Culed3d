@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 12:22:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:46:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_drawline
 	double	curr_x;
 	double	curr_y;
 	double	pov[2];
-	double	screen[2];
+	int		screen[2];
 	int		map[2];
 	int		int_x;
 	int		int_y;
@@ -187,6 +187,7 @@ void	error(t_data *data, int err, char *file);
 
 int	ft_cross_close(t_data *data);
 int	commands(int keycode, t_data *data);
+int	move(t_data *data, t_drawline *entity, int keycode);
 
 //SECTION	parsing
 

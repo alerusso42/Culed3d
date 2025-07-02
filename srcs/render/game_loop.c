@@ -25,18 +25,19 @@ int	map_start(t_data *data)
 int	game_loop(t_data *data)
 {
 	double	pov[2];
-	int i;
+	//int i;
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
+		map_start(data);
 		data->color = 0xff000d;
 		pov[X] = RADIANT * (225 * 20);
 		pov[Y] = 0;
 		// draw_line(data, pov[X]);
-		i = -1;
-		while (++i < FOV)
-			draw_line(data, RADIANT * i);
-		mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->textures[4], 0, 0);
+		//i = -1;
+		//while (++i < FOV)
+			//draw_line(data, RADIANT * i);
+		//mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->textures[SCREEN], 0, 0);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);

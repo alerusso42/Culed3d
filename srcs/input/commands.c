@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 12:10:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:48:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	commands(int keycode, t_data *data)
 		ft_cross_close(data);
 	}
 	else if (keycode == XK_w)
-		printf("Front\n");
+		move(data, &data->player, keycode);
 	else if (keycode == XK_s)
-		printf("Back\n");
+		move(data, &data->player, keycode);
 	else if (keycode == XK_a)
-		printf("Left\n");
+		move(data, &data->player, keycode);
 	else if (keycode == XK_d)
-		printf("Right\n");
+		move(data, &data->player, keycode);
 	else if (keycode == XK_Left)
 		printf("Rotate left\n");
 	else if (keycode == XK_Right)
