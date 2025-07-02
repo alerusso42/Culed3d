@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 15:40:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:25:39 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	lets_start_the_party(t_data *data)
 		data->player.pov[X] = RADIANT * (180 * 20);
 	else if (data->player.type == 'S')
 		data->player.pov[X] = RADIANT * (270 * 20);
-	data->player.pov[X] = RADIANT * 225 * 20;
+	// data->player.pov[X] = RADIANT * 225 * 20;
 	data->screen = mlx_get_data_addr(data->textures[SCREEN], &data->bpp, &data->size_line, &data->endian);
 }
 

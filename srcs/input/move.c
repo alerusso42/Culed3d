@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 16:23:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:54:10 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	move(t_data *data, t_drawline *entity, int keycode)
 	double	degree;
 
 	(void)data;
-	(void)keycode;
+	// (void)keycode;
 	degree = 0;
 	printf("cos(pov): %f\n", cos(entity->pov[X]));
 	printf("sin(pov): %f\n", sin(entity->pov[X]));
@@ -41,9 +41,9 @@ void	rotate(t_data *data, t_drawline *entity, int dir)
 {
 	(void)data;
 	if (dir == R_LEFT)
-		entity->pov[X] += RADIANT * (1 * 20);
+		entity->pov[X] += RADIANT * (1* 20);
 	else if (dir == R_RIGHT)
-		entity->pov[X] += RADIANT * (359 * 20);
+		entity->pov[X] += RADIANT * (-1 * 20);
 	else
 		return ;
 }
