@@ -1,5 +1,7 @@
 #include "../../cub3d.h"
 
+void	put_image_to_image(t_data *data, int which, int y, int x);
+
 int	map_start(t_data *data)
 {
 	int i;
@@ -12,11 +14,9 @@ int	map_start(t_data *data)
 		while (data->map[i][++j])
 		{
 			if (data->map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx_connection, data->mlx_window, \
-								data->textures[WALL], j * HIMG, i * WIMG);
+				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
 			else if (ft_strchr("NSEW", data->map[i][j]))
-				mlx_put_image_to_window(data->mlx_connection, data->mlx_window, \
-								data->textures[PLAYER], j * HIMG, i * WIMG);
+				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
 		}
 	}
 	return (0);
@@ -25,19 +25,19 @@ int	map_start(t_data *data)
 int	game_loop(t_data *data)
 {
 	double	pov[2];
-	//int i;
+	int i;
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
-		map_start(data);
+		clear_window(data);
+		//map_start(data);
 		data->color = 0xff000d;
-		pov[X] = RADIANT * (225 * 20);
+		pov[X] = data->player.pov[X];
 		pov[Y] = 0;
-		// draw_line(data, pov[X]);
-		//i = -1;
-		//while (++i < FOV)
-			//draw_line(data, RADIANT * i);
-		//mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->textures[SCREEN], 0, 0);
+		i = -1;
+		while (++i < FOV)
+			draw_line(data, pov[X] + (RADIANT * i));
+		mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->textures[SCREEN], 0, 0);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
@@ -66,10 +66,55 @@ int	game_loop(t_data *data)
 
 void put_pixel(t_data *data, int x, int y, int color)
 {
-    if(x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0)
-        return;
-    int index = y * data->size_line + x * data->bpp / 8;
-    data->screen[index] = color & 0xFF;
-    data->screen[index + 1] = (color >> 8) & 0xFF;
-    data->screen[index + 2] = (color >> 16) & 0xFF;
+	int	index;
+
+	if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0)
+		return;
+	index = y * data->size_line + x * data->bpp / 8;
+	data->screen[index] = color & 0xFF;
+	data->screen[index + 1] = (color >> 8) & 0xFF;
+	data->screen[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	clear_window(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < HSCREEN)
+	{
+		x = -1;
+		while (++x < WSCREEN)
+		{
+			put_pixel(data, x, y, 0x000000);
+		}
+	}
+}
+
+void	put_image_to_image(t_data *data, int which, int y, int x)
+{
+	char	*txtr_data;
+	int		stuff[3];
+	int		color;
+	int		i;
+	int		j;
+
+	txtr_data = mlx_get_data_addr(data->textures[which], &stuff[0], &stuff[1], &stuff[2]);
+	if (!txtr_data)
+		return ;
+	i = 0;
+	while (i != HIMG)
+	{
+		j = 0;
+		while (j != WIMG)
+		{
+			color = txtr_data[y * stuff[1] + x * stuff[0] / 8];
+			color = txtr_data[(y * stuff[1] + x * stuff[0] / 8) >> 8];
+			color = txtr_data[(y * stuff[1] + x * stuff[0] / 8) >> 16];
+			put_pixel(data, x + j, y + i, color);
+			++j;
+		}
+		i++;
+	}
 }

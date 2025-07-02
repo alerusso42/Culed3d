@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 12:45:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:23:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,36 @@
 
 int	move(t_data *data, t_drawline *entity, int keycode)
 {
-	int	degree;
+	double	degree;
 
+	(void)data;
+	(void)keycode;
 	degree = 0;
+	printf("cos(pov): %f\n", cos(entity->pov[X]));
+	printf("sin(pov): %f\n", sin(entity->pov[X]));
 	if (keycode == UP)
-		degree = 0;
-	else if (keycode == LEFT)
-		degree = 90;
-	else if (keycode == DOWN)
-		degree = 180;
-	else if (keycode == RIGHT)
-		degree = 270;
-	update_delta(entity->pov[X], &entity->delta_x, &entity->delta_y);
-	entity->curr_x += 1 * entity->delta_x; 
-	entity->curr_y += 1 * entity->delta_y;
-	printf("coords vecchie x: %d\ty: %d\n", entity->screen[X], entity->screen[Y]);
+		degree = RADIANT * (0 * 20);
+	if (keycode == LEFT)
+		degree = RADIANT * (90 * 20);
+	if (keycode == DOWN)
+		degree = RADIANT * (180 * 20);
+	if (keycode == RIGHT)
+		degree = RADIANT * (270 * 20);
+	update_delta(entity->pov[X] + degree, &entity->delta_x, &entity->delta_y);
+	entity->curr_x += (SPEED + entity->speed) * entity->delta_x; 
+	entity->curr_y += (SPEED + entity->speed) * entity->delta_y;
 	entity->screen[X] = (int)entity->curr_x;
 	entity->screen[Y] = (int)entity->curr_y;
-	printf("coords aggiornate x: %d\ty: %d\n", entity->screen[X], entity->screen[Y]);
+	return (0);
+}
+
+void	rotate(t_data *data, t_drawline *entity, int dir)
+{
+	(void)data;
+	if (dir == R_LEFT)
+		entity->pov[X] += RADIANT * (1 * 20);
+	else if (dir == R_RIGHT)
+		entity->pov[X] += RADIANT * (359 * 20);
+	else
+		return ;
 }

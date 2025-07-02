@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/01 17:00:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:40:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ void	lets_start_the_party(t_data *data)
 	if (!data->textures)
 		error(data, E_MALLOC, NULL);
 	get_texture(data);
+	data->player.screen[X] = data->player.map[X] * WIMG;
+	data->player.screen[Y] = data->player.map[Y] * HIMG;
+	data->player.curr_x = data->player.screen[X];
+	data->player.curr_y = data->player.screen[Y];
+	if (data->player.type == 'E')
+		data->player.pov[X] = RADIANT * (0 * 20);
+	else if (data->player.type == 'N')
+		data->player.pov[X] = RADIANT * (90 * 20);
+	else if (data->player.type == 'W')
+		data->player.pov[X] = RADIANT * (180 * 20);
+	else if (data->player.type == 'S')
+		data->player.pov[X] = RADIANT * (270 * 20);
+	data->player.pov[X] = RADIANT * 225 * 20;
 	data->screen = mlx_get_data_addr(data->textures[SCREEN], &data->bpp, &data->size_line, &data->endian);
 }
 

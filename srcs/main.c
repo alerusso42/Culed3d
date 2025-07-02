@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 10:51:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:24:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char *argv[])
 	//mlx_key_hook(data.mlx_connection, GRANDE_CAZZO, &data);
 	mlx_hook(data.mlx_window, 17, 1, ft_cross_close, &data);
 	mlx_hook(data.mlx_window, 2, 1L << 0, commands, &data);
+	//mlx_hook(data.mlx_window, 2, 1L << 0, rotate, &data);
 	map_start(&data);
 	gettimeofday(&data.start, NULL);
 	mlx_loop_hook(data.mlx_connection, game_loop, &data);

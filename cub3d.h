@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 12:46:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:24:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 # define FOV 60 * 20
 # define PI 3.1415926
 
+# define SPEED 5
+
 typedef struct timeval		t_time;
 typedef struct s_drawline	t_drawline;
 
@@ -83,10 +85,12 @@ typedef struct s_drawline
 	double	pov[2];
 	int		screen[2];
 	int		map[2];
+	int		speed;
 	int		int_x;
 	int		int_y;
 	int		next_x;
 	int		next_y;
+	char	type;
 	char	x_sign:2;
 	char	y_sign:2;
 }	t_drawline;
@@ -172,9 +176,11 @@ enum e_utils
 	POSITIVE = 1,
 	NEGATIVE = -1,
 	LEFT = XK_a,
-	RIGHT = XK_r,
+	RIGHT = XK_d,
 	UP = XK_w,
-	DOWN = XK_d,
+	DOWN = XK_s,
+	R_LEFT = XK_Left,
+	R_RIGHT = XK_Right,
 };
 
 void	lets_start_the_party(t_data *data);
@@ -185,9 +191,10 @@ void	error(t_data *data, int err, char *file);
 
 //SECTION	input
 
-int	ft_cross_close(t_data *data);
-int	commands(int keycode, t_data *data);
-int	move(t_data *data, t_drawline *entity, int keycode);
+int		ft_cross_close(t_data *data);
+int		commands(int keycode, t_data *data);
+int		move(t_data *data, t_drawline *entity, int keycode);
+void	rotate(t_data *data, t_drawline *entity, int dir);
 
 //SECTION	parsing
 
@@ -211,6 +218,7 @@ double 	round_rad(double rad);
 double	rad2deg(double rad);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void 	put_pixel(t_data *data, int x, int y, int color);
+void	clear_window(t_data *data);
 int		ray_lenght(t_data *data, int rx, int ry);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	update_coord(t_drawline *line_data);

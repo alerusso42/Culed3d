@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 12:11:02 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:35:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	player_finder(t_data *data)
 			{
 				data->player.map[0] = y;
 				data->player.map[1] = x;
+				data->player.type = data->map[x][y];
 			}
 		}
 	}
