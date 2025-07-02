@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/01 18:29:48 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:22:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,56 +68,54 @@
 # define RADIANT (PI / 3600)
 
 //	*5: adapt to RADIANT
-# define FOV 60 * 5
+# define FOV 60 * 20
 # define PI 3.1415926
 
-typedef struct timeval	t_time;
-
-typedef struct s_data
-{
-	t_time	start;
-	void	*mlx_connection;
-	void	*mlx_window;
-	void	**textures;
-	char	*screen;
-	char	**map;
-	char	*txtr_north;
-	char	*txtr_west;
-	char	*txtr_south;
-	char	*txtr_east;
-	char	*txtr_floor;
-	char	*txtr_ceiling;
-	char	*txtr_player;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-	int		p_pos[2];
-	int		max_x;
-	int		max_y;
-	int		color;
-}	t_data;
+typedef struct timeval		t_time;
+typedef struct s_drawline	t_drawline;
 
 typedef struct s_drawline
 {
-	int				line[WIMG + 1][2];
-	double			delta_x;
-	double			delta_y;
-	double			curr_x;
-	double			curr_y;
-	int				pixel_p[2];
-	int				pixel_win[2];
-	int				int_x;
-	int				int_y;
-	int				next_x;
-	int				next_y;
-	int				final_x;
-	int				final_y;
-	char			x_sign:2;
-	char			y_sign:2;
-	unsigned char	radiant:1;
+	double	delta_x;
+	double	delta_y;
+	double	curr_x;
+	double	curr_y;
+	double	pov[2];
+	double	screen[2];
+	int		map[2];
+	int		int_x;
+	int		int_y;
+	int		next_x;
+	int		next_y;
+	char	x_sign:2;
+	char	y_sign:2;
 }	t_drawline;
+
+typedef struct s_data
+{
+	t_drawline	player;     
+	t_time		start;
+	void		*mlx_connection;
+	void		*mlx_window;
+	void		**textures;
+	char		*screen;
+	char		**map;
+	char		*txtr_north;
+	char		*txtr_west;
+	char		*txtr_south;
+	char		*txtr_east;
+	char		*txtr_floor;
+	char		*txtr_ceiling;
+	char		*txtr_player;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
+	int			max_x;
+	int			max_y;
+	int			color;
+}	t_data;
 
 typedef enum e_timecode
 {
@@ -173,6 +171,10 @@ enum e_utils
 	Y,
 	POSITIVE = 1,
 	NEGATIVE = -1,
+	LEFT = XK_a,
+	RIGHT = XK_r,
+	UP = XK_w,
+	DOWN = XK_d,
 };
 
 void	lets_start_the_party(t_data *data);
@@ -180,6 +182,11 @@ void	spread_democracy(t_data *data);
 void	free_texture(t_data *data);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
+
+//SECTION	input
+
+int	ft_cross_close(t_data *data);
+int	commands(int keycode, t_data *data);
 
 //SECTION	parsing
 
@@ -201,8 +208,11 @@ double	safe_division(double delta, double sum);
 double	grad2rad(double rad);
 double 	round_rad(double rad);
 double	rad2deg(double rad);
+void	update_delta(double pov, double *delta_x, double *delta_y);
 void 	put_pixel(t_data *data, int x, int y, int color);
 int		ray_lenght(t_data *data, int rx, int ry);
+void	update_delta(double pov, double *delta_x, double *delta_y);
+void	update_coord(t_drawline *line_data);
 
 //SECTION debug
 
@@ -212,12 +222,8 @@ int		game_loop(t_data *data);
 //SECTION render
 
 void	get_texture(t_data *data);
-int		draw_line(t_data *data, double pov_x, double pov_y);
-void	update_coord(t_drawline *line_data);
-void	add_coord(int line[WIMG + 1][2], int x, int y);
-void	reset_coord(int line[WIMG + 1][2]);
-void	print_coord(t_data *data, int line[WIMG + 1][2]);
-void	print_last_coord(t_data *data, t_drawline *line_data);
+int		draw_line(t_data *data, double pov_x);
+int		commands(int key, t_data *data);
 
 
 #endif

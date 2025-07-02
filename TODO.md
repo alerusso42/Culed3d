@@ -23,7 +23,7 @@
 
 [] RAYCASTING
 	{}	Muovere player
-	{}	Ottimizzare algoritmo linea con intersezioni in x e y
+	{X}	Ottimizzare algoritmo linea con intersezioni in x e y
 	{}	Ottenere get_data_address textures
 	{}	Creare cornice
 	{}	Modificare get_data_address cornice

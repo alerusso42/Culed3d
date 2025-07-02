@@ -32,8 +32,8 @@
 // 		mlx_clear_window(data->mlx_connection, data->mlx_window);
 // 		map_start(data);
 // 		mlx_mouse_get_pos(data->mlx_connection, data->mlx_window, &x, &y);
-// 		// x = data->p_pos[X] * WIMG;
-// 		// y = (data->p_pos[X] + 360) * WIMG;
+// 		// x = data->player.map[X] * WIMG;
+// 		// y = (data->player.map[X] + 360) * WIMG;
 // 		// mlx_mouse_move(data->mlx_connection, data->mlx_window, x, y);
 // 		// move_view(&x, &y);
 // 		// printf("X:%d\tY:%d\n", x, y);

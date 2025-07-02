@@ -17,6 +17,7 @@ SRCS = $(addprefix $(SRC_PATH), \
   main.c \
   init/mem_handler.c \
   init/get_texture.c \
+  input/commands.c \
   parsing/parsing.c \
   parsing/get_type.c \
   parsing/get_map.c \
@@ -68,7 +69,7 @@ fclean: clean
 
 bonus: fclean $(NAME)
 
-re: fclean all
+re: fclean mini all
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git

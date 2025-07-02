@@ -15,8 +15,8 @@
 // 	line_data = (t_drawline){0};
 // 	stepper = WIMG - 1;
 // 	reset_coord(line_data.line);
-// 	line_data.pixel_p[X] = (data->p_pos[X] * WIMG) + PLAYER_OFFSET;
-// 	line_data.pixel_p[Y] = (data->p_pos[Y] * HIMG) + PLAYER_OFFSET;
+// 	line_data.pixel_p[X] = (data->player.map[X] * WIMG) + PLAYER_OFFSET;
+// 	line_data.pixel_p[Y] = (data->player.map[Y] * HIMG) + PLAYER_OFFSET;
 // 	line_data.pixel_win[X] = ((data->max_x + 1) * WIMG) + PLAYER_OFFSET;
 // 	line_data.pixel_win[Y] = ((data->max_y + 1) * HIMG) + PLAYER_OFFSET;
 // 	if (!data || x > line_data.pixel_win[X] || y > line_data.pixel_win[Y] || \
@@ -67,20 +67,20 @@
 
 // 	line_data->final_x = x;
 // 	line_data->final_y = y;
-// 	line_data->int_x = (data->p_pos[X] * WIMG) + (WIMG / 2);
-// 	line_data->int_y = (data->p_pos[Y] * HIMG) + (HIMG / 2);
-// 	line_data->curr_x = (int)(data->p_pos[X] * WIMG) + (WIMG / 2);
-// 	line_data->curr_y = (int)(data->p_pos[Y] * HIMG) + (HIMG / 2);
+// 	line_data->int_x = (data->player.map[X] * WIMG) + (WIMG / 2);
+// 	line_data->int_y = (data->player.map[Y] * HIMG) + (HIMG / 2);
+// 	line_data->curr_x = (int)(data->player.map[X] * WIMG) + (WIMG / 2);
+// 	line_data->curr_y = (int)(data->player.map[Y] * HIMG) + (HIMG / 2);
 // 	line_data->x_sign = POSITIVE;
 // 	line_data->y_sign = POSITIVE;
-// 	if ((data->p_pos[X] * WIMG) + WIMG / 2 > x)
+// 	if ((data->player.map[X] * WIMG) + WIMG / 2 > x)
 // 		line_data->x_sign = NEGATIVE;
-// 	if ((data->p_pos[Y] * HIMG) + HIMG / 2 > y)
+// 	if ((data->player.map[Y] * HIMG) + HIMG / 2 > y)
 // 		line_data->y_sign = NEGATIVE;
 // 	line_data->next_x = line_data->int_x + line_data->x_sign;
 // 	line_data->next_y = line_data->int_y + line_data->y_sign;
-// 	line_data->delta_x = x - ((data->p_pos[X] * WIMG) + (WIMG / 2));
-// 	line_data->delta_y = y - ((data->p_pos[Y] * HIMG) + (HIMG / 2));
+// 	line_data->delta_x = x - ((data->player.map[X] * WIMG) + (WIMG / 2));
+// 	line_data->delta_y = y - ((data->player.map[Y] * HIMG) + (HIMG / 2));
 // 	delta_sum = fabs(line_data->delta_x) + fabs(line_data->delta_y);
 // 	line_data->delta_x = safe_division(fabs(line_data->delta_x), delta_sum);
 // 	line_data->delta_y = safe_division(fabs(line_data->delta_y), delta_sum);
