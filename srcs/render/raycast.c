@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 17:18:15 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 17:18:16 by lparolis         ###   ########.fr       */
+/*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
+/*   Updated: 2025/07/10 14:31:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,32 @@
 static int	the_wall_checker(t_drawline *line_data, t_data *data);
 static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
 
+/*
+//REVIEW	draw_line
+
+	Brutal force algorythm: every pixel checks if there is a wall.
+Key steps:
+	1)	Calculate a delta, based on pov_x (the player vision angle).
+		The delta normalizes the vector x and y of the line.
+		So finds, for every step (1 pixel), how much the line must
+		move on the x and how much on the y.
+
+	2)	Data are stored in 4 variable types:
+		-	double	delta_x/y	--->	for every pixel, how much to go on x/y?
+		-	double	curr_x/y	--->	current position in float values
+		-	int		int_x/y		--->	same in integer. Real pixel position. 
+		-	int		next_x/y	--->	Next pixel to reach.
+		When curr_x/y surpasses next_x/y, int_x/y gets updated.
+		To go backward in x and in y, we make the delta POSITIVE or NEGATIVE.
+
+	3)	If DEBUG macro is active, pixel are written on screen too.
+		Very cool, right?
+		(YES) (NO, lol)
+		if (YES)
+			"Hehe. We put one fu**ing week to do this sheet!"
+		else
+			https://youtu.be/VWBFpKA2IEc?si=wWeW5HXGI-M-EDzN
+*/
 int	draw_line(t_data *data, double pov_x)
 {
 	t_drawline	line_data;
@@ -32,6 +58,14 @@ int	draw_line(t_data *data, double pov_x)
 	return (0);
 }
 
+/*
+	//FIXME To optimize line, we should:
+	1)	calculate minimal vectors using DDA;
+	2)	incrementing curr_x and curr_y by that minimal values;
+	3)	calling this function normally;
+	4)	stop printing the line.
+		At that point, we could differentiate this method using DEBUG macro.
+*/
 static int	the_wall_checker(t_drawline *line_data, t_data *data)
 {
 	int	x;
@@ -47,6 +81,7 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data)
 	return (false);
 }
 
+//	init all data to draw a line.
 static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
 {
 	*line_data = (t_drawline){0};
@@ -64,4 +99,3 @@ static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
 	if (line_data->delta_y < 0)
 		line_data->y_sign = NEGATIVE;
 }
-		

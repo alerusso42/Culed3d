@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 17:18:28 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:30:47 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
+static void	error2(int err);
 static void	three_dots(int fd, char *first, char *second);
 
 /*REVIEW
@@ -40,7 +41,15 @@ void	error(t_data *data, int err, char *file)
 		fd_printf(2, "Bro le texture.\n");
 	else if (err == E_CHAR)
 		fd_printf(2, "Invalid char in map.\n");
-	else if (err == E_NO_PLAYER)
+	else
+		error2(err);
+	fd_printf(2, RST);
+	exit(err);
+}
+
+static void	error2(int err)
+{
+	if (err == E_NO_PLAYER)
 		fd_printf(2, "Wanna play with no hands?.\n");
 	else if (err == E_MULTIPLAYER)
 		three_dots(2, "This is not multiplayer", " yet😏\n");
@@ -50,8 +59,6 @@ void	error(t_data *data, int err, char *file)
 		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN\n");
 	else if (err == E_INVALID_PATH)
 		fd_printf(2, "Can't access the whole map\n");
-	fd_printf(2, RST);
-	exit(err);
 }
 
 static void	three_dots(int fd, char *first, char *second)

@@ -6,45 +6,45 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/01 17:17:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:40:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
 static void	set_to_null(t_data *data);
+static void	fill_txtr(void **p, char *filename, void *connect, int size[2]);
 
+/*
+//REVIEW	get_texture
+
+	data->texture is an array of texture of size TEXTURE_NUM + 1.
+	we use this to get texture to print.
+	
+	If one texture is missing, we call error.
+*/
 void	get_texture(t_data *data)
 {
-	int		x;
-	int		y;
+	int		size[2];
 	int		i;
-	void	**p;
 
-	x = WSCREEN;
-	y = HSCREEN;
+	size[X] = WSCREEN;
+	size[Y] = HSCREEN;
 	set_to_null(data);
-	p = &data->textures[SCREEN];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, SCREEN_TXTR, &x, &y);
-	x = WIMG;
-	y = HIMG;
-	p = &data->textures[NORTH];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_north, &x, &y);
-	p = &data->textures[EAST];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_east, &x, &y);
-	p = &data->textures[SOUTH];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_south, &x, &y);
-	p = &data->textures[WEST];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, data->txtr_west, &x, &y);
-	p = &data->textures[PLAYER];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, PLAYER_TXTR, &x, &y);
-	p = &data->textures[WALL];
-	*p = mlx_xpm_file_to_image(data->mlx_connection, WALL_TXTR, &x, &y);
+	fill_txtr(&data->textures[SCREEN], SCREEN_TXTR, data->mlx, size);
+	size[X] = WIMG;
+	size[Y] = HIMG;
+	fill_txtr(&data->textures[NORTH], data->txtr_north, data->mlx, size);
+	fill_txtr(&data->textures[EAST], data->txtr_east, data->mlx, size);
+	fill_txtr(&data->textures[SOUTH], data->txtr_south, data->mlx, size);
+	fill_txtr(&data->textures[WEST], data->txtr_west, data->mlx, size);
+	fill_txtr(&data->textures[PLAYER], PLAYER_TXTR, data->mlx, size);
+	fill_txtr(&data->textures[WALL], WALL_TXTR, data->mlx, size);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
 		if (!data->textures[i])
-			error(data, E_MLX_TEXTURE, NULL);
+			return (fd_printf(2, "%d\n", i), error(data, E_MLX_TEXTURE, NULL));
 	}
 }
 
@@ -55,6 +55,11 @@ static void	set_to_null(t_data *data)
 	i = -1;
 	while (++i < TEXTURES_NUM)
 		data->textures[i] = NULL;
+}
+
+static void	fill_txtr(void **p, char *filename, void *connect, int size[2])
+{
+	*p = mlx_xpm_file_to_image(connect, filename, &size[X], &size[Y]);
 }
 
 void	free_texture(t_data *data)
@@ -68,7 +73,7 @@ void	free_texture(t_data *data)
 	{
 		if (data->textures[i])
 		{
-			mlx_destroy_image(data->mlx_connection, data->textures[i]);
+			mlx_destroy_image(data->mlx, data->textures[i]);
 			// free(data->textures[i]);
 		}
 	}

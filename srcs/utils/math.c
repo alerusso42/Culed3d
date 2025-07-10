@@ -1,5 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/10 14:28:07 by alerusso          #+#    #+#             */
+/*   Updated: 2025/07/10 14:28:30 by alerusso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3d.h"
 
+/*
+	Returns the result of a division between doubles.
+	Assures no division for 0 is made, avoiding floating point exception.
+*/
 double	safe_division(double delta, double sum)
 {
 	if (sum == 0 || delta == 0)
@@ -7,17 +23,31 @@ double	safe_division(double delta, double sum)
 	return (delta / sum);
 }
 
+/*
+	Returns the value in radiant of a grade value.
+	Notice: 180 d are PI radiant.
+			Therefore, dividing PI and multipling for grad gives back radiant.
+*/
 double	grad2rad(double grad)
 {
 	return (grad * (PI / 180));
 }
 
-double rad2deg(double rad)
+/*
+	Returns the value in grades of a radiant value.
+	Notice: 180 d are PI radiant.
+			Therefore, dividing PI and multipling for grad gives back radiant.
+*/
+double	rad2deg(double rad)
 {
 	return (rad / (PI / 180));
 }
 
-double round_rad(double rad)
+/*
+	Round a double value.
+	Used because math.h round often fails.
+*/
+double	round_rad(double rad)
 {
 	if (rad > 0 && rad < 0.0001)
 		return (0);
@@ -30,6 +60,10 @@ double round_rad(double rad)
 	return (rad);
 }
 
+/*
+//REVIEW
+	pov:	represent the 
+*/
 void	update_delta(double pov, double *delta_x, double *delta_y)
 {
 	*delta_x = round_rad(cos(pov));

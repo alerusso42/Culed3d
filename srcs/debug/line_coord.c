@@ -70,7 +70,7 @@
 // 	i = -1;
 // 	while (line[++i][X] != INT_MAX && i < (WIMG))
 // 	{
-// 		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
+// 		mlx_pixel_put(data->mlx, data->win, \
 // 						line[i][X], line[i][Y], 0xff000d);
 // 	}
 // }
@@ -83,7 +83,7 @@
 // 	while (line_data->line[++i][X] != INT_MAX && i < WIMG)
 // 	{
 // 		// printf("print_x:%d\t_y:%d\n", line_data->line[i][X], line_data->line[i][Y]);
-// 		mlx_pixel_put(data->mlx_connection, data->mlx_window, \
+// 		mlx_pixel_put(data->mlx, data->win, \
 // 			line_data->line[i][X], line_data->line[i][Y], 0xff000d);
 // 		if (data->map[line_data->line[i][Y] / HIMG]\
 // 			[line_data->line[i][X] / WIMG] == '1')

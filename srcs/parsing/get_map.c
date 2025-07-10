@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 11:36:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:36:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ singola stringa per poi chiamarci split con \n come carattere separatore
 Nella seconda parte resiziamo la mappa per poter riempire gli spazi non allocati
 con il carattere spazio
  */
-
 void	get_map(t_data *data, int fd)
 {
 	char	*pre_split;
@@ -41,6 +40,13 @@ void	get_map(t_data *data, int fd)
 	resize_map(data);
 }
 
+/*
+	FUNCTION		DESCRIPTION
+
+	check_chars			checks for invalid chars and if there is one player.
+	check_walls			checks if all map is surronded by walls.
+	check_map_access	checks if all map can be accessed (floodfill).
+*/
 void	parse_map(t_data *data)
 {
 	check_chars(data);
@@ -49,7 +55,7 @@ void	parse_map(t_data *data)
 }
 
 /*
-//	REVIEW
+//REVIEW
 	Map needs to be resized because lines length may differ.
 	We alloc a new string with size of longest_line - current_line,
 	we set it to SPACE, we join it at the current_line.
@@ -81,6 +87,3 @@ static void	resize_map(t_data *data)
 	resized_map[i] = NULL;
 	data->map = ft_rematrix(data->map, resized_map);
 }
-
-
-

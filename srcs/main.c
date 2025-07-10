@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 17:47:02 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:40:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*
+	FUNCTION NAME			DESCRIPTION
+_________________________________________________________
+	Parsing:				get and validate map;
+	lets_start_the_party:	initialize mlx/texture data;
+	mlx_hooks:				initialize keyboard;
+	map_start:				prints map for the first time;
+	game_loop:				the game main loop;
+	spread_democracy:		free everything and exit.
+*/
 int	main(int argc, char *argv[])
 {
 	t_data	data;
@@ -19,14 +29,14 @@ int	main(int argc, char *argv[])
 	data = (t_data){0};
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
-	//mlx_key_hook(data.mlx_connection, GRANDE_CAZZO, &data);
-	mlx_hook(data.mlx_window, 17, 1, ft_cross_close, &data);
-	mlx_hook(data.mlx_window, 2, 1L << 0, commands, &data);
-	//mlx_hook(data.mlx_window, 2, 1L << 0, rotate, &data);
-	// map_start(&data);
+	//mlx_key_hook(data.mlx, GRANDE_CAZZO, &data);
+	mlx_hook(data.win, 17, 1, ft_cross_close, &data);
+	mlx_hook(data.win, 2, 1L << 0, commands, &data);
+	//mlx_hook(data.win, 2, 1L << 0, rotate, &data);
+	//map_start(&data);
 	gettimeofday(&data.start, NULL);
-	mlx_loop_hook(data.mlx_connection, game_loop, &data);
-	mlx_loop(data.mlx_connection);
+	mlx_loop_hook(data.mlx, game_loop, &data);
+	mlx_loop(data.mlx);
 	spread_democracy(&data);
 	return (0);
 }

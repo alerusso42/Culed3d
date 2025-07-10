@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 17:18:11 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/02 17:18:12 by lparolis         ###   ########.fr       */
+/*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
+/*   Updated: 2025/07/10 14:31:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	update_coord(t_drawline *line_data)
 }
 
 // 0x53dd03
+/*
+	sqrt is not what you may think
+*/
 int	ray_lenght(t_data *data, int rx, int ry)
 {
 	int	ray;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/27 11:53:04 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:29:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static long long	get_time(t_timecode timecode);
 
-
+/*
+	Brutal force CPU draining sleep.
+*/
 void	ft_sleep(long long microsecond)
 {
 	long long	start;
@@ -28,6 +30,9 @@ void	ft_sleep(long long microsecond)
 	}
 }
 
+/*
+	Returns time in integer format.
+*/
 static long long	get_time(t_timecode timecode)
 {
 	struct timeval	tv;
@@ -49,6 +54,7 @@ static long long	get_time(t_timecode timecode)
 /*
 	Returns time passed, in microseconds, between now and start time.
 	Start time is a struct timeval already set with gettimeofday.
+	//FIXME : 10e6 instead of 1000000.
 */
 long	elapsed_time(t_time start)
 {
@@ -56,7 +62,7 @@ long	elapsed_time(t_time start)
 	long			diff;
 
 	gettimeofday(&tv, NULL);
-	diff = (tv.tv_sec - start.tv_sec) * 1000000
-		 + (tv.tv_usec - start.tv_usec);
+	diff = (tv.tv_sec - start.tv_sec) * 1000000 \
+	+ (tv.tv_usec - start.tv_usec);
 	return (diff);
 }

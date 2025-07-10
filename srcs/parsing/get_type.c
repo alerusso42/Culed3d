@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/06/13 14:44:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:10:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ Funzione che cerca all'interno del file .cub passato come argomento
 i vari type identifiers per le varie textures e eventualmente le controlla
 usando le altre funzioni
  */
-
 void	get_type(t_data *data, int fd)
 {
 	int			count_types;
@@ -50,6 +49,11 @@ void	get_type(t_data *data, int fd)
 		return (finish_him(fd), close(fd), error(data, E_TYPE, NULL));
 }
 
+/*
+	Skips first characters (the identifier) and assign the line
+	in the correct ptr.
+	If a ptr is already allocated, returns error.
+*/
 static bool	assign_type(t_data *data, char *line)
 {
 	if (ft_strncmp(line, "NO ", 2) == 0)
@@ -88,6 +92,10 @@ static bool	cub3d_substr(t_data *data, char *line, int type)
 	return (true);
 }
 
+/*
+	checks that, after the parse of the identifiers, 
+	there is an empty line.
+*/
 static bool	end_line_check(t_data *data, char **line, int fd)
 {
 	char	end_line;

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 12:29:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:45:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # if DEBUG == true
-#   define PLAYER_TXTR "textures/pisnelo.xpm"
-#   define WALL_TXTR "textures/debug_wall.xpm"
+#  define PLAYER_TXTR "textures/pisnelo.xpm"
+#  define WALL_TXTR "textures/debug_wall.xpm"
 # else
-#   define PLAYER_TXTR "textures/pisnelo.xpm"
-#   define WALL_TXTR "textures/debug_wall.xpm"
+#  define PLAYER_TXTR "textures/pisnelo.xpm"
+#  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
 # define HIMG 48
@@ -115,10 +115,10 @@ typedef struct s_drawline
 
 typedef struct s_data
 {
-	t_drawline	player;     
+	t_drawline	player;
 	t_time		start;
-	void		*mlx_connection;
-	void		*mlx_window;
+	void		*mlx;
+	void		*win;
 	void		**textures;
 	char		*screen;
 	char		**map;
@@ -233,10 +233,10 @@ void	ft_sleep(long long microsecond);
 long	elapsed_time(t_time start);
 double	safe_division(double delta, double sum);
 double	grad2rad(double rad);
-double 	round_rad(double rad);
+double	round_rad(double rad);
 double	rad2deg(double rad);
 void	update_delta(double pov, double *delta_x, double *delta_y);
-void 	put_pixel(t_data *data, int x, int y, int color);
+void	put_pixel(t_data *data, int x, int y, int color);
 void	clear_window(t_data *data);
 int		ray_lenght(t_data *data, int rx, int ry);
 void	update_delta(double pov, double *delta_x, double *delta_y);
@@ -252,6 +252,5 @@ int		game_loop(t_data *data);
 void	get_texture(t_data *data);
 int		draw_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
-
 
 #endif
