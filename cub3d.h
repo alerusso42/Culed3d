@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/02 18:01:18 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:29:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,31 @@
 
 //# define RADIANT 0.008726
 
-//(((2 * PI) / 360) * 0.2)
+/*
+	180 degrees are PI radiant.
+	Degree changes every PI / 180.
+	We need more precision: so we multiply 180 for LINE_ACCURACY.
+	RADIANT = (PI / (180 * LINE_ACCURACY)).
+	
+	LINE_ACCURACY shows the size of the angle the line makes when
+	player changes what is seeing.
+	Setting it to 1 makes the line moving by 1 degree as sensibility;
+	Setting to 20 makes the line moving by (1 degree / 20)
+	20 is enough to touch all pixel during raycasting.
+*/
 # define RADIANT (PI / 3600)
 
-//	*5: adapt to RADIANT
-# define FOV 60 * 20
+//	see RADIANT for explaination.
+//	putting it to 1 makes the line sensibility to 1 degree.
+//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
+# define LINE_ACCURACY 20
+
+//	FOV (=Field Of View) represents the angle of the player vision.
+# define FOV 60 * LINE_ACCURACY
+
 # define PI 3.1415926
 
+//FIXME	This flag is in debug state.
 # define SPEED 5
 
 typedef struct timeval		t_time;
@@ -191,6 +209,7 @@ void	error(t_data *data, int err, char *file);
 
 //SECTION	input
 
+void	init_player(t_data *data);
 int		ft_cross_close(t_data *data);
 int		commands(int keycode, t_data *data);
 int		move(t_data *data, t_drawline *entity, int keycode);

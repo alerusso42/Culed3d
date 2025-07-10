@@ -18,6 +18,7 @@ SRCS = $(addprefix $(SRC_PATH), \
   init/mem_handler.c \
   init/get_texture.c \
   input/commands.c \
+  input/init_entity.c \
   input/move.c \
   parsing/parsing.c \
   parsing/get_type.c \
