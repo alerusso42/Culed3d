@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 12:21:34 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:36:13 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	update_coord(t_drawline *line_data)
 	}
 }
 
-// 0x53dd03
 /*
 	sqrt is not what you may think
 */
@@ -50,9 +49,12 @@ int	ray_lenght(t_data *data, int rx, int ry)
 	py = data->player.map[Y] * HIMG;
 	rx = abs(rx);
 	ry = abs(ry);
-	// printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
-	// printf("a: %d\tb: %d\n", abs(rx - px), abs(ry - py));
+	if (DEBUG == true)
+	{
+		// printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
+		// printf("a: %d\tb: %d\n", abs(rx - px), abs(ry - py));
+		// printf("ray lenght: %d\n", ray);
+	}	
 	ray = sqrt(pow((rx - px), 2) + pow((ry - py), 2));
-	// printf("ray lenght: %d\n", ray);
 	return (ray);
 }

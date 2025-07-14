@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:41:15 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 14:41:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:37:25 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 // 		// mlx_mouse_move(data->mlx, data->win, x, y);
 // 		// move_view(&x, &y);
 // 		// printf("X:%d\tY:%d\n", x, y);
-// 		draw_line(data, x, y);
+// 		compute_line(data, x, y);
 // 		gettimeofday(&data->start, NULL);
 // 	}
 // 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 14:14:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:38:17 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data);
 static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
 
 /*
-//REVIEW	draw_line
+//REVIEW	compute_line
 
 	Brutal force algorythm: every pixel checks if there is a wall.
 Key steps:
@@ -37,11 +37,11 @@ Key steps:
 		Very cool, right?
 		(YES) (NO, lol)
 		if (YES)
-			"Hehe. We put one fu**ing week to do this sheet!"
+			"Hehe. We put one fu**ing week in doing this sheet!"
 		else
 			https://youtu.be/VWBFpKA2IEc?si=wWeW5HXGI-M-EDzN
 */
-int	draw_line(t_data *data, double pov_x)
+int	compute_line(t_data *data, double pov_x)
 {
 	t_drawline	line_data;
 
@@ -51,10 +51,10 @@ int	draw_line(t_data *data, double pov_x)
 	while ((the_wall_checker(&line_data, data) == false))
 	{
 		if (DEBUG == true)
-			//add_coord(line_data.line, line_data.int_x, line_data.int_y);
 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 		update_coord(&line_data);
 	}
+	// cast_ray();
 	return (0);
 }
 
@@ -85,10 +85,10 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data)
 static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
 {
 	*line_data = (t_drawline){0};
-	line_data->int_x = (data->player.screen[X]/*  + WIMG / 2 */);
-	line_data->int_y = (data->player.screen[Y]/*  + HIMG / 2 */);
-	line_data->curr_x = (int)data->player.screen[X]/*  + WIMG / 2 */;
-	line_data->curr_y = (int)data->player.screen[Y]/*  + HIMG / 2 */;
+	line_data->int_x = (data->player.screen[X] + WIMG / 2);
+	line_data->int_y = (data->player.screen[Y]) + HIMG / 2;
+	line_data->curr_x = (int)data->player.screen[X] + WIMG / 2;
+	line_data->curr_y = (int)data->player.screen[Y] + HIMG / 2;
 	line_data->next_x = line_data->int_x + line_data->x_sign;
 	line_data->next_y = line_data->int_y + line_data->y_sign;
 	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);

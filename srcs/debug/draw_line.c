@@ -7,7 +7,7 @@
 // static double rad2deg(double radianti);
 
 // //	tan
-// int	draw_line(t_data *data, int x, int y)
+// int	compute_line(t_data *data, int x, int y)
 // {
 // 	t_drawline	line_data;
 // 	int			stepper;

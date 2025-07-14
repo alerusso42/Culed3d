@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 14:13:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:29:39 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
-# define LINE_ACCURACY 40
+# define LINE_ACCURACY 20
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60 * LINE_ACCURACY
@@ -250,7 +250,8 @@ int		game_loop(t_data *data);
 //SECTION render
 
 void	get_texture(t_data *data);
-int		draw_line(t_data *data, double pov_x);
+int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
+void	backgrounder(t_data *data);
 
 #endif
