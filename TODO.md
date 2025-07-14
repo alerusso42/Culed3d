@@ -16,7 +16,7 @@
     
 [X]	Struttura dati
 [X]	Inizializzazione
-[Leo si, ale no]	Studiare raycasting
+[Leo si, ale un pochino dai]	Studiare raycasting
     ----> https://hackmd.io/@nszl/H1LXByIE2
 [X]	Chiusura tutto
 
@@ -24,8 +24,8 @@
 [] RAYCASTING
 	{X}	Muovere player
 	{X}	Ottimizzare algoritmo linea con intersezioni in x e y
-	{}	Ottenere get_data_address textures
-	{}	Creare cornice
-	{}	Modificare get_data_address cornice
-	{}	Salvare punti di collisione, calcolare lunghezza raggio
+	{X}	Ottenere get_data_address textures
+	{X}	Creare cornice
+	{X}	Modificare get_data_address cornice
+	{X/2}	Salvare punti di collisione, calcolare lunghezza raggio
 	{}	Castare nella cornice
