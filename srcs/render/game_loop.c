@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 12:43:55 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:09:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	map_start(t_data *data)
 		while (data->map[i][++j])
 		{
 			if (data->map[i][j] == '1')
-				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
-			else if (ft_strchr("NSEW", data->map[i][j]))
 				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
 		}
 	}

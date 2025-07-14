@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 14:31:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:14:55 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data)
 static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
 {
 	*line_data = (t_drawline){0};
-	line_data->int_x = (data->player.screen[X]);
-	line_data->int_y = (data->player.screen[Y]);
-	line_data->curr_x = (int)data->player.screen[X];
-	line_data->curr_y = (int)data->player.screen[Y];
+	line_data->int_x = (data->player.screen[X]/*  + WIMG / 2 */);
+	line_data->int_y = (data->player.screen[Y]/*  + HIMG / 2 */);
+	line_data->curr_x = (int)data->player.screen[X]/*  + WIMG / 2 */;
+	line_data->curr_y = (int)data->player.screen[Y]/*  + HIMG / 2 */;
 	line_data->next_x = line_data->int_x + line_data->x_sign;
 	line_data->next_y = line_data->int_y + line_data->y_sign;
 	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);
