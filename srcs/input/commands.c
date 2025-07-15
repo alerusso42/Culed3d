@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 14:37:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:41:32 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ int	commands(int keycode, t_data *data)
 		move(data, &data->player, keycode);
 	else if (keycode == XK_Left || keycode == XK_Right)
 		rotate(data, &data->player, keycode);
-	//if (data->map[data->player.map[X][Y]] == 'F')
-	//	ft_cross_close(data);
 	return (0);
 }

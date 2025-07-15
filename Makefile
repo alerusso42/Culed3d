@@ -6,6 +6,8 @@ SRC_PATH = srcs/
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
 LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx -lm
+DEBUG    = -D DEBUG=true
+NORMAL   = -D DEBUG=false
 
 # Library 
 LIBFT_DIR = libft
@@ -35,22 +37,14 @@ SRCS = $(addprefix $(SRC_PATH), \
   render/raycast.c \
   render/ray_utils.c \
 )
-# # Object files go under obj/, mirroring the tree
-# OBJ_DIR = obj
-# OBJS    = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(SRCS) cub3d.h
-#	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(LFLAGS) -o $(NAME)
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) \
-      -Lminilibx-linux -lmlx -lXext -lX11 -lm \
-      -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(LFLAGS) -o $(NAME)
 
-# Build libft (bonus) before anything else
 $(LIBFT): 
 	$(MAKE) bonus -C $(LIBFT_DIR)
 
-# manca il file a.gdb
 gdb: $(NAME)
 	gdb -x a.gdb --args ./cub3d debug.cub
 
@@ -77,6 +71,5 @@ mini:
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
 	$(MAKE) -C ./minilibx-linux
 
-# phony targets
 .PHONY: all clean fclean re libft
-# .SILENT:
+.SILENT:

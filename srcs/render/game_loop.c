@@ -6,14 +6,14 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 17:47:14 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:50:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
 void	put_image_to_image(t_data *data, int which, int y, int x);
-void	test_wall3D(t_data *data, int x, int y);
+void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH);
 
 /*
 	prints minimap on screen.
@@ -59,6 +59,7 @@ int	game_loop(t_data *data)
 		put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 		mlx_put_image_to_window(data->mlx, data->win, \
 			data->textures[SCREEN], 0, 0);
+		test_wall3D(data, -69, -69, true);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
@@ -151,7 +152,6 @@ void	backgrounder(t_data *data)
 
 	ceiling = (data->ceiling_rgb[0] << 16) | (data->ceiling_rgb[1] << 8) | data->ceiling_rgb[2];
 	floor = (data->floor_rgb[0] << 16) | (data->floor_rgb[1] << 8) | data->floor_rgb[2];
-	printf("ceiling: %x\nntfloor: %x\n", ceiling, floor);
 	j = -1;
 	while (++j < WSCREEN)
 	{
@@ -160,26 +160,67 @@ void	backgrounder(t_data *data)
 		{
 			put_pixel(data, j, i, ceiling);
 			put_pixel(data, j, i + (HSCREEN / 2), floor);
-			test_wall3D(data, j, i);
 		}
 	}
 }
 
-void	test_wall3D(t_data *data, int x, int y)
-{
-	static char	*wall_addr;
-	int			color;
-	int			index;
+//	TEXTURE:*-> 0:(x + bpp % WIMG) 1:((x + bpp % WIMG) * (line_data * 1)) 2:((x + bpp % WIMG) * (line_data * 2)) N:((x + bpp % WIMG) * (line_data * N))... 
 
-	x %= WIMG;
-	y %= HIMG;
-	if (!wall_addr)
-		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->bpp, &data->size_line, &data->endian);
-	else if (!wall_addr)
+//	SCREEN:  
+void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH)
+{
+	int	color;
+	int	ray;
+	int	i;
+	int	k;
+	static int	j = -1;
+
+	if (STOP_PLEASE_STOP_AAAAAH == true)
+	{
+		j = -1;
 		return ;
-	index = y * data->size_line + x * (data->bpp / 8);
-	color = wall_addr[index];
-	color = color | (wall_addr[index + 1] << 8);
-	color = color | (wall_addr[index + 2] << 16);
-	put_pixel(data, y, x, color);
+	}
+	i = -1;
+	k = -1;
+	ray = ray_lenght(data, x, y);
+	color = 255 << 16 | 0 << 8 | 255; //violet
+	printf("j:%d\n", j);
+	if (++j < WSCREEN)
+	{
+		k = -1;
+		while (++k < FOV_RATIO)
+		{
+			i = (HSCREEN / 2) + (ray / 2);
+			while (--i >= (HSCREEN / 2) - (ray / 2))
+			{
+				put_pixel(data, j + k, i, color);		
+			}
+		}
+		j += k - 1;
+		mlx_put_image_to_window(data->mlx, data->win, \
+			data->textures[SCREEN], 0, 0);
+		mlx_do_sync(data->mlx);
+	}
+	else
+		j = -1;
 }
+
+// draw.io integration
+// void	test_wall3D(t_data *data, int x, int y)
+// {
+// 	static char	*wall_addr;
+// 	int			color;
+// 	int			index;
+
+// 	x %= WIMG;
+// 	y %= HIMG;
+// 	if (!wall_addr)
+// 		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->bpp, &data->size_line, &data->endian);
+// 	else if (!wall_addr)
+// 		return ;
+// 	index = y * data->size_line + x * (data->bpp / 8);
+// 	color = wall_addr[index];
+// 	color = color | (wall_addr[index + 1] << 8);
+// 	color = color | (wall_addr[index + 2] << 16);
+// 	put_pixel(data, y, x, color);
+// }

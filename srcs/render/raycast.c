@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 14:38:17 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:05:00 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	compute_line(t_data *data, double pov_x)
 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 		update_coord(&line_data);
 	}
-	// cast_ray();
+	test_wall3D(data, line_data.int_x, line_data.int_y, false);
 	return (0);
 }
 
@@ -76,6 +76,7 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data)
 	if (data->map[y][x] == '1')
 	{
 		ray_lenght(data, x * WIMG, y * HIMG);
+		// cast_ray()
 		return (true);
 	}
 	return (false);

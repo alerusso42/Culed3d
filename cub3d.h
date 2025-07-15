@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/14 15:29:39 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:56:22 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
-# define FPS 60
+# define FPS 30
 # define FRAME_TIME (1000000 / FPS)
 
+#ifndef DEBUG
 # define DEBUG true
+# endif
 # define VALID_CHARS " 01NSEW"
 # define CONTENT_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
@@ -81,10 +83,14 @@
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
-# define LINE_ACCURACY 20
+//NOTE [L_A: 30; FOV: 64]
+# define LINE_ACCURACY 10
 
 //	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 60 * LINE_ACCURACY
+# define FOV 32 * LINE_ACCURACY
+
+//	determines how much time you need to print the texture to fill all screen.
+# define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
 
 # define PI 3.1415926
 
@@ -249,9 +255,10 @@ int		game_loop(t_data *data);
 
 //SECTION render
 
-void	get_texture(t_data *data);
 int		compute_line(t_data *data, double pov_x);
+void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
+void	get_texture(t_data *data);
 
 #endif
