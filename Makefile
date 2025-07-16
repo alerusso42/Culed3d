@@ -67,6 +67,8 @@ bonus: fclean $(NAME)
 
 re: fclean mini all
 
+start: fclean mini all
+
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
 	$(MAKE) -C ./minilibx-linux

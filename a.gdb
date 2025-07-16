@@ -19,3 +19,12 @@ define map_copy
 	display map_copy[x]
 	display map_copy[x][y]
 end
+
+define ray
+	d
+	y
+	b srcs/render/game_loop.c:198
+	r
+	display pov_diff
+	display ray
+end

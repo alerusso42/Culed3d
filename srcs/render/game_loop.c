@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/16 12:46:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/16 16:59:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ int	map_start(t_data *data)
 	return (0);
 }
 
+
+double arrotonda(double x, int cifre) {
+    int fattore = 1;
+	fattore *= pow(10, cifre);
+	int	temp = x * fattore;
+    x = (double)temp / fattore;
+	x -= 0.000000000000001;
+	return (x);
+}
+
 /*
 	//NOTE	update this comment when game_loop will be finished.
 */
@@ -54,6 +64,36 @@ int	game_loop(t_data *data)
 		pov[X] = data->player.pov[X] - RADIANT * (FOV / 2);
 		pov[Y] = 0;
 		i = FOV;
+		// while (--i >= 0)
+		// {
+		// 	diff = (double)fabs(data->player.pov[X] - pov[X] + (RADIANT * i));
+		// 	compute_line(data, pov[X] + (RADIANT * i), diff);
+		// }
+		while (--i >= FOV / 2)
+		{
+			diff = (double)((double)i / LINE_ACCURACY) - (double)(FOV / LINE_ACCURACY / 2);
+			diff = grad2rad(diff);
+			//printf("DIFF:%d\n", (i / LINE_ACCURACY) - (FOV / LINE_ACCURACY / 2));
+			compute_line(data, pov[X] + (RADIANT * i), diff);
+		}
+		while (--i >= 0)
+		{
+			diff = (double)(FOV /LINE_ACCURACY / 2) - (double)((double)i / LINE_ACCURACY);
+			diff = grad2rad(diff);
+			//printf("DIFF:%d\n", (FOV /LINE_ACCURACY / 2) - (i / LINE_ACCURACY));
+			compute_line(data, pov[X] + (RADIANT * i), diff);
+		}
+		// (void)diff;
+		put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
+		mlx_put_image_to_window(data->mlx, data->win, \
+			data->textures[SCREEN], 0, 0);
+		test_wall3D(data, -69, -69, true, 0);
+		gettimeofday(&data->start, NULL);
+	}
+	return (0);
+}
+
+/*
 		while (--i >= FOV / 2)
 		{
 			diff = (double)((double)i / LINE_ACCURACY) - (double)(FOV / LINE_ACCURACY / 2);
@@ -66,17 +106,6 @@ int	game_loop(t_data *data)
 			//printf("DIFF:%d\n", (FOV /LINE_ACCURACY / 2) - (i / LINE_ACCURACY));
 			compute_line(data, pov[X] + (RADIANT * i), diff);
 		}
-		(void)diff;
-		put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
-		mlx_put_image_to_window(data->mlx, data->win, \
-			data->textures[SCREEN], 0, 0);
-		test_wall3D(data, -69, -69, true, 0);
-		gettimeofday(&data->start, NULL);
-	}
-	return (0);
-}
-
-/*
 	Fill the screen texture stream data with the chosen color.
 */
 void	put_pixel(t_data *data, int x, int y, int color)
@@ -182,10 +211,10 @@ void	backgrounder(t_data *data)
 //	SCREEN:  
 void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH, double pov_line)
 {
-	//double pov_diff;
-	int	color;
-	int	ray;
-	int	i;
+	double pov_diff;
+	int		color;
+	double	ray;
+	int		i;
 	//double	little_chunk;
 	// int	k;
 	static int	j = -1;
@@ -196,37 +225,36 @@ void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH, doubl
 		return ;
 	}
 	i = -1;
-	//pov_diff = data->player.pov[X] - pov_line;
-	//pov_diff = pov_line;
-	// k = -1;
-	//printf("REAL|\tx:\t%d\ty:%d\t\n", data->player.screen[X], data->player.screen[Y]);
-	int	ray_l;
-	ray_l = ray_lenght(data, x, y);
-	ray_l = FABIO(ray_l * cos(pov_line));
-	ray = safe_division((HSCREEN * 30), ray_l);
-	printf("ray: %d\npov_line: %f\n", ray, pov_line);
+	pov_diff = FABIO(cos(arrotonda(pov_line, 4)));
+	printf("pov_diff in rad: %f\n", pov_diff);
+	printf("pov_diff in Grad: %f\n", rad2deg(pov_diff));
+	ray = ray_lenght(data, x, y);
+	ray = ray * pov_diff;
+	printf("ray after pov_diff: %f\n", ray);
+	ray = (int)safe_division((HSCREEN * 30), ray);
+	printf("ray after division: %f\n", ray);
 	color = 255 << 16 | 0 << 8 | 255; //violet
-	// printf("j:%d\n", j);
 	if (++j < WSCREEN)
 	{
-		// k = -1;
-		// while (++k < FOV_RATIO)
-		// {
-			i = (HSCREEN / 2) + (ray / 2);
-			while (--i >= (HSCREEN / 2) - (ray / 2))
-			{
+
+		i = (HSCREEN / 2) + (ray / 2);
+		while (--i >= (HSCREEN / 2) - (ray / 2))
+		{
 				put_pixel(data, j/*  + k */, i, color);
-			}
-		// }
-		// j += k;
-		// mlx_put_image_to_window(data->mlx, data->win, \
-		// 	data->textures[SCREEN], 0, 0);
-		// mlx_do_sync(data->mlx);
+		}
 	}
 	else
 		j = -1;
 }
 
+		// k = -1;
+		// while (++k < FOV_RATIO)
+		// {
+		// }
+		// j += k;
+		// mlx_put_image_to_window(data->mlx, data->win, \
+		// 	data->textures[SCREEN], 0, 0);
+		// mlx_do_sync(data->mlx);
 // draw.io integration
 // void	test_wall3D(t_data *data, int x, int y)
 // {
