@@ -3,8 +3,8 @@ EA ./textures/east.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 
-F 220,100,0   14443520  DC6400
-C 225,30,0    14753280  E11E00
+F 220,100,0
+C 225,30,0
 
 1111111111111111111
 1000000000000000001

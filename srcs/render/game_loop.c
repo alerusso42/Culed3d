@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/15 17:50:29 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:46:05 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
 void	put_image_to_image(t_data *data, int which, int y, int x);
-void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH);
 
 /*
 	prints minimap on screen.
@@ -44,6 +43,7 @@ int	game_loop(t_data *data)
 {
 	double	pov[2];
 	int		i;
+	double	diff;
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
@@ -53,13 +53,24 @@ int	game_loop(t_data *data)
 		data->color = 0xff000d;
 		pov[X] = data->player.pov[X] - RADIANT * (FOV / 2);
 		pov[Y] = 0;
-		i = -1;
-		while (++i < FOV)
-			compute_line(data, pov[X] + (RADIANT * i));
+		i = FOV;
+		while (--i >= FOV / 2)
+		{
+			diff = (double)((double)i / LINE_ACCURACY) - (double)(FOV / LINE_ACCURACY / 2);
+			//printf("DIFF:%d\n", (i / LINE_ACCURACY) - (FOV / LINE_ACCURACY / 2));
+			compute_line(data, pov[X] + (RADIANT * i), diff);
+		}
+		while (--i >= 0)
+		{
+			diff = (double)(FOV /LINE_ACCURACY / 2) - (double)((double)i / LINE_ACCURACY);
+			//printf("DIFF:%d\n", (FOV /LINE_ACCURACY / 2) - (i / LINE_ACCURACY));
+			compute_line(data, pov[X] + (RADIANT * i), diff);
+		}
+		(void)diff;
 		put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 		mlx_put_image_to_window(data->mlx, data->win, \
 			data->textures[SCREEN], 0, 0);
-		test_wall3D(data, -69, -69, true);
+		test_wall3D(data, -69, -69, true, 0);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
@@ -166,13 +177,17 @@ void	backgrounder(t_data *data)
 
 //	TEXTURE:*-> 0:(x + bpp % WIMG) 1:((x + bpp % WIMG) * (line_data * 1)) 2:((x + bpp % WIMG) * (line_data * 2)) N:((x + bpp % WIMG) * (line_data * N))... 
 
+#define FABIO fabs
+
 //	SCREEN:  
-void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH)
+void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH, double pov_line)
 {
+	//double pov_diff;
 	int	color;
 	int	ray;
 	int	i;
-	int	k;
+	//double	little_chunk;
+	// int	k;
 	static int	j = -1;
 
 	if (STOP_PLEASE_STOP_AAAAAH == true)
@@ -181,25 +196,32 @@ void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH)
 		return ;
 	}
 	i = -1;
-	k = -1;
-	ray = ray_lenght(data, x, y);
+	//pov_diff = data->player.pov[X] - pov_line;
+	//pov_diff = pov_line;
+	// k = -1;
+	//printf("REAL|\tx:\t%d\ty:%d\t\n", data->player.screen[X], data->player.screen[Y]);
+	int	ray_l;
+	ray_l = ray_lenght(data, x, y);
+	ray_l = FABIO(ray_l * cos(pov_line));
+	ray = safe_division((HSCREEN * 30), ray_l);
+	printf("ray: %d\npov_line: %f\n", ray, pov_line);
 	color = 255 << 16 | 0 << 8 | 255; //violet
-	printf("j:%d\n", j);
+	// printf("j:%d\n", j);
 	if (++j < WSCREEN)
 	{
-		k = -1;
-		while (++k < FOV_RATIO)
-		{
+		// k = -1;
+		// while (++k < FOV_RATIO)
+		// {
 			i = (HSCREEN / 2) + (ray / 2);
 			while (--i >= (HSCREEN / 2) - (ray / 2))
 			{
-				put_pixel(data, j + k, i, color);		
+				put_pixel(data, j/*  + k */, i, color);
 			}
-		}
-		j += k - 1;
-		mlx_put_image_to_window(data->mlx, data->win, \
-			data->textures[SCREEN], 0, 0);
-		mlx_do_sync(data->mlx);
+		// }
+		// j += k;
+		// mlx_put_image_to_window(data->mlx, data->win, \
+		// 	data->textures[SCREEN], 0, 0);
+		// mlx_do_sync(data->mlx);
 	}
 	else
 		j = -1;

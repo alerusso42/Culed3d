@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/15 17:56:22 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:44:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,16 @@
 	Setting to 20 makes the line moving by (1 degree / 20)
 	20 is enough to touch all pixel during raycasting.
 */
-# define RADIANT (PI / 3600)
+# define RADIANT (PI / (180 * LINE_ACCURACY))
 
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
 //NOTE [L_A: 30; FOV: 64]
-# define LINE_ACCURACY 10
+# define LINE_ACCURACY 30
 
 //	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 32 * LINE_ACCURACY
+# define FOV 64 * LINE_ACCURACY
 
 //	determines how much time you need to print the texture to fill all screen.
 # define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
@@ -255,8 +255,8 @@ int		game_loop(t_data *data);
 
 //SECTION render
 
-int		compute_line(t_data *data, double pov_x);
-void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH);
+int		compute_line(t_data *data, double pov_x, double diff);
+void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH, double pov_line);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
 void	get_texture(t_data *data);

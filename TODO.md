@@ -29,3 +29,7 @@
 	{X}	Modificare get_data_address cornice
 	{X/2}	Salvare punti di collisione, calcolare lunghezza raggio
 	{}	Castare nella cornice
+		{}	Sostituire muro debug con texture vera
+		{}	DDA
+		{}	Sistemare codice
+		{}	Sistemare globali

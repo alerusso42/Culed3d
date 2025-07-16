@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/15 15:05:03 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:27:39 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,18 @@ int	ray_lenght(t_data *data, int rx, int ry)
 	int	px;
 	int	py;
 
-	px = data->player.map[X] * WIMG;
-	py = data->player.map[Y] * HIMG;
+	px = data->player.screen[X];
+	py = data->player.screen[Y];
 	rx = abs(rx);
 	ry = abs(ry);
 	ray = sqrt(pow((rx - px), 2) + pow((ry - py), 2));
 	if (DEBUG == true)
 	{
-		printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
-		printf("a: %d\tb: %d\n", abs(rx - px), abs(ry - py));
-		printf("ray lenght: %d\n", ray);
+		//printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
+		//printf("a: %d\tb: %d\n", abs(rx - px), abs(ry - py));
+		//printf("ray lenght: %d\n", ray);
+		//printf("player coords: px: %d\tpy: %d\n", px, py);
+		//printf("rx:\t%d\nry:\t%d\n", rx, ry);
 	}	
 	return (ray);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/15 17:05:00 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:22:51 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Key steps:
 		else
 			https://youtu.be/VWBFpKA2IEc?si=wWeW5HXGI-M-EDzN
 */
-int	compute_line(t_data *data, double pov_x)
+int	compute_line(t_data *data, double pov_x, double diff)
 {
 	t_drawline	line_data;
 
@@ -54,7 +54,7 @@ int	compute_line(t_data *data, double pov_x)
 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 		update_coord(&line_data);
 	}
-	test_wall3D(data, line_data.int_x, line_data.int_y, false);
+	test_wall3D(data, line_data.int_x, line_data.int_y, false, diff);
 	return (0);
 }
 
@@ -75,7 +75,9 @@ static int	the_wall_checker(t_drawline *line_data, t_data *data)
 	y = (int)line_data->curr_y / HIMG;
 	if (data->map[y][x] == '1')
 	{
-		ray_lenght(data, x * WIMG, y * HIMG);
+		line_data->int_x = (int)line_data->curr_x;
+		line_data->int_y = (int)line_data->curr_y;
+		// ray_lenght(data, x * WIMG, y * HIMG);
 		// cast_ray()
 		return (true);
 	}
