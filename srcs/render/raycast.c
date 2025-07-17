@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/16 15:51:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-static int	the_wall_checker(t_drawline *line_data, t_data *data);
-static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
 
 /*
 //REVIEW	compute_line
@@ -41,64 +38,100 @@ Key steps:
 		else
 			https://youtu.be/VWBFpKA2IEc?si=wWeW5HXGI-M-EDzN
 */
-int	compute_line(t_data *data, double pov_x, double diff)
+
+// int	compute_line(t_data *data, double pov_x, double diff)
+// {
+// 	t_drawline	line_data;
+
+// 	if (!data || pov_x > 360)
+// 		return (printf("ORA ORA ORA!"));
+// 	init_line_data(data, &line_data, pov_x);
+// 	while ((the_wall_checker(&line_data, data) == false))
+// 	{
+// 		if (DEBUG == true)
+// 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
+// 		update_coord(&line_data);
+// 	}
+// 	test_wall3D(data, line_data.int_x, line_data.int_y, false, diff);
+// 	return (0);
+// }
+#define FABIO fabs
+
+int	compute_line(t_data *data, double ray_angle)
 {
 	t_drawline	line_data;
+	double		diff;
 
-	if (!data || pov_x > 360)
+	if (!data || ray_angle > 360)
 		return (printf("ORA ORA ORA!"));
-	init_line_data(data, &line_data, pov_x);
+	init_line_data(data, &line_data, ray_angle);
 	while ((the_wall_checker(&line_data, data) == false))
 	{
 		if (DEBUG == true)
 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 		update_coord(&line_data);
 	}
-	test_wall3D(data, line_data.int_x, line_data.int_y, false, diff);
+	diff = fabs(ray_angle - data->player.line.pov[X]);
+	test_wall3D(data, line_data.int_x, line_data.int_y, diff);
 	return (0);
 }
+//	TEXTURE:*-> 0:(x + bpp % WIMG) 1:((x + bpp % WIMG) * (line_data * 1)) 2:((x + bpp % WIMG) * (line_data * 2)) N:((x + bpp % WIMG) * (line_data * N))... 
 
-/*
-	//FIXME To optimize line, we should:
-	1)	calculate minimal vectors using DDA;
-	2)	incrementing curr_x and curr_y by that minimal values;
-	3)	calling this function normally;
-	4)	stop printing the line.
-		At that point, we could differentiate this method using DEBUG macro.
-*/
-static int	the_wall_checker(t_drawline *line_data, t_data *data)
+
+void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
-	int	x;
-	int	y;
+	double pov_diff;
+	int		color;
+	double	ray;
+	int		i;
+	//double	little_chunk;
+	// int	k;
 
-	x = (int)line_data->curr_x / WIMG;
-	y = (int)line_data->curr_y / HIMG;
-	if (data->map[y][x] == '1')
+	i = -1;
+	pov_diff = cos(ray_angle);
+	ray = ray_lenght(data, x, y);
+	ray = ray * pov_diff;
+	ray = safe_division((HSCREEN * 200), ray);
+	ray = round(ray / 2);
+	color = 255 << 16 | 0 << 8 | 255; //violet
+	if (++data->column < WSCREEN)
 	{
-		line_data->int_x = (int)line_data->curr_x;
-		line_data->int_y = (int)line_data->curr_y;
-		// ray_lenght(data, x * WIMG, y * HIMG);
-		// cast_ray()
-		return (true);
+		i = (HSCREEN / 2) + ray;
+		while (--i >= (HSCREEN / 2) - ray)
+		{
+			put_pixel(data, data->column/*  + k */, i, color);
+		}
 	}
-	return (false);
+	else
+		data->column = -1;
 }
+//	SCREEN:  
 
-//	init all data to draw a line.
-static void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
-{
-	*line_data = (t_drawline){0};
-	line_data->int_x = (data->player.screen[X] + WIMG / 2);
-	line_data->int_y = (data->player.screen[Y]) + HIMG / 2;
-	line_data->curr_x = (int)data->player.screen[X] + WIMG / 2;
-	line_data->curr_y = (int)data->player.screen[Y] + HIMG / 2;
-	line_data->next_x = line_data->int_x + line_data->x_sign;
-	line_data->next_y = line_data->int_y + line_data->y_sign;
-	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);
-	line_data->x_sign = POSITIVE;
-	line_data->y_sign = POSITIVE;
-	if (line_data->delta_x < 0)
-		line_data->x_sign = NEGATIVE;
-	if (line_data->delta_y < 0)
-		line_data->y_sign = NEGATIVE;
-}
+
+		// k = -1;
+		// while (++k < FOV_RATIO)
+		// {
+		// }
+		// column += k;
+		// mlx_put_image_to_window(data->mlx, data->win, \
+		// 	data->textures[SCREEN], 0, 0);
+		// mlx_do_sync(data->mlx);
+// draw.io integration
+// void	test_wall3D(t_data *data, int x, int y)
+// {
+// 	static char	*wall_addr;
+// 	int			color;
+// 	int			index;
+
+// 	x %= WIMG;
+// 	y %= HIMG;
+// 	if (!wall_addr)
+// 		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->bpp, &data->size_line, &data->endian);
+// 	else if (!wall_addr)
+// 		return ;
+// 	index = y * data->size_line + x * (data->bpp / 8);
+// 	color = wall_addr[index];
+// 	color = color | (wall_addr[index + 1] << 8);
+// 	color = color | (wall_addr[index + 2] << 16);
+// 	put_pixel(data, y, x, color);
+// }

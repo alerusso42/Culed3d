@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/15 14:46:37 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:07 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int argc, char *argv[])
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
 	mlx_hook(data.win, 17, 1, ft_cross_close, &data);
-	mlx_hook(data.win, 2, 1L << 0, commands, &data);
+	mlx_hook(data.win, 2, 1L << 0, commands_press, &data);
+	mlx_hook(data.win, 3, 1L << 1, commands_release, &data);
 	gettimeofday(&data.start, NULL);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);

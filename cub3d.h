@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/16 15:51:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:49:51 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
-# define FPS 30
+# define FPS 60
 # define FRAME_TIME (1000000 / FPS)
 
 #ifndef DEBUG
@@ -95,7 +95,8 @@
 # define PI 3.1415926
 
 //FIXME	This flag is in debug state.
-# define SPEED 5
+# define SPEED 8
+# define TANTA 50
 
 typedef struct timeval		t_time;
 typedef struct s_drawline	t_drawline;
@@ -119,9 +120,20 @@ typedef struct s_drawline
 	char	y_sign:2;
 }	t_drawline;
 
+typedef struct s_entity
+{
+	t_drawline	line;
+	char		*frame;
+	int			curr_frame;
+	int			vite_rimaste;
+	char		type;
+	char		input;
+}	t_entity;
+
+
 typedef struct s_data
 {
-	t_drawline	player;
+	t_entity	player;
 	t_time		start;
 	void		*mlx;
 	void		*win;
@@ -142,6 +154,7 @@ typedef struct s_data
 	int			ceiling_rgb[3];
 	int			max_x;
 	int			max_y;
+	int			column;
 	int			color;
 }	t_data;
 
@@ -199,54 +212,60 @@ enum e_utils
 	Y,
 	POSITIVE = 1,
 	NEGATIVE = -1,
-	LEFT = XK_a,
-	RIGHT = XK_d,
-	UP = XK_w,
-	DOWN = XK_s,
-	R_LEFT = XK_Left,
-	R_RIGHT = XK_Right,
+	LEFT = 1,
+	RIGHT = 2,
+	UP = 4,
+	DOWN = 8,
+	MOVEMENT = LEFT | RIGHT | UP | DOWN,
+	R_LEFT = 16,
+	R_RIGHT = 32,
+	ROTATION = R_LEFT | R_RIGHT,
 };
 
+void	parsing(t_data *data, int argc, char **argv);
+void	error(t_data *data, int err, char *file);
 void	lets_start_the_party(t_data *data);
 void	spread_democracy(t_data *data);
 void	free_texture(t_data *data);
-void	parsing(t_data *data, int argc, char **argv);
-void	error(t_data *data, int err, char *file);
 
 //SECTION	input
 
-void	init_player(t_data *data);
+int		commands_release(int keycode, t_data *data);
+int		commands_press(int keycode, t_data *data);
+void	rotate(t_data *data, t_entity *entity);
+int		move(t_data *data, t_entity *entity);
 int		ft_cross_close(t_data *data);
-int		commands(int keycode, t_data *data);
-int		move(t_data *data, t_drawline *entity, int keycode);
-void	rotate(t_data *data, t_drawline *entity, int dir);
+int		move_player(t_data *data);
+void	init_player(t_data *data);
 
 //SECTION	parsing
 
-void	get_type(t_data *data, int fd);
 void	check_textures(t_data *data, int fd);
+void	get_type(t_data *data, int fd);
+void	check_map_access(t_data *data);
 void	get_map(t_data *data, int fd);
-void	parse_map(t_data *data);
 void	check_chars(t_data *data);
 void	check_walls(t_data *data);
-void	check_map_access(t_data *data);
+void	parse_map(t_data *data);
 void	finish_him(int fd);
 
 //SECTION	utils
 
-void	*safe_malloc(size_t size);
-void	ft_sleep(long long microsecond);
-long	elapsed_time(t_time start);
-double	safe_division(double delta, double sum);
-double	grad2rad(double rad);
-double	round_rad(double rad);
-double	rad2deg(double rad);
+void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
 void	update_delta(double pov, double *delta_x, double *delta_y);
+void	put_image_to_image(t_data *data, int which, int y, int x);
+int		the_wall_checker(t_drawline *line_data, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
-void	clear_window(t_data *data);
-int		ray_lenght(t_data *data, int rx, int ry);
-void	update_delta(double pov, double *delta_x, double *delta_y);
+double	ray_lenght(t_data *data, int rx, int ry);
+double	safe_division(double delta, double sum);
 void	update_coord(t_drawline *line_data);
+void	ft_sleep(long long microsecond);
+void	clear_window(t_data *data);
+long	elapsed_time(t_time start);
+void	*safe_malloc(size_t size);
+double	round_rad(double rad);
+double	grad2rad(double rad);
+double	rad2deg(double rad);
 
 //SECTION debug
 
@@ -255,8 +274,9 @@ int		game_loop(t_data *data);
 
 //SECTION render
 
-int		compute_line(t_data *data, double pov_x, double diff);
-void	test_wall3D(t_data *data, int x, int y, bool STOP_PLEASE_STOP_AAAAAH, double pov_line);
+void	test_wall3D(t_data *data, int x, int y, double ray_angle);
+void	put_image_to_image(t_data *data, int which, int y, int x);
+int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
 void	get_texture(t_data *data);

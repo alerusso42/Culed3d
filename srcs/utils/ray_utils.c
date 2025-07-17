@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/16 11:27:39 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,62 @@ void	update_coord(t_drawline *line_data)
 }
 
 /*
+	//FIXME To optimize line, we should:
+	1)	calculate minimal vectors using DDA;
+	2)	incrementing curr_x and curr_y by that minimal values;
+	3)	calling this function normally;
+	4)	stop printing the line.
+		At that point, we could differentiate this method using DEBUG macro.
+*/
+int	the_wall_checker(t_drawline *line_data, t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = (int)line_data->curr_x / WIMG;
+	y = (int)line_data->curr_y / HIMG;
+	if (data->map[y][x] == '1')
+	{
+		line_data->int_x = (int)line_data->curr_x;
+		line_data->int_y = (int)line_data->curr_y;
+		return (true);
+	}
+	return (false);
+}
+
+//	init all data to draw a line.
+void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
+{
+	*line_data = (t_drawline){0};
+	line_data->int_x = (data->player.line.screen[X] + WIMG / 2);
+	line_data->int_y = (data->player.line.screen[Y]) + HIMG / 2;
+	line_data->curr_x = (int)data->player.line.screen[X] + WIMG / 2;
+	line_data->curr_y = (int)data->player.line.screen[Y] + HIMG / 2;
+	line_data->next_x = line_data->int_x + line_data->x_sign;
+	line_data->next_y = line_data->int_y + line_data->y_sign;
+	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);
+	line_data->x_sign = POSITIVE;
+	line_data->y_sign = POSITIVE;
+	if (line_data->delta_x < 0)
+		line_data->x_sign = NEGATIVE;
+	if (line_data->delta_y < 0)
+		line_data->y_sign = NEGATIVE;
+}
+
+/*
 	sqrt is not what you may think
 */
-int	ray_lenght(t_data *data, int rx, int ry)
+double	ray_lenght(t_data *data, int rx, int ry)
 {
-	int	ray;
-	int	px;
-	int	py;
+	double	ray;
+	int		px;
+	int		py;
 
-	px = data->player.screen[X];
-	py = data->player.screen[Y];
+	px = data->player.line.screen[X];
+	py = data->player.line.screen[Y];
 	rx = abs(rx);
 	ry = abs(ry);
-	ray = sqrt(pow((rx - px), 2) + pow((ry - py), 2));
+	ray = sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2));
 	if (DEBUG == true)
 	{
 		//printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);

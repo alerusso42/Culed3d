@@ -32,10 +32,11 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/error.c \
   utils/time.c \
   utils/math.c \
+  utils/ray_utils.c \
   utils/alloc_utils.c \
+  utils/render_utils.c \
   render/game_loop.c \
   render/raycast.c \
-  render/ray_utils.c \
 )
 all: $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/16 10:00:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:28:20 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,47 @@ int	ft_cross_close(t_data *data)
 	exit(0);
 }
 
-int	commands(int keycode, t_data *data)
+int	commands_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		ft_cross_close(data);
-	else if (keycode == XK_w || keycode == XK_s || \
-			keycode == XK_a || keycode == XK_d)
-		{
-			move(data, &data->player, keycode);
-			printf("MOD|\tx:\t%d\ty:%d\t\n", data->player.screen[X], data->player.screen[Y]);
-		}
-	else if (keycode == XK_Left || keycode == XK_Right)
-		rotate(data, &data->player, keycode);
+	if (keycode == XK_w)
+		data->player.input |= UP;
+	if (keycode == XK_d)
+		data->player.input |= RIGHT;
+	if (keycode == XK_a)
+		data->player.input |= LEFT;
+	if (keycode == XK_s)
+		data->player.input |= DOWN;
+	if (keycode == XK_Left)
+		data->player.input |= R_LEFT;
+	if (keycode == XK_Right)
+		data->player.input |= R_RIGHT;
+	return (0);
+}
+
+int	commands_release(int keycode, t_data *data)
+{
+	if (keycode == XK_w)
+		data->player.input ^= UP;
+	if (keycode == XK_d)
+		data->player.input ^= RIGHT;
+	if (keycode == XK_a)
+		data->player.input ^= LEFT;
+	if (keycode == XK_s)
+		data->player.input ^= DOWN;
+	if (keycode == XK_Left)
+		data->player.input ^= R_LEFT;
+	if (keycode == XK_Right)
+		data->player.input ^= R_RIGHT;
+	return (0);
+}
+
+int	move_player(t_data *data)
+{
+	if (data->player.input & MOVEMENT)
+		move(data, &data->player);
+	if (data->player.input & ROTATION)
+		rotate(data, &data->player);
 	return (0);
 }
