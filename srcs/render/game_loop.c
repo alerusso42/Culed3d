@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/17 16:23:55 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/18 13:08:39 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ int	game_loop(t_data *data)
 void	frame_render(t_data *data)
 {
 	double	pov[2];
-	int		i;
+	double		i;
 
 	data->column = -1;
 	clear_window(data);
 	backgrounder(data);
 	data->color = 0xff000d;
-	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
+	pov[X] = data->player.line.pov[X] - (RADIANT * WSCREEN / 2);
 	pov[Y] = 0;
-	i = FOV;
-	while (--i >= 0)
+	i = RADIANT * WSCREEN;
+	while (i >= 0)
 	{
 		compute_line(data, pov[X] + (RADIANT * i));
+		i -= R_FOV;
 	}
 	put_image_to_image(data, PLAYER, data->player.line.screen[X], data->player.line.screen[Y]);
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 12:18:08 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/18 13:03:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@
 # define WIMG 48
 # define WSCREEN 1920
 # define HSCREEN 1080
+# define PI 3.1415926
+//	see RADIANT for explaination.
+//	putting it to 1 makes the line sensibility to 1 degree.
+//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
+//NOTE [L_A: 30; FOV: 64]
+// # define LINE_ACCURACY 30
+
+//	FOV (=Field Of View) represents the angle of the player vision.
+# define FOV 60
+# define R_FOV (PI / 3)
+# define DEG_0 0
+# define DEG_90 (RADIANT + ((90 - FOV) * RADIANT))
+# define DEG_180 (RADIANT + ((180 - FOV) * RADIANT))
+# define DEG_270 (RADIANT + ((270 - FOV) * RADIANT))
 
 //# define RADIANT 0.008726
 
@@ -78,21 +92,11 @@
 	Setting to 20 makes the line moving by (1 degree / 20)
 	20 is enough to touch all pixel during raycasting.
 */
-# define RADIANT (PI / (180 * LINE_ACCURACY))
-
-//	see RADIANT for explaination.
-//	putting it to 1 makes the line sensibility to 1 degree.
-//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
-//NOTE [L_A: 30; FOV: 64]
-# define LINE_ACCURACY 30
-
-//	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 64 * LINE_ACCURACY
+# define RADIANT ((R_FOV) / WSCREEN)
 
 //	determines how much time you need to print the texture to fill all screen.
-# define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
+// # define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
 
-# define PI 3.1415926
 
 //FIXME	This flag is in debug state.
 # define SPEED 8
