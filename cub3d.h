@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 13:03:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:24:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@
 # define FOV 60
 # define R_FOV (PI / 3)
 # define DEG_0 0
-# define DEG_90 (RADIANT + ((90 - FOV) * RADIANT))
-# define DEG_180 (RADIANT + ((180 - FOV) * RADIANT))
-# define DEG_270 (RADIANT + ((270 - FOV) * RADIANT))
+# define DEG_90 (PI / 2)
+# define DEG_180 (PI)
+# define DEG_270 (PI + (PI / 2))
 
 //# define RADIANT 0.008726
 
@@ -92,7 +92,8 @@
 	Setting to 20 makes the line moving by (1 degree / 20)
 	20 is enough to touch all pixel during raycasting.
 */
-# define RADIANT ((R_FOV) / WSCREEN)
+# define RADIANT 0.01
+# define CRAZY ((R_FOV) / WSCREEN)
 
 //	determines how much time you need to print the texture to fill all screen.
 // # define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
