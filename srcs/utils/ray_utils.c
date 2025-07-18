@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:16:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	the_wall_checker(t_drawline *line_data, t_data *data)
 	{
 		line_data->int_x = (int)line_data->curr_x;
 		line_data->int_y = (int)line_data->curr_y;
+		//printf("COLLISION:\tx:%d\ty:%d\n", line_data->int_x, line_data->int_y);
 		return (true);
 	}
 	return (false);
