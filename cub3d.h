@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/19 10:44:17 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:08:25 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
 //NOTE [L_A: 30; FOV: 64]
 # define LINE_ACCURACY 1
+# define ANGULAR_SPEED RADIANT * 2.5
+# define PLAYER_SPEED 5
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60 * LINE_ACCURACY
@@ -95,7 +97,7 @@
 # define PI 3.1415926
 
 //FIXME	This flag is in debug state.
-# define SPEED 15
+# define SPEED 0.01
 # define TANTA 50
 
 typedef struct timeval		t_time;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/19 12:01:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:31:09 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,36 @@ Key steps:
 // }
 #define FABIO fabs
 
-int	compute_line(t_data *data, double ray_angle)
-{
-	t_drawline	line_data;
-	double		diff;
+// int	compute_line(t_data *data, double ray_angle)
+// {
+// 	t_drawline	line_data;
+// 	double		diff;
 
-	if (!data || ray_angle > 360)
-		return (printf("ORA ORA ORA!"));
-	init_line_data(data, &line_data, ray_angle);
-	while ((the_wall_checker(&line_data, data) == false))
-	{
-		if (DEBUG == true)
-			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
-		update_coord(&line_data);
-	}
-	diff = fabs(ray_angle - data->player.line.pov[X]);
-	test_wall3D(data, line_data.int_x, line_data.int_y, diff);
-	return (0);
-}
+// 	if (!data || ray_angle > 360)
+// 		return (printf("ORA ORA ORA!"));
+// 	init_line_data(data, &line_data, ray_angle);
+// 	while ((the_wall_checker(&line_data, data) == false))
+// 	{
+// 		if (DEBUG == true)
+// 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
+// 		update_coord(&line_data);
+// 	}
+// 	diff = fabs(ray_angle - data->player.line.pov[X]);
+// 	// test_wall3D(data, line_data.int_x, line_data.int_y, diff);
+// 	return (0);
+// }
+
+// int	compute_line(t_data *data, double ray_angle)
+// {
+// 	t_drawline	line_data;
+// 	double		diff;
+
+// 	if (!data || ray_angle > 360)
+// 		return (printf("ORA ORA ORA!"));
+	
+	
+// 	return (0);
+// }
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
