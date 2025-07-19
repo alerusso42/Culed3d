@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 12:52:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:32:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	move(t_data *data, t_entity *entity)
 	(void)data;
 	line = &entity->line;
 	if (entity->input & UP)
-		update_all_this_shit(data, line, DEG_0);
+		update_all_this_shit(data, line, RADIANT * (0 * LINE_ACCURACY));
 	if (entity->input & LEFT)
-		update_all_this_shit(data, line, DEG_90);
+		update_all_this_shit(data, line, RADIANT * (90 * LINE_ACCURACY));
 	if (entity->input & DOWN)
-		update_all_this_shit(data, line, DEG_180);
+		update_all_this_shit(data, line, RADIANT * (180 * LINE_ACCURACY));
 	if (entity->input & RIGHT)
-		update_all_this_shit(data, line, DEG_270);
+		update_all_this_shit(data, line, RADIANT * (270 * LINE_ACCURACY));
 	return (0);
 }
 
@@ -45,9 +45,9 @@ void	rotate(t_data *data, t_entity *entity)
 {
 	(void)data;
 	if (entity->input & R_LEFT)
-		entity->line.pov[X] += RADIANT * 1 + (30 * RADIANT);
+		entity->line.pov[X] += RADIANT * (1 * LINE_ACCURACY) + (30 * RADIANT);
 	if (entity->input & R_RIGHT)
-		entity->line.pov[X] += RADIANT * -1 + (-30 * RADIANT);
+		entity->line.pov[X] += RADIANT * (-1 * LINE_ACCURACY) + (-30 * RADIANT);
 	else
 		return ;
 }

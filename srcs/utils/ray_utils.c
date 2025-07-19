@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 13:05:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:16:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ double	ray_lenght(t_data *data, int rx, int ry)
 	double	ray;
 	int		px;
 	int		py;
-	float	angle;
 
 	px = data->player.line.screen[X];
 	py = data->player.line.screen[Y];
 	rx = abs(rx);
 	ry = abs(ry);
-	angle = atan2(ry - py, rx - px) - data->player.line.pov[X];
-	ray = sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2)) * cos(angle);
+	ray = sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2));
 	if (DEBUG == true)
 	{
 		//printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
@@ -106,30 +104,3 @@ double	ray_lenght(t_data *data, int rx, int ry)
 	}	
 	return (ray);
 }
-
-// RAY LENGHT SENZA FISHEYE
-// double	ray_lenght(t_data *data, int rx, int ry)
-// {
-// 	double	ray;
-// 	int		px;
-// 	int		py;
-// 	float	angle;
-
-// 	px = data->player.line.screen[X];
-// 	py = data->player.line.screen[Y];
-// 	rx = abs(rx);
-// 	ry = abs(ry);
-// 	angle = FABIO(atan2(ry - py, rx - px) - data->player.line.pov[X]);
-// 	// printf("angle: %f\n", angle);
-// 	ray = FABIO(sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2)) * cos(angle));
-// 	// printf("ray: %f\n", ray);
-// 	if (DEBUG == true)
-// 	{
-// 		//printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);
-// 		//printf("a: %d\tb: %d\n", abs(rx - px), abs(ry - py));
-// 		//printf("ray lenght: %d\n", ray);
-// 		//printf("player coords: px: %d\tpy: %d\n", px, py);
-// 		//printf("rx:\t%d\nry:\t%d\n", rx, ry);
-// 	}	
-// 	return (ray);
-// }

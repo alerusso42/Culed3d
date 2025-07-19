@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 14:24:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/19 10:44:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,6 @@
 # define WIMG 48
 # define WSCREEN 1920
 # define HSCREEN 1080
-# define PI 3.1415926
-//	see RADIANT for explaination.
-//	putting it to 1 makes the line sensibility to 1 degree.
-//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
-//NOTE [L_A: 30; FOV: 64]
-// # define LINE_ACCURACY 30
-
-//	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 60
-# define R_FOV (PI / 3)
-# define DEG_0 0
-# define DEG_90 (PI / 2)
-# define DEG_180 (PI)
-# define DEG_270 (PI + (PI / 2))
 
 //# define RADIANT 0.008726
 
@@ -92,15 +78,24 @@
 	Setting to 20 makes the line moving by (1 degree / 20)
 	20 is enough to touch all pixel during raycasting.
 */
-# define RADIANT 0.01
-# define CRAZY ((R_FOV) / WSCREEN)
+# define RADIANT (PI / (180 * LINE_ACCURACY))
+
+//	see RADIANT for explaination.
+//	putting it to 1 makes the line sensibility to 1 degree.
+//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
+//NOTE [L_A: 30; FOV: 64]
+# define LINE_ACCURACY 1
+
+//	FOV (=Field Of View) represents the angle of the player vision.
+# define FOV 60 * LINE_ACCURACY
 
 //	determines how much time you need to print the texture to fill all screen.
-// # define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
+# define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
 
+# define PI 3.1415926
 
 //FIXME	This flag is in debug state.
-# define SPEED 8
+# define SPEED 15
 # define TANTA 50
 
 typedef struct timeval		t_time;

@@ -21,10 +21,8 @@ define map_copy
 end
 
 define ray
-	d
-	y
-	b srcs/render/game_loop.c:198
-	r
-	display pov_diff
-	display ray
+	display *x
+	display *y
+	display cos_angle
+	display sin_angle
 end

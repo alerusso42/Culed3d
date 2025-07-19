@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 12:02:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:01:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,12 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	ray = safe_division((HSCREEN * 200), ray);
 	ray = round(ray / 2);
 	color = 255 << 16 | 0 << 8 | 255; //violet
-	if (++data->column < WSCREEN)
+	++data->column;
+	i = (HSCREEN / 2) + ray;
+	while (--i >= (HSCREEN / 2) - ray)
 	{
-		i = (HSCREEN / 2) + ray;
-		while (--i >= (HSCREEN / 2) - ray)
-		{
-			put_pixel(data, data->column/*  + k */, i, color);
-		}
+		put_pixel(data, data->column/*  + k */, i, color);
 	}
-	else
-		data->column = -1;
 }
 //	SCREEN:  
 
