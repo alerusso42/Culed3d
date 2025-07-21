@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/19 17:08:25 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:16:55 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,26 +100,21 @@
 # define SPEED 0.01
 # define TANTA 50
 
+# define ANGLE_0 0
+# define ANGLE_90 (PI / 2)
+# define ANGLE_180 (PI)
+# define ANGLE_270 (ANGLE_90 * 3)
+
 typedef struct timeval		t_time;
 typedef struct s_drawline	t_drawline;
 
 typedef struct s_drawline
 {
-	double	delta_x;
-	double	delta_y;
 	double	curr_x;
 	double	curr_y;
 	double	pov[2];
 	int		screen[2];
 	int		map[2];
-	int		speed;
-	int		int_x;
-	int		int_y;
-	int		next_x;
-	int		next_y;
-	char	type;
-	char	x_sign:2;
-	char	y_sign:2;
 }	t_drawline;
 
 typedef struct s_entity

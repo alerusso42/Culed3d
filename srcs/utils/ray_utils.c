@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/18 12:16:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:41:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 //	Increments print coordinates, when the next integer points
 //	is surpassed.
-void	update_coord(t_drawline *line_data)
-{
-	line_data->curr_x += line_data->delta_x;
-	line_data->curr_y += line_data->delta_y;
-	if ((line_data->x_sign == POSITIVE && \
-		line_data->curr_x > (double)line_data->next_x) || \
-		(line_data->x_sign == NEGATIVE && \
-		line_data->curr_x < (double)line_data->next_x))
-	{
-		line_data->int_x += line_data->x_sign;
-		line_data->next_x += line_data->x_sign;
-	}
-	if ((line_data->y_sign == POSITIVE && \
-		line_data->curr_y > (double)line_data->next_y) || \
-		(line_data->y_sign == NEGATIVE && \
-		line_data->curr_y < (double)line_data->next_y))
-	{
-		line_data->int_y += line_data->y_sign;
-		line_data->next_y += line_data->y_sign;
-	}
-}
+// void	update_coord(t_drawline *line_data)
+// {
+// 	line_data->curr_x += line_data->delta_x;
+// 	line_data->curr_y += line_data->delta_y;
+// 	if ((line_data->x_sign == POSITIVE && \
+// 		line_data->curr_x > (double)line_data->next_x) || \
+// 		(line_data->x_sign == NEGATIVE && \
+// 		line_data->curr_x < (double)line_data->next_x))
+// 	{
+// 		line_data->int_x += line_data->x_sign;
+// 		line_data->next_x += line_data->x_sign;
+// 	}
+// 	if ((line_data->y_sign == POSITIVE && \
+// 		line_data->curr_y > (double)line_data->next_y) || \
+// 		(line_data->y_sign == NEGATIVE && \
+// 		line_data->curr_y < (double)line_data->next_y))
+// 	{
+// 		line_data->int_y += line_data->y_sign;
+// 		line_data->next_y += line_data->y_sign;
+// 	}
+// }
 
 /*
 	//FIXME To optimize line, we should:
@@ -53,8 +53,6 @@ int	the_wall_checker(t_drawline *line_data, t_data *data)
 	y = (int)line_data->curr_y / HIMG;
 	if (data->map[y][x] == '1')
 	{
-		line_data->int_x = (int)line_data->curr_x;
-		line_data->int_y = (int)line_data->curr_y;
 		//printf("COLLISION:\tx:%d\ty:%d\n", line_data->int_x, line_data->int_y);
 		return (true);
 	}
@@ -62,23 +60,23 @@ int	the_wall_checker(t_drawline *line_data, t_data *data)
 }
 
 //	init all data to draw a line.
-void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
-{
-	*line_data = (t_drawline){0};
-	line_data->int_x = (data->player.line.screen[X] + WIMG / 2);
-	line_data->int_y = (data->player.line.screen[Y]) + HIMG / 2;
-	line_data->curr_x = (int)data->player.line.screen[X] + WIMG / 2;
-	line_data->curr_y = (int)data->player.line.screen[Y] + HIMG / 2;
-	line_data->next_x = line_data->int_x + line_data->x_sign;
-	line_data->next_y = line_data->int_y + line_data->y_sign;
-	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);
-	line_data->x_sign = POSITIVE;
-	line_data->y_sign = POSITIVE;
-	if (line_data->delta_x < 0)
-		line_data->x_sign = NEGATIVE;
-	if (line_data->delta_y < 0)
-		line_data->y_sign = NEGATIVE;
-}
+// void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
+// {
+// 	*line_data = (t_drawline){0};
+// 	line_data->int_x = (data->player.line.screen[X] + WIMG / 2);
+// 	line_data->int_y = (data->player.line.screen[Y]) + HIMG / 2;
+// 	line_data->curr_x = (int)data->player.line.screen[X] + WIMG / 2;
+// 	line_data->curr_y = (int)data->player.line.screen[Y] + HIMG / 2;
+// 	line_data->next_x = line_data->int_x + line_data->x_sign;
+// 	line_data->next_y = line_data->int_y + line_data->y_sign;
+// 	update_delta(pov_x, &line_data->delta_x, &line_data->delta_y);
+// 	line_data->x_sign = POSITIVE;
+// 	line_data->y_sign = POSITIVE;
+// 	if (line_data->delta_x < 0)
+// 		line_data->x_sign = NEGATIVE;
+// 	if (line_data->delta_y < 0)
+// 		line_data->y_sign = NEGATIVE;
+// }
 
 /*
 	sqrt is not what you may think
@@ -86,6 +84,7 @@ void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
 double	ray_lenght(t_data *data, int rx, int ry)
 {
 	double	ray;
+	// double	angle;
 	int		px;
 	int		py;
 
@@ -93,7 +92,8 @@ double	ray_lenght(t_data *data, int rx, int ry)
 	py = data->player.line.screen[Y];
 	rx = abs(rx);
 	ry = abs(ry);
-	ray = sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2));
+	// angle = atan2(ry - data->player.line.curr_y, rx - data->player.line.curr_x)  - data->player.line.pov[X];
+	ray = sqrt(pow((double)(rx - px), 2) + pow((double)(ry - py), 2))/*  * cos(angle) */;
 	if (DEBUG == true)
 	{
 		//printf("px: %d\tpy: %d\trx: %d\try: %d\n", px, py, rx, ry);

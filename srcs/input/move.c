@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/19 18:22:44 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:02:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void	move_up(t_data *data, t_entity *entity);
+static void	move_entity(t_data *data, t_entity *entity, double angle);
 
 /*
 	In our game, every entity (player, enemies, objects that moves?) is a
@@ -52,42 +52,21 @@ static void	move_up(t_data *data, t_entity *entity);
 int	move(t_data *data, t_entity *entity)
 {
 	t_drawline	*line;
-	double	cos_angle;
-	double	sin_angle;
+	double		cos_angle;
+	double		sin_angle;
 
 	cos_angle = 0;
 	sin_angle = 0;
 	(void)data;
 	line = &entity->line;
 	if (entity->input & UP)
-		move_up(data, entity);
+		move_entity(data, entity, ANGLE_0);
 	if (entity->input & LEFT)
-	{
-		cos_angle = round_rad(cos(entity->line.pov[X] + (PI / 2)));
-		sin_angle = round_rad(sin(entity->line.pov[X] + (PI / 2))) * -1;
-		entity->line.curr_x += PLAYER_SPEED * cos_angle;
-		entity->line.curr_y += PLAYER_SPEED * sin_angle;
-		entity->line.screen[X] += PLAYER_SPEED * cos_angle;
-		entity->line.screen[Y] += PLAYER_SPEED * sin_angle;	
-	}
+		move_entity(data, entity, ANGLE_90);
 	if (entity->input & DOWN)
-	{
-		cos_angle = round_rad(cos(entity->line.pov[X])) * -1;
-		sin_angle = round_rad(sin(entity->line.pov[X]));
-		entity->line.curr_x += PLAYER_SPEED * cos_angle;
-		entity->line.curr_y += PLAYER_SPEED * sin_angle;
-		entity->line.screen[X] += PLAYER_SPEED * cos_angle;
-		entity->line.screen[Y] += PLAYER_SPEED * sin_angle;
-	}
+		move_entity(data, entity, ANGLE_180);
 	if (entity->input & RIGHT)
-	{
-		cos_angle = round_rad(cos(entity->line.pov[X]+ 3 * (PI / 2)));
-		sin_angle = round_rad(sin(entity->line.pov[X]+ 3 * (PI / 2))) * -1;
-		entity->line.curr_x += PLAYER_SPEED * cos_angle;
-		entity->line.curr_y += PLAYER_SPEED * sin_angle;
-		entity->line.screen[X] += PLAYER_SPEED * cos_angle;
-		entity->line.screen[Y] += PLAYER_SPEED * sin_angle;
-	}
+		move_entity(data, entity, ANGLE_270);
 	return (0);
 }
 
@@ -111,38 +90,25 @@ int	move(t_data *data, t_entity *entity)
 // 	entity->line.screen[Y] += PLAYER_SPEED * sin_angle;
 // }
 
-static void	move_up(t_data *data, t_entity *entity)
+static void	move_entity(t_data *data, t_entity *entity, double angle)
 {
     double	cos_angle;
     double	sin_angle;
     double	new_x, new_y;
     int		map_x, map_y;
 
-    cos_angle = round_rad(cos(entity->line.pov[X]));
-    sin_angle = round_rad(sin(entity->line.pov[X])) * -1;
-
-    new_x = entity->line.curr_x + PLAYER_SPEED * cos_angle;
-    new_y = entity->line.curr_y + PLAYER_SPEED * sin_angle;
-
+    cos_angle = round_rad(cos(entity->line.pov[X] + angle));
+    sin_angle = round_rad(sin(entity->line.pov[X] + angle)) * -1;
+    new_x = entity->line.screen[X] + PLAYER_SPEED * cos_angle;
+    new_y = entity->line.screen[Y] + PLAYER_SPEED * sin_angle;
     map_x = (int)(new_x) / WIMG;
     map_y = (int)(new_y) / HIMG;
-
 	(void)data;
-    // Controllo limiti mappa
     if (map_y < 0 || map_y >= data->max_y ||
         map_x < 0 || map_x >= data->max_x)
-    {
-        printf("Fuori mappa: map_x=%d map_y=%d\n", map_x, map_y);
         return;
-    }
-
-    // Controllo muro
     if (data->map[map_y][map_x] == '1')
-    {
-        printf("Collisione muro: map_x=%d map_y=%d\n", map_x, map_y);
         return;
-    }
-
     entity->line.curr_x = new_x;
     entity->line.curr_y = new_y;
     entity->line.screen[X] += PLAYER_SPEED * cos_angle;

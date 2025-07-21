@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/19 16:31:09 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:16:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ Key steps:
 // 	test_wall3D(data, line_data.int_x, line_data.int_y, false, diff);
 // 	return (0);
 // }
-#define FABIO fabs
 
 // int	compute_line(t_data *data, double ray_angle)
 // {
@@ -88,30 +87,38 @@ Key steps:
 // 	return (0);
 // }
 
+#define FABIO fabs
+
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
 	double pov_diff;
 	int		color;
 	double	ray;
 	int		i;
-	//double	little_chunk;
-	// int	k;
 
 	i = -1;
-	pov_diff = cos(ray_angle);
+	(void)ray_angle;
+	double	attan;
+	attan = atan2(abs(x), y);
+	printf("player_angle:\t%f, atan:\t%f, ray_angle:\t%f, diff_angle:\t%f\n", data->player.line.pov[X], attan, ray_angle, (ray_angle - data->player.line.pov[X]));
+	pov_diff = FABIO(cos(ray_angle - data->player.line.pov[X]));
 	ray = ray_lenght(data, x, y);
 	ray = ray * pov_diff;
-	ray = safe_division((HSCREEN * 200), ray);
+	ray = safe_division((HSCREEN * 10), ray);
 	ray = round(ray / 2);
 	color = 255 << 16 | 0 << 8 | 255; //violet
 	++data->column;
-	i = (HSCREEN / 2) + ray;
-	while (--i >= (HSCREEN / 2) - ray)
+	i = ((HSCREEN / 2) + ray);
+	if (i > HSCREEN)
+		i = HSCREEN;
+	printf("x:%d,y:%d,ray_lenght: %f\ti: %d\n", x, y, ray, i);
+	while (i >= (HSCREEN / 2) - ray)
 	{
-		put_pixel(data, data->column/*  + k */, i, color);
+		put_pixel(data, data->column, i, color);
+		--i;
 	}
 }
-//	SCREEN:  
+//	SCREEN:     
 
 
 		// k = -1;

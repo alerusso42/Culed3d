@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_access.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:11:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	player_finder(t_data *data)
 			{
 				data->player.line.map[0] = y;
 				data->player.line.map[1] = x;
-				data->player.line.type = data->map[x][y];
+				data->player.type = data->map[x][y];
 			}
 		}
 	}
