@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 10:16:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:09:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
-# define HIMG 48
+# define HIMG 64
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
-# define WIMG 48
-# define WSCREEN 1920
-# define HSCREEN 1080
+# define WIMG 64
+# define WSCREEN 600
+# define HSCREEN 600
 
 //# define RADIANT 0.008726
 
@@ -78,21 +78,20 @@
 	Setting to 20 makes the line moving by (1 degree / 20)
 	20 is enough to touch all pixel during raycasting.
 */
-# define RADIANT (PI / (180 * LINE_ACCURACY))
+# define RADIANT (PI / 180)
 
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
 //NOTE [L_A: 30; FOV: 64]
-# define LINE_ACCURACY 1
 # define ANGULAR_SPEED RADIANT * 2.5
 # define PLAYER_SPEED 5
 
 //	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 60 * LINE_ACCURACY
+# define FOV 1
 
 //	determines how much time you need to print the texture to fill all screen.
-# define FOV_RATIO (int)((WSCREEN / FOV) / LINE_ACCURACY)
+# define FOV_RATIO (int)((WSCREEN / FOV))
 
 # define PI 3.1415926
 

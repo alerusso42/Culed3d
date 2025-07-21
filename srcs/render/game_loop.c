@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 10:23:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:12:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	frame_render(t_data *data)
 	int		i;
 
 	// data->column = -1;
-	// clear_window(data);
-	backgrounder(data);
-	// map_start(data);
+	clear_window(data);
+	// backgrounder(data);
+	map_start(data);
 	data->color = 0xff000d;
 	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
 	pov[Y] = 0;
 	i = WSCREEN;
 	while (--i >= 0)
 	{
+		// angle = RADIANT * (i / WSCREEN) * (FOV);
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		// compute_line(data, pov[X] + angle);
 		line(data, &data->player.line, pov[X] + angle);
 	}
 	put_image_to_image(data, PLAYER, data->player.line.screen[X], data->player.line.screen[Y]);
@@ -70,6 +70,8 @@ void	frame_render(t_data *data)
 // txtr_data[idx]			0x000000AA	Blue, LSB
 // txtr_data[idx+1] << 8)	0x0000BB00	Green
 // txtr_data[idx+2] << 16)	0x00CC0000	Red
+
+int	piedi(t_drawline *line, double angle);
 
 void line(t_data *data, t_drawline *line, double angle)
 {
@@ -84,7 +86,6 @@ void line(t_data *data, t_drawline *line, double angle)
     line->curr_y = y;
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-
     while (!the_wall_checker(line, data))
     {
         put_pixel(data, (int)x, (int)y, 0xFF0000);
@@ -93,5 +94,52 @@ void line(t_data *data, t_drawline *line, double angle)
         line->curr_x = x;
         line->curr_y = y;
     }
-	test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
+	piedi(line, angle);
+	// test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
+}
+
+int	piedi(t_drawline *line, double angle)
+{
+	bool	nord;
+	bool	sud;
+	bool	east;
+	bool	west;
+
+	nord = false;
+	sud = false;
+	east = false;
+	west = false;
+	if ((int)line->curr_y % (HIMG - 1) == 0)
+	{
+		nord = true;
+		sud = true;
+	}
+	else
+	{
+		west = true;
+		east = true;
+	}
+	if (nord == true)
+	{
+		if (angle >= 0 && angle < PI)
+			sud = false;
+		else
+			nord = false;
+	}
+	else
+	{
+		if (angle >= 0 && angle < PI / 2)
+			west = false;
+		else
+			east = false;
+	}
+	if (nord)
+		printf("nord:%f\n", angle);
+	else if (sud)
+		printf("sud\n");
+	else if (east)
+		printf("east\n");
+	else
+		printf("west:%f\n", angle);
+	return (INT_MAX);
 }
