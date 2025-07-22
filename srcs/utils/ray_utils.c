@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 10:41:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:43:10 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	the_wall_checker(t_drawline *line_data, t_data *data)
 double	ray_lenght(t_data *data, int rx, int ry)
 {
 	double	ray;
-	// double	angle;
 	int		px;
 	int		py;
 

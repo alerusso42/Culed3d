@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 12:39:04 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:58:54 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	frame_render(t_data *data)
 	int		i;
 
 	backgrounder(data);
-	map_start(data);
+	// map_start(data);
 	data->color = 0xff000d;
 	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
 	pov[Y] = 0;
@@ -93,12 +93,44 @@ void line(t_data *data, t_drawline *line, double angle)
 	// test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
 }
 
+# define DATA_ADDR mlx_get_data_addr
+
 void	wall(t_data *data, double x, void *txtr)
 {
-	double	temp = 0;
 	int		pixel;
+	int		i;
+	int		image[3];
+	int		color;
+	char	*image_ptr;
 
 	(void)data, (void)txtr, (void)pixel;
-	temp = ((x / WIMG) - (int)(x / WIMG)) * TXTR;
-	printf("x :\t%f, temp :%f\n", x, temp);
+	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
+	printf("x :\t%f, temp :%d\t", x, pixel);
+	image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
+	if (!image_ptr)
+		return ;
+	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+	printf("x:\t%d\n", i);
+	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
+	put_pixel(data, (int)x, 200, color);
 }
+
+// void	wall(t_data *data, double x, void *txtr)
+// {
+// 	int		pixel;
+// 	int		i;
+// 	int		image[3];
+// 	int		color;
+// 	char	*image_ptr;
+
+// 	(void)data, (void)txtr, (void)pixel;
+// 	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
+// 	printf("x :\t%f, temp :%d\t", x, pixel);
+// 	image_ptr = mlx_get_data_addr(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
+// 	if (!image_ptr)
+// 		return ;
+// 	i = pixel * (image[SIZE]);
+// 	printf("y:\t%d\tsize:%d\n", i, (image[SIZE]));
+// 	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
+// 	put_pixel(data, (int)x, 50, color);
+// }

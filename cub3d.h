@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 13:02:41 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:09:15 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 # define HIMG 64
 # define WIMG 64
-# define TXTR 1024
+# define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
 # define WSCREEN 1200
@@ -207,6 +207,9 @@ enum e_utils
 	R_LEFT = 16,
 	R_RIGHT = 32,
 	ROTATION = R_LEFT | R_RIGHT,
+	BPP = 0,
+	SIZE = 1,
+	ENDIAN = 2,
 };
 
 void	parsing(t_data *data, int argc, char **argv);
