@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 16:09:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/22 08:57:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
-# define HIMG 64
+# define HIMG 48
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
-# define WIMG 64
-# define WSCREEN 600
-# define HSCREEN 600
+# define WIMG 48
+# define WSCREEN 1200
+# define HSCREEN 1200
 
 //# define RADIANT 0.008726
 

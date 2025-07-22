@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 16:12:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/22 09:01:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,13 @@ int	piedi(t_drawline *line, double angle)
 	west = false;
 	if ((int)line->curr_y % (HIMG - 1) == 0)
 	{
+		printf("N/S:\t%d\t", (int)line->curr_y);
 		nord = true;
 		sud = true;
 	}
 	else
 	{
+		printf("W/E:\t%d\t", (int)line->curr_x);
 		west = true;
 		east = true;
 	}
@@ -128,18 +130,18 @@ int	piedi(t_drawline *line, double angle)
 	}
 	else
 	{
-		if (angle >= 0 && angle < PI / 2)
+		if (angle < PI / 2 || angle >= (PI / 2) * 3)
 			west = false;
 		else
 			east = false;
 	}
 	if (nord)
-		printf("nord:%f\n", angle);
+		printf("nord:\t%f\n", angle);
 	else if (sud)
-		printf("sud\n");
+		printf("sud:\t%f\n", angle);
 	else if (east)
-		printf("east\n");
+		printf("east:\t%f\n", angle);
 	else
-		printf("west:%f\n", angle);
+		printf("west:\t%f\n", angle);
 	return (INT_MAX);
 }
