@@ -35,6 +35,7 @@ SRCS = $(addprefix $(SRC_PATH), \
   utils/ray_utils.c \
   utils/alloc_utils.c \
   utils/render_utils.c \
+  utils/render_utils2.c \
   render/game_loop.c \
   render/raycast.c \
 )

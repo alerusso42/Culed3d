@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 09:01:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:39:04 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	frame_render(t_data *data)
 	double	angle;
 	int		i;
 
-	// data->column = -1;
-	clear_window(data);
-	// backgrounder(data);
+	backgrounder(data);
 	map_start(data);
 	data->color = 0xff000d;
 	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
@@ -56,7 +54,6 @@ void	frame_render(t_data *data)
 	i = WSCREEN;
 	while (--i >= 0)
 	{
-		// angle = RADIANT * (i / WSCREEN) * (FOV);
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
 		line(data, &data->player.line, pov[X] + angle);
 	}
@@ -70,8 +67,6 @@ void	frame_render(t_data *data)
 // txtr_data[idx]			0x000000AA	Blue, LSB
 // txtr_data[idx+1] << 8)	0x0000BB00	Green
 // txtr_data[idx+2] << 16)	0x00CC0000	Red
-
-int	piedi(t_drawline *line, double angle);
 
 void line(t_data *data, t_drawline *line, double angle)
 {
@@ -94,54 +89,16 @@ void line(t_data *data, t_drawline *line, double angle)
         line->curr_x = x;
         line->curr_y = y;
     }
-	piedi(line, angle);
+	wall(data, line->curr_x, data->textures[wall_face(data, line, angle)]);
 	// test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
 }
 
-int	piedi(t_drawline *line, double angle)
+void	wall(t_data *data, double x, void *txtr)
 {
-	bool	nord;
-	bool	sud;
-	bool	east;
-	bool	west;
+	double	temp = 0;
+	int		pixel;
 
-	nord = false;
-	sud = false;
-	east = false;
-	west = false;
-	if ((int)line->curr_y % (HIMG - 1) == 0)
-	{
-		printf("N/S:\t%d\t", (int)line->curr_y);
-		nord = true;
-		sud = true;
-	}
-	else
-	{
-		printf("W/E:\t%d\t", (int)line->curr_x);
-		west = true;
-		east = true;
-	}
-	if (nord == true)
-	{
-		if (angle >= 0 && angle < PI)
-			sud = false;
-		else
-			nord = false;
-	}
-	else
-	{
-		if (angle < PI / 2 || angle >= (PI / 2) * 3)
-			west = false;
-		else
-			east = false;
-	}
-	if (nord)
-		printf("nord:\t%f\n", angle);
-	else if (sud)
-		printf("sud:\t%f\n", angle);
-	else if (east)
-		printf("east:\t%f\n", angle);
-	else
-		printf("west:\t%f\n", angle);
-	return (INT_MAX);
+	(void)data, (void)txtr, (void)pixel;
+	temp = ((x / WIMG) - (int)(x / WIMG)) * TXTR;
+	printf("x :\t%f, temp :%f\n", x, temp);
 }

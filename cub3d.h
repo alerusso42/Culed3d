@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 08:57:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:02:41 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
-# define HIMG 48
+# define HIMG 64
+# define WIMG 64
+# define TXTR 1024
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
-# define WIMG 48
 # define WSCREEN 1200
 # define HSCREEN 1200
 
@@ -69,14 +70,6 @@
 /*
 	180 degrees are PI radiant.
 	Degree changes every PI / 180.
-	We need more precision: so we multiply 180 for LINE_ACCURACY.
-	RADIANT = (PI / (180 * LINE_ACCURACY)).
-	
-	LINE_ACCURACY shows the size of the angle the line makes when
-	player changes what is seeing.
-	Setting it to 1 makes the line moving by 1 degree as sensibility;
-	Setting to 20 makes the line moving by (1 degree / 20)
-	20 is enough to touch all pixel during raycasting.
 */
 # define RADIANT (PI / 180)
 
@@ -88,10 +81,8 @@
 # define PLAYER_SPEED 5
 
 //	FOV (=Field Of View) represents the angle of the player vision.
-# define FOV 1
+# define FOV 60
 
-//	determines how much time you need to print the texture to fill all screen.
-# define FOV_RATIO (int)((WSCREEN / FOV))
 
 # define PI 3.1415926
 
@@ -193,13 +184,13 @@ enum	e_errors
 
 enum	e_type_identifers
 {
-	NO,
-	SO,
-	EA,
-	WE,
+	NO = 0,
+	SO = 2,
+	EA = 4,
+	WE = 8,
 	F,
 	C,
-	TYPE_IDENTIFERS_NUM,
+	TYPE_IDENTIFIERS_NUM = 6,
 };
 
 enum e_utils
@@ -250,6 +241,7 @@ void	finish_him(int fd);
 void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
+int		wall_face(t_data * data, t_drawline *line, double angle);
 int		the_wall_checker(t_drawline *line_data, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
@@ -272,6 +264,7 @@ int		game_loop(t_data *data);
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
 void	put_image_to_image(t_data *data, int which, int y, int x);
+void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
