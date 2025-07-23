@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 15:36:02 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:39:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,14 @@ Key steps:
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
+	int		wall_giorgio;
 	double pov_diff;
 	int		color;
 	double	ray;
 	int		i;
 
 	i = -1;
+	wall_giorgio = wall_face(data, &data->player.line, ray_angle);
 	pov_diff = FABIO(cos(ray_angle - data->player.line.pov[X]));
 	ray = ray_lenght(data, x, y);
 	ray = ray * pov_diff;
@@ -105,8 +107,17 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	color = 255 << 16 | 0 << 8 | 255; //violet
 	++data->column;
 	i = ((HSCREEN / 2) + ray);
+	// //FIXME
+	// pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
+	// printf("x :\t%f, temp :%d\t", x, pixel);
+	// image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
+	// if (!image_ptr)
+	// 	return ;
+	// i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+	//FIXME
 	while (i >= (HSCREEN / 2) - ray)
 	{
+		// wall(data, x, data->textures[wall_giorgio]);
 		put_pixel(data, data->column, i, color);
 		--i;
 	}

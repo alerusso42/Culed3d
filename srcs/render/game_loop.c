@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 16:35:32 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:32:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void line(t_data *data, t_drawline *line, double angle)
         line->curr_y = y;
     }
 	wall(data, line->curr_x, data->textures[wall_face(data, line, angle)]);
-	// test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
+	test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
 }
 
 # define DATA_ADDR mlx_get_data_addr
