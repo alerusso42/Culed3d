@@ -23,7 +23,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 
 	if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0 || !color)
 		return ;
-	index = y * data->size_line;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+	index = y * data->size_line + (x * (data->bpp / 8));
 	data->screen[index] = color & 0xFF;
 	data->screen[index + 1] = (color >> 8) & 0xFF;
 	data->screen[index + 2] = (color >> 16) & 0xFF;

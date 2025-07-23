@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 09:32:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 10:47:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,37 +83,35 @@ void line(t_data *data, t_drawline *line, double angle)
 	sin_angle = round_rad(sin(angle)) * -1;
     while (!the_wall_checker(line, data))
     {
-        put_pixel(data, (int)x, (int)y, 0xFF0000);
+        //put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;
         y += sin_angle;
         line->curr_x = x;
         line->curr_y = y;
     }
-	wall(data, line->curr_x, data->textures[wall_face(data, line, angle)]);
+	// wall(data, line->curr_x, data->textures[wall_face(data, line, angle)]);
 	test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
 }
 
-# define DATA_ADDR mlx_get_data_addr
+// void	wall(t_data *data, double x, void *txtr)
+// {
+// 	int		pixel;
+// 	int		i;
+// 	int		image[3];
+// 	int		color;
+// 	char	*image_ptr;
 
-void	wall(t_data *data, double x, void *txtr)
-{
-	int		pixel;
-	int		i;
-	int		image[3];
-	int		color;
-	char	*image_ptr;
-
-	(void)data, (void)txtr, (void)pixel;
-	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
-	printf("x :\t%f, temp :%d\t", x, pixel);
-	image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
-	if (!image_ptr)
-		return ;
-	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
-	printf("x:\t%d\n", i);
-	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
-	put_pixel(data, (int)x, 200, color);
-}
+// 	(void)data, (void)txtr, (void)pixel;
+// 	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
+// 	printf("x :\t%f, temp :%d\t", x, pixel);
+// 	image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
+// 	if (!image_ptr)
+// 		return ;
+// 	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+// 	printf("x:\t%d\n", i);
+// 	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
+// 	put_pixel(data, (int)x, 200, color);
+// }
 
 // void	wall(t_data *data, double x, void *txtr)
 // {

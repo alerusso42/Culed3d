@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 09:39:57 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 10:53:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,39 +87,53 @@ Key steps:
 // 	return (0);
 // }
 
-#define FABIO fabs
+# define DATA_ADDR mlx_get_data_addr
+# define FABIO fabs
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
-	int		wall_giorgio;
-	double pov_diff;
-	int		color;
+	double	wall_height;
+	double	pov_diff;
 	double	ray;
+	char	*image_ptr;
+	int		image[3];
+	int		wall_giorgio;
+	int		color;
+	int		pixel;
+	int		k;
 	int		i;
-
+// /
 	i = -1;
+	//	individuiamo faccia
 	wall_giorgio = wall_face(data, &data->player.line, ray_angle);
+	//	troviamo altezza muro
 	pov_diff = FABIO(cos(ray_angle - data->player.line.pov[X]));
 	ray = ray_lenght(data, x, y);
 	ray = ray * pov_diff;
 	ray = safe_division((HSCREEN * 10), ray);
-	ray = round(ray / 1.5);
-	color = 255 << 16 | 0 << 8 | 255; //violet
+	wall_height = round(ray / 1.5);
+	color = 0;
 	++data->column;
-	i = ((HSCREEN / 2) + ray);
-	// //FIXME
-	// pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
-	// printf("x :\t%f, temp :%d\t", x, pixel);
-	// image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
-	// if (!image_ptr)
-	// 	return ;
-	// i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
-	//FIXME
-	while (i >= (HSCREEN / 2) - ray)
+	k = ((HSCREEN / 2) + wall_height);
+	// if (k > HSCREEN)
+	// 	k = HSCREEN;
+	//	calcolo quale colonna di pixel prendere
+	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
+	// printf("x :\t%d, temp :%d\t", x, pixel);
+	image_ptr = DATA_ADDR(data->textures[wall_giorgio], &image[BPP], &image[SIZE], &image[ENDIAN]);
+	if (!image_ptr)
+		return ;
+	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+	// double	scaler;
+	// int		curr;
+	// scaler = wall_height / TXTR;
+	while (k >= (HSCREEN / 2) - wall_height)
 	{
-		// wall(data, x, data->textures[wall_giorgio]);
-		put_pixel(data, data->column, i, color);
-		--i;
+		i -= image[SIZE];
+		// curr = (int)((double)i * scaler);
+		color = image_ptr[i] | (image_ptr[i + 1] << 8) | (image_ptr[i + 2] << 16);
+		put_pixel(data, data->column, k, color);
+		--k;
 	}
 }
 //	SCREEN:     
