@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/22 14:43:10 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:16:38 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ double	ray_lenght(t_data *data, int rx, int ry)
 	double	ray;
 	int		px;
 	int		py;
+	// double	angle;
 
 	px = data->player.line.screen[X];
 	py = data->player.line.screen[Y];

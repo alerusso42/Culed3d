@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 10:53:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:53:23 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	int		pixel;
 	int		k;
 	int		i;
-// /
+
 	i = -1;
 	//	individuiamo faccia
 	wall_giorgio = wall_face(data, &data->player.line, ray_angle);
 	//	troviamo altezza muro
-	pov_diff = FABIO(cos(ray_angle - data->player.line.pov[X]));
+	pov_diff = cos(ray_angle - data->player.line.pov[X]);
 	ray = ray_lenght(data, x, y);
 	ray = ray * pov_diff;
 	ray = safe_division((HSCREEN * 10), ray);
@@ -115,23 +115,18 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	color = 0;
 	++data->column;
 	k = ((HSCREEN / 2) + wall_height);
-	// if (k > HSCREEN)
-	// 	k = HSCREEN;
-	//	calcolo quale colonna di pixel prendere
-	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
-	// printf("x :\t%d, temp :%d\t", x, pixel);
+	pixel = (int)((((double)x / WIMG) - (int)(x / WIMG)) * TXTR);
 	image_ptr = DATA_ADDR(data->textures[wall_giorgio], &image[BPP], &image[SIZE], &image[ENDIAN]);
 	if (!image_ptr)
 		return ;
-	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+	i = (image[SIZE] * TXTR) + (pixel * (image[BPP] / 8));
 	// double	scaler;
-	// int		curr;
+	// scaler = FABIO(wall_height - TXTR);
 	// scaler = wall_height / TXTR;
 	while (k >= (HSCREEN / 2) - wall_height)
 	{
-		i -= image[SIZE];
-		// curr = (int)((double)i * scaler);
-		color = image_ptr[i] | (image_ptr[i + 1] << 8) | (image_ptr[i + 2] << 16);
+		i -= image[SIZE]/*  * scaler */;
+		color = image_ptr[i] | (image_ptr[(int)i + 1] << 8) | (image_ptr[(int)i + 2] << 16);
 		put_pixel(data, data->column, k, color);
 		--k;
 	}
