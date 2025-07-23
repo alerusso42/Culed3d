@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 17:15:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 19:03:46 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,33 +89,31 @@ Key steps:
 
 # define DATA_ADDR mlx_get_data_addr
 # define FABIO fabs
+# define cappa k - (HSCREEN / 2) + wall_h) * -1
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
 	double	wall_h;
 	double	scaler;
 	double	start;
-	double	numero;
-	int		offset;
+	// double	numero;
+	int		k;
 	int		i;
 
 	wall_h = wall_height(data, x, y, ray_angle);
 	i = index_finder(data, ray_angle, x);
-	scaler = FABIO(wall_h - (TXTR - 1));
-	scaler /= wall_h;
+	scaler = TXTR / wall_h;
 	start = scaler;
 	printf("Scaler:%f\n", scaler);
-	offset = (HSCREEN / 2) + wall_h;
-	numero = TXTR - 1;
-	while (offset >= (HSCREEN / 2) - wall_h)
+	k = (HSCREEN / 2) + wall_h;
+	while (k >= (HSCREEN / 2) - wall_h)
 	{
+		i = data->img_data[SIZE] * (int)scaler;
 		scaler += start;
-		put_pixel(data, data->column, offset, get_pixel_color(data->img_ptr, i));
-		--offset;
-		i = data->img_data[SIZE] * (int)numero;
-		numero -= scaler;
-		if (numero < 0)
-			break ;
+		put_pixel(data, data->column, k, get_pixel_color(data->img_ptr, i));
+		k--;
+		if ((int)scaler > TXTR)
+			break;
 	}
 }
 
