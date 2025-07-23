@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 12:53:23 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:15:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,45 +92,38 @@ Key steps:
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
-	double	wall_height;
-	double	pov_diff;
-	double	ray;
-	char	*image_ptr;
-	int		image[3];
-	int		wall_giorgio;
-	int		color;
-	int		pixel;
-	int		k;
+	double	wall_h;
+	double	scaler;
+	double	start;
+	double	numero;
+	int		offset;
 	int		i;
 
-	i = -1;
-	//	individuiamo faccia
-	wall_giorgio = wall_face(data, &data->player.line, ray_angle);
-	//	troviamo altezza muro
-	pov_diff = cos(ray_angle - data->player.line.pov[X]);
-	ray = ray_lenght(data, x, y);
-	ray = ray * pov_diff;
-	ray = safe_division((HSCREEN * 10), ray);
-	wall_height = round(ray / 1.5);
-	color = 0;
-	++data->column;
-	k = ((HSCREEN / 2) + wall_height);
-	pixel = (int)((((double)x / WIMG) - (int)(x / WIMG)) * TXTR);
-	image_ptr = DATA_ADDR(data->textures[wall_giorgio], &image[BPP], &image[SIZE], &image[ENDIAN]);
-	if (!image_ptr)
-		return ;
-	i = (image[SIZE] * TXTR) + (pixel * (image[BPP] / 8));
-	// double	scaler;
-	// scaler = FABIO(wall_height - TXTR);
-	// scaler = wall_height / TXTR;
-	while (k >= (HSCREEN / 2) - wall_height)
+	wall_h = wall_height(data, x, y, ray_angle);
+	i = index_finder(data, ray_angle, x);
+	scaler = FABIO(wall_h - (TXTR - 1));
+	scaler /= wall_h;
+	start = scaler;
+	printf("Scaler:%f\n", scaler);
+	offset = (HSCREEN / 2) + wall_h;
+	numero = TXTR - 1;
+	while (offset >= (HSCREEN / 2) - wall_h)
 	{
-		i -= image[SIZE]/*  * scaler */;
-		color = image_ptr[i] | (image_ptr[(int)i + 1] << 8) | (image_ptr[(int)i + 2] << 16);
-		put_pixel(data, data->column, k, color);
-		--k;
+		scaler += start;
+		put_pixel(data, data->column, offset, get_pixel_color(data->img_ptr, i));
+		--offset;
+		i = data->img_data[SIZE] * (int)numero;
+		numero -= scaler;
+		if (numero < 0)
+			break ;
 	}
 }
+
+// if ((int)scaler < (int)(scaler + start))
+// 	i -= image[SIZE];
+
+
+
 //	SCREEN:     
 
 

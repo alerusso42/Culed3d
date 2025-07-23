@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 11:29:36 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:54:08 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ typedef struct s_data
 	char		*txtr_floor;
 	char		*txtr_ceiling;
 	char		*txtr_player;
+	char		*img_ptr;
+	int			img_data[3];
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -242,13 +244,16 @@ void	finish_him(int fd);
 //SECTION	utils
 
 void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
+int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
 int		wall_face(t_data * data, t_drawline *line, double angle);
+int		index_finder(t_data *data, double ray_angle, int hit_x);
 int		the_wall_checker(t_drawline *line_data, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
+int		get_pixel_color(char *img_ptr, int i);
 void	update_coord(t_drawline *line_data);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);

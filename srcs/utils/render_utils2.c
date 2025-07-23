@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 09:36:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:02:19 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,41 @@ static bool	check_north_collision(t_data *data, t_drawline *line)
 		return (true);
 	}
 	return (false);
+}
+
+int	wall_height(t_data *data, double x, double y, double ray_angle)
+{
+	double	pov_diff;
+	double	ray;
+	double	height;
+
+	pov_diff = cos(ray_angle - data->player.line.pov[X]);
+	ray = ray_lenght(data, x, y);
+	ray = ray * pov_diff;
+	ray = safe_division((HSCREEN * 10), ray);
+	height = round(ray / 1.5);
+	return ((int)height);
+}
+
+int	index_finder(t_data *data, double ray_angle, int hit_x)
+{
+	int		which_wall;
+	int		color;
+	int		pixel;
+
+	color = 0;
+	pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
+	which_wall = wall_face(data, &data->player.line, ray_angle);
+	data->img_ptr = mlx_get_data_addr(data->textures[which_wall], \
+		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
+	if (!data->img_ptr)
+		return (0);
+	return (data->img_data[SIZE] * TXTR) + (pixel * (data->img_data[BPP] / 8));
+}
+
+int	get_pixel_color(char *img_ptr, int i)
+{
+	return ((img_ptr[i] & 0xFF) | \
+	(img_ptr[i + 1] & 0xFF << 8) | \
+	(img_ptr[i + 2] & 0xFF << 16));
 }

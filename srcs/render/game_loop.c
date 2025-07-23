@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 10:56:03 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:09:05 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	frame_render(t_data *data)
 
 	backgrounder(data);
 	// map_start(data);
+	data->column = 0;
 	data->color = 0xff000d;
 	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
 	pov[Y] = 0;
@@ -56,10 +57,10 @@ void	frame_render(t_data *data)
 	{
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
 		line(data, &data->player.line, pov[X] + angle);
+		++data->column;
 	}
 	// put_image_to_image(data, PLAYER, data->player.line.screen[X], data->player.line.screen[Y]);
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
-	data->column = -1;
 }
 
 // Passaggio per passaggio:
