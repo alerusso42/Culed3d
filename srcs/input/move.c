@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 15:57:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:59:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	move(t_data *data, t_entity *entity)
 	sin_angle = 0;
 	(void)data;
 	if (entity->input & UP)
-		move_entity(data, entity, ANGLE_0);
+		printf("UP\t"), move_entity(data, entity, ANGLE_0);
 	if (entity->input & LEFT)
-		move_entity(data, entity, ANGLE_90);
+		printf("LEFT\t"), move_entity(data, entity, ANGLE_90);
 	if (entity->input & DOWN)
-		move_entity(data, entity, ANGLE_180);
+		printf("DOWN\t"), move_entity(data, entity, ANGLE_180);
 	if (entity->input & RIGHT)
-		move_entity(data, entity, ANGLE_270);
+		printf("RIGHT\t"), move_entity(data, entity, ANGLE_270);
 	return (0);
 }
 
@@ -66,8 +66,8 @@ static void	move_entity(t_data *data, t_entity *entity, double angle)
     double	new_x, new_y;
     int		map_x, map_y;
 
-    cos_angle = round_rad(cos(entity->pov[X] + angle));
-    sin_angle = round_rad(sin(entity->pov[X] + angle)) * -1;
+    cos_angle = cos(entity->pov[X] + angle);
+    sin_angle = sin(entity->pov[X] + angle) * -1;
     new_x = entity->screen[X] + (PLAYER_SPEED * cos_angle);
     new_y = entity->screen[Y] + (PLAYER_SPEED * sin_angle);
     map_x = (int)(new_x) / WIMG;
@@ -80,9 +80,9 @@ static void	move_entity(t_data *data, t_entity *entity, double angle)
         return;
     entity->curr[X] = new_x;
     entity->curr[Y] = new_y;
-    entity->screen[X] += PLAYER_SPEED * cos_angle;
-    entity->screen[Y] += PLAYER_SPEED * sin_angle;
-	printf("Total movement:%d[x]\t%d[y]\n", (int)(PLAYER_SPEED * cos_angle), (int)(PLAYER_SPEED * sin_angle));
+    entity->screen[X] = new_x;
+    entity->screen[Y] = new_y;
+	printf("Total movement:\t%d[x]\t%d[y]\n", entity->screen[X], entity->screen[Y]);
 }
 
 void	rotate(t_data *data, t_entity *entity)

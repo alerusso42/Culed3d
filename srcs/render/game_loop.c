@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 15:45:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:21:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	game_loop(t_data *data)
 		move_player(data);
 		frame_render(data);
 		t2 = elapsed_time(data->start);
-		printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
+		//printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
