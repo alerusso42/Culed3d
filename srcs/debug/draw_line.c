@@ -1,9 +1,9 @@
 // #include "../../cub3d.h"
 
-// /* static void	quadrant(t_drawline *line_data); */
-// static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data);
-// static int	buliccio(t_drawline *line_data, t_data *data, int x, int y);
-// static void	quadrant(t_drawline *line_data);
+// /* static void	quadrant(t_entity *entity_data); */
+// static int	the_wall_checker(int *stepper, t_entity *entity_data, t_data *data);
+// static int	buliccio(t_entity *entity_data, t_data *data, int x, int y);
+// static void	quadrant(t_entity *entity_data);
 // static double rad2deg(double radianti);
 
 // //	tan
@@ -15,8 +15,8 @@
 // 	line_data = (t_drawline){0};
 // 	stepper = WIMG - 1;
 // 	reset_coord(line_data.line);
-// 	line_data.pixel_p[X] = (data->player.line.map[X] * WIMG) + PLAYER_OFFSET;
-// 	line_data.pixel_p[Y] = (data->player.line.map[Y] * HIMG) + PLAYER_OFFSET;
+// 	line_data.pixel_p[X] = (data->player.map[X] * WIMG) + PLAYER_OFFSET;
+// 	line_data.pixel_p[Y] = (data->player.map[Y] * HIMG) + PLAYER_OFFSET;
 // 	line_data.pixel_win[X] = ((data->max_x + 1) * WIMG) + PLAYER_OFFSET;
 // 	line_data.pixel_win[Y] = ((data->max_y + 1) * HIMG) + PLAYER_OFFSET;
 // 	if (!data || x > line_data.pixel_win[X] || y > line_data.pixel_win[Y] || \
@@ -36,7 +36,7 @@
 // 	return (0);
 // }
 
-// static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
+// static int	the_wall_checker(int *stepper, t_entity *entity_data, t_data *data)
 // {
 // 	int			x;
 // 	int			y;
@@ -47,11 +47,11 @@
 // 		return (false);
 // 	}
 // 	(*stepper) = 0;
-// 	x = (int)floor(line_data->curr_x / WIMG);
-// 	y = (int)floor(line_data->curr_y / HIMG);
+// 	x = (int)floor(line_data->curr[X] / WIMG);
+// 	y = (int)floor(line_data->curr[Y] / HIMG);
 // 	if (data->map[y][x] == '1')
 // 	{
-// 		// printf("Wall at double X:%f\tY:%f\n", line_data->curr_x, line_data->curr_y);
+// 		// printf("Wall at double X:%f\tY:%f\n", line_data->curr[X], line_data->curr[Y]);
 // 		// printf("Wall at int X:%d\tY:%d\n", x, y);
 // 		print_last_coord(data, line_data);
 // 		return (true);
@@ -61,26 +61,26 @@
 // 	return (false);
 // }
 
-// static int buliccio(t_drawline *line_data, t_data *data, int x, int y)
+// static int buliccio(t_entity *entity_data, t_data *data, int x, int y)
 // {
 // 	double	delta_sum;
 
 // 	line_data->final_x = x;
 // 	line_data->final_y = y;
-// 	line_data->int_x = (data->player.line.map[X] * WIMG) + (WIMG / 2);
-// 	line_data->int_y = (data->player.line.map[Y] * HIMG) + (HIMG / 2);
-// 	line_data->curr_x = (int)(data->player.line.map[X] * WIMG) + (WIMG / 2);
-// 	line_data->curr_y = (int)(data->player.line.map[Y] * HIMG) + (HIMG / 2);
+// 	line_data->int_x = (data->player.map[X] * WIMG) + (WIMG / 2);
+// 	line_data->int_y = (data->player.map[Y] * HIMG) + (HIMG / 2);
+// 	line_data->curr[X] = (int)(data->player.map[X] * WIMG) + (WIMG / 2);
+// 	line_data->curr[Y] = (int)(data->player.map[Y] * HIMG) + (HIMG / 2);
 // 	line_data->x_sign = POSITIVE;
 // 	line_data->y_sign = POSITIVE;
-// 	if ((data->player.line.map[X] * WIMG) + WIMG / 2 > x)
+// 	if ((data->player.map[X] * WIMG) + WIMG / 2 > x)
 // 		line_data->x_sign = NEGATIVE;
-// 	if ((data->player.line.map[Y] * HIMG) + HIMG / 2 > y)
+// 	if ((data->player.map[Y] * HIMG) + HIMG / 2 > y)
 // 		line_data->y_sign = NEGATIVE;
 // 	line_data->next_x = line_data->int_x + line_data->x_sign;
 // 	line_data->next_y = line_data->int_y + line_data->y_sign;
-// 	line_data->delta_x = x - ((data->player.line.map[X] * WIMG) + (WIMG / 2));
-// 	line_data->delta_y = y - ((data->player.line.map[Y] * HIMG) + (HIMG / 2));
+// 	line_data->delta_x = x - ((data->player.map[X] * WIMG) + (WIMG / 2));
+// 	line_data->delta_y = y - ((data->player.map[Y] * HIMG) + (HIMG / 2));
 // 	delta_sum = fabs(line_data->delta_x) + fabs(line_data->delta_y);
 // 	line_data->delta_x = safe_division(fabs(line_data->delta_x), delta_sum);
 // 	line_data->delta_y = safe_division(fabs(line_data->delta_y), delta_sum);
@@ -90,7 +90,7 @@
 // 	return (0);
 // }
 
-// static void	quadrant(t_drawline *line_data)
+// static void	quadrant(t_entity *entity_data)
 // {
 // 	double	excess;
 // 	double	rad;
