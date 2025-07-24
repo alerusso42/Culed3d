@@ -5,7 +5,7 @@ SRC_PATH = srcs/
 # Compiler settings (lm == math.h)
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
-LFLAGS   =  -I./libft -Lminilibx-linux -lXext -lX11 -lmlx -lm
+LFLAGS   =  -I./libft -Lminilibx-linux -lmlx -lX11 -lm -lXext
 DEBUG    = -D DEBUG=true
 NORMAL   = -D DEBUG=false
 
@@ -69,7 +69,13 @@ bonus: fclean $(NAME)
 
 re: fclean mini all
 
-start: fclean mini all
+start: pull fclean mini all
+
+pull: 
+	git pull
+
+push: 
+	./upd.sh
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git

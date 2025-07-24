@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 11:16:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 22:28:19 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-//	Increments print coordinates, when the next integer points
-//	is surpassed.
-// void	update_coord(t_drawline *line_data)
-// {
-// 	line_data->curr_x += line_data->delta_x;
-// 	line_data->curr_y += line_data->delta_y;
-// 	if ((line_data->x_sign == POSITIVE && \
-// 		line_data->curr_x > (double)line_data->next_x) || \
-// 		(line_data->x_sign == NEGATIVE && \
-// 		line_data->curr_x < (double)line_data->next_x))
-// 	{
-// 		line_data->int_x += line_data->x_sign;
-// 		line_data->next_x += line_data->x_sign;
-// 	}
-// 	if ((line_data->y_sign == POSITIVE && \
-// 		line_data->curr_y > (double)line_data->next_y) || \
-// 		(line_data->y_sign == NEGATIVE && \
-// 		line_data->curr_y < (double)line_data->next_y))
-// 	{
-// 		line_data->int_y += line_data->y_sign;
-// 		line_data->next_y += line_data->y_sign;
-// 	}
-// }
 
 /*
 	//FIXME To optimize line, we should:

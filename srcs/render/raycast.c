@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 14:57:00 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 23:47:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	int		i;
 	// int		txtr_size;
 
+(void)i;
 	wall_h = wall_height(data, x, y, ray_angle);
 	offset = index_finder(data, ray_angle, x);
 	// txtr_size = find_txtr_size(data->img_ptr, data->img_data[SIZE]);
@@ -126,43 +127,7 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	{
 		i = offset + (data->img_data[SIZE] * (int)index);
 		index -= scaler;
-		// put_pixel(data, data->column, k, get_pixel_color(data->img_ptr, i));
+		put_pixel(data, data->column, k, get_pixel_color(data->img_ptr, i));
 		k--;
 	}
 }
-
-// if ((int)scaler < (int)(scaler + start))
-// 	i -= image[SIZE];
-
-
-
-//	SCREEN:     
-
-
-		// k = -1;
-		// while (++k < FOV_RATIO)
-		// {
-		// }
-		// column += k;
-		// mlx_put_image_to_window(data->mlx, data->win, \
-		// 	data->textures[SCREEN], 0, 0);
-		// mlx_do_sync(data->mlx);
-// draw.io integration
-// void	test_wall3D(t_data *data, int x, int y)
-// {
-// 	static char	*wall_addr;
-// 	int			color;
-// 	int			index;
-
-// 	x %= WIMG;
-// 	y %= HIMG;
-// 	if (!wall_addr)
-// 		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->bpp, &data->size_line, &data->endian);
-// 	else if (!wall_addr)
-// 		return ;
-// 	index = y * data->size_line + x * (data->bpp / 8);
-// 	color = wall_addr[index];
-// 	color = color | (wall_addr[index + 1] << 8);
-// 	color = color | (wall_addr[index + 2] << 16);
-// 	put_pixel(data, y, x, color);
-// }

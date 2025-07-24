@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 21:34:15 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 23:49:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	game_loop(t_data *data)
 		move_player(data);
 		frame_render(data);
 		t2 = elapsed_time(data->start);
-		// printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
+		printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
@@ -46,9 +46,9 @@ void	frame_render(t_data *data)
 	double	angle;
 	int		i;
 
-	// backgrounder(data);
-	clear_window(data);
-	map_start(data);
+	backgrounder(data);
+	//clear_window(data);
+	//map_start(data);
 	data->column = 0;
 	data->color = 0xff000d;
 	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
@@ -89,7 +89,7 @@ void line(t_data *data, t_drawline *line, double angle)
 	sin_angle = round_rad(sin(angle)) * -1;
     while (!the_wall_checker(line, data))
     {
-        put_pixel(data, (int)x, (int)y, 0xFF0000);
+        //put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;
         y += sin_angle;
         line->curr_x = x;

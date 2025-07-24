@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 14:29:41 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 23:45:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,10 @@ enum	e_type_identifers
 
 enum e_utils
 {
-	X,
-	Y,
+	X = 0,
+	Y = 1,
+	COS = 0,
+	SIN = 1,
 	POSITIVE = 1,
 	NEGATIVE = -1,
 	LEFT = 1,
@@ -225,7 +227,7 @@ void	free_texture(t_data *data);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
 void	rotate(t_data *data, t_entity *entity);
-int		move(t_data *data, t_entity *entity);
+void	move(t_data *data, t_entity *entity, double angle[]);
 int		ft_cross_close(t_data *data);
 int		move_player(t_data *data);
 void	init_player(t_data *data);

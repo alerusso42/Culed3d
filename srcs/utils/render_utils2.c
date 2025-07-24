@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 21:32:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 22:28:34 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,8 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 int	index_finder(t_data *data, double ray_angle, int hit_x)
 {
 	int		which_wall;
-	int		color;
 	int		pixel;
 
-	color = 0;
 	pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
 	which_wall = wall_face(data, &data->player.line, ray_angle);
 	data->img_ptr = mlx_get_data_addr(data->textures[which_wall], \
