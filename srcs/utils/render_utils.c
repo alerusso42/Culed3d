@@ -23,7 +23,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 
 	if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0 || !color)
 		return ;
-	index = y * data->screen_data[SIZE] + (x * (data->screen_data[BPP] / 8));
+	index = y * data->size_line + (x * (data->bpp / 8));
 	data->screen[index] = color & 0xFF;
 	data->screen[index + 1] = (color >> 8) & 0xFF;
 	data->screen[index + 2] = (color >> 16) & 0xFF;
@@ -44,7 +44,7 @@ void	clear_window(t_data *data)
 		x = -1;
 		while (++x < WSCREEN)
 		{
-			index = y * data->screen_data[SIZE] + x * data->screen_data[BPP] / 8;
+			index = y * data->size_line + x * data->bpp / 8;
 			data->screen[index] = 0;
 			data->screen[index + 1] = 0;
 			data->screen[index + 2] = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:41:15 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 15:42:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 // int	game_loop(t_data *data)
 // {
-// 	int	x;		//line_data->curr[X] = (int)line_data->curr[X];
+// 	int	x;		//line_data->curr_x = (int)line_data->curr_x;
 // 	int	y;
 
 // 	if (elapsed_time(data->start) > FRAME_TIME)
@@ -44,8 +44,8 @@
 // 		mlx_clear_window(data->mlx, data->win);
 // 		map_start(data);
 // 		mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-// 		// x = data->player.map[X] * WIMG;
-// 		// y = (data->player.map[X] + 360) * WIMG;
+// 		// x = data->player.line.map[X] * WIMG;
+// 		// y = (data->player.line.map[X] + 360) * WIMG;
 // 		// mlx_mouse_move(data->mlx, data->win, x, y);
 // 		// move_view(&x, &y);
 // 		// printf("X:%d\tY:%d\n", x, y);

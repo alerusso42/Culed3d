@@ -2,13 +2,13 @@
 
 // //	Increments print coordinates, when the next integer points
 // //	is surpassed.
-// void	update_coord(t_entity *entity_data)
+// void	update_coord(t_drawline *line_data)
 // {
-// 	line_data->curr[X] += line_data->delta_x;
-// 	line_data->curr[Y] += line_data->delta_y;
+// 	line_data->curr_x += line_data->delta_x;
+// 	line_data->curr_y += line_data->delta_y;
 // 	if (line_data->x_sign == POSITIVE)
 // 	{
-// 		if (line_data->curr[X] >= (double)line_data->next_x)
+// 		if (line_data->curr_x >= (double)line_data->next_x)
 // 		{
 // 			line_data->int_x += line_data->x_sign;
 // 			line_data->next_x += line_data->x_sign;
@@ -16,7 +16,7 @@
 // 	}
 // 	else
 // 	{
-// 		if (line_data->curr[X] <= (double)line_data->next_x)
+// 		if (line_data->curr_x <= (double)line_data->next_x)
 // 		{
 // 			line_data->int_x += line_data->x_sign;
 // 			line_data->next_x += line_data->x_sign;
@@ -24,7 +24,7 @@
 // 	}
 // 	if (line_data->y_sign == POSITIVE)
 // 	{
-// 		if (line_data->curr[Y] >= (double)line_data->next_y)
+// 		if (line_data->curr_y >= (double)line_data->next_y)
 // 		{
 // 			line_data->int_y += line_data->y_sign;
 // 			line_data->next_y += line_data->y_sign;
@@ -32,7 +32,7 @@
 // 	}
 // 	else
 // 	{
-// 		if (line_data->curr[Y] <= (double)line_data->next_y)
+// 		if (line_data->curr_y <= (double)line_data->next_y)
 // 		{
 // 			line_data->int_y += line_data->y_sign;
 // 			line_data->next_y += line_data->y_sign;
@@ -75,7 +75,7 @@
 // 	}
 // }
 
-// void	print_last_coord(t_data *data, t_entity *entity_data)
+// void	print_last_coord(t_data *data, t_drawline *line_data)
 // {
 // 	int	i;
  

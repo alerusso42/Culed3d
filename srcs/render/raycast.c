@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 15:45:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:57:00 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ Key steps:
 
 	2)	Data are stored in 4 variable types:
 		-	double	delta_x/y	--->	for every pixel, how much to go on x/y?
-		-	double	curr[X]/y	--->	current position in float values
+		-	double	curr_x/y	--->	current position in float values
 		-	int		int_x/y		--->	same in integer. Real pixel position. 
 		-	int		next_x/y	--->	Next pixel to reach.
-		When curr[X]/y surpasses next_x/y, int_x/y gets updated.
+		When curr_x/y surpasses next_x/y, int_x/y gets updated.
 		To go backward in x and in y, we make the delta POSITIVE or NEGATIVE.
 
 	3)	If DEBUG macro is active, pixel are written on screen too.
@@ -70,7 +70,7 @@ Key steps:
 // 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 // 		update_coord(&line_data);
 // 	}
-// 	diff = fabs(ray_angle - data->player.pov[X]);
+// 	diff = fabs(ray_angle - data->player.line.pov[X]);
 // 	// test_wall3D(data, line_data.int_x, line_data.int_y, diff);
 // 	return (0);
 // }
@@ -157,10 +157,10 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 // 	x %= WIMG;
 // 	y %= HIMG;
 // 	if (!wall_addr)
-// 		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->screen_data[BPP], &data->screen_data[SIZE], &data->screen_data[ENDIAN]);
+// 		wall_addr =  mlx_get_data_addr(data->textures[WALL], &data->bpp, &data->size_line, &data->endian);
 // 	else if (!wall_addr)
 // 		return ;
-// 	index = y * data->screen_data[SIZE] + x * (data->screen_data[BPP] / 8);
+// 	index = y * data->size_line + x * (data->bpp / 8);
 // 	color = wall_addr[index];
 // 	color = color | (wall_addr[index + 1] << 8);
 // 	color = color | (wall_addr[index + 2] << 16);
