@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:27:35 by alerusso          #+#    #+#             */
-/*   Updated: 2025/02/24 11:11:23 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:37:24 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	fd_printf(int fd, const char *str, ...)
 				print("/UNKNOWN SPECIFIER/", fd);
 		}
 		else
-			write(1, &str[index], 1);
+			write(fd, &str[index], 1);
 		++index;
 	}
 	va_end(ptr);

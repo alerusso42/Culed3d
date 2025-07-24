@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 16:02:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:50:43 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	wall_face(t_data * data, t_drawline *line, double angle)
 	char	face;
 
 	face = 0;
-	if ((((int)line->curr_y % (HIMG) == 0) || \
-		((int)line->curr_y % (HIMG - 1) == 0)) \
+	if ((((int)(line->curr_y) % HIMG == 0) || \
+		((int)(line->curr_y + 1) % HIMG == 0) || \
+		((int)(line->curr_y - 1) % HIMG == 0)) \
 			&& check_north_collision(data, line))
 		face |= (NO | SO);
 	else
@@ -28,16 +29,16 @@ int	wall_face(t_data * data, t_drawline *line, double angle)
 	if (face & (NO | SO))
 	{
 		if (angle >= 0 && angle < PI)
-			return (NORTH);
+			return (printf("NORTH\n\tANGLE: %f", angle), NORTH);
 		else
-			return (SOUTH);
+			return (printf("SOUTH\nANGLE: %f", angle), SOUTH);
 	}
 	else
 	{
 		if (angle < PI / 2 || angle >= (PI / 2) * 3)
-			return (EAST);
+			return (printf("EAST\n"), EAST);
 		else
-			return (WEST);
+			return (printf("WEST\n"), WEST);
 	}
 }
 
@@ -88,7 +89,7 @@ int	index_finder(t_data *data, double ray_angle, int hit_x)
 		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
 	if (!data->img_ptr)
 		return (0);
-	return (data->img_data[SIZE] * TXTR) + (pixel * (data->img_data[BPP] / 8));
+	return (pixel * (data->img_data[BPP] / 8));
 }
 
 int	get_pixel_color(char *img_ptr, int i)

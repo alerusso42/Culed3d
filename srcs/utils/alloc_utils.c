@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:40:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/10 14:31:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:36:22 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,11 @@ void	finish_him(int fd)
 	ft_sleep(1e6);
 	fd_printf(2, ".");
 	fd_printf(2, RED"  FATALITY.\n"RST);
+}
+
+//	free a ptr and set it to NULL
+void	delete(void **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 14:40:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:38:27 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,18 @@ void	free_texture(t_data *data)
 {
 	int	i;
 
+	delete((void**)&data->txtr_east);
+	delete((void**)&data->txtr_west);
+	delete((void**)&data->txtr_north);
+	delete((void**)&data->txtr_south);
+	delete((void**)&data->txtr_floor);
+	delete((void**)&data->txtr_ceiling);
 	if (!data->textures)
 		return ;
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
 		if (data->textures[i])
-		{
 			mlx_destroy_image(data->mlx, data->textures[i]);
-			// free(data->textures[i]);
-		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 19:03:46 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:57:00 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,31 +89,45 @@ Key steps:
 
 # define DATA_ADDR mlx_get_data_addr
 # define FABIO fabs
-# define cappa k - (HSCREEN / 2) + wall_h) * -1
+
+// int	find_txtr_size(char *txtr, int line_size)
+// {
+// 	int	txtr_size;
+// 	int	line;
+
+// 	txtr_size = 0;
+// 	line = 0;
+// 	while (txtr[line + 3])
+// 	{
+// 		++txtr_size;
+// 		line += line_size;
+// 	}
+// 	return (txtr_size);
+// }
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {
 	double	wall_h;
 	double	scaler;
-	double	start;
-	// double	numero;
+	double	index;
 	int		k;
+	int		offset;
 	int		i;
+	// int		txtr_size;
 
 	wall_h = wall_height(data, x, y, ray_angle);
-	i = index_finder(data, ray_angle, x);
-	scaler = TXTR / wall_h;
-	start = scaler;
-	printf("Scaler:%f\n", scaler);
+	offset = index_finder(data, ray_angle, x);
+	// txtr_size = find_txtr_size(data->img_ptr, data->img_data[SIZE]);
+	// printf("TXTR:%d\n", TXTR);
+	scaler = (TXTR / wall_h) / 2;
+	index = TXTR - 1;
 	k = (HSCREEN / 2) + wall_h;
-	while (k >= (HSCREEN / 2) - wall_h)
+	while (k >= (HSCREEN / 2) - wall_h && index > 0)
 	{
-		i = data->img_data[SIZE] * (int)scaler;
-		scaler += start;
-		put_pixel(data, data->column, k, get_pixel_color(data->img_ptr, i));
+		i = offset + (data->img_data[SIZE] * (int)index);
+		index -= scaler;
+		// put_pixel(data, data->column, k, get_pixel_color(data->img_ptr, i));
 		k--;
-		if ((int)scaler > TXTR)
-			break;
 	}
 }
 

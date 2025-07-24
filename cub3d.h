@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/23 15:54:08 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:29:41 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define BCYAN		"\033[1;36m" /* Bold Cyan*/
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
-# define FPS 30
+# define FPS 60
 # define FRAME_TIME (1000000 / FPS)
 
 #ifndef DEBUG
@@ -262,6 +262,7 @@ void	*safe_malloc(size_t size);
 double	round_rad(double rad);
 double	grad2rad(double rad);
 double	rad2deg(double rad);
+void	delete(void **ptr);
 
 //SECTION debug
 

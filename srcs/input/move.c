@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/21 10:02:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/24 15:02:27 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,6 @@ static void	move_entity(t_data *data, t_entity *entity, double angle);
 	When moving, your are just updating your vector data, and moving
 	according to those data.
 */
-// int	move(t_data *data, t_entity *entity)
-// {
-// 	t_drawline	*line;
-
-// 	(void)data;
-// 	line = &entity->line;
-// 	if (entity->input & UP)
-// 	{
-// 		entity->line.curr_y -= PLAYER_SPEED;
-// 		entity->line.screen[Y] -= PLAYER_SPEED;
-// 	}
-// 	if (entity->input & LEFT)
-// 	{
-// 		entity->line.curr_x -= PLAYER_SPEED;
-// 		entity->line.screen[X] -= PLAYER_SPEED;	
-// 	}
-// 	if (entity->input & DOWN)
-// 	{
-// 		entity->line.curr_y += PLAYER_SPEED;
-// 		entity->line.screen[Y] += PLAYER_SPEED;
-// 	}
-// 	if (entity->input & RIGHT)
-// 	{
-// 		entity->line.curr_x += PLAYER_SPEED;
-// 		entity->line.screen[X] += PLAYER_SPEED;
-// 	}
-// 	return (0);
-// }
-
 int	move(t_data *data, t_entity *entity)
 {
 	t_drawline	*line;
@@ -99,8 +70,8 @@ static void	move_entity(t_data *data, t_entity *entity, double angle)
 
     cos_angle = round_rad(cos(entity->line.pov[X] + angle));
     sin_angle = round_rad(sin(entity->line.pov[X] + angle)) * -1;
-    new_x = entity->line.screen[X] + PLAYER_SPEED * cos_angle;
-    new_y = entity->line.screen[Y] + PLAYER_SPEED * sin_angle;
+    new_x = entity->line.screen[X] + (PLAYER_SPEED * cos_angle);
+    new_y = entity->line.screen[Y] + (PLAYER_SPEED * sin_angle);
     map_x = (int)(new_x) / WIMG;
     map_y = (int)(new_y) / HIMG;
 	(void)data;
@@ -114,10 +85,7 @@ static void	move_entity(t_data *data, t_entity *entity, double angle)
     entity->line.screen[X] += PLAYER_SPEED * cos_angle;
     entity->line.screen[Y] += PLAYER_SPEED * sin_angle;
 }
-/*
-	Rotate has LINE_ACCURACY sensibility.
-	If LINE_ACCURACY is one, sensibility is 1 grade.
-*/
+
 void	rotate(t_data *data, t_entity *entity)
 {
 	(void)data;
