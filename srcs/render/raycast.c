@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 23:47:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:43:24 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 
 (void)i;
 	wall_h = wall_height(data, x, y, ray_angle);
-	offset = index_finder(data, ray_angle, x);
+	offset = index_finder(data, ray_angle, x, y);
 	// txtr_size = find_txtr_size(data->img_ptr, data->img_data[SIZE]);
 	// printf("TXTR:%d\n", TXTR);
 	scaler = (TXTR / wall_h) / 2;

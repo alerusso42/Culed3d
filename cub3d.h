@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 23:45:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:43:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,7 @@ int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
 int		wall_face(t_data * data, t_drawline *line, double angle);
-int		index_finder(t_data *data, double ray_angle, int hit_x);
+int		index_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
 int		the_wall_checker(t_drawline *line_data, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
