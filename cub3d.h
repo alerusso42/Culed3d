@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/02 15:42:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,15 @@ typedef struct s_drawline	t_drawline;
 
 typedef struct s_drawline
 {
+}	t_drawline;
+
+typedef struct s_entity
+{
 	double	curr_x;
 	double	curr_y;
 	double	pov[2];
 	int		screen[2];
 	int		map[2];
-}	t_drawline;
-
-typedef struct s_entity
-{
-	t_drawline	line;
 	char		*frame;
 	double		speed;
 	int			curr_frame;
@@ -246,18 +245,18 @@ void	finish_him(int fd);
 
 //SECTION	utils
 
-void	init_line_data(t_data *data, t_drawline *line_data, double pov_x);
+void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
-int		wall_face(t_data * data, t_drawline *line, double angle);
+int		wall_face(t_data * data, t_entity *entity, double angle);
 int		index_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
-int		the_wall_checker(t_drawline *line_data, t_data *data);
+int		the_wall_checker(t_entity *entity_data, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 int		get_pixel_color(char *img_ptr, int i);
-void	update_coord(t_drawline *line_data);
+void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);
 long	elapsed_time(t_time start);

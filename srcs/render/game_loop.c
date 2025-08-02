@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 23:49:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-void line(t_data *data, t_drawline *line, double angle);
+void line(t_data *data, t_entity *entity, double angle);
 
 void	frame_render(t_data *data)
 {
@@ -70,17 +70,17 @@ void	frame_render(t_data *data)
 // txtr_data[idx+1] << 8)	0x0000BB00	Green
 // txtr_data[idx+2] << 16)	0x00CC0000	Red
 
-void line(t_data *data, t_drawline *line, double angle)
+void line(t_data *data, t_entity *entity, double angle)
 {
     double x;
     double y;
     float cos_angle;
     float sin_angle;
 	
-	x = line->screen[X];
-	y = line->screen[Y];
-    line->curr_x = x;
-    line->curr_y = y;
+	x = entity->screen[X];
+	y = entity->screen[Y];
+    entity->curr_x = x;
+    entity->curr_y = y;
 	if (angle > (2 * PI))
 		angle -= (2 * PI);
 	else if (angle < 0)
@@ -92,11 +92,11 @@ void line(t_data *data, t_drawline *line, double angle)
         //put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;
         y += sin_angle;
-        line->curr_x = x;
-        line->curr_y = y;
+        entity->curr_x = x;
+        entity->curr_y = y;
     }
-	// wall(data, line->curr_x, data->textures[wall_face(data, line, angle)]);
-	test_wall3D(data, (int)line->curr_x, (int)line->curr_y, angle);
+	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
+	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }
 
 // void	wall(t_data *data, double x, void *txtr)

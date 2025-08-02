@@ -2,7 +2,7 @@
 
 // //	Increments print coordinates, when the next integer points
 // //	is surpassed.
-// void	update_coord(t_drawline *line_data)
+// void	update_coord(t_entity *entity_data)
 // {
 // 	line_data->curr_x += line_data->delta_x;
 // 	line_data->curr_y += line_data->delta_y;
@@ -75,7 +75,7 @@
 // 	}
 // }
 
-// void	print_last_coord(t_data *data, t_drawline *line_data)
+// void	print_last_coord(t_data *data, t_entity *entity_data)
 // {
 // 	int	i;
  

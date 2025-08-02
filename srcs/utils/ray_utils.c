@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 22:28:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 	4)	stop printing the line.
 		At that point, we could differentiate this method using DEBUG macro.
 */
-int	the_wall_checker(t_drawline *line_data, t_data *data)
+int	the_wall_checker(t_entity *entity_data, t_data *data)
 {
 	int	x;
 	int	y;
@@ -36,7 +36,7 @@ int	the_wall_checker(t_drawline *line_data, t_data *data)
 }
 
 //	init all data to draw a line.
-// void	init_line_data(t_data *data, t_drawline *line_data, double pov_x)
+// void	init_line_data(t_data *data, t_entity *entity_data, double pov_x)
 // {
 // 	*line_data = (t_drawline){0};
 // 	line_data->int_x = (data->player.line.screen[X] + WIMG / 2);

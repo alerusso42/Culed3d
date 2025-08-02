@@ -1,9 +1,9 @@
 // #include "../../cub3d.h"
 
-// /* static void	quadrant(t_drawline *line_data); */
-// static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data);
-// static int	buliccio(t_drawline *line_data, t_data *data, int x, int y);
-// static void	quadrant(t_drawline *line_data);
+// /* static void	quadrant(t_entity *entity_data); */
+// static int	the_wall_checker(int *stepper, t_entity *entity_data, t_data *data);
+// static int	buliccio(t_entity *entity_data, t_data *data, int x, int y);
+// static void	quadrant(t_entity *entity_data);
 // static double rad2deg(double radianti);
 
 // //	tan
@@ -36,7 +36,7 @@
 // 	return (0);
 // }
 
-// static int	the_wall_checker(int *stepper, t_drawline *line_data, t_data *data)
+// static int	the_wall_checker(int *stepper, t_entity *entity_data, t_data *data)
 // {
 // 	int			x;
 // 	int			y;
@@ -61,7 +61,7 @@
 // 	return (false);
 // }
 
-// static int buliccio(t_drawline *line_data, t_data *data, int x, int y)
+// static int buliccio(t_entity *entity_data, t_data *data, int x, int y)
 // {
 // 	double	delta_sum;
 
@@ -90,7 +90,7 @@
 // 	return (0);
 // }
 
-// static void	quadrant(t_drawline *line_data)
+// static void	quadrant(t_entity *entity_data)
 // {
 // 	double	excess;
 // 	double	rad;

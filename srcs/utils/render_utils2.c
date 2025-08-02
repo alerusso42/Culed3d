@@ -6,13 +6,13 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/02 15:30:53 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static bool	check_north_collision(t_data *data, t_drawline *line);
+static bool	check_north_collision(t_data *data, t_entity *entity);
 
 //REVIEW	wall_face
 /*
@@ -34,14 +34,14 @@ PI	 | ___________|____________ | 0					SOUTH:	|PI			|  2 * PI (0)	|
 	        ~- . _|__ . -~									____________________
 			(PI / 2) * 3
 */
-int	wall_face(t_data * data, t_drawline *line, double angle)
+int	wall_face(t_data * data, t_entity *entity, double angle)
 {
 	char	face;
 
 	face = 0;
-	if ((((int)(line->curr_y) % HIMG == 0) || \
-		((int)(line->curr_y + 1) % HIMG == 0) || \
-		((int)(line->curr_y - 1) % HIMG == 0)) \
+	if ((((int)(entity->curr_y) % HIMG == 0) || \
+		((int)(entity->curr_y + 1) % HIMG == 0) || \
+		((int)(entity->curr_y - 1) % HIMG == 0)) \
 			&& check_north_collision(data, line))
 		face |= (NO | SO);
 	else
@@ -62,17 +62,17 @@ int	wall_face(t_data * data, t_drawline *line, double angle)
 	}
 }
 
-static bool	check_north_collision(t_data *data, t_drawline *line)
+static bool	check_north_collision(t_data *data, t_entity *entity)
 {
 	int	x[3];
 	int	y[3];
 
-	x[0] = (int)(line->curr_x) / WIMG;
-	y[0] = (int)(line->curr_y) / HIMG;
-	x[1] = (int)(line->curr_x - 1) / WIMG;
-	y[1] = (int)(line->curr_y) / HIMG;
-	x[2] = (int)(line->curr_x + 1) / WIMG;
-	y[2] = (int)(line->curr_y) / HIMG;
+	x[0] = (int)(entity->curr_x) / WIMG;
+	y[0] = (int)(entity->curr_y) / HIMG;
+	x[1] = (int)(entity->curr_x - 1) / WIMG;
+	y[1] = (int)(entity->curr_y) / HIMG;
+	x[2] = (int)(entity->curr_x + 1) / WIMG;
+	y[2] = (int)(entity->curr_y) / HIMG;
 	if (data->map[y[0]][x[0]] == '1' && \
 		(data->map[y[1]][x[1]] == '1') && \
 		(data->map[y[2]][x[2]] == '1'))
