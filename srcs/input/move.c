@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/24 23:45:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:42:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
     int		map_x;
     int		map_y;
 
-    new_x = entity->line.screen[X] + (angle[COS] * PLAYER_SPEED) + offset[X];
-    new_y = entity->line.screen[Y] + (angle[SIN] * PLAYER_SPEED) + offset[Y];
+    new_x = entity->line.screen[X] + (angle[COS] * entity->speed) + offset[X];
+    new_y = entity->line.screen[Y] + (angle[SIN] * entity->speed) + offset[Y];
     map_x = (int)(new_x) / WIMG;
     map_y = (int)(new_y) / HIMG;
-    if (map_y < 0 || map_y >= data->max_y ||
+    if (map_y < 0 || map_y >= data->max_y || \
         map_x < 0 || map_x >= data->max_x)
         return;
-    if (data->map[map_y][map_x] == '1')
+    if (data->map[map_y][map_x] == '1' || data->map[map_y][map_x] == ' ')
         return;
     entity->line.screen[X] = new_x;
     entity->line.screen[Y] = new_y;

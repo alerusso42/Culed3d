@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/25 16:43:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:42:19 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_entity
 {
 	t_drawline	line;
 	char		*frame;
+	double		speed;
 	int			curr_frame;
 	int			vite_rimaste;
 	char		type;

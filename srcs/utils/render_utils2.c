@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/25 17:08:51 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:30:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,10 @@ int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 
 int	get_pixel_color(char *img_ptr, int i)
 {
-	return ((img_ptr[i] & 0xFF) | \
-	(img_ptr[i + 1] & 0xFF << 8) | \
-	(img_ptr[i + 2] & 0xFF << 16));
+	return ((img_ptr[i] & 255) | \
+	((img_ptr[i + 1] & 255) << 8) | \
+	((img_ptr[i + 2] & 255) << 16));
 }
+
+	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n", \
+	// img_ptr[i], img_ptr[i + 1], img_ptr[i + 2], img_ptr[i] & 0xFF, img_ptr[i + 1] & 0xFF, img_ptr[i + 2] & 0xFF);
