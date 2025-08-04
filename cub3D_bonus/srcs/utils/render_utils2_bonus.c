@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:57:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	wall_face(t_data * data, t_entity *entity, double angle)
 {
 	char	face;
 
+	// if (which_entity(data, (int)entity->curr_x / WIMG), (int)entity->curr_y / HIMG))
 	face = 0;
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
 		((int)(entity->curr_y + 1) % HIMG == 0) || \

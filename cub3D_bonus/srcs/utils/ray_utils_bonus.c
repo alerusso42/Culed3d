@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 11:00:45 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:26:19 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,20 @@ int	the_wall_checker(t_entity *entity, t_data *data)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = (int)entity->curr_x / WIMG;
 	y = (int)entity->curr_y / HIMG;
 	if (data->map[y][x] == '1')
 	{
 		//printf("COLLISION:\tx:%d\ty:%d\n", line_data->int_x, line_data->int_y);
+		return (true);
+	}
+	else if (data->map[y][x] == 'D')
+	{
+		i = which_entity(data, x, y, ENTITY_DOOR);
+		if (i == ENTITY_NOT_FOUND || data->doors[i].type == DOOR_OPENED)
+			return (false);
 		return (true);
 	}
 	return (false);

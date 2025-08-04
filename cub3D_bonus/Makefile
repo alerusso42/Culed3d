@@ -21,6 +21,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	init/get_texture_bonus.c \
 	input/commands_bonus.c \
 	input/init_entity_bonus.c \
+	input/interact_bonus.c \
 	input/move_bonus.c \
 	parsing/parsing_bonus.c \
 	parsing/get_type_bonus.c \
@@ -29,6 +30,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	parsing/check_map_bonus.c \
 	parsing/check_map_access_bonus.c \
 	utils/strings_bonus.c \
+	utils/entity_bonus.c \
 	utils/error_bonus.c \
 	utils/time_bonus.c \
 	utils/math_bonus.c \
@@ -48,10 +50,10 @@ $(LIBFT):
 	$(MAKE) all -C $(LIBFT_DIR)
 
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3D debug.cub
+	gdb -x ../a.gdb --args ./cub3D_bonus maps/debug.cub
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3D debug.cub
+	gdb --tui -x a.gdb --args ./cub3D_bonus maps/debug.cub
 
 
 clean:

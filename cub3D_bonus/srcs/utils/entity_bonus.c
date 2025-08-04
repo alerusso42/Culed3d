@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   entity_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
+/*   Updated: 2025/08/04 16:36:03 by alerusso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../cub3D_bonus.h"
+
+//	given x, y and an entity type, it returns the index of the entity
+//	in its array.
+int	which_entity(t_data *data, int x, int y, int entity_type)
+{
+	t_entity	*entity;
+	int			i;
+
+	if (entity_type == ENTITY_DOOR)
+		entity = data->doors;
+	else if (entity_type == ENTITY_ENEMY)
+		return (l_printf("not implemented\n"));
+	else
+		return (l_printf("Unknown entity type\n"));
+	i = 0;
+	while (entity[i].type != ENTITY_END)
+	{
+		if (entity[i].map[X] == x && entity[i].map[Y] == y)
+			break ;
+		++i;
+	}
+	if (entity[i].type == ENTITY_END)
+		return (ENTITY_NOT_FOUND);
+	return (i);
+}

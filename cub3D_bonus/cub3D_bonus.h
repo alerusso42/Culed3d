@@ -216,9 +216,17 @@ enum e_utils
 	BPP = 0,
 	SIZE = 1,
 	ENDIAN = 2,
+	ENTITY_NOT_FOUND = -1,
 	ENTITY_END = 0,
+	ENTITY_DOOR = 0,
+	ENTITY_ENEMY = 1,
 	DOOR_OPENED = 1,
 	DOOR_CLOSED = 2,
+	MOUSE_LEFT = 1,
+	MOUSE_RIGHT = 3,
+	MOUSE_MIDDLE = 2,
+	MOUSE_UP = 4,
+	MOUSE_DOWN = 5,
 };
 
 void	parsing(t_data *data, int argc, char **argv);
@@ -236,6 +244,7 @@ void	rotate(t_data *data, t_entity *entity);
 void	init_doors(t_data *data, int n_doors);
 int		ft_cross_close(t_data *data);
 int		move_player(t_data *data);
+void	interact(t_data *data);
 void	init_player(t_data *data);
 
 //SECTION	parsing
@@ -257,6 +266,7 @@ void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
+int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
 int		the_wall_checker(t_entity *entity, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
@@ -282,6 +292,7 @@ int		game_loop(t_data *data);
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
 void	put_image_to_image(t_data *data, int which, int y, int x);
+void 	line(t_data *data, t_entity *entity, double angle);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
