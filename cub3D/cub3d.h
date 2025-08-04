@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:20:09 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 12:21:38 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define DEBUG true
 # endif
 # define VALID_CHARS " 01NSEW"
-# define CONTENT_CHARS "NSEW"
+# define PLAYER_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
 
 # define SCREEN_TXTR "textures/screen.xpm"

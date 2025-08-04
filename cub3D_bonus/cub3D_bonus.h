@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 12:21:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:20:09 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -44,7 +44,7 @@
 #ifndef DEBUG
 # define DEBUG true
 # endif
-# define VALID_CHARS " 01NSEW"
+# define VALID_CHARS " 01NSEWD"
 # define PLAYER_CHARS "NSEW"
 # define FFILL_CHARS "0NSEW"
 
@@ -122,6 +122,7 @@ typedef struct s_data
 {
 	t_entity	player;
 	t_time		start;
+	t_entity	*doors;
 	void		*mlx;
 	void		*win;
 	void		**textures;
@@ -182,6 +183,7 @@ enum	e_errors
 	E_INVALID_MAP,
 	E_MLX_TEXTURE,
 	E_INVALID_PATH,
+	E_INVALID_DOOR,
 };
 
 enum	e_type_identifers
@@ -240,6 +242,7 @@ void	check_map_access(t_data *data);
 void	get_map(t_data *data, int fd);
 void	check_chars(t_data *data);
 void	check_walls(t_data *data);
+void	check_doors(t_data *data);
 void	parse_map(t_data *data);
 void	finish_him(int fd);
 

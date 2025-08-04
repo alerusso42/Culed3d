@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_access.c                                 :+:      :+:    :+:   */
+/*   check_map_access_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3D_bonus.h"
 
 static void	path_finder(t_data *data, char **map_copy, int x, int y);
 static void	player_finder(t_data *data);
@@ -67,8 +67,8 @@ static void	player_finder(t_data *data)
 			}
 		}
 	}
-	data->player.screen[0] = (data->player.map[0] * WIMG)/*  + (WIMG / 2) */;
-	data->player.screen[1] = (data->player.map[1] * HIMG)/*  + (HIMG / 2) */;
+	data->player.screen[0] = (data->player.map[0] * WIMG);
+	data->player.screen[1] = (data->player.map[1] * HIMG);
 }
 
 static void	path_checker(t_data *data, char **map)
