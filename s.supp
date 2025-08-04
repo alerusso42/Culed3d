@@ -1,0 +1,6 @@
+{
+   mlx
+   Memcheck:Leak
+   ...
+   obj:/usr/lib/*
+}

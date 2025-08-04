@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 12:22:35 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:00:42 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,15 @@ Controllo che il player non sia messo ai bordi della mappa
  */
 void	check_chars(t_data *data)
 {
-	int		i;
-	int		j;
 	int		player_count;
 	int		door_count;
 
 	if (DEBUG == true)
 		print_matrix(data->map);
-	i = -1;
 	player_count = 0;
 	door_count = 0;
 	count_chars(data, &player_count, &door_count);
+	init_doors(data, door_count);
 	if (player_count == 0)
 		error(data, E_NO_PLAYER, NULL);
 	else if (player_count > 1)

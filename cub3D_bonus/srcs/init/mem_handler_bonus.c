@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:26:16 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	spread_democracy(t_data *data)
 {
 	free_texture(data);
 	free_matrix(data->map);
+	free(data->doors);
+	data->doors = NULL;
 	data->map = NULL;
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);

@@ -216,6 +216,9 @@ enum e_utils
 	BPP = 0,
 	SIZE = 1,
 	ENDIAN = 2,
+	ENTITY_END = 0,
+	DOOR_OPENED = 1,
+	DOOR_CLOSED = 2,
 };
 
 void	parsing(t_data *data, int argc, char **argv);
@@ -230,6 +233,7 @@ void	move(t_data *data, t_entity *entity, double angle[]);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
 void	rotate(t_data *data, t_entity *entity);
+void	init_doors(t_data *data, int n_doors);
 int		ft_cross_close(t_data *data);
 int		move_player(t_data *data);
 void	init_player(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:57:15 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	commands_release(int keycode, t_data *data)
 		data->player.speed = 5;
 	return (0);
 }
+// int	commands_mouse()
 
 int	move_player(t_data *data)
 {
@@ -66,3 +67,4 @@ int	move_player(t_data *data)
 		rotate(data, &data->player);
 	return (0);
 }
+\
