@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:06:00 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ void	frame_render(t_data *data)
 	//map_start(data);
 	data->column = 0;
 	data->color = 0xff000d;
-	pov[X] = data->player.line.pov[X] - (RADIANT * (FOV / 2));
+	pov[X] = data->player.pov[X] - (RADIANT * (FOV / 2));
 	pov[Y] = 0;
 	i = WSCREEN;
 	while (--i >= 0)
 	{
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		line(data, &data->player.line, pov[X] + angle);
+		line(data, &data->player, pov[X] + angle);
 		++data->column;
 	}
-	put_image_to_image(data, PLAYER, data->player.line.screen[X], data->player.line.screen[Y]);
+	put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
 }
 
@@ -87,7 +87,7 @@ void line(t_data *data, t_entity *entity, double angle)
 		angle += (2 * PI);
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-    while (!the_wall_checker(line, data))
+    while (!the_wall_checker(entity, data))
     {
         //put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;

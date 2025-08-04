@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/02 16:53:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:05:45 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	wall_face(t_data * data, t_entity *entity, double angle)
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
 		((int)(entity->curr_y + 1) % HIMG == 0) || \
 		((int)(entity->curr_y - 1) % HIMG == 0)) \
-			&& check_north_collision(data, line))
+			&& check_north_collision(data, entity))
 		face |= (NO | SO);
 	else
 		face |= (WE | EA);
@@ -88,7 +88,7 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 	double	ray;
 	double	height;
 
-	pov_diff = cos(ray_angle - data->player.line.pov[X]);
+	pov_diff = cos(ray_angle - data->player.pov[X]);
 	ray = ray_lenght(data, x, y);
 	ray = ray * pov_diff;
 	ray = safe_division((HSCREEN * 10), ray);
@@ -101,7 +101,7 @@ int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	int		which_wall;
 	int		pixel;
 
-	which_wall = wall_face(data, &data->player.line, ray_angle);
+	which_wall = wall_face(data, &data->player, ray_angle);
 	if (which_wall == NORTH || which_wall == SOUTH)
 		pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
 	else

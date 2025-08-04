@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:41:15 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/17 15:25:51 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:01:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 // 		mlx_clear_window(data->mlx, data->win);
 // 		map_start(data);
 // 		mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-// 		// x = data->player.line.map[X] * WIMG;
-// 		// y = (data->player.line.map[X] + 360) * WIMG;
+// 		// x = data->player.entity.map[X] * WIMG;
+// 		// y = (data->player.entity.map[X] + 360) * WIMG;
 // 		// mlx_mouse_move(data->mlx, data->win, x, y);
 // 		// move_view(&x, &y);
 // 		// printf("X:%d\tY:%d\n", x, y);

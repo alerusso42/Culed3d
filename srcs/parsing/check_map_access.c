@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/24 21:48:33 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:04:49 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_map_access(t_data *data)
 
 	map_copy = ft_dup_matrix(data->map);
 	player_finder(data);
-	path_finder(data, map_copy, data->player.line.map[1], data->player.line.map[0]);
+	path_finder(data, map_copy, data->player.map[1], data->player.map[0]);
 	// print_matrix(map_copy);
 	path_checker(data, map_copy);
 	free_matrix(map_copy);
@@ -61,14 +61,14 @@ static void	player_finder(t_data *data)
 		{
 			if (ft_strchr(CONTENT_CHARS, data->map[x][y]))
 			{
-				data->player.line.map[0] = y;
-				data->player.line.map[1] = x;
+				data->player.map[0] = y;
+				data->player.map[1] = x;
 				data->player.type = data->map[x][y];
 			}
 		}
 	}
-	data->player.line.screen[0] = (data->player.line.map[0] * WIMG)/*  + (WIMG / 2) */;
-	data->player.line.screen[1] = (data->player.line.map[1] * HIMG)/*  + (HIMG / 2) */;
+	data->player.screen[0] = (data->player.map[0] * WIMG)/*  + (WIMG / 2) */;
+	data->player.screen[1] = (data->player.map[1] * HIMG)/*  + (HIMG / 2) */;
 }
 
 static void	path_checker(t_data *data, char **map)

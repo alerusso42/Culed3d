@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/25 16:43:24 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:01:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ Key steps:
 // 			put_pixel(data, line_data.int_x, line_data.int_y, data->color);
 // 		update_coord(&line_data);
 // 	}
-// 	diff = fabs(ray_angle - data->player.line.pov[X]);
+// 	diff = fabs(ray_angle - data->player.entity.pov[X]);
 // 	// test_wall3D(data, line_data.int_x, line_data.int_y, diff);
 // 	return (0);
 // }

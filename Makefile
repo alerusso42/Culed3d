@@ -1,5 +1,5 @@
 # Top level target
-NAME     = cub3d
+NAME     = cub3D
 SRC_PATH = srcs/
 
 # Compiler settings (lm == math.h)
@@ -16,28 +16,28 @@ PARS_DIR  = parsing
 
 # All source files, with their relative paths c
 SRCS = $(addprefix $(SRC_PATH), \
-  main.c \
-  init/mem_handler.c \
-  init/get_texture.c \
-  input/commands.c \
-  input/init_entity.c \
-  input/move.c \
-  parsing/parsing.c \
-  parsing/get_type.c \
-  parsing/get_map.c \
-  parsing/check_textures.c \
-  parsing/check_map.c \
-  parsing/check_map_access.c \
-  utils/strings.c \
-  utils/error.c \
-  utils/time.c \
-  utils/math.c \
-  utils/ray_utils.c \
-  utils/alloc_utils.c \
-  utils/render_utils.c \
-  utils/render_utils2.c \
-  render/game_loop.c \
-  render/raycast.c \
+	main.c \
+	init/mem_handler.c \
+	init/get_texture.c \
+	input/commands.c \
+	input/init_entity.c \
+	input/move.c \
+	parsing/parsing.c \
+	parsing/get_type.c \
+	parsing/get_map.c \
+	parsing/check_textures.c \
+	parsing/check_map.c \
+	parsing/check_map_access.c \
+	utils/strings.c \
+	utils/error.c \
+	utils/time.c \
+	utils/math.c \
+	utils/ray_utils.c \
+	utils/alloc_utils.c \
+	utils/render_utils.c \
+	utils/render_utils2.c \
+	render/game_loop.c \
+	render/raycast.c \
 )
 all: $(NAME)
 
@@ -48,13 +48,13 @@ $(LIBFT):
 	$(MAKE) bonus -C $(LIBFT_DIR)
 
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3d debug.cub
+	gdb -x a.gdb --args ./cub3D debug.cub
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3d debug.cub
+	gdb --tui -x a.gdb --args ./cub3D debug.cub
 
 val: 
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3d $(ARG)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./cub3D $(ARG)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -76,6 +76,9 @@ pull:
 
 push: 
 	./upd.sh
+
+run:
+	clear ; make && ./$(NAME) debug.cub
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
