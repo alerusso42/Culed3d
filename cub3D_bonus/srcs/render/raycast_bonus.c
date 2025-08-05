@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:27:38 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 	int		i;
 	// int		txtr_size;
 
-(void)i;
+	(void)i;
 	wall_h = wall_height(data, x, y, ray_angle);
 	offset = index_finder(data, ray_angle, x, y);
 	// txtr_size = find_txtr_size(data->img_ptr, data->img_data[SIZE]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 16:36:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:59:24 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,21 @@ int	which_entity(t_data *data, int x, int y, int entity_type)
 	if (entity[i].type == ENTITY_END)
 		return (ENTITY_NOT_FOUND);
 	return (i);
+}
+
+bool	collision_entity(t_data *data, int x, int y)
+{
+	int	i;
+
+	i = -1;
+	while (data->doors[++i].type != ENTITY_END)
+	{
+		if (data->doors[i].map[X] == x && data->doors[i].map[Y] == y)
+		{
+			if (data->doors[i].type == DOOR_OPENED)
+				return (false);
+			return (true);
+		}
+	}
+	return (false);
 }

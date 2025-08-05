@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 16:57:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:17:21 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,21 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 
 int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	int		which_wall;
+	int		which_txtr;
 	int		pixel;
 
-	which_wall = wall_face(data, &data->player, ray_angle);
-	if (which_wall == NORTH || which_wall == SOUTH)
+	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
+		which_txtr = DOOR, printf("DOOR\n");
+	else
+		which_txtr = wall_face(data, &data->player, ray_angle);
+	if (which_txtr == NORTH || which_txtr == SOUTH)
 		pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
 	else
 		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * TXTR);
-	if (which_wall == WEST || which_wall == SOUTH)
+	if (which_txtr == WEST || which_txtr == SOUTH || which_txtr == DOOR)
 		pixel = TXTR - pixel;
-	data->img_ptr = mlx_get_data_addr(data->textures[which_wall], \
+	printf("ray_angle: %f\n", ray_angle);
+	data->img_ptr = mlx_get_data_addr(data->textures[which_txtr], \
 		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
 	if (!data->img_ptr)
 		return (0);

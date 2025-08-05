@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:46:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	get_texture(t_data *data)
 	fill_txtr(&data->textures[SOUTH], data->txtr_south, data->mlx, size);
 	fill_txtr(&data->textures[WEST], data->txtr_west, data->mlx, size);
 	fill_txtr(&data->textures[PLAYER], PLAYER_TXTR, data->mlx, size);
+	size[X] = TXTR;
+	size[Y] = TXTR;
 	fill_txtr(&data->textures[WALL], WALL_TXTR, data->mlx, size);
+	fill_txtr(&data->textures[DOOR], DOOR_TXTR, data->mlx, size);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{

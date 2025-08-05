@@ -52,9 +52,11 @@
 # if DEBUG == true
 #  define PLAYER_TXTR "textures/pisnelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
+#  define DOOR_TXTR "textures/debug_door.xpm"
 # else
 #  define PLAYER_TXTR "textures/pisnelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
+#  define DOOR_TXTR "textures/debug_door.xpm"
 # endif
 
 # define HIMG 64
@@ -63,7 +65,7 @@
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
 # define WSCREEN 1200
-# define HSCREEN 1200
+# define HSCREEN 1080
 
 //# define RADIANT 0.008726
 
@@ -164,6 +166,7 @@ enum e_textures
 	WEST,
 	PLAYER,
 	WALL,
+	DOOR,
 	TEXTURES_NUM,
 };
 
@@ -270,6 +273,7 @@ int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
 int		the_wall_checker(t_entity *entity, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
+bool	collision_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 int		get_pixel_color(char *img_ptr, int i);

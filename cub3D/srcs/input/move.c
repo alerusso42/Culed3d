@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:04:31 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:51:36 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
         return;
     entity->screen[X] = new_x;
     entity->screen[Y] = new_y;
+	entity->map[X] = map_x;
+	entity->map[Y] = map_y;
 }
 
 void	rotate(t_data *data, t_entity *entity)

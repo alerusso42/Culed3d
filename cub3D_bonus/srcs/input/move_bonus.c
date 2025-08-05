@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:59:10 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,37 +51,40 @@ void	move(t_data *data, t_entity *entity, double angle[])
 
 void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
 {
-    double	new_x;
-    double	new_y;
-    int		map_x;
-    int		map_y;
+	double	new_x;
+	double	new_y;
+	int		map_x;
+	int		map_y;
 
-    new_x = entity->screen[X] + (angle[COS] * entity->speed) + offset[X];
-    new_y = entity->screen[Y] + (angle[SIN] * entity->speed) + offset[Y];
-    map_x = (int)(new_x) / WIMG;
-    map_y = (int)(new_y) / HIMG;
-    if (map_y < 0 || map_y >= data->max_y || \
-        map_x < 0 || map_x >= data->max_x)
-        return;
-    if (data->map[map_y][map_x] == '1' || data->map[map_y][map_x] == ' ')
-        return;
-    entity->screen[X] = new_x;
-    entity->screen[Y] = new_y;
+	new_x = entity->screen[X] + (angle[COS] * entity->speed) + offset[X];
+	new_y = entity->screen[Y] + (angle[SIN] * entity->speed) + offset[Y];
+	map_x = (int)(new_x) / WIMG;
+	map_y = (int)(new_y) / HIMG;
+	if (map_y < 0 || map_y >= data->max_y || \
+		map_x < 0 || map_x >= data->max_x)
+		return;
+	if (ft_strchr("1 ", data->map[map_y][map_x]) || \
+		collision_entity(data, map_x, map_y) == true)
+		return;
+	entity->screen[X] = new_x;
+	entity->screen[Y] = new_y;
+	entity->map[X] = map_x;
+	entity->map[Y] = map_y;
 }
 
 void	rotate(t_data *data, t_entity *entity)
 {
 	(void)data;
-    if (entity->input & R_LEFT)
-    {
-        entity->pov[X] += ANGULAR_SPEED;
-        if (entity->pov[X] > 2 * PI)
-            entity->pov[X] -= 2 * PI;
-    }
-    if (entity->input & R_RIGHT)
-    {
-        entity->pov[X] -= ANGULAR_SPEED;
-        if (entity->pov[X] < 0)
-            entity->pov[X] += 2 * PI;
-    }
+	if (entity->input & R_LEFT)
+	{
+		entity->pov[X] += ANGULAR_SPEED;
+		if (entity->pov[X] > 2 * PI)
+			entity->pov[X] -= 2 * PI;
+	}
+	if (entity->input & R_RIGHT)
+	{
+		entity->pov[X] -= ANGULAR_SPEED;
+		if (entity->pov[X] < 0)
+			entity->pov[X] += 2 * PI;
+	}
 }
