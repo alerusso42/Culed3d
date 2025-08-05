@@ -123,5 +123,5 @@ int	get_pixel_color(char *img_ptr, int i)
 	((img_ptr[i + 2] & 255) << 16));
 }
 
-	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n", \
+	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n",
 	// img_ptr[i], img_ptr[i + 1], img_ptr[i + 2], img_ptr[i] & 0xFF, img_ptr[i + 1] & 0xFF, img_ptr[i + 2] & 0xFF);

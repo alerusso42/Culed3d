@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   interact_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 16:45:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/04 21:05:06 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
+
+static void door_line(t_data *data, t_entity *entity, double angle);
+static int	the_door_checker(t_entity *entity, t_data *data);
 
 void	interact(t_data *data)
 {
@@ -20,7 +23,7 @@ void	interact(t_data *data)
 	double	angle;
 
 	angle = data->player.pov[X];
-	line(data, &data->player, angle);
+	door_line(data, &data->player, angle);
 	x = data->player.curr_x / WIMG;
 	y = data->player.curr_y / HIMG;
 	printf("x:%d, y:%d:", x, y);
@@ -33,4 +36,48 @@ void	interact(t_data *data)
 		data->doors[door_n].type = DOOR_OPENED, printf("muro %d aperto!\n", door_n);
 	else if (data->doors[door_n].type == DOOR_OPENED)
 		data->doors[door_n].type = DOOR_CLOSED, printf("muro %d chiuso!\n", door_n);
+}
+
+static void door_line(t_data *data, t_entity *entity, double angle)
+{
+    double x;
+    double y;
+    float cos_angle;
+    float sin_angle;
+	
+	x = entity->screen[X];
+	y = entity->screen[Y];
+    entity->curr_x = x;
+    entity->curr_y = y;
+	if (angle > (2 * PI))
+		angle -= (2 * PI);
+	else if (angle < 0)
+		angle += (2 * PI);
+	cos_angle = round_rad(cos(angle));
+	sin_angle = round_rad(sin(angle)) * -1;
+    while (!the_door_checker(entity, data))
+    {
+        x += cos_angle;
+        y += sin_angle;
+        entity->curr_x = x;
+        entity->curr_y = y;
+    }
+}
+
+static int	the_door_checker(t_entity *entity, t_data *data)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	x = (int)entity->curr_x / WIMG;
+	y = (int)entity->curr_y / HIMG;
+	if ((x == data->max_x && y == data->max_y) || data->map[y][x] == 'D')
+	{
+		i = which_entity(data, x, y, ENTITY_DOOR);
+		if (i == ENTITY_NOT_FOUND || data->doors[i].type == DOOR_OPENED)
+			return (false);
+		return (true);
+	}
+	return (false);
 }
