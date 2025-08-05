@@ -78,7 +78,7 @@ push:
 	./upd.sh
 
 run:
-	clear ; make && ./$(NAME) maps/biggie.cub
+	clear ; make && ./$(NAME) maps/debug.cub
 
 val: 
 	valgrind --suppressions=../s.supp --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./$(NAME) maps/debug.cub

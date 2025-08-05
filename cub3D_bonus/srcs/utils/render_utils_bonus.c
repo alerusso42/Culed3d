@@ -1,19 +1,39 @@
 #include "../../cub3D_bonus.h"
+#define MINIMAP_X 8
+#define MINIMAP_Y 8
 
 int	map_start(t_data *data)
 {
+	int	x;
+	int	y;
 	int	i;
 	int	j;
 
-	i = -1;
-	while (data->map[++i])
+	y = data->player.map[Y] - (MINIMAP_Y / 2);
+	j = 0;
+	if (y < 0)
+	y = 0;
+	while (j < MINIMAP_Y && y < data->max_y && y > 0) 
 	{
-		j = -1;
-		while (data->map[i][++j])
+		i = 0;
+		x = data->player.map[X] - (MINIMAP_X / 2);
+		if (x < 0)
+			x = 0;
+		while (i < MINIMAP_Y  && data->map[y][x] != ' ' && x < data->max_x)
 		{
-			if (data->map[i][j] == '1')
+			if (data->map[y][x] == '1')
 				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
+			if (data->map[y][x] == 'P')
+				put_image_to_image(data, PLAYER, j * HIMG, i * WIMG), printf("a\n");
+			// mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
+			// mlx_do_sync(data->mlx);
+			l_printf("i:%d\tj:%d\n", i, j);
+			l_printf("x:%d\ty:%d\n", x, y);
+			++x;
+			++i;
 		}
+		++j;
+		--y;
 	}
 	return (0);
 }
@@ -105,3 +125,100 @@ void	backgrounder(t_data *data)
 		}
 	}
 }
+
+// i:0     j:0
+// x:5     y:5
+// i:1     j:0
+// x:6     y:5
+// i:2     j:0
+// x:7     y:5
+// i:3     j:0
+// x:8     y:5
+// i:4     j:0
+// x:9     y:5
+// i:5     j:0
+// x:10    y:5
+// i:6     j:0
+// x:11    y:5
+// i:7     j:0
+// x:12    y:5
+// i:0     j:1
+// x:5     y:6
+// i:1     j:1
+// x:6     y:6
+// i:2     j:1
+// x:7     y:6
+// i:3     j:1
+// x:8     y:6
+// i:4     j:1
+// x:9     y:6
+// i:5     j:1
+// x:10    y:6
+// i:6     j:1
+// x:11    y:6
+// i:7     j:1
+// x:12    y:6
+// i:0     j:2
+// x:5     y:7
+// i:1     j:2
+// x:6     y:7
+// i:2     j:2
+// x:7     y:7
+// i:3     j:2
+// x:8     y:7
+// i:4     j:2
+// x:9     y:7
+// i:5     j:2
+// x:10    y:7
+// i:6     j:2
+// x:11    y:7
+// i:7     j:2
+// x:12    y:7
+// i:0     j:3
+// x:5     y:8
+// i:1     j:3
+// x:6     y:8
+// i:2     j:3
+// x:7     y:8
+// i:3     j:3
+// x:8     y:8
+// i:4     j:3
+// x:9     y:8
+// i:5     j:3
+// x:10    y:8
+// i:6     j:3
+// x:11    y:8
+// i:7     j:3
+// x:12    y:8
+// i:0     j:4
+// x:5     y:9
+// i:1     j:4
+// x:6     y:9
+// i:2     j:4
+// x:7     y:9
+// i:3     j:4
+// x:8     y:9
+// i:4     j:4
+// x:9     y:9
+// i:5     j:4
+// x:10    y:9
+// i:6     j:4
+// x:11    y:9
+// i:7     j:4
+// x:12    y:9
+// i:0     j:5
+// x:5     y:10
+// i:1     j:5
+// x:6     y:10
+// i:2     j:5
+// x:7     y:10
+// i:3     j:5
+// x:8     y:10
+// i:4     j:5
+// x:9     y:10
+// i:5     j:5
+// x:10    y:10
+// i:6     j:5
+// x:11    y:10
+// i:7     j:5
+// x:12    y:10

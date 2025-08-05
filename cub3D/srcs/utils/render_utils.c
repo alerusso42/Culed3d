@@ -2,17 +2,19 @@
 
 int	map_start(t_data *data)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = -1;
-	while (data->map[++i])
+	// y = data->player.map[X] - MINIMAP_X / 2;
+	// x = data->player.map[Y] - MINIMAP_Y / 2;
+	y = -1;
+	while (data->map[++y])
 	{
-		j = -1;
-		while (data->map[i][++j])
+		x = -1;
+		while (data->map[y][++x])
 		{
-			if (data->map[i][j] == '1')
-				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
+			if (data->map[y][x] == '1')
+				put_image_to_image(data, WALL, y * HIMG, x * WIMG);
 		}
 	}
 	return (0);
