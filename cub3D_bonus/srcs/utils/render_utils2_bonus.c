@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 12:17:21 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 14:33:22 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ static bool	check_north_collision(t_data *data, t_entity *entity)
 	y[1] = (int)(entity->curr_y) / HIMG;
 	x[2] = (int)(entity->curr_x + 1) / WIMG;
 	y[2] = (int)(entity->curr_y) / HIMG;
-	if (data->map[y[0]][x[0]] == '1' && \
-		(data->map[y[1]][x[1]] == '1') && \
-		(data->map[y[2]][x[2]] == '1'))
+	// if (data->map[y[0]][x[0]] == '1' && \
+	// 	(data->map[y[1]][x[1]] == '1') && \
+	// 	(data->map[y[2]][x[2]] == '1'))
+	if ((ft_strchr("1D", data->map[y[0]][x[0]])) && \
+		(ft_strchr("1D", data->map[y[1]][x[1]]))  && \
+		(ft_strchr("1D", data->map[y[2]][x[2]]))) 
 	{
 		return (true);
 	}
@@ -99,21 +102,23 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 
 int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	int		which_txtr;
+	int		wall_txtr;
 	int		pixel;
 
-	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
-		which_txtr = DOOR, printf("DOOR\n");
-	else
-		which_txtr = wall_face(data, &data->player, ray_angle);
-	if (which_txtr == NORTH || which_txtr == SOUTH)
+	wall_txtr = wall_face(data, &data->player, ray_angle);
+	if (wall_txtr == NORTH || wall_txtr == SOUTH)
 		pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
 	else
 		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * TXTR);
-	if (which_txtr == WEST || which_txtr == SOUTH || which_txtr == DOOR)
+	if (wall_txtr == WEST || wall_txtr == SOUTH)
 		pixel = TXTR - pixel;
-	printf("ray_angle: %f\n", ray_angle);
-	data->img_ptr = mlx_get_data_addr(data->textures[which_txtr], \
+	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
+	{
+		if (wall_txtr == NORTH || wall_txtr == SOUTH)
+			pixel = TXTR - pixel;
+		wall_txtr = DOOR;
+	}
+	data->img_ptr = mlx_get_data_addr(data->textures[wall_txtr], \
 		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
 	if (!data->img_ptr)
 		return (0);

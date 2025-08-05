@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 09:47:25 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/05 14:43:30 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	frame_render(t_data *data)
 	double	angle;
 	int		i;
 
-	backgrounder(data);
-	//clear_window(data);
-	//map_start(data);
+	// backgrounder(data);
+	clear_window(data);
+	map_start(data);
 	data->column = 0;
 	data->color = 0xff000d;
 	pov[X] = data->player.pov[X] - (RADIANT * (FOV / 2));
@@ -60,7 +60,8 @@ void	frame_render(t_data *data)
 		line(data, &data->player, pov[X] + angle);
 		++data->column;
 	}
-	// put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
+	put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
+	// put_image_to_image(data, CROSSHAIR, (HSCREEN / 2) + 32, (WSCREEN / 2) - 64);
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
 }
 
@@ -89,14 +90,14 @@ void line(t_data *data, t_entity *entity, double angle)
 	sin_angle = round_rad(sin(angle)) * -1;
     while (!the_wall_checker(entity, data))
     {
-        //put_pixel(data, (int)x, (int)y, 0xFF0000);
+        put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;
         y += sin_angle;
         entity->curr_x = x;
         entity->curr_y = y;
     }
 	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
-	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+	// test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }
 
 // void	wall(t_data *data, double x, void *txtr)

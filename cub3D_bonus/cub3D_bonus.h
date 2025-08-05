@@ -49,15 +49,10 @@
 # define FFILL_CHARS "0NSEW"
 
 # define SCREEN_TXTR "textures/screen.xpm"
-# if DEBUG == true
-#  define PLAYER_TXTR "textures/pisnelo.xpm"
-#  define WALL_TXTR "textures/debug_wall.xpm"
-#  define DOOR_TXTR "textures/debug_door.xpm"
-# else
-#  define PLAYER_TXTR "textures/pisnelo.xpm"
-#  define WALL_TXTR "textures/debug_wall.xpm"
-#  define DOOR_TXTR "textures/debug_door.xpm"
-# endif
+# define PLAYER_TXTR "textures/pisnelo.xpm"
+# define WALL_TXTR "textures/debug_wall.xpm"
+# define DOOR_TXTR "textures/debug_door.xpm"
+# define CROSS_TXTR "textures/Crosshair.xpm"
 
 # define HIMG 64
 # define WIMG 64
@@ -164,6 +159,7 @@ enum e_textures
 	EAST,
 	SOUTH,
 	WEST,
+	CROSSHAIR,
 	PLAYER,
 	WALL,
 	DOOR,
