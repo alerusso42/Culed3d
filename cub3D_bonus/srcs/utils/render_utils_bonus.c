@@ -1,6 +1,6 @@
 #include "../../cub3D_bonus.h"
-#define MINIMAP_X 8
-#define MINIMAP_Y 8
+#define MINIMAP_X 3
+#define MINIMAP_Y 3
 
 int	map_start(t_data *data)
 {
@@ -9,31 +9,32 @@ int	map_start(t_data *data)
 	int	i;
 	int	j;
 
+	if (value_changed(&data->player.map[X], sizeof(int)) && \
+value_changed(&data->player.map[Y], sizeof(int)))
+		printf("change\n");
 	y = data->player.map[Y] - (MINIMAP_Y / 2);
 	j = 0;
 	if (y < 0)
-	y = 0;
-	while (j < MINIMAP_Y && y < data->max_y && y > 0) 
+		y = 0;
+	while (j < MINIMAP_Y && y <= data->max_y) 
 	{
 		i = 0;
 		x = data->player.map[X] - (MINIMAP_X / 2);
 		if (x < 0)
 			x = 0;
-		while (i < MINIMAP_Y  && data->map[y][x] != ' ' && x < data->max_x)
+		while (i < MINIMAP_X  && data->map[y][x] != ' ' && x <= data->max_x)
 		{
 			if (data->map[y][x] == '1')
-				put_image_to_image(data, WALL, j * HIMG, i * WIMG);
-			if (data->map[y][x] == 'P')
-				put_image_to_image(data, PLAYER, j * HIMG, i * WIMG), printf("a\n");
-			// mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
-			// mlx_do_sync(data->mlx);
+				put_image_to_image(data, WALL, i * HIMG, j * WIMG);
+			if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
+				put_image_to_image(data, PLAYER, i * HIMG, j * WIMG);
 			l_printf("i:%d\tj:%d\n", i, j);
 			l_printf("x:%d\ty:%d\n", x, y);
 			++x;
 			++i;
 		}
 		++j;
-		--y;
+		++y;
 	}
 	return (0);
 }

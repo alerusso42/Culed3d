@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 11:27:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/06 09:09:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,41 @@ Key steps:
 // 	}
 // 	return (txtr_size);
 // }
+
+// Passaggio per passaggio:
+// Espressione	Risultato	Significato
+// txtr_data[idx]			0x000000AA	Blue, LSB
+// txtr_data[idx+1] << 8)	0x0000BB00	Green
+// txtr_data[idx+2] << 16)	0x00CC0000	Red
+
+void line(t_data *data, t_entity *entity, double angle)
+{
+    double x;
+    double y;
+    float cos_angle;
+    float sin_angle;
+	
+	x = entity->screen[X];
+	y = entity->screen[Y];
+    entity->curr_x = x;
+    entity->curr_y = y;
+	if (angle > (2 * PI))
+		angle -= (2 * PI);
+	else if (angle < 0)
+		angle += (2 * PI);
+	cos_angle = round_rad(cos(angle));
+	sin_angle = round_rad(sin(angle)) * -1;
+    while (!the_wall_checker(entity, data))
+    {
+        //put_pixel(data, (int)x, (int)y, 0xFF0000);
+        x += cos_angle;
+        y += sin_angle;
+        entity->curr_x = x;
+        entity->curr_y = y;
+    }
+	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
+	// test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+}
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)
 {

@@ -272,6 +272,7 @@ void	put_pixel(t_data *data, int x, int y, int color);
 bool	collision_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
+bool	value_changed(void *value, size_t type);
 int		get_pixel_color(char *img_ptr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);

@@ -29,6 +29,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	parsing/check_textures_bonus.c \
 	parsing/check_map_bonus.c \
 	parsing/check_map_access_bonus.c \
+	utils/debug_bonus.c \
 	utils/strings_bonus.c \
 	utils/entity_bonus.c \
 	utils/error_bonus.c \
