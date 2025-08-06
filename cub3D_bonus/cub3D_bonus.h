@@ -50,12 +50,12 @@
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
-# define WALL_TXTR "textures/debug_wall.xpm"
+# define WALL_TXTR "textures/debug_walle.xpm"
 # define DOOR_TXTR "textures/debug_door.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
 
-# define HIMG 64
-# define WIMG 64
+# define HIMG 24
+# define WIMG 24
 # define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)

@@ -1,6 +1,6 @@
 #include "../../cub3D_bonus.h"
-#define MINIMAP_X 5
-#define MINIMAP_Y 5
+#define MINIMAP_X 15
+#define MINIMAP_Y 15
 
 int	map_start(t_data *data)
 {
@@ -98,9 +98,9 @@ void	put_image_to_image(t_data *data, int which, int y, int x)
 		while (j != WIMG)
 		{
 			index = i * stuff[1] + j * (stuff[0] / 8);
-			color = txtr_data[index];
-			color = color | (txtr_data[index + 1] << 8);
-			color = color | (txtr_data[index + 2] << 16);
+			color = txtr_data[index] & 0xFF;
+			color = color | ((txtr_data[index + 1] & 0xFF) << 8);
+			color = color | ((txtr_data[index + 2] & 0xFF) << 16);
 			put_pixel(data, y + j, x + i, color);
 			++j;
 		}
