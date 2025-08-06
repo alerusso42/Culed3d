@@ -78,6 +78,7 @@
 //NOTE [L_A: 30; FOV: 64]
 # define ANGULAR_SPEED RADIANT * 2.5
 # define PLAYER_SPEED 5
+# define SENSITIVITY 0.4
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60
@@ -239,11 +240,12 @@ void	free_texture(t_data *data);
 //SECTION	input
 
 void	move(t_data *data, t_entity *entity, double angle[]);
+void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
-void	rotate(t_data *data, t_entity *entity);
 void	init_doors(t_data *data, int n_doors);
 int		ft_cross_close(t_data *data);
+void	mouse_input(t_data *data);
 int		move_player(t_data *data);
 void	interact(t_data *data);
 void	init_player(t_data *data);
@@ -266,7 +268,6 @@ int		index_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
-void	put_image_to_image(t_data *data, int which, int y, int x);
 int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
 int		the_wall_checker(t_entity *entity, t_data *data);
@@ -294,8 +295,8 @@ int		game_loop(t_data *data);
 
 //SECTION render
 
+void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
-void	put_image_to_image(t_data *data, int which, int y, int x);
 void 	line(t_data *data, t_entity *entity, double angle);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);

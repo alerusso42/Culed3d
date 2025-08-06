@@ -35,16 +35,21 @@ int	map_start(t_data *data)
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2])
 {
+	int	i;
+	int	j;
+
+	i = offset[X] * WIMG_MINIMAP;
+	j = offset[Y] * HIMG_MINIMAP;
 	if (data->map[pos[Y]][pos[X]] == '1')
-		put_image_to_image(data, WALL, offset[X], offset[Y]);
+		put_image_to_image(data, WALL, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
-		put_image_to_image(data, PLAYER, offset[X], offset[Y]);
+		put_image_to_image(data, PLAYER, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
 	else if (data->map[pos[Y]][pos[X]] == 'D')
 	{
 		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
-			put_image_to_image(data, DOOR, offset[X], offset[Y]);
+			put_image_to_image(data, DOOR, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
 		else
-			put_image_to_image(data, CROSSHAIR, offset[X], offset[Y]);
+			put_image_to_image(data, CROSSHAIR, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
 	}
 }
 
@@ -86,7 +91,7 @@ void	clear_window(t_data *data)
 /*
 	Put an image to the screen texture.
 */
-void	put_image_to_image(t_data *data, int which, int y, int x)
+void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 {
 	char	*txtr_data;
 	int		stuff[3];
@@ -95,23 +100,21 @@ void	put_image_to_image(t_data *data, int which, int y, int x)
 	int		i;
 	int		j;
 
-	y *= HIMG_MINIMAP;
-	x *= WIMG_MINIMAP;
 	txtr_data = mlx_get_data_addr(data->textures[which], \
 		&stuff[0], &stuff[1], &stuff[2]);
 	if (!txtr_data)
 		return ;
 	i = 0;
-	while (i != HIMG_MINIMAP)
+	while (i != size[Y])
 	{
 		j = 0;
-		while (j != WIMG_MINIMAP)
+		while (j != size[X])
 		{
 			index = i * stuff[1] + j * (stuff[0] / 8);
 			color = txtr_data[index] & 0xFF;
 			color = color | ((txtr_data[index + 1] & 0xFF) << 8);
 			color = color | ((txtr_data[index + 2] & 0xFF) << 16);
-			put_pixel(data, y + j, x + i, color);
+			put_pixel(data, pos[X] + j, pos[Y] + i, color);
 			++j;
 		}
 		i++;

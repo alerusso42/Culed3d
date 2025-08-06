@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 11:45:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,23 @@ void	rotate(t_data *data, t_entity *entity)
 	}
 }
 
+void	mouse_input(t_data *data)
+{
+	int		pos[2];
+	double	diff[2];
+
+	mlx_mouse_get_pos(data->mlx, data->win, &pos[X], &pos[Y]);
+	diff[X] = RADIANT * (pos[X] - (WSCREEN / 2));
+	diff[Y] = RADIANT * (pos[Y] - (HSCREEN / 2));
+	if (diff[X] == 0 && diff[Y] == 0)
+		return ;
+	diff[X] *= SENSITIVITY;
+	diff[Y] *= SENSITIVITY;
+	data->player.pov[X] += (diff[X]  * -1);
+	printf("diff x: %f| diff y:%f\n", diff[X], diff[Y]);
+	mlx_mouse_move(data->mlx, data->win, WSCREEN / 2, HSCREEN / 2);
+}
+
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 {
 	static char	temp;
@@ -113,6 +130,8 @@ void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 	data->map[new_y][new_x] = entity->type;
 	print_matrix(data->map);
 }
+
+
 
 // void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 // {

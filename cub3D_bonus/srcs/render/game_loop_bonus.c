@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 14:37:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:15:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	game_loop(t_data *data)
 	{
 		t1 = elapsed_time(data->start);
 		move_player(data);
+		mouse_input(data);
 		frame_render(data);
 		t2 = elapsed_time(data->start);
 		printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
@@ -60,7 +61,7 @@ void	frame_render(t_data *data)
 		++data->column;
 	}
 	// put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
-	// put_image_to_image(data, CROSSHAIR, (HSCREEN / 2) + 32, (WSCREEN / 2) - 64);
+	put_image_to_image(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
 	map_start(data);
 }
@@ -79,7 +80,7 @@ void	frame_render(t_data *data)
 // 	image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
 // 	if (!image_ptr)
 // 		return ;
-// 	i = pixel * (image[BPP] / 8) + (image[SIZE] * TXTR);
+// 	i = pixel * (image[BPP] / 8) + (imageoffset[X], offset[Y]);[SIZE] * TXTR);
 // 	printf("x:\t%d\n", i);
 // 	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
 // 	put_pixel(data, (int)x, 200, color);

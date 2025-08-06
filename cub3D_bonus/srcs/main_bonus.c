@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 15:35:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:00:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char *argv[])
 	mlx_hook(data.win, 2, 1L << 0, commands_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, commands_release, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
+	mlx_mouse_hide(data.mlx, data.win);
 	gettimeofday(&data.start, NULL);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
