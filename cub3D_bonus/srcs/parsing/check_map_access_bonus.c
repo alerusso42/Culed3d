@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_access_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 12:21:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:11:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	path_finder(t_data *data, char **map_copy, int x, int y);
-static void	player_finder(t_data *data);
 static void	path_checker(t_data *data, char **map);
+static void	player_finder(t_data *data);
 
 /* REVIEW
 Questa funzione controlla che tutti punti della mappa siano accessibili dal
@@ -61,8 +61,8 @@ static void	player_finder(t_data *data)
 		{
 			if (ft_strchr(PLAYER_CHARS, data->map[x][y]))
 			{
-				data->player.map[0] = y;
-				data->player.map[1] = x;
+				data->player.map[X] = y;
+				data->player.map[Y] = x;
 				data->player.type = data->map[x][y];
 			}
 		}

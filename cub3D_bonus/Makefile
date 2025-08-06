@@ -73,10 +73,10 @@ re: fclean mini all
 start: fclean mini all
 
 pull: 
-	git pull
+	(cd ../ ; git pull)
 
 push: 
-	./upd.sh
+	(cd ../ ; ./upd.sh)
 
 run:
 	clear ; make && ./$(NAME) maps/debug.cub

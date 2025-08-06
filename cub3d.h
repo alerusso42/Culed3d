@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 15:58:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:37:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ double	safe_division(double delta, double sum);
 int		get_pixel_color(char *img_ptr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
+void	player_finder(t_data *data);
 void	clear_window(t_data *data);
 long	elapsed_time(t_time start);
 void	*safe_malloc(size_t size);

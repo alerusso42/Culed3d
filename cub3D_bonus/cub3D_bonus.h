@@ -45,7 +45,7 @@
 # define DEBUG true
 # endif
 # define VALID_CHARS " 01NSEWD"
-# define PLAYER_CHARS "NSEW"
+# define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
 
 # define SCREEN_TXTR "textures/screen.xpm"
@@ -219,8 +219,8 @@ enum e_utils
 	ENTITY_END = 0,
 	ENTITY_DOOR = 0,
 	ENTITY_ENEMY = 1,
-	DOOR_OPENED = 1,
-	DOOR_CLOSED = 2,
+	DOOR_OPENED = 'D',
+	DOOR_CLOSED = 'O',
 	MOUSE_LEFT = 1,
 	MOUSE_RIGHT = 3,
 	MOUSE_MIDDLE = 2,
@@ -273,6 +273,7 @@ bool	collision_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
+int		entity_type(t_data *data, int x, int y);
 int		get_pixel_color(char *img_ptr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
@@ -299,5 +300,7 @@ int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
 void	get_texture(t_data *data);
+
+void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 
 #endif

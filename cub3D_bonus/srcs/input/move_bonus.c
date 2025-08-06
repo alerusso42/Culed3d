@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 10:59:10 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:45:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
 		return;
 	entity->screen[X] = new_x;
 	entity->screen[Y] = new_y;
+	update_map(data, entity, map_x, map_y);
 	entity->map[X] = map_x;
 	entity->map[Y] = map_y;
 }
@@ -88,3 +89,38 @@ void	rotate(t_data *data, t_entity *entity)
 			entity->pov[X] += 2 * PI;
 	}
 }
+
+void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
+{
+	static char	temp;
+
+	if (entity->map[X] == new_x && entity->map[Y] == new_y)
+		return ;
+	if (data->map[new_y][new_x] == 'D')
+	{
+		data->map[entity->map[Y]][entity->map[X]] = '0';
+		temp = 'D';
+	}
+	else if (temp == 'D')
+	{
+		data->map[entity->map[Y]][entity->map[X]] = temp;
+		temp = '\0';
+	}
+	else
+	{
+		data->map[entity->map[Y]][entity->map[X]] = data->map[new_y][new_x];
+	}
+	data->map[new_y][new_x] = entity->type;
+	print_matrix(data->map);
+}
+
+// void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
+// {
+// 	if (data->map[new_y][new_x] == 'D')
+// 		temp = 'D'
+// 	data->map[entity->map[Y]][entity->map[X]] = data->map[new_y][new_x];
+// 	data->map[new_y][new_x] = entity->type;
+// 	print_matrix(data->map);
+// }
+
+// x = 9 y = 8

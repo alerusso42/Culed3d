@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 10:59:24 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:52:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ bool	collision_entity(t_data *data, int x, int y)
 		}
 	}
 	return (false);
+}
+
+int	entity_type(t_data *data, int x, int y)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
+		return (data->player.type);
+	i = which_entity(data, x, y, ENTITY_DOOR);
+	if (i == ENTITY_NOT_FOUND)
+		return (ENTITY_NOT_FOUND);
+	return (data->doors[i].type);
 }

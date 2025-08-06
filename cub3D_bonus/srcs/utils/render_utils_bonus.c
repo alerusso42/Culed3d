@@ -1,6 +1,6 @@
 #include "../../cub3D_bonus.h"
-#define MINIMAP_X 3
-#define MINIMAP_Y 3
+#define MINIMAP_X 5
+#define MINIMAP_Y 5
 
 int	map_start(t_data *data)
 {
@@ -9,27 +9,29 @@ int	map_start(t_data *data)
 	int	i;
 	int	j;
 
-	if (value_changed(&data->player.map[X], sizeof(int)) && \
-value_changed(&data->player.map[Y], sizeof(int)))
-		printf("change\n");
-	y = data->player.map[Y] - (MINIMAP_Y / 2);
+	y = data->player.map[Y] - ((MINIMAP_Y / 2));
 	j = 0;
 	if (y < 0)
 		y = 0;
 	while (j < MINIMAP_Y && y <= data->max_y) 
 	{
 		i = 0;
-		x = data->player.map[X] - (MINIMAP_X / 2);
+		x = data->player.map[X] - ((MINIMAP_X / 2));
 		if (x < 0)
 			x = 0;
 		while (i < MINIMAP_X  && data->map[y][x] != ' ' && x <= data->max_x)
 		{
 			if (data->map[y][x] == '1')
 				put_image_to_image(data, WALL, i * HIMG, j * WIMG);
-			if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
+			else if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
 				put_image_to_image(data, PLAYER, i * HIMG, j * WIMG);
-			l_printf("i:%d\tj:%d\n", i, j);
-			l_printf("x:%d\ty:%d\n", x, y);
+			else if (data->map[y][x] == 'D')
+			{
+				if (entity_type(data, x, y) == DOOR_CLOSED)
+					put_image_to_image(data, DOOR, i * HIMG, j * WIMG);
+				else
+					put_image_to_image(data, CROSSHAIR, i * HIMG, j * WIMG);
+			}
 			++x;
 			++i;
 		}
