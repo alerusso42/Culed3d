@@ -18,9 +18,9 @@ PARS_DIR  = parsing
 SRCS = $(addprefix $(SRC_PATH), \
 	main_bonus.c \
 	init/mem_handler_bonus.c \
+	init/entity_bonus.c \
 	init/get_texture_bonus.c \
 	input/commands_bonus.c \
-	input/init_entity_bonus.c \
 	input/interact_bonus.c \
 	input/move_bonus.c \
 	parsing/parsing_bonus.c \
@@ -37,8 +37,9 @@ SRCS = $(addprefix $(SRC_PATH), \
 	utils/math_bonus.c \
 	utils/ray_utils_bonus.c \
 	utils/alloc_utils_bonus.c \
-	utils/render_utils_bonus.c \
-	utils/render_utils2_bonus.c \
+	utils/render_bonus.c \
+	utils/render2_bonus.c \
+	utils/render3_bonus.c \
 	render/game_loop_bonus.c \
 	render/raycast_bonus.c \
 )

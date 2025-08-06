@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_entity_bonus.c                                :+:      :+:    :+:   */
+/*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 14:23:47 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:03:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,5 @@ void	init_doors(t_data *data, int n_doors)
 				curr_door++;
 			}
 		}
-	}
-	curr_door = 0;
-	while (curr_door != n_doors)
-	{
-		printf("entity %d:map\t%d\t%d\t\n", curr_door, data->doors[curr_door].map[X], data->doors[curr_door].map[Y]);
-		printf("screen:\t%d\t%d\n", data->doors[curr_door].screen[X], data->doors[curr_door].screen[Y]);
-		++curr_door;
 	}
 }

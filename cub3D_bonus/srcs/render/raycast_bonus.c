@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 09:09:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:53:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void line(t_data *data, t_entity *entity, double angle)
         entity->curr_y = y;
     }
 	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
-	// test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)

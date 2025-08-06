@@ -54,8 +54,10 @@
 # define DOOR_TXTR "textures/debug_door.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
 
-# define HIMG 24
-# define WIMG 24
+# define HIMG 64
+# define WIMG 64
+# define WIMG_MINIMAP 24
+# define HIMG_MINIMAP 24
 # define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)

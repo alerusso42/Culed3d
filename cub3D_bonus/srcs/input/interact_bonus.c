@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 08:45:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:19:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ void	interact(t_data *data)
 	door_n = which_entity(data, x, y, ENTITY_DOOR);
 	if (door_n == ENTITY_NOT_FOUND)
 		return ;
-	if (data->doors[door_n].type == DOOR_CLOSED && ray_lenght(data, data->player.curr_x, data->player.curr_y) < 50)
-		data->doors[door_n].type = DOOR_OPENED, printf("muro %d aperto!\n", door_n);
-	else if (data->doors[door_n].type == DOOR_OPENED  && ray_lenght(data, data->player.curr_x, data->player.curr_y) < 50)
-		data->doors[door_n].type = DOOR_CLOSED, printf("muro %d chiuso!\n", door_n);
+	if (data->doors[door_n].type == DOOR_CLOSED && \
+		ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+		data->doors[door_n].type = DOOR_OPENED;
+	else if (data->doors[door_n].type == DOOR_OPENED && \
+		ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+		data->doors[door_n].type = DOOR_CLOSED;
 }
 
 static void door_line(t_data *data, t_entity *entity, double angle)
