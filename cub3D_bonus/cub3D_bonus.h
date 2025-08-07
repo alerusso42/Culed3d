@@ -62,6 +62,7 @@
 # define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
+# define SHADE_INTENSITY 30
 # define WSCREEN 1200
 # define HSCREEN 1080
 
@@ -103,6 +104,7 @@ typedef struct s_texture
 	void	*ptr;
 	char	*path;
 	char	*xpm;
+	double	shade;
 	int		bpp;
 	int		size[2];
 	int		endian;
@@ -284,7 +286,7 @@ double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
-int		get_pixel_color(char *img_ptr, int i);
+int		get_pixel_color(t_texture *txtr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);

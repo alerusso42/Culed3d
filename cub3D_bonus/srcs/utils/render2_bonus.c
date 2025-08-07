@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/07 08:48:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/07 11:05:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,16 @@ t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	return (txtr);
 }
 
-int	get_pixel_color(char *img_ptr, int i)
+int	get_pixel_color(t_texture *txtr, int i)
 {
-	return ((img_ptr[i] & 255) | \
-	((img_ptr[i + 1] & 255) << 8) | \
-	((img_ptr[i + 2] & 255) << 16));
+	int	r;
+	int	g;
+	int	b;
+
+	r = (txtr->xpm[i] & 255) * txtr->shade;
+	g = (int)((txtr->xpm[i + 1] & 255) * txtr->shade) << 8;
+	b = (int)((txtr->xpm[i + 2] & 255) * txtr->shade) << 16;
+	return (r | g | b);
 }
 
 	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n",
