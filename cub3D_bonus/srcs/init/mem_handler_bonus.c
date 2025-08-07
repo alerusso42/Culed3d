@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/06 15:16:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/07 08:31:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	lets_start_the_party(t_data *data)
 		"GABIBBO");
 	if (!data->win)
 		error(data, 0, NULL);
-	data->textures = ft_calloc(TEXTURES_NUM, sizeof(void *));
-	if (!data->textures)
+	data->txtr = ft_calloc(TEXTURES_NUM + 1, sizeof(t_texture));
+	if (!data->txtr)
 		error(data, E_MALLOC, NULL);
 	get_texture(data);
 	init_player(data);
-	data->screen = mlx_get_data_addr(data->textures[SCREEN], &data->bpp, \
+	data->screen = mlx_get_data_addr(data->txtr[SCREEN].ptr, &data->bpp, \
 		&data->size_line, &data->endian);
 }

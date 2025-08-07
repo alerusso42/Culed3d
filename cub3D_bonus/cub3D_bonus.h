@@ -51,13 +51,14 @@
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
 # define WALL_TXTR "textures/debug_walle.xpm"
-# define DOOR_TXTR "textures/debug_door.xpm"
+# define DOOR_TXTR "textures/gabibbo.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
 
 # define HIMG 64
 # define WIMG 64
 # define WIMG_MINIMAP 24
 # define HIMG_MINIMAP 24
+# define MINIMAP 15
 # define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
@@ -96,11 +97,17 @@
 # define ANGLE_270 (ANGLE_90 * 3)
 
 typedef struct timeval		t_time;
-typedef struct s_drawline	t_drawline;
 
-typedef struct s_drawline
+typedef struct s_texture
 {
-}	t_drawline;
+	void	*ptr;
+	char	*path;
+	char	*xpm;
+	int		bpp;
+	int		size[2];
+	int		endian;
+	int		offset;
+}	t_texture;
 
 typedef struct s_entity
 {
@@ -125,7 +132,7 @@ typedef struct s_data
 	t_entity	*doors;
 	void		*mlx;
 	void		*win;
-	void		**textures;
+	t_texture	*txtr;
 	char		*screen;
 	char		**map;
 	char		*txtr_north;
@@ -264,7 +271,7 @@ void	finish_him(int fd);
 
 //SECTION	utils
 
-int		index_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
+t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);

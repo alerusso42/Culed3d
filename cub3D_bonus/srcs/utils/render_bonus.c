@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
+/*   Updated: 2025/08/07 09:15:17 by alerusso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3D_bonus.h"
-#define MINIMAP_X 15
-#define MINIMAP_Y 15
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2]);
 
@@ -11,17 +21,17 @@ int	map_start(t_data *data)
 	int	i;
 	int	j;
 
-	y = data->player.map[Y] - ((MINIMAP_Y / 2));
+	y = data->player.map[Y] - ((MINIMAP / 2));
 	j = 1;
 	if (y < 0)
 		y = 0;
-	while (j < MINIMAP_Y + 1 && y <= data->max_y) 
+	while (j < MINIMAP + 1 && y <= data->max_y) 
 	{
 		i = 1;
-		x = data->player.map[X] - ((MINIMAP_X / 2));
+		x = data->player.map[X] - ((MINIMAP / 2));
 		if (x < 0)
 			x = 0;
-		while (i < MINIMAP_X + 1 && data->map[y][x] != ' ' && x <= data->max_x)
+		while (i < MINIMAP + 1 && data->map[y][x] != ' ' && x <= data->max_x)
 		{
 			minimap_print(data, (int [2]){i, j}, (int [2]){x, y});
 			++x;
@@ -93,27 +103,27 @@ void	clear_window(t_data *data)
 */
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 {
-	char	*txtr_data;
-	int		stuff[3];
-	int		color;
-	int		index;
-	int		i;
-	int		j;
+	t_texture	*txtr;
+	int			color;
+	int			index;
+	int			i;
+	int			j;
 
-	txtr_data = mlx_get_data_addr(data->textures[which], \
-		&stuff[0], &stuff[1], &stuff[2]);
-	if (!txtr_data)
+	txtr = &data->txtr[which];
+	if (!txtr->ptr)
 		return ;
 	i = 0;
+	pos[X] *= size[X];
+	pos[Y] *= size[Y];
 	while (i != size[Y])
 	{
 		j = 0;
 		while (j != size[X])
 		{
-			index = i * stuff[1] + j * (stuff[0] / 8);
-			color = txtr_data[index] & 0xFF;
-			color = color | ((txtr_data[index + 1] & 0xFF) << 8);
-			color = color | ((txtr_data[index + 2] & 0xFF) << 16);
+			index = i * txtr->size[X] + j * (txtr->bpp / 8);
+			color = txtr->xpm[index] & 0xFF;
+			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
+			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
 			put_pixel(data, pos[X] + j, pos[Y] + i, color);
 			++j;
 		}

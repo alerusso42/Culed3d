@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils2_bonus.c                              :+:      :+:    :+:   */
+/*   render2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 14:33:22 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/07 08:48:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 	return ((int)height);
 }
 
-int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
+t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	int		wall_txtr;
-	int		pixel;
+	t_texture	*txtr;
+	int			wall_txtr;
+	int			pixel;
 
 	wall_txtr = wall_face(data, &data->player, ray_angle);
 	if (wall_txtr == NORTH || wall_txtr == SOUTH)
@@ -118,11 +119,9 @@ int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 			pixel = TXTR - pixel;
 		wall_txtr = DOOR;
 	}
-	data->img_ptr = mlx_get_data_addr(data->textures[wall_txtr], \
-		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
-	if (!data->img_ptr)
-		return (0);
-	return (pixel * (data->img_data[BPP] / 8));
+	txtr = &data->txtr[wall_txtr];
+	txtr->offset = pixel * (txtr->bpp / 8);
+	return (txtr);
 }
 
 int	get_pixel_color(char *img_ptr, int i)
