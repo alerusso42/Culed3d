@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:28:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/09 10:19:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,16 @@ double	round_rad(double rad)
 	return (rad);
 }
 
-/*
-//REVIEW
-	pov:	represent the 
-*/
-void	update_delta(double pov, double *delta_x, double *delta_y)
+int	bigger(int a, int b, int c, int d)
 {
-	*delta_x = round_rad(cos(pov));
-	*delta_y = round_rad(sin(pov)) * -1;
+	int	bigger;
+
+	bigger = a;
+	if (b > bigger)
+		bigger = b;
+	if (c > bigger)
+		bigger = c;
+	if (d > bigger)
+		bigger = c;
+	return (bigger);
 }

@@ -6,14 +6,14 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/07 09:21:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 11:04:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	set_to_null(t_data *data);
-static void	fill_txtr(t_texture *txtr, char *name, void *connect, int size[2]);
+static void	fill_txtr(t_data *data, t_texture *txtr, char *name, int size[2]);
 
 /*
 //REVIEW	get_texture
@@ -31,19 +31,19 @@ void	get_texture(t_data *data)
 	size[X] = WSCREEN;
 	size[Y] = HSCREEN;
 	set_to_null(data);
-	fill_txtr(&data->txtr[SCREEN], SCREEN_TXTR, data->mlx, size);
+	fill_txtr(data, &data->txtr[SCREEN], SCREEN_TXTR, size);
 	size[X] = WIMG;
 	size[Y] = HIMG;
-	fill_txtr(&data->txtr[NORTH], data->txtr_north, data->mlx, size);
-	fill_txtr(&data->txtr[EAST], data->txtr_east, data->mlx, size);
-	fill_txtr(&data->txtr[SOUTH], data->txtr_south, data->mlx, size);
-	fill_txtr(&data->txtr[WEST], data->txtr_west, data->mlx, size);
-	fill_txtr(&data->txtr[PLAYER], PLAYER_TXTR, data->mlx, size);
-	fill_txtr(&data->txtr[CROSSHAIR], CROSS_TXTR, data->mlx, size);
+	fill_txtr(data, &data->txtr[NORTH], data->txtr_north, size);
+	fill_txtr(data, &data->txtr[EAST], data->txtr_east, size);
+	fill_txtr(data, &data->txtr[SOUTH], data->txtr_south, size);
+	fill_txtr(data, &data->txtr[WEST], data->txtr_west, size);
+	fill_txtr(data, &data->txtr[PLAYER], PLAYER_TXTR, size);
+	fill_txtr(data, &data->txtr[CROSSHAIR], CROSS_TXTR, size);
 	size[X] = TXTR;
 	size[Y] = TXTR;
-	fill_txtr(&data->txtr[WALL], WALL_TXTR, data->mlx, size);
-	fill_txtr(&data->txtr[DOOR], DOOR_TXTR, data->mlx, size);
+	fill_txtr(data, &data->txtr[WALL], WALL_TXTR, size);
+	fill_txtr(data, &data->txtr[DOOR], DOOR_TXTR, size);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
@@ -61,20 +61,20 @@ static void	set_to_null(t_data *data)
 		data->txtr[i] = (t_texture){0};
 }
 
-static void	fill_txtr(t_texture *txtr, char *name, void *connect, int size[2])
+static void	fill_txtr(t_data *data, t_texture *txtr, char *name, int size[2])
 {
 	char	*line;
 	char	*height;
 	int		fd;
 	int		counter;
 
-	txtr->ptr = mlx_xpm_file_to_image(connect, name, &size[X], &size[Y]);
+	txtr->ptr = mlx_xpm_file_to_image(data->mlx, name, &size[X], &size[Y]);
 	if (!txtr->ptr)
 		return ;
 	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, &txtr->size[X], &txtr->endian);
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
-		return ;
+		return (error(data, E_OPEN, name));
 	counter = 5;
 	line = NULL;
 	while (--counter)
@@ -85,8 +85,8 @@ static void	fill_txtr(t_texture *txtr, char *name, void *connect, int size[2])
 	close(fd);
 	height = line + sub_strlen(line, " ", EXCLUDE);
 	height += 1;
-	printf("%s\n", height);
 	txtr->size[Y] = ft_atoi(height);
+	// txtr->filters += FILTER_BLACK_WHITE;
 	free(line);
 }
 

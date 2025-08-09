@@ -109,6 +109,7 @@ typedef struct s_texture
 	int		size[2];
 	int		endian;
 	int		offset;
+	char	filters;
 }	t_texture;
 
 typedef struct s_entity
@@ -208,6 +209,12 @@ enum	e_type_identifers
 	TYPE_IDENTIFIERS_NUM = 6,
 };
 
+enum	e_texture_filters
+{
+	FILTER_ON = 255,
+	FILTER_BLACK_WHITE = 1,
+};
+
 enum e_utils
 {
 	X = 0,
@@ -279,6 +286,7 @@ int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
+void	txtr_filters(t_texture *txtr, int *r, int *g, int *b);
 int		the_wall_checker(t_entity *entity, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 bool	collision_entity(t_data *data, int x, int y);
@@ -288,6 +296,7 @@ bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
 int		get_pixel_color(t_texture *txtr, int i);
 void	update_coord(t_entity *entity_data);
+int		bigger(int a, int b, int c, int d);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);
 long	elapsed_time(t_time start);
