@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/07 09:15:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:09:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	frame_render(t_data *data)
 	}
 	// put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 	put_image_to_image(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
-	map_start(data);
+	animation(data, &data->player);
+	//map_start(data, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 

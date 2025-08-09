@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 10:47:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 	return ((int)height);
 }
 
-t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
+t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	t_texture	*txtr;
+	t_txtr	*txtr;
 	int			wall_txtr;
 	int			pixel;
 
@@ -124,7 +124,7 @@ t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	return (txtr);
 }
 
-int	get_pixel_color(t_texture *txtr, int i)
+int	get_pixel_color(t_txtr *txtr, int i)
 {
 	int	r;
 	int	g;

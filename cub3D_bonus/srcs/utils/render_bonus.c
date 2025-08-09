@@ -6,21 +6,21 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/07 09:15:17 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:13:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2]);
+static void	background(t_data *data);
 
-int	map_start(t_data *data)
+int	map_start(t_data *data, int i, int j)
 {
 	int	x;
 	int	y;
-	int	i;
-	int	j;
 
+	background(data);
 	y = data->player.map[Y] - ((MINIMAP / 2));
 	j = 1;
 	if (y < 0)
@@ -43,23 +43,49 @@ int	map_start(t_data *data)
 	return (0);
 }
 
+static void	background(t_data *data)
+{
+	int	x;
+	int	y;
+	int	color;
+	
+	x = ((MINIMAP + 2) * 24);
+	y = (MINIMAP * 24);
+	color = (200 << 16) | (120 << 8) | 170;
+	while (x > 0)
+	{
+		y = (MINIMAP * 24);
+		while (y > 0)
+		{
+			put_pixel(data, x, y, color);
+			y--;
+		}
+		x--;
+	}
+}
+
 static void	minimap_print(t_data *data, int offset[2], int pos[2])
 {
 	int	i;
 	int	j;
+	int	size_minimap[2];
 
+	size_minimap[X] = WIMG_MINIMAP;
+	size_minimap[Y] = HIMG_MINIMAP;
 	i = offset[X] * WIMG_MINIMAP;
 	j = offset[Y] * HIMG_MINIMAP;
 	if (data->map[pos[Y]][pos[X]] == '1')
-		put_image_to_image(data, WALL, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
+		put_image_to_image(data, WALL, offset, size_minimap);
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
-		put_image_to_image(data, PLAYER, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
+	{
+		put_image_to_image(data, which_p(data), offset, size_minimap);
+	}
 	else if (data->map[pos[Y]][pos[X]] == 'D')
 	{
 		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
-			put_image_to_image(data, DOOR, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
+			put_image_to_image(data, DOOR, offset, size_minimap);
 		else
-			put_image_to_image(data, CROSSHAIR, offset, (int [2]){WIMG_MINIMAP, HIMG_MINIMAP});
+			put_image_to_image(data, CROSSHAIR, offset, size_minimap);
 	}
 }
 
@@ -98,35 +124,3 @@ void	clear_window(t_data *data)
 	}
 }
 
-/*
-	Put an image to the screen texture.
-*/
-void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
-{
-	t_texture	*txtr;
-	int			color;
-	int			index;
-	int			i;
-	int			j;
-
-	txtr = &data->txtr[which];
-	if (!txtr->ptr)
-		return ;
-	i = 0;
-	pos[X] *= size[X];
-	pos[Y] *= size[Y];
-	while (i != size[Y])
-	{
-		j = 0;
-		while (j != size[X])
-		{
-			index = i * txtr->size[X] + j * (txtr->bpp / 8);
-			color = txtr->xpm[index] & 0xFF;
-			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
-			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
-			put_pixel(data, pos[X] + j, pos[Y] + i, color);
-			++j;
-		}
-		i++;
-	}
-}

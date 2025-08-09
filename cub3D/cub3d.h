@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 12:21:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,6 +279,6 @@ void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
 void	backgrounder(t_data *data);
-void	get_texture(t_data *data);
+void	get_txtr(t_data *data);
 
 #endif

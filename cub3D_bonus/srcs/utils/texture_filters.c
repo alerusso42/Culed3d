@@ -6,13 +6,13 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 10:32:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 10:48:29 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-void	txtr_filters(t_texture *txtr, int *r, int *g, int *b)
+void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b)
 {
 	int	rgb;
 

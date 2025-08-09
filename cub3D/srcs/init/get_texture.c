@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture.c                                      :+:      :+:    :+:   */
+/*   get_txtr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,14 +16,14 @@ static void	set_to_null(t_data *data);
 static void	fill_txtr(void **p, char *filename, void *connect, int size[2]);
 
 /*
-//REVIEW	get_texture
+//REVIEW	get_txtr
 
 	data->texture is an array of texture of size TEXTURE_NUM + 1.
 	we use this to get texture to print.
 	
 	If one texture is missing, we call error.
 */
-void	get_texture(t_data *data)
+void	get_txtr(t_data *data)
 {
 	int		size[2];
 	int		i;

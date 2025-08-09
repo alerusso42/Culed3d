@@ -6,24 +6,24 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 14:30:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/07 08:27:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	set_to_null(t_data *data);
-static void	fill_txtr(t_texture *txtr, char *name, void *connect, int size[2]);
+static void	fill_txtr(t_txtr *txtr, char *name, void *connect, int size[2]);
 
 /*
-//REVIEW	get_texture
+//REVIEW	get_txtr
 
 	data->texture is an array of texture of size TEXTURE_NUM + 1.
 	we use this to get texture to print.
 	
 	If one texture is missing, we call error.
 */
-void	get_texture(t_data *data)
+void	get_txtr(t_data *data)
 {
 	int		size[2];
 	int		i;
@@ -58,10 +58,10 @@ static void	set_to_null(t_data *data)
 
 	i = -1;
 	while (++i < TEXTURES_NUM)
-		data->txtr[i] = (t_texture){0};
+		data->txtr[i] = (t_txtr){0};
 }
 
-static void	fill_txtr(t_texture *txtr, char *name, void *connect, int size[2])
+static void	fill_txtr(t_txtr *txtr, char *name, void *connect, int size[2])
 {
 	char	*line;
 	char	*height;
@@ -118,5 +118,5 @@ typedef struct s_texture
 	int		bpp;
 	int		size[2];
 	int		endian;
-}	t_texture;
+}	t_txtr;
 

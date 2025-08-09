@@ -50,9 +50,28 @@
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
-# define WALL_TXTR "textures/debug_walle.xpm"
+# define WALL_TXTR "textures/mini_wall.xpm"
 # define DOOR_TXTR "textures/gabibbo.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
+# define MINI_PLAYER_0_TXTR "textures/mini_player_0.xpm"
+# define MINI_PLAYER_20_TXTR "textures/mini_player_20.xpm"
+# define MINI_PLAYER_40_TXTR "textures/mini_player_40.xpm"
+# define MINI_PLAYER_60_TXTR "textures/mini_player_60.xpm"
+# define MINI_PLAYER_80_TXTR "textures/mini_player_80.xpm"
+# define MINI_PLAYER_100_TXTR "textures/mini_player_100.xpm"
+# define MINI_PLAYER_120_TXTR "textures/mini_player_120.xpm"
+# define MINI_PLAYER_140_TXTR "textures/mini_player_140.xpm"
+# define MINI_PLAYER_160_TXTR "textures/mini_player_160.xpm"
+# define MINI_PLAYER_180_TXTR "textures/mini_player_180.xpm"
+# define MINI_PLAYER_200_TXTR "textures/mini_player_200.xpm"
+# define MINI_PLAYER_220_TXTR "textures/mini_player_220.xpm"
+# define MINI_PLAYER_240_TXTR "textures/mini_player_240.xpm"
+# define MINI_PLAYER_260_TXTR "textures/mini_player_260.xpm"
+# define MINI_PLAYER_280_TXTR "textures/mini_player_280.xpm"
+# define MINI_PLAYER_300_TXTR "textures/mini_player_300.xpm"
+# define MINI_PLAYER_320_TXTR "textures/mini_player_320.xpm"
+# define MINI_PLAYER_340_TXTR "textures/mini_player_340.xpm"
+# define MINI_PLAYER_360_TXTR "textures/mini_player_360.xpm"
 
 # define HIMG 64
 # define WIMG 64
@@ -93,9 +112,12 @@
 # define TANTA 50
 
 # define ANGLE_0 0
+# define ANGLE_1 RADIANT
+# define ANGLE_20 (RADIANT * 20)
 # define ANGLE_90 (PI / 2)
 # define ANGLE_180 (PI)
 # define ANGLE_270 (ANGLE_90 * 3)
+# define ANGLE_360 (ANGLE_90 * 4)
 
 typedef struct timeval		t_time;
 
@@ -110,7 +132,7 @@ typedef struct s_texture
 	int		endian;
 	int		offset;
 	char	filters;
-}	t_texture;
+}	t_txtr;
 
 typedef struct s_entity
 {
@@ -119,9 +141,11 @@ typedef struct s_entity
 	double	pov[2];
 	int		screen[2];
 	int		map[2];
-	char	*frame;
+	int		*frames;
+	int		f_curr;
+	int		f_time;
+	int		f_elapsed;
 	double	speed;
-	int		curr_frame;
 	int		vite_rimaste;
 	char	type;
 	char	input;
@@ -135,7 +159,7 @@ typedef struct s_data
 	t_entity	*doors;
 	void		*mlx;
 	void		*win;
-	t_texture	*txtr;
+	t_txtr	*txtr;
 	char		*screen;
 	char		**map;
 	char		*txtr_north;
@@ -176,6 +200,24 @@ enum e_textures
 	PLAYER,
 	WALL,
 	DOOR,
+	M_PLAYER_0,
+	M_PLAYER_20,
+	M_PLAYER_40,
+	M_PLAYER_60,
+	M_PLAYER_80,
+	M_PLAYER_100,
+	M_PLAYER_120,
+	M_PLAYER_140,
+	M_PLAYER_160,
+	M_PLAYER_180,
+	M_PLAYER_200,
+	M_PLAYER_220,
+	M_PLAYER_240,
+	M_PLAYER_260,
+	M_PLAYER_280,
+	M_PLAYER_300,
+	M_PLAYER_320,
+	M_PLAYER_340,
 	TEXTURES_NUM,
 };
 
@@ -280,13 +322,13 @@ void	finish_him(int fd);
 
 //SECTION	utils
 
-t_texture	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
+t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
-void	txtr_filters(t_texture *txtr, int *r, int *g, int *b);
+void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
 int		the_wall_checker(t_entity *entity, t_data *data);
 void	put_pixel(t_data *data, int x, int y, int color);
 bool	collision_entity(t_data *data, int x, int y);
@@ -294,13 +336,14 @@ double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
-int		get_pixel_color(t_texture *txtr, int i);
+int		get_pixel_color(t_txtr *txtr, int i);
 void	update_coord(t_entity *entity_data);
 int		bigger(int a, int b, int c, int d);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);
 long	elapsed_time(t_time start);
 void	*safe_malloc(size_t size);
+int		which_p(t_data *data);
 double	round_rad(double rad);
 double	grad2rad(double rad);
 double	rad2deg(double rad);
@@ -308,7 +351,7 @@ void	delete(void **ptr);
 
 //SECTION debug
 
-int		map_start(t_data *data);
+int		map_start(t_data *data, int i, int j);
 int		game_loop(t_data *data);
 
 //SECTION render
@@ -316,11 +359,13 @@ int		game_loop(t_data *data);
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
 void 	line(t_data *data, t_entity *entity, double angle);
+void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
+int		which_p(t_data *data);
 void	backgrounder(t_data *data);
-void	get_texture(t_data *data);
+void	get_txtr(t_data *data);
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 
