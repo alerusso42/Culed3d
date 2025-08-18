@@ -109,6 +109,7 @@
 
 //FIXME	This flag is in debug state.
 # define SPEED 0.01
+# define ANIMATION_SPEED 12
 # define TANTA 50
 
 # define ANGLE_0 0
@@ -139,16 +140,17 @@ typedef struct s_entity
 	double	curr_x;
 	double	curr_y;
 	double	pov[2];
+	double	speed;
 	int		screen[2];
 	int		map[2];
 	int		*frames;
 	int		f_curr;
 	int		f_time;
 	int		f_elapsed;
-	double	speed;
 	int		vite_rimaste;
 	char	type;
 	char	input;
+	bool	render;
 }	t_entity;
 
 
@@ -357,6 +359,7 @@ int		game_loop(t_data *data);
 //SECTION render
 
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
+void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
 void 	line(t_data *data, t_entity *entity, double angle);
 void	animation(t_data *data, t_entity *entity);

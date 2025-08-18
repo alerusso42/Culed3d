@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:47:14 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,11 @@ void line(t_data *data, t_entity *entity, double angle)
 	y = entity->screen[Y];
     entity->curr_x = x;
     entity->curr_y = y;
-	if (angle > (2 * PI))
-		angle -= (2 * PI);
-	else if (angle < 0)
-		angle += (2 * PI);
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-	double	dda_data[2];
-	dda_data[X] = atan2(sin_angle, cos_angle);
-	dda_data[Y] = atan2(cos_angle, sin_angle);
+	// double	dda_data[2];
+	// dda_data[X] = atan2(sin_angle, cos_angle);
+	// dda_data[Y] = atan2(cos_angle, sin_angle);
 	// printf("atan x:%f\tatan y:%f\n", dda_data[X], dda_data[Y]);
     while (!the_wall_checker(entity, data))
     {

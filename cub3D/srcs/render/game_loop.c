@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/05 16:21:56 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:08:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	frame_render(t_data *data)
 		line(data, &data->player, pov[X] + angle);
 		++data->column;
 	}
-	// put_image_to_image(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
+	// put_image_resize(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
 }
 

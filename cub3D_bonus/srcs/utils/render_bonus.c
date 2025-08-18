@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 16:13:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:09:54 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,17 @@ static void	minimap_print(t_data *data, int offset[2], int pos[2])
 	i = offset[X] * WIMG_MINIMAP;
 	j = offset[Y] * HIMG_MINIMAP;
 	if (data->map[pos[Y]][pos[X]] == '1')
-		put_image_to_image(data, WALL, offset, size_minimap);
+		put_image_resize(data, WALL, offset, size_minimap);
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
 	{
-		put_image_to_image(data, which_p(data), offset, size_minimap);
+		put_image_resize(data, which_p(data), offset, size_minimap);
 	}
 	else if (data->map[pos[Y]][pos[X]] == 'D')
 	{
 		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
-			put_image_to_image(data, DOOR, offset, size_minimap);
+			put_image_resize(data, DOOR, offset, size_minimap);
 		else
-			put_image_to_image(data, CROSSHAIR, offset, size_minimap);
+			put_image_resize(data, CROSSHAIR, offset, size_minimap);
 	}
 }
 

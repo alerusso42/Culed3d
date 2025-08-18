@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 16:57:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:37:45 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ void	mouse_input(t_data *data)
 	diff[Y] *= SENSITIVITY;
 	data->player.pov[X] += (diff[X]  * -1);
 	printf("diff x: %f| diff y:%f\n", diff[X], diff[Y]);
+	if (data->player.pov[X] > PI * 2)
+		data->player.pov[X] -= PI * 2;
+	else if (data->player.pov[X] < 0)
+		data->player.pov[X] += PI * 2;
 	mlx_mouse_move(data->mlx, data->win, WSCREEN / 2, HSCREEN / 2);
 }
 

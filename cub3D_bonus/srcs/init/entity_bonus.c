@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 17:05:57 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:28:28 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_player(t_data *data)
 		data->player.pov[X] = RADIANT * (270);
 	init_animation(data, &data->player, 2, (int [2])\
 	{NORTH, EAST});
+	data->player.type = 'N';
 }
 
 void	init_doors(t_data *data, int n_doors)
@@ -74,7 +75,7 @@ static void	init_animation(t_data *data, t_entity *entity, int n, int *frames)
 {
 	int	i;
 
-	entity->f_time = FPS;
+	entity->f_time = ANIMATION_SPEED;
 	entity->frames = malloc(n * sizeof(int));
 	if (!entity->frames)
 		return (error(data, E_MALLOC, NULL));

@@ -18,7 +18,7 @@ PARS_DIR  = parsing
 SRCS = $(addprefix $(SRC_PATH), \
 	main.c \
 	init/mem_handler.c \
-	init/get_txtr.c \
+	init/get_texture.c \
 	input/commands.c \
 	input/init_entity.c \
 	input/move.c \

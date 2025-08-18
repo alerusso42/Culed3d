@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 17:06:18 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:46:30 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,32 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 	t_txtr	*txtr;
 	int			color;
 	int			index;
-	int			i;
-	int			j;
+	int			y;
+	int			x;
 
 	txtr = &data->txtr[which];
 	if (!txtr->ptr)
 		return ;
-	i = 0;
-	pos[X] *= size[X];
-	pos[Y] *= size[Y];
-	while (i != size[Y])
+	y = 0;
+	while (y != size[Y])
 	{
-		j = 0;
-		while (j != size[X])
+		x = 0;
+		while (x != size[X])
 		{
-			index = i * txtr->size[X] + j * (txtr->bpp / 8);
+			index = y * txtr->size[X] + x * (txtr->bpp / 8);
 			color = txtr->xpm[index] & 0xFF;
 			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
 			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
-			put_pixel(data, pos[X] + j, pos[Y] + i, color);
-			++j;
+			put_pixel(data, pos[X] + x, pos[Y] + y, color);
+			++x;
 		}
-		i++;
+		y++;
 	}
+}
+
+void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
+{
+	pos[X] *= size[X];
+	pos[Y] *= size[Y];
+	put_image_to_image(data, which, pos, size);
 }

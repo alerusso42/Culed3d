@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 17:19:18 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:30:06 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	animation(t_data *data, t_entity *entity)
 {
 	int	pos[2];
 	int	size[2];
-
-	update_animation(entity);
-	size[X] = data->txtr[entity->frames[entity->f_curr]].size[X];
+	if (entity->type == 'N' &&  entity->input & MOVEMENT)
+		update_animation(entity);
+	size[X] = data->txtr[entity->frames[entity->f_curr]].size[X] / 4;
 	size[Y] = data->txtr[entity->frames[entity->f_curr]].size[Y];
-	pos[X] = 100 / data->txtr[entity->frames[entity->f_curr]].size[X];
-	pos[Y] = 200 / data->txtr[entity->frames[entity->f_curr]].size[Y];
+	// pos[X] = 100 / data->txtr[entity->frames[entity->f_curr]].size[X];
+	// pos[Y] = 200 / data->txtr[entity->frames[entity->f_curr]].size[Y];
+	pos[X] = 300;
+	pos[Y] = 700;
 	put_image_to_image(data, entity->frames[entity->f_curr], pos, size);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 	mlx_do_sync(data->mlx);

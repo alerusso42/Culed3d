@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:05:45 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:30:59 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	wall_face(t_data * data, t_entity *entity, double angle)
 	else
 	{
 		if (angle < PI / 2 || angle >= (PI / 2) * 3)
-			return (EAST);
+			return (EAST), printf("EAST!\n");
 		else
 			return (WEST);
 	}
