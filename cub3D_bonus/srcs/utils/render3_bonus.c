@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 17:46:30 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 08:49:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,30 @@ void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
 	pos[X] *= size[X];
 	pos[Y] *= size[Y];
 	put_image_to_image(data, which, pos, size);
+}
+
+static void	render_one(t_data *data, t_entity *entity);
+
+void	render_entity(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->doors[i].type != ENTITY_END)
+	{
+		if (data->doors[i].render == true)
+			render_one(data, &data->doors[i]);
+		++i;
+	}
+}
+
+static void	render_one(t_data *data, t_entity *entity)
+{
+	double	x, y;
+
+	x = data->player.screen[X] - entity->screen[X];
+	y = data->player.screen[Y] - entity->screen[Y]; 
+	x = fabs(x);
+	y = fabs(y);
+	printf("Atan: %f\n", atan2(y, x));	
 }

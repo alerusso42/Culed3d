@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 14:30:59 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 08:51:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	wall_face(t_data * data, t_entity *entity, double angle)
 	else
 	{
 		if (angle < PI / 2 || angle >= (PI / 2) * 3)
-			return (EAST), printf("EAST!\n");
+			return (EAST);
 		else
 			return (WEST);
 	}

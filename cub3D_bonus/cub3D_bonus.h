@@ -366,9 +366,10 @@ void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
-int		which_p(t_data *data);
+void	render_entity(t_data *data);
 void	backgrounder(t_data *data);
 void	get_txtr(t_data *data);
+int		which_p(t_data *data);
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 

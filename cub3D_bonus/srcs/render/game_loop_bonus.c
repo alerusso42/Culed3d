@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:09:47 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 08:41:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	frame_render(t_data *data)
 		line(data, &data->player, pov[X] + angle);
 		++data->column;
 	}
+	render_entity(data);
 	// put_image_resize(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 	put_image_resize(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
 	animation(data, &data->player);
