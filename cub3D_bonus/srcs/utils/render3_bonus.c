@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 12:40:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:28:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ void	backgrounder(t_data *data)
 */
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 {
-	t_txtr	*txtr;
+	t_txtr		*txtr;
 	int			color;
 	int			index;
 	int			y;
 	int			x;
 
-	printf("which:%d\n", which);
 	txtr = &data->txtr[which];
-	printf("txtr->size[X]:%d\n", txtr->size[X]);
 	if (!txtr->ptr)
 		return ;
 	y = 0;
@@ -57,7 +55,7 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 		while (x != size[X])
 		{
 			index = y * txtr->size[X] + x * (txtr->bpp / 8);
-			if (index > txtr->size[X] * txtr->size[Y])
+			if (index > txtr->total_size - 1)
 				return ;
 			color = txtr->xpm[index] & 0xFF;
 			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
@@ -83,23 +81,58 @@ void	render_entity(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->doors[i].type != ENTITY_END)
+	while (data->entities[i])
 	{
-		if (data->doors[i].contact == true)
-			render_one(data, &data->doors[i]);
+		render_one(data, &data->doors[i]);
 		++i;
 	}
 }
 
+static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double wall_h);
+
 static void	render_one(t_data *data, t_entity *entity)
 {
-	double	x, y;
+	double	wall_h;
+	int		pos[2];
+	t_txtr	*txtr;
 
-	x = data->player.screen[X] - entity->screen[X];
-	y = data->player.screen[Y] - entity->screen[Y];
-	x = FABIO(x);
-	y = FABIO(y);
-	printf("Atan: %f\n", atan2(y, x));
+	txtr = &data->txtr[DOOR];
+	// txtr = &data->txtr[entity->frames[entity->f_curr]];
+	wall_h = wall_height(data, entity->contact_first[X], \
+		entity->contact_first[Y], entity->ray_angle);
+	printf("x:%d\ty:%d\n", entity->contact_first[X], entity->contact_first[Y]);
+	txtr->scaler[Y] = (txtr->size[Y] / wall_h) / 2;
+	txtr->scaler[X] = 1;
+	pos[X] = entity->ray_num;
+	pos[Y] = HSCREEN / 2 + wall_h;
+	put_entity(data, txtr, pos, wall_h);
+}
+
+static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double wall_h)
+{
+	int			color;
+	int			index;
+	int			y;
+	int			x;
+	int			k;
+
+	y = 0;
+	k = HSCREEN / 2 + wall_h;
+	while (k >= txtr->size[Y] - (wall_h * 2) && y <= txtr->size[Y])
+	{
+		x = 0;
+		while (x < txtr->size[X]  / 4)
+		{
+			index = y * txtr->size[X] + x * (txtr->bpp / 8);
+			if (index > txtr->total_size - 1 || index < 0)
+				return ;
+			color = get_pixel_color(txtr, index);
+			put_pixel(data, pos[X] + x, pos[Y] + y, color);
+			x += txtr->scaler[X];
+		}
+		y += txtr->scaler[Y];
+		k--;
+	}
 }
 
 

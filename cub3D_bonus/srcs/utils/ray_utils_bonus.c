@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 12:38:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:58:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,10 @@ void	save_coords(t_data *data, int coord[2], t_entity *entity, double angle)
 		while (data->entities && data->entities[i])
 			++i;
 		data->entities[i] = entity;
-		printf("FOUND SOMETHING!\n");
+		entity->ray_angle = angle;
 	}
 	entity->contact_last[X] = coord[X];
 	entity->contact_last[Y] = coord[Y];
-	entity->ray_angle = angle;
 }
 //	init all data to draw a line.
 // void	init_line_data(t_data *data, t_entity *entity_data, double pov_x)

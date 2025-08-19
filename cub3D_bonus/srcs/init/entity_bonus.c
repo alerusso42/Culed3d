@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 12:20:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 13:38:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	init_animation(t_data *data, t_entity *entity, int n, int *frames)
 	int	i;
 
 	entity->f_time = ANIMATION_SPEED;
-	entity->frames = malloc((n + 1) * sizeof(int));
+	entity->frames = ft_calloc((n + 1), sizeof(int));
 	if (!entity->frames)
 		return (error(data, E_MALLOC, NULL));
 	i = 0;

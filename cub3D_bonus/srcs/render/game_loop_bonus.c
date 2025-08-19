@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 12:42:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:42:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	frame_render(t_data *data)
 	double	pov[2];
 	double	angle;
 	int		i;
-
+	
+	reset_entities(data);
 	backgrounder(data);
 	// clear_window(data);
 	data->column = 0;
@@ -60,13 +61,16 @@ void	frame_render(t_data *data)
 		line(data, &data->player, pov[X] + angle, i);
 		++data->column;
 	}
+	// mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	// mlx_do_sync(data->mlx);
 	render_entity(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	// mlx_do_sync(data->mlx);
 	// put_image_resize(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
 	put_image_to_image(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
-	//animation(data, &data->player);
-	// map_start(data, 0, 0);
+	animation(data, &data->player);
+	map_start(data, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-	reset_entities(data);
 }
 // void	wall(t_data *data, double x, void *txtr)
 // {

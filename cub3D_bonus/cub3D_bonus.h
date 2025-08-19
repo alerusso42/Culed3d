@@ -128,9 +128,11 @@ typedef struct s_texture
 	char	*path;
 	char	*xpm;
 	double	shade;
-	int		bpp;
+	double	scaler[2];
 	int		size[2];
+	int		bpp;
 	int		endian;
+	int		total_size;
 	int		offset;
 	char	filters;
 }	t_txtr;

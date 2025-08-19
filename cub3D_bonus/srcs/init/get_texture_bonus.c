@@ -55,11 +55,11 @@ static void	get_txtr2(t_data *data)
 	fill_txtr(data, &data->txtr[PLAYER], PLAYER_TXTR, size);
 	fill_txtr(data, &data->txtr[CROSSHAIR], CROSS_TXTR, size);
 	size[X] = TXTR;
-	size[Y] = TXTR;
-	fill_txtr(data, &data->txtr[WALL], WALL_TXTR, size);
+	size[Y] = 167;
 	fill_txtr(data, &data->txtr[DOOR], DOOR_TXTR, size);
-	size[X] = TXTR;
-	size[Y] = TXTR;
+	size[X] = WIMG_MINIMAP;
+	size[Y] = HIMG_MINIMAP;
+	fill_txtr(data, &data->txtr[WALL], WALL_TXTR, size);
 	fill_txtr(data, &data->txtr[M_PLAYER_0], MINI_PLAYER_0_TXTR, size);
 	fill_txtr(data, &data->txtr[M_PLAYER_20], MINI_PLAYER_20_TXTR, size);
 	fill_txtr(data, &data->txtr[M_PLAYER_40], MINI_PLAYER_40_TXTR, size);
@@ -100,9 +100,10 @@ static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 	if (!txtr->ptr)
 		return ;
 	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, &txtr->size[X], &txtr->endian);
+	txtr->shade = 1;
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
-		return (error(data, E_OPEN, name));
+	return (error(data, E_OPEN, name));
 	counter = 5;
 	line = NULL;
 	while (--counter)
@@ -111,9 +112,9 @@ static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 		line = get_next_line(fd);
 	}
 	close(fd);
-	height = line + sub_strlen(line, " ", EXCLUDE);
-	height += 1;
+	height = line + sub_strlen(line, " ", EXCLUDE) + 1;
 	txtr->size[Y] = ft_atoi(height);
+	txtr->total_size = txtr->size[X] * txtr->size[Y];
 	free(line);
 }
 

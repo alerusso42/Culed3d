@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:09:54 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:06:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static void	minimap_print(t_data *data, int offset[2], int pos[2])
 	{
 		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
 			put_image_resize(data, DOOR, offset, size_minimap);
-		else
-			put_image_resize(data, CROSSHAIR, offset, size_minimap);
 	}
 }
 
@@ -93,8 +91,14 @@ void	put_pixel(t_data *data, int x, int y, int color)
 {
 	int	index;
 
-	if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0 || !color)
+	if (x >= WSCREEN || x < 0)
 		return ;
+	if (y >= HSCREEN || y < 0)
+		return ;
+	if (!color)
+		return ;
+	// if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0 || !color)
+	// 	return ;
 	index = y * data->size_line + (x * (data->bpp / 8));
 	data->screen[index] = color & 0xFF;
 	data->screen[index + 1] = (color >> 8) & 0xFF;
