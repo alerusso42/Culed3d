@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 08:49:57 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:40:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
+#define FABIO fabs
 
 void	backgrounder(t_data *data)
 {
@@ -44,7 +45,9 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 	int			y;
 	int			x;
 
+	printf("which:%d\n", which);
 	txtr = &data->txtr[which];
+	printf("txtr->size[X]:%d\n", txtr->size[X]);
 	if (!txtr->ptr)
 		return ;
 	y = 0;
@@ -54,6 +57,8 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 		while (x != size[X])
 		{
 			index = y * txtr->size[X] + x * (txtr->bpp / 8);
+			if (index > txtr->size[X] * txtr->size[Y])
+				return ;
 			color = txtr->xpm[index] & 0xFF;
 			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
 			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
@@ -80,7 +85,7 @@ void	render_entity(t_data *data)
 	i = 0;
 	while (data->doors[i].type != ENTITY_END)
 	{
-		if (data->doors[i].render == true)
+		if (data->doors[i].contact == true)
 			render_one(data, &data->doors[i]);
 		++i;
 	}
@@ -91,8 +96,29 @@ static void	render_one(t_data *data, t_entity *entity)
 	double	x, y;
 
 	x = data->player.screen[X] - entity->screen[X];
-	y = data->player.screen[Y] - entity->screen[Y]; 
-	x = fabs(x);
-	y = fabs(y);
-	printf("Atan: %f\n", atan2(y, x));	
+	y = data->player.screen[Y] - entity->screen[Y];
+	x = FABIO(x);
+	y = FABIO(y);
+	printf("Atan: %f\n", atan2(y, x));
+}
+
+
+void	reset_entities(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (data->doors && data->doors[++i].type != ENTITY_END)
+	{
+		data->doors[i].contact = false;
+		data->doors[i].contact_first[X] = -1;
+		data->doors[i].contact_first[Y] = -1;
+		data->doors[i].contact_last[X] = -1;
+		data->doors[i].contact_last[Y] = -1;
+	}
+	i = -1;
+	while (data->entities && ++i != data->ent_num + 1)
+	{
+		data->entities[i] = NULL;
+	}
 }

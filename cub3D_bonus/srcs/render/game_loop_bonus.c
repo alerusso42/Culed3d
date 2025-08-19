@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 08:41:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:42:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-void line(t_data *data, t_entity *entity, double angle);
+void line(t_data *data, t_entity *entity, double angle, int i);
 
 void	frame_render(t_data *data)
 {
@@ -57,17 +57,17 @@ void	frame_render(t_data *data)
 	while (--i >= 0)
 	{
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		line(data, &data->player, pov[X] + angle);
+		line(data, &data->player, pov[X] + angle, i);
 		++data->column;
 	}
 	render_entity(data);
 	// put_image_resize(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
-	put_image_resize(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
-	animation(data, &data->player);
-	//map_start(data, 0, 0);
+	put_image_to_image(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
+	//animation(data, &data->player);
+	// map_start(data, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	reset_entities(data);
 }
-
 // void	wall(t_data *data, double x, void *txtr)
 // {
 // 	int		pixel;

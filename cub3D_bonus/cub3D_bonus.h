@@ -141,16 +141,20 @@ typedef struct s_entity
 	double	curr_y;
 	double	pov[2];
 	double	speed;
+	double	ray_angle;
+	int		contact_first[2];
+	int		contact_last[2];
 	int		screen[2];
 	int		map[2];
 	int		*frames;
 	int		f_curr;
 	int		f_time;
 	int		f_elapsed;
+	int		ray_num;
 	int		vite_rimaste;
 	char	type;
 	char	input;
-	bool	render;
+	bool	contact;
 }	t_entity;
 
 
@@ -158,10 +162,12 @@ typedef struct s_data
 {
 	t_entity	player;
 	t_time		start;
+	t_entity	**entities;
 	t_entity	*doors;
+	t_entity	*enemies;
 	void		*mlx;
 	void		*win;
-	t_txtr	*txtr;
+	t_txtr		*txtr;
 	char		*screen;
 	char		**map;
 	char		*txtr_north;
@@ -172,6 +178,7 @@ typedef struct s_data
 	char		*txtr_ceiling;
 	char		*txtr_player;
 	char		*img_ptr;
+	int			ent_num;
 	int			img_data[3];
 	int			bpp;
 	int			size_line;
@@ -331,7 +338,7 @@ void	update_delta(double pov, double *delta_x, double *delta_y);
 int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data * data, t_entity *entity, double angle);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
-int		the_wall_checker(t_entity *entity, t_data *data);
+int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i);
 void	put_pixel(t_data *data, int x, int y, int color);
 bool	collision_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
@@ -361,11 +368,12 @@ int		game_loop(t_data *data);
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
-void 	line(t_data *data, t_entity *entity, double angle);
+void 	line(t_data *data, t_entity *entity, double angle, int i);
 void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
+void	reset_entities(t_data *data);
 void	render_entity(t_data *data);
 void	backgrounder(t_data *data);
 void	get_txtr(t_data *data);

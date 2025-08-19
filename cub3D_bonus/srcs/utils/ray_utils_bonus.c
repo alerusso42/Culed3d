@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 17:30:26 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:38:25 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
+
+void	save_coords(t_data *data, int coord[2], t_entity *entity, double angle);
 
 /*
 	//FIXME To optimize line, we should:
@@ -20,34 +22,52 @@
 	4)	stop printing the line.
 		At that point, we could differentiate this method using DEBUG macro.
 */
-int	the_wall_checker(t_entity *entity, t_data *data)
+int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 {
 	int	x;
 	int	y;
-	int	i;
+	int	we;
 
 	x = (int)entity->curr_x / WIMG;
 	y = (int)entity->curr_y / HIMG;
 	if (data->map[y][x] == '0')
 		return (false);
 	if (data->map[y][x] == '1')
-	{
-		//printf("COLLISION:\tx:%d\ty:%d\n", line_data->int_x, line_data->int_y);
 		return (true);
-	}
 	else if (data->map[y][x] == 'D')
 	{
-		i = which_entity(data, x, y, ENTITY_DOOR);
-		if (i == ENTITY_NOT_FOUND || data->doors[i].type == DOOR_OPENED)
-		{
-			return (false);
-		}
-		data->doors[i].render = true;
-		return (false);
+		we = which_entity(data, x, y, ENTITY_DOOR);
+		data->doors[we].ray_num = i;
+		save_coords(data, (int [2]){x, y}, &data->doors[we] ,angle);
+	}
+	else if (data->map[y][x] == 'F')
+	{
+		we = which_entity(data, x, y, ENTITY_ENEMY);
+		//data->enemies[we].ray_num = i;
+//		save_coords(data, (int [2]){x, y}, &data->enemies[we], angle);
 	}
 	return (false);
 }
 
+void	save_coords(t_data *data, int coord[2], t_entity *entity, double angle)
+{
+	int	i;
+
+	entity->contact = true;
+	if (entity->contact_first[X] == -1 && entity->contact_first[Y] == -1)
+	{
+		entity->contact_first[X] = coord[X];
+		entity->contact_first[Y] = coord[Y];
+		i = 0;
+		while (data->entities && data->entities[i])
+			++i;
+		data->entities[i] = entity;
+		printf("FOUND SOMETHING!\n");
+	}
+	entity->contact_last[X] = coord[X];
+	entity->contact_last[Y] = coord[Y];
+	entity->ray_angle = angle;
+}
 //	init all data to draw a line.
 // void	init_line_data(t_data *data, t_entity *entity_data, double pov_x)
 // {

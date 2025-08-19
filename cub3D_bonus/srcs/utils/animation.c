@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:30:06 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:40:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	animation(t_data *data, t_entity *entity)
 	pos[Y] = 700;
 	put_image_to_image(data, entity->frames[entity->f_curr], pos, size);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-	mlx_do_sync(data->mlx);
+	// mlx_do_sync(data->mlx);
 }
 
 static void	update_animation(t_entity *entity)

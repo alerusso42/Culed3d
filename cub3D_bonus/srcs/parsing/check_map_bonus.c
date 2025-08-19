@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 14:00:42 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:38:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	check_chars(t_data *data)
 	door_count = 0;
 	count_chars(data, &player_count, &door_count);
 	init_doors(data, door_count);
+	data->entities = ft_calloc(door_count + 2, sizeof(t_entity *));
+	if (!data->entities)
+		error(data, E_MALLOC, NULL);
+	data->ent_num = door_count;
 	if (player_count == 0)
 		error(data, E_NO_PLAYER, NULL);
 	else if (player_count > 1)

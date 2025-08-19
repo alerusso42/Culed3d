@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:28:28 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:20:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	init_animation(t_data *data, t_entity *entity, int n, int *frames)
 	int	i;
 
 	entity->f_time = ANIMATION_SPEED;
-	entity->frames = malloc(n * sizeof(int));
+	entity->frames = malloc((n + 1) * sizeof(int));
 	if (!entity->frames)
 		return (error(data, E_MALLOC, NULL));
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:47:14 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:43:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
     //     x += cos_angle;	// * dda_data[X]
     //     y += sin_angle;	// * dda_data[Y]
 
-void line(t_data *data, t_entity *entity, double angle)
+void line(t_data *data, t_entity *entity, double angle, int i)
 {
     double x;
     double y;
@@ -39,7 +39,7 @@ void line(t_data *data, t_entity *entity, double angle)
 	// dda_data[X] = atan2(sin_angle, cos_angle);
 	// dda_data[Y] = atan2(cos_angle, sin_angle);
 	// printf("atan x:%f\tatan y:%f\n", dda_data[X], dda_data[Y]);
-    while (!the_wall_checker(entity, data))
+    while (!the_wall_checker(entity, data, angle, i))
     {
         //put_pixel(data, (int)x, (int)y, 0xFF0000);
         x += cos_angle;	// * dda_data[X]
