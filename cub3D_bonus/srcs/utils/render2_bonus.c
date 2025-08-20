@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 08:50:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:16:10 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	t_txtr	*txtr;
+	t_txtr		*txtr;
 	int			wall_txtr;
 	int			pixel;
 
@@ -119,6 +119,33 @@ t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	txtr->offset = pixel * (txtr->bpp / 8);
 	return (txtr);
 }
+
+// t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
+// {
+// 	t_txtr		*txtr;
+// 	int			wall_txtr;
+// 	int			pixel;
+// 	int			txtr_type;
+
+// 	wall_txtr = wall_face(data, &data->player, ray_angle);
+// 	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
+// 	{
+// 		// if (wall_txtr == NORTH || wall_txtr == SOUTH)
+// 		// 	pixel = TXTR - pixel;
+// 		txtr_type = DOOR;
+// 	}
+// 	else
+// 		txtr_type = wall_txtr;
+// 	txtr = &data->txtr[txtr_type];
+// 	if (wall_txtr == NORTH || wall_txtr == SOUTH)
+// 		pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * txtr->size[X]);
+// 	else
+// 		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * txtr->size[X]);
+// 	if (wall_txtr == WEST || wall_txtr == SOUTH)
+// 		pixel = txtr->size[X] - pixel;
+// 	txtr->offset = pixel * (txtr->bpp / 8);
+// 	return (txtr);
+// }
 
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
 {

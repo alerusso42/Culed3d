@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 09:15:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:23:42 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	render_entity(t_data *data)
 }
 
 static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h);
+static int	entity_height(t_data *data, double x, double y);
 
 static void	render_one(t_data *data, t_entity *entity)
 {
@@ -37,16 +38,31 @@ static void	render_one(t_data *data, t_entity *entity)
 	int		pos[2];
 	t_txtr	*txtr;
 
-	txtr = &data->txtr[DOOR];
+	// txtr = &data->txtr[DOOR];
+	entity->contact_first[X] *= WIMG;
+	entity->contact_first[Y] *= HIMG;
+	txtr = texture_finder(data, entity->ray_angle, entity->contact_first[X], \
+		entity->contact_first[Y]);
 	// txtr = &data->txtr[entity->frames[entity->f_curr]];
-	ent_h = wall_height(data, entity->contact_first[X], \
-		entity->contact_first[Y], entity->ray_angle);
-	printf("x:%d\ty:%d\n", entity->contact_first[X], entity->contact_first[Y]);
-	txtr->scaler[Y] = (txtr->size[Y] / ent_h) / 2;
-	txtr->scaler[X] = 1;
+	ent_h = entity_height(data, entity->contact_first[X], \
+		entity->contact_first[Y]);
+	printf("H: %f\n", ent_h);
 	pos[X] = entity->ray_num;
+	pos[X] = WSCREEN - TXTR - pos[X];
 	pos[Y] = HSCREEN / 2 + ent_h;
 	put_entity(data, txtr, pos, ent_h);
+}
+
+static int	entity_height(t_data *data, double x, double y)
+{
+	double	ray;
+	double	height;
+
+	ray = ray_lenght(data, x, y);
+	ray = safe_division((HSCREEN * 10), ray);
+	height = round(ray / 1.5);
+	height *= 2;
+	return ((int)height);
 }
 
 // static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
@@ -78,19 +94,21 @@ static void	render_one(t_data *data, t_entity *entity)
 
 static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
 {
-	int	screen_x = 0;
+	int		screen_x;
 	double	scaler_x;
 
+	screen_x = 0;
 	txtr->offset = 0;
-	scaler_x = txtr->size[X] / TXTR; 
+	scaler_x = txtr->size[X] / TXTR;
 	while (screen_x < TXTR)
 	{
 		data->column = pos[X] + screen_x;
 		render_column(data, txtr, ent_h);
 		txtr->offset += scaler_x;
 		++screen_x;
+		mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+		mlx_do_sync(data->mlx);
 	}
-	
 }
 
 

@@ -101,6 +101,7 @@ static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 		return ;
 	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, &txtr->size[X], &txtr->endian);
 	txtr->shade = 1;
+	txtr->filters = 0;
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
 	return (error(data, E_OPEN, name));
