@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/20 08:50:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	wall_face(t_data * data, t_entity *entity, double angle)
 {
 	char	face;
 
-	// if (which_entity(data, (int)entity->curr_x / WIMG), (int)entity->curr_y / HIMG))
 	face = 0;
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
 		((int)(entity->curr_y + 1) % HIMG == 0) || \
@@ -74,9 +73,6 @@ static bool	check_north_collision(t_data *data, t_entity *entity)
 	y[1] = (int)(entity->curr_y) / HIMG;
 	x[2] = (int)(entity->curr_x + 1) / WIMG;
 	y[2] = (int)(entity->curr_y) / HIMG;
-	// if (data->map[y[0]][x[0]] == '1' && \
-	// 	(data->map[y[1]][x[1]] == '1') && \
-	// 	(data->map[y[2]][x[2]] == '1'))
 	if ((ft_strchr("1D", data->map[y[0]][x[0]])) && \
 		(ft_strchr("1D", data->map[y[1]][x[1]]))  && \
 		(ft_strchr("1D", data->map[y[2]][x[2]]))) 
@@ -124,20 +120,11 @@ t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	return (txtr);
 }
 
-int	get_pixel_color(t_txtr *txtr, int i)
+void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
 {
-	int	r;
-	int	g;
-	int	b;
-	int	rgb;
-
-	r = (txtr->xpm[i] & 255) * txtr->shade;
-	g = (int)((txtr->xpm[i + 1] & 255) * txtr->shade);
-	b = (int)((txtr->xpm[i + 2] & 255) * txtr->shade);
-	if (txtr->filters & FILTER_ON)
-		txtr_filters(txtr, &r, &g, &b);
-	rgb = r | (g << 8) | (b << 16);
-	return (rgb);
+	pos[X] *= size[X];
+	pos[Y] *= size[Y];
+	put_image_to_image(data, which, pos, size);
 }
 
 	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n",

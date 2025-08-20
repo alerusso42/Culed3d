@@ -36,6 +36,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	utils/error_bonus.c \
 	utils/time_bonus.c \
 	utils/math_bonus.c \
+	utils/minimap_bonus.c \
 	utils/ray_utils_bonus.c \
 	utils/alloc_utils_bonus.c \
 	utils/render_bonus.c \

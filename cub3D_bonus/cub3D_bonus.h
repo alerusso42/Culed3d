@@ -81,7 +81,7 @@
 # define TXTR 300
 # define PIX_PLAYER HIMG + (HIMG / 2)
 # define PLAYER_OFFSET (HIMG / 2)
-# define SHADE_INTENSITY 30
+# define SHADE_INTENSITY 60
 # define WSCREEN 1200
 # define HSCREEN 1080
 
@@ -371,6 +371,7 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
 void	test_wall3D(t_data *data, int x, int y, double ray_angle);
 void 	line(t_data *data, t_entity *entity, double angle, int i);
+void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
