@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 09:01:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:46:47 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@
     // while (!the_wall_checker(entity, data))
     // {
     //     //put_pixel(data, (int)x, (int)y, 0xFF0000);
-    //     x += cos_angle;	// * dda_data[X]
-    //     y += sin_angle;	// * dda_data[Y]
+    //     x += cos_angle;
+    //     y += sin_angle;
+
+int		ill_be_back(t_entity *entity, t_data *data, double angle);
 
 void line(t_data *data, t_entity *entity, double angle, int i)
 {
-    double x;
-    double y;
     float cos_angle;
     float sin_angle;
 	
-	x = entity->screen[X];
-	y = entity->screen[Y];
-    entity->curr_x = x;
-    entity->curr_y = y;
+    entity->curr_x = entity->screen[X];
+    entity->curr_y = entity->screen[Y];
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
 	// double	dda_data[2];
@@ -41,14 +39,16 @@ void line(t_data *data, t_entity *entity, double angle, int i)
 	// printf("atan x:%f\tatan y:%f\n", dda_data[X], dda_data[Y]);
     while (!the_wall_checker(entity, data, angle, i))
     {
-        //put_pixel(data, (int)x, (int)y, 0xFF0000);
-        x += cos_angle;	// * dda_data[X]
-        y += sin_angle;	// * dda_data[Y]
-        entity->curr_x = x;
-        entity->curr_y = y;
+        entity->curr_x += cos_angle;
+        entity->curr_y += sin_angle;
+    }
+	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+	while (!ill_be_back(entity, data, angle))
+    {
+        entity->curr_x -= cos_angle;
+        entity->curr_y -= sin_angle;
     }
 	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
-	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }
 
 void	test_wall3D(t_data *data, int x, int y, double ray_angle)

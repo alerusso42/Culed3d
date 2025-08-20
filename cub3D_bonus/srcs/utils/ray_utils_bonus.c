@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 10:02:05 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:49:50 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,45 @@ int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 	else if (data->map[y][x] == 'D')
 	{
 		we = which_entity(data, x, y, ENTITY_DOOR);
+		if (data->doors[we].type == DOOR_OPENED)
+			return (false);
+		return (true);
 		data->doors[we].ray_num = i;
 		save_coords(data, (int [2]){x, y}, &data->doors[we] ,angle);
+	}
+	else if (data->map[y][x] == 'F')
+	{
+		we = which_entity(data, x, y, ENTITY_ENEMY);
+		//data->enemies[we].ray_num = i;
+//		save_coords(data, (int [2]){x, y}, &data->enemies[we], angle);
+	}
+	return (false);
+}
+
+int		ill_be_back(t_entity *entity, t_data *data, double angle)
+{
+	int	x;
+	int	y;
+	int	we;
+
+	x = (int)entity->curr_x / WIMG;
+	y = (int)entity->curr_y / HIMG;
+	if (x > data->max_x)
+		return (true);
+	if (y > data->max_y)
+		return (true);
+	if (data->map[y][x] && data->map[y][x] == '0')
+		return (false);
+	if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
+		return (true);
+	else if (data->map[y][x] == 'D')
+	{
+		we = which_entity(data, x, y, ENTITY_DOOR);
+		if (data->doors[we].type == DOOR_OPENED)
+			return (false);
+		test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+		entity->curr_x += WIMG * 1.3;
+		entity->curr_y += HIMG * 1.3;
 	}
 	else if (data->map[y][x] == 'F')
 	{

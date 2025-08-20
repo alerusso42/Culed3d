@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 15:23:42 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:17:41 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static void	render_one(t_data *data, t_entity *entity)
 	int		pos[2];
 	t_txtr	*txtr;
 
-	// txtr = &data->txtr[DOOR];
+	txtr = &data->txtr[DOOR];
 	entity->contact_first[X] *= WIMG;
 	entity->contact_first[Y] *= HIMG;
-	txtr = texture_finder(data, entity->ray_angle, entity->contact_first[X], \
-		entity->contact_first[Y]);
+	// txtr = texture_finder(data, entity->ray_angle, entity->contact_first[X], \
+	// 	entity->contact_first[Y]);
 	// txtr = &data->txtr[entity->frames[entity->f_curr]];
 	ent_h = entity_height(data, entity->contact_first[X], \
 		entity->contact_first[Y]);
@@ -60,8 +60,7 @@ static int	entity_height(t_data *data, double x, double y)
 
 	ray = ray_lenght(data, x, y);
 	ray = safe_division((HSCREEN * 10), ray);
-	height = round(ray / 1.5);
-	height *= 2;
+	height = round(ray) * 2.5;
 	return ((int)height);
 }
 
@@ -100,14 +99,13 @@ static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
 	screen_x = 0;
 	txtr->offset = 0;
 	scaler_x = txtr->size[X] / TXTR;
-	while (screen_x < TXTR)
+	printf("scaler:%f\n", scaler_x);
+	while (screen_x < TXTR - ent_h)
 	{
 		data->column = pos[X] + screen_x;
 		render_column(data, txtr, ent_h);
 		txtr->offset += scaler_x;
 		++screen_x;
-		mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-		mlx_do_sync(data->mlx);
 	}
 }
 
