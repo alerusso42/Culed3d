@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 11:51:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:32:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ill_be_back(t_entity *entity, t_data *data, double angle)
 		we = which_entity(data, x, y, ENTITY_DOOR);
 		if (data->doors[we].type == DOOR_OPENED)
 			return (false);
-		test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+		draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 		entity->curr_x += WIMG * 1.3;
 		entity->curr_y += HIMG * 1.3;
 	}

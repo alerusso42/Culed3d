@@ -20,30 +20,30 @@
     ----> https://hackmd.io/@nszl/H1LXByIE2
 [X]	Chiusura tutto
 
-[]	MANDATORY
-	{}	Sostituire muro debug con texture vera
+[X]	MANDATORY
+	{X}	Sostituire muro debug con texture vera
     {X}  Evitare il segfault quando si esce dalla mappa
 
-[] RAYCASTING
+[X] RAYCASTING
 	{X}	Muovere player
 	{X}	Ottimizzare algoritmo linea con intersezioni in x e y
 	{X}	Ottenere get_data_address textures
 	{X}	Creare cornice
 	{X}	Modificare get_data_address cornice
 	{X}	Salvare punti di collisione, calcolare lunghezza raggio
-	{}	Castare nella cornice
-		{}	Sostituire muro debug con texture vera
-            () Percentuale del muro in cui viene colpito dal raggio in modo da prendere i pixel dele texture nel punto corrispondente
-            () Distanza dal muro
+	{X}	Castare nella cornice
+		{X}	Sostituire muro debug con texture vera
+            (X) Percentuale del muro in cui viene colpito dal raggio in modo da prendere i pixel dele texture nel punto corrispondente
+            (X) Distanza dal muro
 		{}	DDA
 		{X}	Sistemare codice
-		{}	Sistemare globali
+		{X}	Sistemare globali
         
 []	GAME
 	{}	Animazioni
 	{}	Generare mappe randomiche
 	{}	Alzare abbassare visuale
-	{}	Porte
-	{}	Minimappa
-	{}	Rotazione visuale con mouse
+	{X}	Porte
+	{X}	Minimappa
+	{X}	Rotazione visuale con mouse
 	{}	Hitbox

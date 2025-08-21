@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:44:14 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 12:50:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:05:29 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	put_image_to_image(t_data *data, int which, int y, int x)
 			color = txtr_data[index];
 			color = color | (txtr_data[index + 1] << 8);
 			color = color | (txtr_data[index + 2] << 16);
-			put_pixel(data, x_y[Y] + x_y[Y], x_y[X] + x_y[X], color);
+			put_pixel(data, y + x_y[Y], x + x_y[X], color);
 			++x_y[Y];
 		}
 		x_y[X]++;

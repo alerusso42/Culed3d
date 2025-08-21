@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 12:13:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:12:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
 # define FPS 60
-# define FRAME_TIME (1000000 / 60)
+# define FRAME_TIME 16666
 
-#ifndef DEBUG
-# define DEBUG true
+# ifndef DEBUG
+#  define DEBUG true
 # endif
 # define VALID_CHARS " 01NSEW"
 # define PLAYER_CHARS "NSEW"
@@ -50,18 +50,18 @@
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # if DEBUG == true
-#  define PLAYER_TXTR "textures/3.1415926snelo.xpm"
+#  define PLAYER_TXTR "textures/pisnelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # else
-#  define PLAYER_TXTR "textures/3.1415926snelo.xpm"
+#  define PLAYER_TXTR "textures/pisnelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
 # define HIMG 64
 # define WIMG 64
 # define TXTR 300
-# define PIX_PLAYER HIMG + (64 / 2)
-# define PLAYER_OFFSET (64 / 2)
+# define PIX_PLAYER 96
+# define PLAYER_OFFSET 32
 # define WSCREEN 1000
 # define HSCREEN 1000
 
@@ -71,18 +71,18 @@
 	180 degrees are 3.1415926 radiant.
 	Degree changes every 3.1415926 / 180.
 */
-# define RADIANT (3.1415926 / 180)
+# define RADIANT 0.017453292
 
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
 //NOTE [L_A: 30; FOV: 64]
-# define ANGULAR_SPEED (3.1415926 / 180) * 2.5
+//RADIANT * 2.5
+# define ANGULAR_SPEED 0.043633231
 # define PLAYER_SPEED 5
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60
-
 
 # define PI 3.1415926
 
@@ -90,10 +90,11 @@
 # define SPEED 0.01
 # define TANTA 50
 
+//	angles are expressed in RADIANT
 # define ANGLE_0 0
-# define ANGLE_90 (3.1415926 / 2)
-# define ANGLE_180 (3.1415926)
-# define ANGLE_270 ((3.1415926 / 2) * 3)
+# define ANGLE_90 1.5707963
+# define ANGLE_180 3.1415926
+# define ANGLE_270 4.7123889
 
 typedef struct timeval		t_time;
 typedef struct s_drawline	t_drawline;
@@ -116,7 +117,6 @@ typedef struct s_entity
 	char	type;
 	char	input;
 }	t_entity;
-
 
 typedef struct s_data
 {
@@ -251,12 +251,12 @@ void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
-int		wall_face(t_data * data, t_entity *entity, double angle);
+int		wall_face(t_data *data, t_entity *entity, double angle);
 int		the_wall_checker(t_entity *entity, t_data *data);
-void	put_3.1415926xel(t_data *data, int x, int y, int color);
+void	put_pixel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
-int		get_3.1415926xel_color(char *img_ptr, int i);
+int		get_pixel_color(char *img_ptr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);
@@ -274,7 +274,7 @@ int		game_loop(t_data *data);
 
 //SECTION render
 
-void	test_wall3D(t_data *data, int x, int y, double ray_angle);
+void	draw_wall(t_data *data, int x, int y, double ray_angle);
 void	put_image_to_image(t_data *data, int which, int y, int x);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);

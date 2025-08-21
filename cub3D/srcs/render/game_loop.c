@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 12:54:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:34:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	frame_render(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->textures[SCREEN], 0, 0);
 }
 
-void line(t_data *data, t_entity *entity, double angle)
+void	line(t_data *data, t_entity *entity, double angle)
 {
-	double x;
-	double y;
-	float cos_angle;
-	float sin_angle;
-	
+	double	x;
+	double	y;
+	float	cos_angle;
+	float	sin_angle;
+
 	x = entity->screen[X];
 	y = entity->screen[Y];
 	entity->curr_x = x;
@@ -86,5 +86,5 @@ void line(t_data *data, t_entity *entity, double angle)
 		entity->curr_x = x;
 		entity->curr_y = y;
 	}
-	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+	draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }

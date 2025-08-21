@@ -51,7 +51,7 @@ gdb: $(NAME)
 	gdb -x a.gdb --args ./cub3D maps/min.cub
 
 gdbtui: $(NAME)
-	gdb --tui -x a.gdb --args ./cub3D debug.cub
+	gdb --tui -x a.gdb --args ./cub3D cub.cub
 
 val: 
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./cub3D maps/biggie.cub
@@ -72,7 +72,7 @@ re: fclean mini all
 start: fclean mini all
 
 run:
-	clear ; make && ./$(NAME) maps/debug.cub
+	clear ; make && ./$(NAME) maps/cub.cub
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git

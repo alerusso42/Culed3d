@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_bfs_draw.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:02:21 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/11 19:34:25 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:52:18 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	find_shortest_route(t_bfs *bfs, int x, int y)
 	if (bfs->position[x + 1][y].distance[bfs->n] > 0)
 		record = bfs->position[x + 1][y].distance[bfs->n];
 	if ((bfs->position[x - 1][y].distance[bfs->n] > 0) && \
-	(bfs->position[x - 1][y].distance[bfs->n] < record))
+(bfs->position[x - 1][y].distance[bfs->n] < record))
 		record = bfs->position[x - 1][y].distance[bfs->n];
 	if ((bfs->position[x][y + 1].distance[bfs->n] > 0) && \
-	(bfs->position[x][y + 1].distance[bfs->n] < record))
+(bfs->position[x][y + 1].distance[bfs->n] < record))
 		record = bfs->position[x][y + 1].distance[bfs->n];
 	if ((bfs->position[x][y - 1].distance[bfs->n] > 0) && \
-	(bfs->position[x][y - 1].distance[bfs->n] < record))
+(bfs->position[x][y - 1].distance[bfs->n] < record))
 		record = bfs->position[x][y - 1].distance[bfs->n];
 	if (record == bfs->position[x + 1][y].distance[bfs->n])
 		return (1);

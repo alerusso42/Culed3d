@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 16:46:47 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:32:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void line(t_data *data, t_entity *entity, double angle, int i)
         entity->curr_x += cos_angle;
         entity->curr_y += sin_angle;
     }
-	test_wall3D(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+	draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 	while (!ill_be_back(entity, data, angle))
     {
         entity->curr_x -= cos_angle;
@@ -51,7 +51,7 @@ void line(t_data *data, t_entity *entity, double angle, int i)
 	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
 }
 
-void	test_wall3D(t_data *data, int x, int y, double ray_angle)
+void	draw_wall(t_data *data, int x, int y, double ray_angle)
 {
 	double	wall_h;
 	t_txtr	*txtr;

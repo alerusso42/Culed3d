@@ -66,12 +66,12 @@ void	free_texture(t_data *data)
 {
 	int	i;
 
-	delete((void**)&data->txtr_east);
-	delete((void**)&data->txtr_west);
-	delete((void**)&data->txtr_north);
-	delete((void**)&data->txtr_south);
-	delete((void**)&data->txtr_floor);
-	delete((void**)&data->txtr_ceiling);
+	delete((void **)&data->txtr_east);
+	delete((void **)&data->txtr_west);
+	delete((void **)&data->txtr_north);
+	delete((void **)&data->txtr_south);
+	delete((void **)&data->txtr_floor);
+	delete((void **)&data->txtr_ceiling);
 	if (!data->textures)
 		return ;
 	i = -1;
@@ -80,5 +80,5 @@ void	free_texture(t_data *data)
 		if (data->textures[i])
 			mlx_destroy_image(data->mlx, data->textures[i]);
 	}
-	delete((void**)&data->textures);
+	delete((void **)&data->textures);
 }

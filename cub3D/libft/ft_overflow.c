@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:04:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/10 16:32:51 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:55:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	overflow_check(char *s, long long max, long long min, int limit_size)
 		return (s[i] || num_size > limit_size);
 	i -= num_size + 1;
 	while (++i && --num_size && s[i] == limit / ft_pow(10, num_size) % 10 * \
-		(-1 * (s[0] == '-') + 1 * (s[0] != '-')) + '0')
+(-1 * (s[0] == '-') + 1 * (s[0] != '-')) + '0')
 		;
 	return (s[i] > limit / ft_pow(10, num_size) % 10 * \
-		(-1 * (s[0] == '-') + 1 * (s[0] != '-')) + '0');
+(-1 * (s[0] == '-') + 1 * (s[0] != '-')) + '0');
 }

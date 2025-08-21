@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:34:30 by lparolis          #+#    #+#             */
-/*   Updated: 2024/12/02 12:34:00 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:56:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_iswhitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\f' \
-		|| c == '\v' || c == '\r')
+|| c == '\v' || c == '\r')
 	{
 		return (1);
 	}

@@ -369,7 +369,7 @@ int		game_loop(t_data *data);
 
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
-void	test_wall3D(t_data *data, int x, int y, double ray_angle);
+void	draw_wall(t_data *data, int x, int y, double ray_angle);
 void 	line(t_data *data, t_entity *entity, double angle, int i);
 void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 12:21:38 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:47:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void	is_it_valid(t_data *data, int x, int y)
 	if (x == 0 || x == data->max_x || y == 0 || y == data->max_y)
 		error(data, E_INVALID_MAP, NULL);
 	if (data->map[y + 1][x] == ' ' || \
-		data->map[y - 1][x] == ' ' || \
-		data->map[y][x + 1] == ' ' || \
-		data->map[y][x - 1] == ' ')
+data->map[y - 1][x] == ' ' || \
+data->map[y][x + 1] == ' ' || \
+data->map[y][x - 1] == ' ')
 		error(data, E_INVALID_MAP, NULL);
 }

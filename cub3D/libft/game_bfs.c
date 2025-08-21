@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_bfs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 14:02:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/02/24 12:16:29 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:53:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	find_distance(t_bfs *bfs, int x, int y, int distance)
 	int			*y_alloc;
 
 	if ((bfs->position[x][y].value == '1') || \
-	(bfs->position[x][y].distance[bfs->n] != 0))
+(bfs->position[x][y].distance[bfs->n] != 0))
 		return (2);
 	x_alloc = ft_calloc(1, sizeof(int));
 	if (!x_alloc)
