@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 16:49:50 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:51:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 	y = (int)entity->curr_y / HIMG;
 	if (data->map[y][x] == '0')
 		return (false);
-	if (data->map[y][x] == '1')
+	if (data->map[y][x] == '1' || data->map[y][x] == ' ')
 		return (true);
 	else if (data->map[y][x] == 'D')
 	{

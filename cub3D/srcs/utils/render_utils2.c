@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 08:51:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:43:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ static bool	check_north_collision(t_data *data, t_entity *entity);
 				PI / 2
 		   ~.----~~~ -- .
    	  ..-~        |       ~-.
-	 /            |           \
-	 /            |            \			NORTH/SOUTH: 	________________________
-	 |            |             |					NORTH:	|0	    	|  PI			|
-PI	 | ___________|____________ | 0					SOUTH:	|PI			|  2 * PI (0)	|
-	 |            |             |							________________________
-	  \           |            /			WEST/EAST:
-	   \          |           /						WEST:	|PI / 2 | (PI / 2) * 3|
-	    `-.       |        .-'						EAST:	|3 * PI / 2 - 2 * PI|
-	        ~- . _|__ . -~									____________________
+	 /            |           /
+	 /            |            /	NORTH/SOUTH: 	________________________
+	 |            |             |			NORTH:	|0	    	|  PI		
+PI	 | ___________|____________ | 0			SOUTH:	|PI			|  2 * PI (0)
+	 |            |             |					________________________
+	  \           |            /	WEST/EAST:
+	   \          |           /				WEST:	|PI / 2 | (PI / 2) * 3|
+		`-.       |        .-'				EAST:	|3 * PI / 2 - 2 * PI|
+			~- . _|__ . -~								____________________
 			(PI / 2) * 3
 */
-int	wall_face(t_data * data, t_entity *entity, double angle)
+int	wall_face(t_data *data, t_entity *entity, double angle)
 {
 	char	face;
 
 	face = 0;
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
-		((int)(entity->curr_y + 1) % HIMG == 0) || \
-		((int)(entity->curr_y - 1) % HIMG == 0)) \
-			&& check_north_collision(data, entity))
+((int)(entity->curr_y + 1) % HIMG == 0) || \
+((int)(entity->curr_y - 1) % HIMG == 0)) \
+&& check_north_collision(data, entity))
 		face |= (NO | SO);
 	else
 		face |= (WE | EA);
@@ -74,8 +74,8 @@ static bool	check_north_collision(t_data *data, t_entity *entity)
 	x[2] = (int)(entity->curr_x + 1) / WIMG;
 	y[2] = (int)(entity->curr_y) / HIMG;
 	if (data->map[y[0]][x[0]] == '1' && \
-		(data->map[y[1]][x[1]] == '1') && \
-		(data->map[y[2]][x[2]] == '1'))
+(data->map[y[1]][x[1]] == '1') && \
+(data->map[y[2]][x[2]] == '1'))
 	{
 		return (true);
 	}
@@ -109,7 +109,7 @@ int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 	if (which_wall == WEST || which_wall == SOUTH)
 		pixel = TXTR - pixel;
 	data->img_ptr = mlx_get_data_addr(data->textures[which_wall], \
-		&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
+&data->img_data[BPP], &data->img_data[SIZE], &data->img_data[ENDIAN]);
 	if (!data->img_ptr)
 		return (0);
 	return (pixel * (data->img_data[BPP] / 8));
@@ -118,9 +118,6 @@ int	index_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 int	get_pixel_color(char *img_ptr, int i)
 {
 	return ((img_ptr[i] & 255) | \
-	((img_ptr[i + 1] & 255) << 8) | \
-	((img_ptr[i + 2] & 255) << 16));
+((img_ptr[i + 1] & 255) << 8) | \
+((img_ptr[i + 2] & 255) << 16));
 }
-
-	// printf("valori merdosi:%d\t%d\t%d\nvalori giusti:%d\t%d\t%d\n",
-	// img_ptr[i], img_ptr[i + 1], img_ptr[i + 2], img_ptr[i] & 0xFF, img_ptr[i + 1] & 0xFF, img_ptr[i + 2] & 0xFF);

@@ -80,4 +80,5 @@ void	free_texture(t_data *data)
 		if (data->textures[i])
 			mlx_destroy_image(data->mlx, data->textures[i]);
 	}
+	delete((void**)&data->textures);
 }

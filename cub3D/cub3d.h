@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:18:00 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:13:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
 # define FPS 60
-# define FRAME_TIME (1000000 / FPS)
+# define FRAME_TIME (1000000 / 60)
 
 #ifndef DEBUG
 # define DEBUG true
@@ -50,34 +50,34 @@
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # if DEBUG == true
-#  define PLAYER_TXTR "textures/pisnelo.xpm"
+#  define PLAYER_TXTR "textures/3.1415926snelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # else
-#  define PLAYER_TXTR "textures/pisnelo.xpm"
+#  define PLAYER_TXTR "textures/3.1415926snelo.xpm"
 #  define WALL_TXTR "textures/debug_wall.xpm"
 # endif
 
 # define HIMG 64
 # define WIMG 64
 # define TXTR 300
-# define PIX_PLAYER HIMG + (HIMG / 2)
-# define PLAYER_OFFSET (HIMG / 2)
-# define WSCREEN 12
-# define HSCREEN 12
+# define PIX_PLAYER HIMG + (64 / 2)
+# define PLAYER_OFFSET (64 / 2)
+# define WSCREEN 1000
+# define HSCREEN 1000
 
 //# define RADIANT 0.008726
 
 /*
-	180 degrees are PI radiant.
-	Degree changes every PI / 180.
+	180 degrees are 3.1415926 radiant.
+	Degree changes every 3.1415926 / 180.
 */
-# define RADIANT (PI / 180)
+# define RADIANT (3.1415926 / 180)
 
 //	see RADIANT for explaination.
 //	putting it to 1 makes the line sensibility to 1 degree.
 //	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
 //NOTE [L_A: 30; FOV: 64]
-# define ANGULAR_SPEED RADIANT * 2.5
+# define ANGULAR_SPEED (3.1415926 / 180) * 2.5
 # define PLAYER_SPEED 5
 
 //	FOV (=Field Of View) represents the angle of the player vision.
@@ -91,9 +91,9 @@
 # define TANTA 50
 
 # define ANGLE_0 0
-# define ANGLE_90 (PI / 2)
-# define ANGLE_180 (PI)
-# define ANGLE_270 (ANGLE_90 * 3)
+# define ANGLE_90 (3.1415926 / 2)
+# define ANGLE_180 (3.1415926)
+# define ANGLE_270 ((3.1415926 / 2) * 3)
 
 typedef struct timeval		t_time;
 typedef struct s_drawline	t_drawline;
@@ -127,6 +127,7 @@ typedef struct s_data
 	void		**textures;
 	char		*screen;
 	char		**map;
+	char		*line;
 	char		*txtr_north;
 	char		*txtr_west;
 	char		*txtr_south;
@@ -252,10 +253,10 @@ void	update_delta(double pov, double *delta_x, double *delta_y);
 void	put_image_to_image(t_data *data, int which, int y, int x);
 int		wall_face(t_data * data, t_entity *entity, double angle);
 int		the_wall_checker(t_entity *entity, t_data *data);
-void	put_pixel(t_data *data, int x, int y, int color);
+void	put_3.1415926xel(t_data *data, int x, int y, int color);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
-int		get_pixel_color(char *img_ptr, int i);
+int		get_3.1415926xel_color(char *img_ptr, int i);
 void	update_coord(t_entity *entity_data);
 void	ft_sleep(long long microsecond);
 void	clear_window(t_data *data);

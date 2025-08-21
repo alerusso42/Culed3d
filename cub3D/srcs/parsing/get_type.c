@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/22 11:29:55 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:49:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	assign_type(t_data *data, char *line);
 static bool	cub3d_substr(t_data *data, char *line, int type);
-static bool	end_line_check(t_data *data, char **line, int fd);
+static bool	end_line_check(t_data *data, int fd);
 
 /* REVIEW
 Funzione che cerca all'interno del file .cub passato come argomento
@@ -24,28 +24,27 @@ usando le altre funzioni
 void	get_type(t_data *data, int fd)
 {
 	int			count_types;
-	char		*line;
 	int			i;
 
 	count_types = 0;
-	line = get_next_line(fd);
-	while (count_types != TYPE_IDENTIFIERS_NUM && line)
+	data->line = get_next_line(fd);
+	while (count_types != TYPE_IDENTIFIERS_NUM && data->line)
 	{
 		i = 0;
-		i += sub_strlen(line, " ", INCLUDE);
-		if (line[i] == '\0')
-			return (free(line), close(fd), error(data, E_TYPE, NULL));
-		else if (line[i] == '\n')
+		i += sub_strlen(data->line, " ", INCLUDE);
+		if (data->line[i] == '\0')
+			return (close(fd), error(data, E_TYPE, NULL));
+		else if (data->line[i] == '\n')
 		{
-			line = ft_restr(line, get_next_line(fd));
+			data->line = ft_restr(data->line, get_next_line(fd));
 			continue ;
 		}
-		if (assign_type(data, line + i) == false)
-			return (free(line), close(fd), error(data, E_TYPE, NULL));
+		if (assign_type(data, data->line + i) == false)
+			return (finish_him(fd), close(fd), error(data, E_TYPE, NULL));
 		++count_types;
-		line = ft_restr(line, get_next_line(fd));
+		data->line = ft_restr(data->line, get_next_line(fd));
 	}
-	if (count_types != 6 || end_line_check(data, &line, fd) == false)
+	if (count_types != 6 || end_line_check(data, fd) == false)
 		return (finish_him(fd), close(fd), error(data, E_TYPE, NULL));
 }
 
@@ -96,14 +95,15 @@ static bool	cub3d_substr(t_data *data, char *line, int type)
 	checks that, after the parse of the identifiers, 
 	there is an empty line.
 */
-static bool	end_line_check(t_data *data, char **line, int fd)
+static bool	end_line_check(t_data *data, int fd)
 {
 	char	end_line;
 
-	if (!*line)
+	if (!data->line)
 		return (false);
-	end_line = **line;
-	free(*line);
+	end_line = *data->line;
+	free(data->line);
+	data->line = NULL;
 	if (end_line == '\n')
 		return (true);
 	finish_him(fd);

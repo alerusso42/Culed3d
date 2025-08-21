@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/07/10 14:29:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:51:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ long	elapsed_time(t_time start)
 
 	gettimeofday(&tv, NULL);
 	diff = (tv.tv_sec - start.tv_sec) * 1000000 \
-	+ (tv.tv_usec - start.tv_usec);
++ (tv.tv_usec - start.tv_usec);
 	return (diff);
 }

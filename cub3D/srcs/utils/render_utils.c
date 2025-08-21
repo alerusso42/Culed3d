@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/21 12:44:14 by alerusso          #+#    #+#             */
+/*   Updated: 2025/08/21 12:50:46 by alerusso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3d.h"
 
 int	map_start(t_data *data)
@@ -5,8 +17,6 @@ int	map_start(t_data *data)
 	int	x;
 	int	y;
 
-	// y = data->player.map[X] - MINIMAP_X / 2;
-	// x = data->player.map[Y] - MINIMAP_Y / 2;
 	y = -1;
 	while (data->map[++y])
 	{
@@ -19,6 +29,7 @@ int	map_start(t_data *data)
 	}
 	return (0);
 }
+
 void	put_pixel(t_data *data, int x, int y, int color)
 {
 	int	index;
@@ -63,27 +74,26 @@ void	put_image_to_image(t_data *data, int which, int y, int x)
 	int		stuff[3];
 	int		color;
 	int		index;
-	int		i;
-	int		j;
-	
+	int		x_y[2];
+
 	txtr_data = mlx_get_data_addr(data->textures[which], \
-		&stuff[0], &stuff[1], &stuff[2]);
+&stuff[0], &stuff[1], &stuff[2]);
 	if (!txtr_data)
 		return ;
-	i = 0;
-	while (i != HIMG)
+	x_y[X] = 0;
+	while (x_y[X] != HIMG)
 	{
-		j = 0;
-		while (j != WIMG)
+		x_y[Y] = 0;
+		while (x_y[Y] != WIMG)
 		{
-			index = i * stuff[1] + j * (stuff[0] / 8);
+			index = x_y[X] * stuff[1] + x_y[Y] * (stuff[0] / 8);
 			color = txtr_data[index];
 			color = color | (txtr_data[index + 1] << 8);
 			color = color | (txtr_data[index + 2] << 16);
-			put_pixel(data, y + j, x + i, color);
-			++j;
+			put_pixel(data, x_y[Y] + x_y[Y], x_y[X] + x_y[X], color);
+			++x_y[Y];
 		}
-		i++;
+		x_y[X]++;
 	}
 }
 
@@ -94,8 +104,12 @@ void	backgrounder(t_data *data)
 	int	i;
 	int	j;
 
-	ceiling = (data->ceiling_rgb[0] << 16) | (data->ceiling_rgb[1] << 8) | data->ceiling_rgb[2];
-	floor = (data->floor_rgb[0] << 16) | (data->floor_rgb[1] << 8) | data->floor_rgb[2];
+	ceiling = (data->ceiling_rgb[0] << 16) | \
+(data->ceiling_rgb[1] << 8) | \
+data->ceiling_rgb[2];
+	floor = (data->floor_rgb[0] << 16) | \
+(data->floor_rgb[1] << 8) | \
+data->floor_rgb[2];
 	j = -1;
 	while (++j < WSCREEN)
 	{

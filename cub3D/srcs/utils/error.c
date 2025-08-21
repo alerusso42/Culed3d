@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/07/10 14:30:47 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:46:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	error(t_data *data, int err, char *file)
 	if (err == E_MALLOC)
 		fd_printf(2, "Malloc_failure.\n");
 	else if (err == E_OPEN)
-		fd_printf(2, "Open_failure.\n");
+		fd_printf(2, "Open_failure: cannot open %s\n", file);
 	else if (err == E_ARGC)
 		three_dots(2, "Bad_agruments", "volevo dire agrumi\n");
 	else if (err == E_EXT)

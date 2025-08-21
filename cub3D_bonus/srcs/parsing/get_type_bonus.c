@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_type_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:52:12 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	get_type(t_data *data, int fd)
 			continue ;
 		}
 		if (assign_type(data, line + i) == false)
-			return (free(line), close(fd), error(data, E_TYPE, NULL));
+			return (finish_him(fd), free(line), close(fd), \
+			error(data, E_TYPE, NULL));
 		++count_types;
 		line = ft_restr(line, get_next_line(fd));
 	}
