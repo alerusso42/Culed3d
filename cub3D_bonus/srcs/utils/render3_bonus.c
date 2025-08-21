@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 16:17:41 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:25:55 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ static void	render_one(t_data *data, t_entity *entity)
 	txtr = &data->txtr[DOOR];
 	entity->contact_first[X] *= WIMG;
 	entity->contact_first[Y] *= HIMG;
-	// txtr = texture_finder(data, entity->ray_angle, entity->contact_first[X], \
-	// 	entity->contact_first[Y]);
-	// txtr = &data->txtr[entity->frames[entity->f_curr]];
 	ent_h = entity_height(data, entity->contact_first[X], \
 		entity->contact_first[Y]);
 	printf("H: %f\n", ent_h);
@@ -60,7 +57,7 @@ static int	entity_height(t_data *data, double x, double y)
 
 	ray = ray_lenght(data, x, y);
 	ray = safe_division((HSCREEN * 10), ray);
-	height = round(ray) * 2.5;
+	height = round(ray * 2.5);
 	return ((int)height);
 }
 

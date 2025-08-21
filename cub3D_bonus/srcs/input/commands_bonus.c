@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 15:26:37 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:49:41 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_cross_close(t_data *data)
 	exit(0);
 }
 
+//	The or operator | adds a bit in a byte.
 int	commands_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
@@ -41,6 +42,7 @@ int	commands_press(int keycode, t_data *data)
 	return (0);
 }
 
+//	The xor operator ^ removes a bit in a byte.
 int	commands_release(int keycode, t_data *data)
 {
 	if (keycode == XK_w)
@@ -72,6 +74,11 @@ int mouse_hook(int button, int x, int y, void *data)
 	return (0);
 }
 
+//	The and operator & checks if a bit is in a byte.
+//	MOVEMENT is a bitmask of [00001111].
+//	ROTATION is a bitmask of [11110000].
+//	last four bytes represents left, right, up, down movement.
+//	first four bytes represents the same, but for rotation.
 int	move_player(t_data *data)
 {
 	if (data->player.input & MOVEMENT)

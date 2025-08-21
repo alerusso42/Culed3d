@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 14:32:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:25:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,39 +52,39 @@ int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 	return (false);
 }
 
-int		ill_be_back(t_entity *entity, t_data *data, double angle)
-{
-	int	x;
-	int	y;
-	int	we;
+// int		ill_be_back(t_entity *entity, t_data *data, double angle)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	we;
 
-	x = (int)entity->curr_x / WIMG;
-	y = (int)entity->curr_y / HIMG;
-	if (x > data->max_x)
-		return (true);
-	if (y > data->max_y)
-		return (true);
-	if (data->map[y][x] && data->map[y][x] == '0')
-		return (false);
-	if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
-		return (true);
-	else if (data->map[y][x] == 'D')
-	{
-		we = which_entity(data, x, y, ENTITY_DOOR);
-		if (data->doors[we].type == DOOR_OPENED)
-			return (false);
-		draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
-		entity->curr_x += WIMG * 1.3;
-		entity->curr_y += HIMG * 1.3;
-	}
-	else if (data->map[y][x] == 'F')
-	{
-		we = which_entity(data, x, y, ENTITY_ENEMY);
-		//data->enemies[we].ray_num = i;
-//		save_coords(data, (int [2]){x, y}, &data->enemies[we], angle);
-	}
-	return (false);
-}
+// 	x = (int)entity->curr_x / WIMG;
+// 	y = (int)entity->curr_y / HIMG;
+// 	if (x > data->max_x)
+// 		return (true);
+// 	if (y > data->max_y)
+// 		return (true);
+// 	if (data->map[y][x] && data->map[y][x] == '0')
+// 		return (false);
+// 	if (ft_strchr(PLAYER_CHARS, data->map[y][x]))
+// 		return (true);
+// 	else if (data->map[y][x] == 'D')
+// 	{
+// 		we = which_entity(data, x, y, ENTITY_DOOR);
+// 		if (data->doors[we].type == DOOR_OPENED)
+// 			return (false);
+// 		draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
+// 		entity->curr_x += WIMG * 1.3;
+// 		entity->curr_y += HIMG * 1.3;
+// 	}
+// 	else if (data->map[y][x] == 'F')
+// 	{
+// 		we = which_entity(data, x, y, ENTITY_ENEMY);
+// 		//data->enemies[we].ray_num = i;
+// //		save_coords(data, (int [2]){x, y}, &data->enemies[we], angle);
+// 	}
+// 	return (false);
+// }
 
 void	save_coords(t_data *data, int coord[2], t_entity *entity, double angle)
 {

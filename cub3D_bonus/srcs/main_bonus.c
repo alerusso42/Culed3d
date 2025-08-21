@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/06 17:00:21 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:28:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,3 @@ int	main(int argc, char *argv[])
 	spread_democracy(&data);
 	return (0);
 }
-
-// i movimenti posso essere resi piu fluidi creando due hook, uno per il press e uno
-// per il release, quando vengono schiacciati i tasti del movimento delle variabili booleane associate ai
-// tasti vengono settate true e quando rilasciati settate a false
-// Per la renderizzazione del movimento invece basta mettere nel loop del gioco delle funzioni che
-// fintanto che le variabili del movimento sono settate a false allora non si muove il giocatore
-// quanto settate a true il giocatore si muove

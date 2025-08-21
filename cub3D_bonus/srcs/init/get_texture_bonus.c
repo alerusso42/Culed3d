@@ -13,7 +13,8 @@
 #include "../../cub3D_bonus.h"
 
 static void	set_to_null(t_data *data);
-static void	get_txtr2(t_data *data);
+static void	txtr_list(t_data *data);
+static void	txtr_list2(t_data *data);
 static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2]);
 
 /*
@@ -33,7 +34,7 @@ void	get_txtr(t_data *data)
 	size[Y] = HSCREEN;
 	set_to_null(data);
 	fill_txtr(data, &data->txtr[SCREEN], SCREEN_TXTR, size);
-	get_txtr2(data);
+	txtr_list(data);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
@@ -42,7 +43,16 @@ void	get_txtr(t_data *data)
 	}
 }
 
-static void	get_txtr2(t_data *data)
+/*	
+//	data->txtr is an array of textures.
+	the array stores everything mlx returns, and other info (like img height).
+
+//	data->txtr_north are the names taken from the parsing of the .cub
+
+//	size is the expected size of the img
+*/
+
+static void	txtr_list(t_data *data)
 {
 	int	size[2];
 
@@ -57,6 +67,13 @@ static void	get_txtr2(t_data *data)
 	size[X] = TXTR;
 	size[Y] = 167;
 	fill_txtr(data, &data->txtr[DOOR], DOOR_TXTR, size);
+	txtr_list2(data);
+}
+
+static void	txtr_list2(t_data *data)
+{
+	int	size[2];
+
 	size[X] = WIMG_MINIMAP;
 	size[Y] = HIMG_MINIMAP;
 	fill_txtr(data, &data->txtr[WALL], WALL_TXTR, size);
@@ -80,6 +97,7 @@ static void	get_txtr2(t_data *data)
 	fill_txtr(data, &data->txtr[M_PLAYER_340], MINI_PLAYER_340_TXTR, size);
 }
 
+//	set all the txtr array to NULL
 static void	set_to_null(t_data *data)
 {
 	int	i;
@@ -89,6 +107,15 @@ static void	set_to_null(t_data *data)
 		data->txtr[i] = (t_txtr){0};
 }
 
+/*
+//	This function saves the info for the txtr. If something is messed up,
+	the program is closed safely.
+
+	1)	the img is parsed by mlx. The char array is stored in the txtr struct;
+	2)	we read the img height reading the raw xpm file.
+	3)	we save the size of the xpm char * array given by mlx, calculating
+		it by taking the size of the xpm.
+*/
 static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 {
 	char	*line;
@@ -98,43 +125,22 @@ static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 
 	txtr->ptr = mlx_xpm_file_to_image(data->mlx, name, &size[X], &size[Y]);
 	if (!txtr->ptr)
-		return ;
-	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, &txtr->size[X], &txtr->endian);
+		return (error(data, E_MLX_TEXTURE, name));
+	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, \
+		&txtr->size[X], &txtr->endian);
 	txtr->shade = 1;
-	txtr->filters = 0;
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
-	return (error(data, E_OPEN, name));
+		return (error(data, E_OPEN, name));
 	counter = 5;
 	line = NULL;
 	while (--counter)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
+		line = ft_restr(line, get_next_line(fd));
 	close(fd);
+	if (!line)
+		return (error(data, E_MLX_TEXTURE, name));
 	height = line + sub_strlen(line, " ", EXCLUDE) + 1;
 	txtr->size[Y] = ft_atoi(height);
 	txtr->total_size = txtr->size[X] * txtr->size[Y];
 	free(line);
-}
-
-void	free_texture(t_data *data)
-{
-	int	i;
-
-	delete((void**)&data->txtr_east);
-	delete((void**)&data->txtr_west);
-	delete((void**)&data->txtr_north);
-	delete((void**)&data->txtr_south);
-	delete((void**)&data->txtr_floor);
-	delete((void**)&data->txtr_ceiling);
-	if (!data->txtr)
-		return ;
-	i = -1;
-	while (++i < TEXTURES_NUM)
-	{
-		if (data->txtr[i].ptr)
-			mlx_destroy_image(data->mlx, data->txtr[i].ptr);
-	}
 }

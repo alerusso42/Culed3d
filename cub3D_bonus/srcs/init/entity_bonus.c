@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/19 13:38:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:35:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 static void	default_settings(t_entity *entity, int x, int y);
 static void	init_animation(t_data *data, t_entity *entity, int n, int *frames);
 
+/*
+	set player struct data.
+	screen:		the position in the mini map, with pixel precision
+	curr_x/y:	a temp variable used in raycasting to check pixels
+	speed:		the amount of movement for every frame
+	pov:		the direction, in radiant, which the player points to
+
+	init_animation saves in player an array of two integer.
+	those integer are the texture index used for every animation frame.
+*/
 void	init_player(t_data *data)
 {
 	data->player.screen[X] = data->player.map[X] * WIMG;
@@ -35,6 +45,8 @@ void	init_player(t_data *data)
 	data->player.type = 'N';
 }
 
+//	doors are allocated in an array of doors.
+//	the data struct is the same as the player (t_entity).
 void	init_doors(t_data *data, int n_doors)
 {
 	int		y;
@@ -63,6 +75,7 @@ void	init_doors(t_data *data, int n_doors)
 	}
 }
 
+//	default settings for every entity.
 static void	default_settings(t_entity *entity, int x, int y)
 {
 	entity->map[X] = x;

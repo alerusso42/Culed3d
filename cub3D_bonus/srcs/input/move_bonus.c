@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/18 14:37:45 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:50:00 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,16 +134,3 @@ void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 	data->map[new_y][new_x] = entity->type;
 	print_matrix(data->map);
 }
-
-
-
-// void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
-// {
-// 	if (data->map[new_y][new_x] == 'D')
-// 		temp = 'D'
-// 	data->map[entity->map[Y]][entity->map[X]] = data->map[new_y][new_x];
-// 	data->map[new_y][new_x] = entity->type;
-// 	print_matrix(data->map);
-// }
-
-// x = 9 y = 8

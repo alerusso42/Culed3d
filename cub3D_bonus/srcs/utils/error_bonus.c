@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 11:54:16 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:59:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	error(t_data *data, int err, char *file)
 		fd_printf(2, "Bro le texture.\n");
 	else if (err == E_CHAR)
 		fd_printf(2, "Invalid char in map.\n");
+	else if (err == E_MLX_TEXTURE)
+		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN: %s\n", file);
 	else
 		error2(err);
 	fd_printf(2, RST);
@@ -55,8 +57,6 @@ static void	error2(int err)
 		three_dots(2, "This is not multiplayer", " yet😏\n");
 	else if (err == E_INVALID_MAP)
 		fd_printf(2, "This map looks suspicious\n");
-	else if (err == E_MLX_TEXTURE)
-		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN\n");
 	else if (err == E_INVALID_PATH)
 		fd_printf(2, "Can't access the whole map\n");
 	else if (err == E_INVALID_DOOR)
