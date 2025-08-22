@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:36:24 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:41:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ check_file(data->txtr_south) == false || \
 check_file(data->txtr_east) == false || \
 check_file(data->txtr_west) == false || \
 check_colors(data->txtr_floor, data->floor_rgb) == false || \
-check_colors(data->txtr_ceiling, data->ceiling_rgb) == false)
+check_colors(data->txtr_ceiling, data->ceiling) == false)
 	{
 		finish_him(fd);
 		error(data, E_TEXTURE, NULL);

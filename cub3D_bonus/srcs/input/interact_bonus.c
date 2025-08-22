@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:30:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:17:51 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	interact(t_data *data)
 	door_line(data, &data->player, angle);
 	x = data->player.curr_x / WIMG;
 	y = data->player.curr_y / HIMG;
-	printf("x:%d, y:%d:", x, y);
 	if (data->map[y][x] != 'D')
 		return ;
 	door_n = which_entity(data, x, y, ENTITY_DOOR);
 	if (door_n == ENTITY_NOT_FOUND)
 		return ;
-	if (data->doors[door_n].type == DOOR_CLOSED && \
-ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+	if (ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
+		return ;
+	printf("door modified: %d\n", door_n);
+	if (data->doors[door_n].type == DOOR_CLOSED)
 		data->doors[door_n].type = DOOR_OPENED;
-	else if (data->doors[door_n].type == DOOR_OPENED && \
-ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+	else if (data->doors[door_n].type == DOOR_OPENED)
 		data->doors[door_n].type = DOOR_CLOSED;
 }
 
@@ -73,8 +73,6 @@ static int	the_entity_checker(t_entity *entity, t_data *data)
 
 	x = (int)entity->curr_x / WIMG;
 	y = (int)entity->curr_y / HIMG;
-	l_printf("x:%d, y:%d:\n", x, y);
-	l_printf("x:%d, y:%d:\n", data->player.map[X], data->player.map[Y]);
 	if (data->player.map[X] == x && data->player.map[Y] == y)
 		return (false);
 	if (data->map[y][x] == 'D' || data->map[y][x] == '1')

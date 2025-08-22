@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:52:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_entity(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->entities[i])
+	while (data->renderer[i])
 	{
 		render_one(data, &data->doors[i]);
 		++i;
@@ -74,7 +74,7 @@ static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
 	}
 }
 
-void	reset_entities(t_data *data)
+void	reset_renderer(t_data *data)
 {
 	int	i;
 
@@ -88,8 +88,8 @@ void	reset_entities(t_data *data)
 		data->doors[i].contact_last[Y] = -1;
 	}
 	i = -1;
-	while (data->entities && ++i != data->ent_num + 1)
+	while (data->renderer && ++i != data->ent_num + 1)
 	{
-		data->entities[i] = NULL;
+		data->renderer[i] = NULL;
 	}
 }

@@ -3,8 +3,8 @@ EA ./textures/sassocarta.xpm
 SO ./textures/sassocarta.xpm
 WE ./textures/sassocarta.xpm
 
-F 220,100,0
-C 0,120,170
+C 60,35,26
+F 30,18,12
 
 1111111111111111111
 1000000000000000001

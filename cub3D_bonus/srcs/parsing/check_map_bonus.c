@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/22 14:36:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	check_chars(t_data *data)
 	door_count = 0;
 	count_chars(data, &player_count, &door_count);
 	init_doors(data, door_count);
-	data->entities = ft_calloc(door_count + 2, sizeof(t_entity *));
-	if (!data->entities)
+	data->renderer = ft_calloc(door_count + 2, sizeof(t_entity *));
+	if (!data->renderer)
 		error(data, E_MALLOC, NULL);
 	data->ent_num = door_count;
 	if (player_count == 0)

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:09:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:11:04 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@
 # define ANGLE_90 1.5707963
 # define ANGLE_180 3.1415926
 # define ANGLE_270 4.7123889
-# define ANGLE_360 0
+# define ANGLE_360 6.2831852
 
 typedef struct timeval		t_time;
 
@@ -167,7 +167,7 @@ typedef struct s_data
 {
 	t_entity	player;
 	t_time		start;
-	t_entity	**entities;
+	t_entity	**renderer;
 	t_entity	*doors;
 	t_entity	*enemies;
 	void		*mlx;
@@ -189,7 +189,7 @@ typedef struct s_data
 	int			size_line;
 	int			endian;
 	int			floor_rgb[3];
-	int			ceiling_rgb[3];
+	int			ceiling[3];
 	int			max_x;
 	int			max_y;
 	int			column;
@@ -364,6 +364,7 @@ void	clear_window(t_data *data);
 long	elapsed_time(t_time start);
 void	render_cross(t_data *data);
 void	*safe_malloc(size_t size);
+int		rgb(int r, int g, int b);
 int		which_p(t_data *data);
 double	round_rad(double rad);
 double	grad2rad(double rad);
@@ -386,7 +387,7 @@ void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
 int		commands(int key, t_data *data);
-void	reset_entities(t_data *data);
+void	reset_renderer(t_data *data);
 void	render_entity(t_data *data);
 void	backgrounder(t_data *data);
 void	get_txtr(t_data *data);
@@ -395,5 +396,6 @@ int		which_p(t_data *data);
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 void	pix(t_data *data);
 int		texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y);
+bool	all_collision(t_data *data, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:45:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:33:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:43:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ int	map_start(t_data *data, int i, int j)
 
 static void	background(t_data *data)
 {
-	int	x;
-	int	y;
-	int	color;
+	int			x;
+	int			y;
+	static int	color;
 
+	if (!color)
+		color = rgb(data->ceiling[0] * 0.90, data->ceiling[1] * 0.90, \
+data->ceiling[2] * 0.90);
 	x = ((MINIMAP + 2) * 24);
 	y = (MINIMAP * 24);
-	color = (200 << 16) | (120 << 8) | 170;
 	while (x > 0)
 	{
 		y = (MINIMAP * 24);

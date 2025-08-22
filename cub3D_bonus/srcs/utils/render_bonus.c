@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:32:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:41:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	backgrounder(t_data *data)
 	int	i;
 	int	j;
 
-	ceiling = (data->ceiling_rgb[0] << 16) | \
-(data->ceiling_rgb[1] << 8) | \
-data->ceiling_rgb[2];
+	ceiling = (data->ceiling[0] << 16) | \
+(data->ceiling[1] << 8) | \
+data->ceiling[2];
 	floor = (data->floor_rgb[0] << 16) | \
 (data->floor_rgb[1] << 8) | \
 data->floor_rgb[2];

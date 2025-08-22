@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:28:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 11:56:40 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:39:23 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ double	safe_division(double delta, double sum)
 	if (sum == 0 || delta == 0)
 		return (0);
 	return (delta / sum);
-}
-
-/*
-	Returns the value in radiant of a grade value.
-	Notice: 180 d are PI radiant.
-			Therefore, dividing PI and multipling for grad gives back radiant.
-*/
-double	grad2rad(double grad)
-{
-	return (grad * (PI / 180));
 }
 
 void	normalize_angle(double *angle)
@@ -70,4 +60,9 @@ int	bigger(int a, int b, int c, int d)
 	if (d > bigger)
 		bigger = c;
 	return (bigger);
+}
+
+int	rgb(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
 }

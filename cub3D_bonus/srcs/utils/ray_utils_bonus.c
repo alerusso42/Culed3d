@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:10:31 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:58:48 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 	we = which_entity(data, map[X], map[Y], ENTITY_DOOR);
 	if (we != ENTITY_NOT_FOUND)
 	{
+		return (true);
 		if (data->doors[we].type == DOOR_OPENED)
 			return (false);
 		return (true);
@@ -57,9 +58,9 @@ void	save_coord(t_data *data, t_entity *ent, int map[2], double screen[2])
 		ent->contact_first[X] = map[X];
 		ent->contact_first[Y] = map[Y];
 		i = 0;
-		while (data->entities && data->entities[i])
+		while (data->renderer && data->renderer[i])
 			++i;
-		data->entities[i] = ent;
+		data->renderer[i] = ent;
 		ent->curr_x = screen[X];
 		ent->curr_y = screen[Y];
 	}

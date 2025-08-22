@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 11:52:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:10:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ bool	collision_entity(t_data *data, int x, int y)
 		{
 			if (data->doors[i].type == DOOR_OPENED)
 				return (false);
+			return (true);
+		}
+	}
+	return (false);
+}
+
+bool	all_collision(t_data *data, int x, int y)
+{
+	int	i;
+
+	i = -1;
+	while (data->doors[++i].type != ENTITY_END)
+	{
+		if (data->doors[i].map[X] == x && data->doors[i].map[Y] == y)
+		{
 			return (true);
 		}
 	}

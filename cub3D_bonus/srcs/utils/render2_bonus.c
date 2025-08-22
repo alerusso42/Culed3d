@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:32:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:19:02 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,16 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
+	int	we;
+
+	if (all_collision(data, hit_x / WIMG, hit_y / HIMG) == true)
 	{
-		return (&data->txtr[DOOR]);
+		we = which_entity(data, hit_x / WIMG, hit_y / HIMG, ENTITY_DOOR);
+		printf("door chosen: %d\n", we);
+		if (data->doors[we].type == DOOR_OPENED)
+			return (&data->txtr[DOOR_OPEN]);
+		else
+			return (&data->txtr[DOOR]);
 	}
 	else
 		return (&data->txtr[wall_face(data, &data->player, ray_angle)]);

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:38:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	game_loop(t_data *data)
 void	line(t_data *data, t_entity *entity, double angle, int i);
 
 /*
-	reset_entities:	set the list of entity to render to zero.
+	reset_renderer:	set the list of entity to render to zero.
 	backgrounder:	put the background on the screen. It deletes last render.
 	line:			cast a single ray, and render on the screen the result.
 	render_entity:	during the raycasting phase, we save in a list the
-					entities we have seen. In render_entity, we draw them.
+					renderer we have seen. In render_entity, we draw them.
 					
 */
 void	frame_render(t_data *data)
@@ -57,7 +57,7 @@ void	frame_render(t_data *data)
 	double	angle;
 	int		i;
 
-	reset_entities(data);
+	reset_renderer(data);
 	backgrounder(data);
 	data->column = 0;
 	data->color = 0xff000d;

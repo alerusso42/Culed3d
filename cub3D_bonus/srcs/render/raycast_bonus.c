@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:10:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	line(t_data *data, t_entity *entity, double angle, int i)
 		entity->curr_y += sin_angle;
 	}
 	draw_wall(data, (int [2]){(int)entity->curr_x, (int)entity->curr_y}, angle);
-	// if (data->entities[0])
+	// if (data->renderer[0])
 	// {
-	// 	pos[X] = (int)data->entities[0]->curr_x;
-	// 	pos[Y] = (int)data->entities[0]->curr_y;
+	// 	pos[X] = (int)data->renderer[0]->curr_x;
+	// 	pos[Y] = (int)data->renderer[0]->curr_y;
 	// 	draw_wall(data, pos, angle);
-	// 	data->entities[0]->contact_first[X] = -1;
-	// 	data->entities[0]->contact_first[Y] = -1;
-	// 	data->entities[0] = NULL;
+	// 	data->renderer[0]->contact_first[X] = -1;
+	// 	data->renderer[0]->contact_first[Y] = -1;
+	// 	data->renderer[0] = NULL;
 	// }
 }
 
