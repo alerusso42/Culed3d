@@ -6,13 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 15:28:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:21:34 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D_bonus.h"
-
-int mouse_hook(int button, int x, int y, void* param);
 
 /*
 	FUNCTION NAME			DESCRIPTION

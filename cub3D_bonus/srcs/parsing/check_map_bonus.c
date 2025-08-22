@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/19 12:38:40 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:36:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ static void	is_it_valid(t_data *data, int x, int y, int flag)
 	if (x == 0 || x == data->max_x || y == 0 || y == data->max_y)
 		error(data, flag, NULL);
 	if (data->map[y + 1][x] == ' ' || \
-		data->map[y - 1][x] == ' ' || \
-		data->map[y][x + 1] == ' ' || \
-		data->map[y][x - 1] == ' ')
+data->map[y - 1][x] == ' ' || \
+data->map[y][x + 1] == ' ' || \
+data->map[y][x - 1] == ' ')
 		error(data, flag, NULL);
 }

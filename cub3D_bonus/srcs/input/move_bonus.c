@@ -6,13 +6,12 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 08:50:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:32:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-//static void	move_forward(t_data *data, t_entity *entity, double cos, double sin);
 void	one_step(t_data *data, t_entity *entity, double angle[], int offset[]);
 
 /*
@@ -36,7 +35,7 @@ void	move(t_data *data, t_entity *entity, double angle[])
 		one_step(data, entity, angle, (int [2]){0, 1});
 	}
 	if (entity->input & LEFT)
-	{		
+	{
 		angle[COS] = cos(entity->pov[X] + ANGLE_90);
 		angle[SIN] = sin(entity->pov[X] + ANGLE_90) * -1;
 		one_step(data, entity, angle, (int [2]){0, 1});
@@ -71,11 +70,11 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
 	map_x = (int)(new_x) / WIMG;
 	map_y = (int)(new_y) / HIMG;
 	if (map_y < 0 || map_y >= data->max_y || \
-		map_x < 0 || map_x >= data->max_x)
-		return;
+map_x < 0 || map_x >= data->max_x)
+		return ;
 	if (ft_strchr("1 ", data->map[map_y][map_x]) || \
-		collision_entity(data, map_x, map_y) == true)
-		return;
+collision_entity(data, map_x, map_y) == true)
+		return ;
 	entity->screen[X] = new_x;
 	entity->screen[Y] = new_y;
 	update_map(data, entity, map_x, map_y);
@@ -121,7 +120,7 @@ void	mouse_input(t_data *data)
 		return ;
 	diff[X] *= SENSITIVITY;
 	diff[Y] *= SENSITIVITY;
-	data->player.pov[X] += (diff[X]  * -1);
+	data->player.pov[X] += (diff[X] * -1);
 	if (data->player.pov[X] > PI * 2)
 		data->player.pov[X] -= PI * 2;
 	else if (data->player.pov[X] < 0)

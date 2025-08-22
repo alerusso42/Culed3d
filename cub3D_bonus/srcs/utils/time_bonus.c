@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:35:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ long	elapsed_time(t_time start)
 
 	gettimeofday(&tv, NULL);
 	diff = (tv.tv_sec - start.tv_sec) * 1000000 \
-	+ (tv.tv_usec - start.tv_usec);
++ (tv.tv_usec - start.tv_usec);
 	return (diff);
 }

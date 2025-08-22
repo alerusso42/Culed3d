@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 09:13:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 09:29:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:35:39 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,28 @@ bool	value_changed(void *value, size_t type)
 	if (!old_value)
 		old_value = value;
 	if (type == sizeof(int8_t) && \
-	*(int8_t *)old_value != *(int8_t *)value)
+*(int8_t *)old_value != *(int8_t *)value)
 	{
 		*(int8_t *)old_value = *(int8_t *)value;
 		return (true);
 	}
 	else if (type == sizeof(int16_t) && \
-	*(int16_t *)old_value != *(int16_t *)value)
+*(int16_t *)old_value != *(int16_t *)value)
 	{
 		*(int16_t *)old_value = *(int16_t *)value;
 		return (true);
 	}
 	else if (type == sizeof(int32_t) && \
-	*(int32_t *)old_value != *(int32_t *)value)
+*(int32_t *)old_value != *(int32_t *)value)
 	{
 		*(int32_t *)old_value = *(int32_t *)value;
 		return (true);
 	}
 	return (false);
+}
+
+void	pix(t_data *data)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	mlx_do_sync(data->mlx);
 }

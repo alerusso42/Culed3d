@@ -52,7 +52,7 @@
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
 # define WALL_TXTR "textures/mini_wall.xpm"
-# define DOOR_TXTR "textures/dedoor.xpm"
+# define DOOR_TXTR "textures/gabibbo.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
 # define ARMS1_TXTR "textures/possenza.xpm"
 # define ARMS2_TXTR "textures/possenza2.xpm"
@@ -315,6 +315,7 @@ void	free_texture(t_data *data);
 //SECTION	input
 
 void	move(t_data *data, t_entity *entity, double angle[]);
+int	mouse_hook(int button, int x, int y, void* param);
 void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
@@ -377,7 +378,7 @@ int		game_loop(t_data *data);
 
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
-void	draw_wall(t_data *data, int x, int y, double ray_angle);
+void	draw_wall(t_data *data, int pos[2], double ray_angle);
 void 	line(t_data *data, t_entity *entity, double angle, int i);
 void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);
@@ -392,5 +393,6 @@ int		which_p(t_data *data);
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 void	pix(t_data *data);
+int		texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y);
 
 #endif

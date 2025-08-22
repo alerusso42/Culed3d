@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 12:02:31 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:38:25 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-void line(t_data *data, t_entity *entity, double angle, int i);
-void doors(t_data *data, t_entity *entity, double angle, int i);
+void	line(t_data *data, t_entity *entity, double angle, int i);
 
 /*
 	reset_entities:	set the list of entity to render to zero.
@@ -69,13 +68,6 @@ void	frame_render(t_data *data)
 	{
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
 		line(data, &data->player, pov[X] + angle, i);
-		++data->column;
-	}
-	i = WSCREEN;
-	while (--i >= 0)
-	{
-		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		doors(data, &data->player, pov[X] + angle, i);
 		++data->column;
 	}
 	render_entity(data);

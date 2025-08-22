@@ -6,14 +6,14 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/06 15:19:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:30:41 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void door_line(t_data *data, t_entity *entity, double angle);
-static int	the_entity_checker(t_entity *entity, t_data *data);
+static	void	door_line(t_data *data, t_entity *entity, double angle);
+static	int	the_entity_checker(t_entity *entity, t_data *data);
 
 void	interact(t_data *data)
 {
@@ -33,37 +33,37 @@ void	interact(t_data *data)
 	if (door_n == ENTITY_NOT_FOUND)
 		return ;
 	if (data->doors[door_n].type == DOOR_CLOSED && \
-		ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
 		data->doors[door_n].type = DOOR_OPENED;
 	else if (data->doors[door_n].type == DOOR_OPENED && \
-		ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
+ray_lenght(data, data->player.curr_x, data->player.curr_y) < 150)
 		data->doors[door_n].type = DOOR_CLOSED;
 }
 
-static void door_line(t_data *data, t_entity *entity, double angle)
+static	void	door_line(t_data *data, t_entity *entity, double angle)
 {
-    double x;
-    double y;
-    float cos_angle;
-    float sin_angle;
+	double	x;
+	double	y;
+	float	cos_angle;
+	float	sin_angle;
 
 	x = entity->screen[X];
 	y = entity->screen[Y];
-    entity->curr_x = x;
-    entity->curr_y = y;
+	entity->curr_x = x;
+	entity->curr_y = y;
 	if (angle > (2 * PI))
 		angle -= (2 * PI);
 	else if (angle < 0)
 		angle += (2 * PI);
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-    while (!the_entity_checker(entity, data))
-    {
-        x += cos_angle;
-        y += sin_angle;
-        entity->curr_x = x;
-        entity->curr_y = y;
-    }
+	while (!the_entity_checker(entity, data))
+	{
+		x += cos_angle;
+		y += sin_angle;
+		entity->curr_x = x;
+		entity->curr_y = y;
+	}
 }
 
 static int	the_entity_checker(t_entity *entity, t_data *data)

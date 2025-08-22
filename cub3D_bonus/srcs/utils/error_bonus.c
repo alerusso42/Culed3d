@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 15:59:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:36:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	error(t_data *data, int err, char *file)
 		fd_printf(2, "Mi sa manca qualcosa.\n");
 	else if (err == E_TEXTURE)
 		fd_printf(2, "Bro le texture.\n");
-	else if (err == E_CHAR)
-		fd_printf(2, "Invalid char in map.\n");
 	else if (err == E_MLX_TEXTURE)
 		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN: %s\n", file);
 	else
@@ -61,6 +59,8 @@ static void	error2(int err)
 		fd_printf(2, "Can't access the whole map\n");
 	else if (err == E_INVALID_DOOR)
 		fd_printf(2, "Chi e' quel mona che sbatte la porta\n");
+	else if (err == E_CHAR)
+		fd_printf(2, "Invalid char in map.\n");
 }
 
 static void	three_dots(int fd, char *first, char *second)

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 16:46:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:28:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	lets_start_the_party(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error(data, 0, NULL);
-	data->win = mlx_new_window(data->mlx, WSCREEN, HSCREEN, \
-		"BONUS");
+	data->win = mlx_new_window(data->mlx, WSCREEN, HSCREEN, "BONUS");
 	if (!data->win)
 		error(data, 0, NULL);
 	data->txtr = ft_calloc(TEXTURES_NUM + 1, sizeof(t_txtr));
@@ -46,7 +45,7 @@ void	lets_start_the_party(t_data *data)
 	get_txtr(data);
 	init_player(data);
 	data->screen = mlx_get_data_addr(data->txtr[SCREEN].ptr, &data->bpp, \
-		&data->size_line, &data->endian);
+&data->size_line, &data->endian);
 }
 
 /*
@@ -56,12 +55,12 @@ void	free_texture(t_data *data)
 {
 	int	i;
 
-	delete((void**)&data->txtr_east);
-	delete((void**)&data->txtr_west);
-	delete((void**)&data->txtr_north);
-	delete((void**)&data->txtr_south);
-	delete((void**)&data->txtr_floor);
-	delete((void**)&data->txtr_ceiling);
+	delete((void **)&data->txtr_east);
+	delete((void **)&data->txtr_west);
+	delete((void **)&data->txtr_north);
+	delete((void **)&data->txtr_south);
+	delete((void **)&data->txtr_floor);
+	delete((void **)&data->txtr_ceiling);
 	if (!data->txtr)
 		return ;
 	i = -1;

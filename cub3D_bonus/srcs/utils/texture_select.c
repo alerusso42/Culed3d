@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:04 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 09:01:40 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:35:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ int	which_p(t_data *data)
 	{
 		return (M_PLAYER_0);
 	}
-	// else if (pov > ANGLE_90 - ANGLE_1 > 0 && pov < ANGLE_90 + ANGLE_1)
-	// 	return (M_PLAYER_90);
-	// else if (pov > ANGLE_180 - ANGLE_1 > 0 && pov < ANGLE_180 + ANGLE_1)
-	// 	return (M_PLAYER_180);
-	// else if (pov > ANGLE_270 - ANGLE_1 > 0 && pov < ANGLE_270 + ANGLE_1)
-	// 	return (M_PLAYER_270);
 	i = 1;
 	while (i < 18)
 	{

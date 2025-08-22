@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/22 08:51:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:36:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	get_type(t_data *data, int fd)
 		i = 0;
 		i += sub_strlen(line, " ", INCLUDE);
 		if (line[i] == '\0')
-			return (finish_him(fd), free(line), close(fd), error(data, E_TYPE, NULL));
+			return (finish_him(fd), free(line), close(fd), \
+error(data, E_TYPE, NULL));
 		else if (line[i] == '\n')
 		{
 			line = ft_restr(line, get_next_line(fd));
@@ -42,7 +43,7 @@ void	get_type(t_data *data, int fd)
 		}
 		if (assign_type(data, line + i) == false)
 			return (finish_him(fd), free(line), close(fd), \
-			error(data, E_TYPE, NULL));
+error(data, E_TYPE, NULL));
 		++count_types;
 		line = ft_restr(line, get_next_line(fd));
 	}

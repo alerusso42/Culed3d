@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 10:32:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 15:48:45 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:36:08 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b)
 	{
 		rgb = bigger(*r, *b, *g, INT_MIN);
 		rgb += (bigger(*r, *b, *g, INT_MIN) << 8);
-		rgb += (bigger(*r, *b, *g, INT_MIN) << 16); 
+		rgb += (bigger(*r, *b, *g, INT_MIN) << 16);
 	}
 	*r = rgb & 255;
 	*g = (rgb >> 8) & 255;

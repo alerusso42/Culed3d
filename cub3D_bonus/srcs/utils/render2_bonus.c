@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 12:01:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:32:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ static bool	check_north_collision(t_data *data, t_entity *entity);
 				PI / 2
 		   ~.----~~~ -- .
    	  ..-~        |       ~-.
-	 /            |           \
-	 /            |            \			NORTH/SOUTH: 	________________________
-	 |            |             |					NORTH:	|0	    	|  PI			|
-PI	 | ___________|____________ | 0					SOUTH:	|PI			|  2 * PI (0)	|
-	 |            |             |							________________________
-	  \           |            /			WEST/EAST:
-	   \          |           /						WEST:	|PI / 2 | (PI / 2) * 3|
-	    `-.       |        .-'						EAST:	|3 * PI / 2 - 2 * PI|
-	        ~- . _|__ . -~									____________________
+	 /            |           /
+	 /            |            /	NORTH/SOUTH: 	________________________
+	 |            |             |			NORTH:	|0	    	|  PI		|
+PI	 | ___________|____________ | 0			SOUTH:	|PI			| 2 * PI (0)|
+	 |            |             |					________________________|
+	  /           |            /	WEST/EAST:								|
+	   /          |           /				WEST:	|PI / 2 | (PI / 2) * 3|	|
+	    `-.       |        .-'				EAST:	|3 * PI / 2 - 2 * PI|	|
+	        ~- . _|__ . -~							________________________
 			(PI / 2) * 3
 */
-int	wall_face(t_data * data, t_entity *entity, double angle)
+int	wall_face(t_data *data, t_entity *entity, double angle)
 {
 	char	face;
 
 	face = 0;
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
-		((int)(entity->curr_y + 1) % HIMG == 0) || \
-		((int)(entity->curr_y - 1) % HIMG == 0)) \
-			&& check_north_collision(data, entity))
+((int)(entity->curr_y + 1) % HIMG == 0) || \
+((int)(entity->curr_y - 1) % HIMG == 0)) \
+&& check_north_collision(data, entity))
 		face |= (NO | SO);
 	else
 		face |= (WE | EA);
@@ -74,8 +74,8 @@ static bool	check_north_collision(t_data *data, t_entity *entity)
 	x[2] = (int)(entity->curr_x + 1) / WIMG;
 	y[2] = (int)(entity->curr_y) / HIMG;
 	if ((ft_strchr("1D", data->map[y[0]][x[0]])) && \
-		(ft_strchr("1D", data->map[y[1]][x[1]]))  && \
-		(ft_strchr("1D", data->map[y[2]][x[2]]))) 
+(ft_strchr("1D", data->map[y[1]][x[1]])) && \
+(ft_strchr("1D", data->map[y[2]][x[2]])))
 	{
 		return (true);
 	}
@@ -98,7 +98,16 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
-	t_txtr		*txtr;
+	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
+	{
+		return (&data->txtr[DOOR]);
+	}
+	else
+		return (&data->txtr[wall_face(data, &data->player, ray_angle)]);
+}
+
+int	texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y)
+{
 	int			wall_txtr;
 	int			pixel;
 
@@ -109,22 +118,5 @@ t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * TXTR);
 	if (wall_txtr == WEST || wall_txtr == SOUTH)
 		pixel = TXTR - pixel;
-	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG) == true)
-	{
-		if (wall_txtr == NORTH || wall_txtr == SOUTH)
-			pixel = TXTR - pixel;
-		wall_txtr = DOOR;
-	}
-	txtr = &data->txtr[wall_txtr];
-	txtr->offset = pixel * (txtr->bpp / 8);
-	return (txtr);
-}
-
-// * (txtr->bpp / 8)
-
-void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
-{
-	pos[X] *= size[X];
-	pos[Y] *= size[Y];
-	put_image_to_image(data, which, pos, size);
+	return (pixel * (data->bpp / 8));
 }

@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 15:16:04 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:32:41 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
-
-void	pix(t_data *data)
-{
-		mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-		mlx_do_sync(data->mlx);
-}
 
 void	put_pixel(t_data *data, int x, int y, int color)
 {
@@ -28,8 +22,6 @@ void	put_pixel(t_data *data, int x, int y, int color)
 		return ;
 	if (!color)
 		return ;
-	// if (x >= WSCREEN || y >= HSCREEN || x < 0 || y < 0 || !color)
-	// 	return ;
 	index = y * data->size_line + (x * (data->bpp / 8));
 	data->screen[index] = color & 255;
 	data->screen[index] &= 255;
@@ -87,8 +79,12 @@ void	backgrounder(t_data *data)
 	int	i;
 	int	j;
 
-	ceiling = (data->ceiling_rgb[0] << 16) | (data->ceiling_rgb[1] << 8) | data->ceiling_rgb[2];
-	floor = (data->floor_rgb[0] << 16) | (data->floor_rgb[1] << 8) | data->floor_rgb[2];
+	ceiling = (data->ceiling_rgb[0] << 16) | \
+(data->ceiling_rgb[1] << 8) | \
+data->ceiling_rgb[2];
+	floor = (data->floor_rgb[0] << 16) | \
+(data->floor_rgb[1] << 8) | \
+data->floor_rgb[2];
 	j = -1;
 	while (++j < WSCREEN)
 	{
@@ -100,37 +96,3 @@ void	backgrounder(t_data *data)
 		}
 	}
 }
-
-/*
-	Put an image to the screen texture.
-*/
-void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
-{
-	t_txtr		*txtr;
-	int			color;
-	int			index;
-	int			y;
-	int			x;
-
-	txtr = &data->txtr[which];
-	if (!txtr->ptr)
-		return ;
-	y = 0;
-	while (y != size[Y])
-	{
-		x = 0;
-		while (x != size[X])
-		{
-			index = y * txtr->size[X] + x * (txtr->bpp / 8);
-			if (index > txtr->total_size - 1)
-				return ;
-			color = txtr->xpm[index] & 0xFF;
-			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
-			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
-			put_pixel(data, pos[X] + x, pos[Y] + y, color);
-			++x;
-		}
-		y++;
-	}
-}
-

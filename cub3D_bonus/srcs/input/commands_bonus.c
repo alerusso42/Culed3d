@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 16:49:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:31:12 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	commands_release(int keycode, t_data *data)
 		data->player.speed = 5;
 	return (0);
 }
-int mouse_hook(int button, int x, int y, void *data)
+
+int	mouse_hook(int button, int x, int y, void *data)
 {
 	(void)x, (void)y;
 	if (button == MOUSE_UP)
