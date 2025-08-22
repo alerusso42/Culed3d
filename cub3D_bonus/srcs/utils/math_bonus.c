@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:28:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/09 10:19:53 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 11:56:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ double	grad2rad(double grad)
 	return (grad * (PI / 180));
 }
 
-/*
-	Returns the value in grades of a radiant value.
-	Notice: 180 d are PI radiant.
-			Therefore, dividing PI and multipling for grad gives back radiant.
-*/
-double	rad2deg(double rad)
+void	normalize_angle(double *angle)
 {
-	return (rad / (PI / 180));
+	if (*angle > 2 * PI)
+		*angle -= 2 * PI;
+	else if (*angle < 0)
+		*angle += 2 * PI;
 }
 
 /*

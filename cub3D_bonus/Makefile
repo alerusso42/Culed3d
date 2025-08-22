@@ -41,11 +41,12 @@ SRCS = $(addprefix $(SRC_PATH), \
 	utils/alloc_utils_bonus.c \
 	utils/render_bonus.c \
 	utils/render2_bonus.c \
+	utils/render3_bonus.c \
 	utils/texture_filters.c \
 	utils/texture_select.c \
-	utils/render3_bonus.c \
 	render/game_loop_bonus.c \
 	render/raycast_bonus.c \
+	render/entity_bonus.c \
 )
 all: $(NAME)
 

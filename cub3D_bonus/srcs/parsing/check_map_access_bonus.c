@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:01:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/06 11:11:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 08:53:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ void	check_map_access(t_data *data)
 	map_copy = ft_dup_matrix(data->map);
 	player_finder(data);
 	path_finder(data, map_copy, data->player.map[1], data->player.map[0]);
-	// print_matrix(map_copy);
 	path_checker(data, map_copy);
 	free_matrix(map_copy);
 }
 
 static void	path_finder(t_data *data, char **map_copy, int x, int y)
 {
-	// if (x == data->max_x || y == data->max_y)
-	// 	return ;
 	if (map_copy[x][y] == 'X' || map_copy[x][y] == '1')
 		return ;
 	map_copy[x][y] = 'X';

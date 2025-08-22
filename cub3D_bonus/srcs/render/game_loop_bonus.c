@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 16:52:34 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:02:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-/*
-	prints minimap on screen.
-	//FIXME	we need to resize it. And to center it.
-*/
-
 void	frame_render(t_data *data);
 
 /*
-	//NOTE	update this comment when game_loop will be finished.
+	1)	to avoid full CPU speed, we set a time that needs to pass between 
+		frames: FRAME_TIME (1 second / FPS).
+		if it is not passed, the entire frame is skipped.
+	2)	we check inputs and move/rotate player if needed;
+	3)	we render the current frame on screen.
 */
 int	game_loop(t_data *data)
 {
-	int		t1, t2;
+	int		t1;
+	int		t2;
+	int		t_diff;
 
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
@@ -33,14 +34,24 @@ int	game_loop(t_data *data)
 		mouse_input(data);
 		frame_render(data);
 		t2 = elapsed_time(data->start);
-		printf("~Time:%d ms~\n", (t2 - t1) /(int)1e3);
+		t_diff = (t2 - t1) / (int)1e3;
+		printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
 		gettimeofday(&data->start, NULL);
 	}
 	return (0);
 }
 
 void line(t_data *data, t_entity *entity, double angle, int i);
+void doors(t_data *data, t_entity *entity, double angle, int i);
 
+/*
+	reset_entities:	set the list of entity to render to zero.
+	backgrounder:	put the background on the screen. It deletes last render.
+	line:			cast a single ray, and render on the screen the result.
+	render_entity:	during the raycasting phase, we save in a list the
+					entities we have seen. In render_entity, we draw them.
+					
+*/
 void	frame_render(t_data *data)
 {
 	double	pov[2];
@@ -49,7 +60,6 @@ void	frame_render(t_data *data)
 
 	reset_entities(data);
 	backgrounder(data);
-	// clear_window(data);
 	data->column = 0;
 	data->color = 0xff000d;
 	pov[X] = data->player.pov[X] - (RADIANT * (FOV / 2));
@@ -61,49 +71,16 @@ void	frame_render(t_data *data)
 		line(data, &data->player, pov[X] + angle, i);
 		++data->column;
 	}
+	i = WSCREEN;
+	while (--i >= 0)
+	{
+		angle = ((RADIANT * i) / WSCREEN) * (FOV);
+		doors(data, &data->player, pov[X] + angle, i);
+		++data->column;
+	}
 	render_entity(data);
-	// put_image_resize(data, PLAYER, data->player.screen[X], data->player.screen[Y]);
-	put_image_to_image(data, CROSSHAIR, (int [2]){(HSCREEN / 2) + 32, (WSCREEN / 2) - 64}, (int [2]){WIMG, HIMG});
 	animation(data, &data->player);
+	render_cross(data);
 	map_start(data, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
-// void	wall(t_data *data, double x, void *txtr)
-// {
-// 	int		pixel;
-// 	int		i;
-// 	int		image[3];
-// 	int		color;
-// 	char	*image_ptr;
-
-// 	(void)data, (void)txtr, (void)pixel;
-// 	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
-// 	printf("x :\t%f, temp :%d\t", x, pixel);
-// 	image_ptr = DATA_ADDR(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
-// 	if (!image_ptr)
-// 		return ;
-// 	i = pixel * (image[BPP] / 8) + (imageoffset[X], offset[Y]);[SIZE] * TXTR);
-// 	printf("x:\t%d\n", i);
-// 	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
-// 	put_pixel(data, (int)x, 200, color);
-// }
-
-// void	wall(t_data *data, double x, void *txtr)
-// {
-// 	int		pixel;
-// 	int		i;
-// 	int		image[3];
-// 	int		color;
-// 	char	*image_ptr;
-
-// 	(void)data, (void)txtr, (void)pixel;
-// 	pixel = (int)(((x / WIMG) - (int)(x / WIMG)) * TXTR);
-// 	printf("x :\t%f, temp :%d\t", x, pixel);
-// 	image_ptr = mlx_get_data_addr(txtr, &image[BPP], &image[SIZE], &image[ENDIAN]);
-// 	if (!image_ptr)
-// 		return ;
-// 	i = pixel * (image[SIZE]);
-// 	printf("y:\t%d\tsize:%d\n", i, (image[SIZE]));
-// 	color = image_ptr[i + 2] | (image_ptr[i + 1] << 8) | (image_ptr[i] << 16);
-// 	put_pixel(data, (int)x, 50, color);
-// }

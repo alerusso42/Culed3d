@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:45:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/20 08:46:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 11:59:29 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ static void	minimap_print(t_data *data, int offset[2], int pos[2])
 	else if (data->map[pos[Y]][pos[X]] == 'D')
 	{
 		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
-			put_image_resize(data, DOOR, offset, size_minimap);
+			put_image_resize(data, M_DOOR, offset, size_minimap);
 	}
 }

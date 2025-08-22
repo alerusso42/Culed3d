@@ -68,6 +68,10 @@ static void	txtr_list(t_data *data)
 	size[Y] = 167;
 	fill_txtr(data, &data->txtr[DOOR], DOOR_TXTR, size);
 	txtr_list2(data);
+	size[X] = 700;
+	size[Y] = 300;
+	fill_txtr(data, &data->txtr[ARMS1], ARMS1_TXTR, size);
+	fill_txtr(data, &data->txtr[ARMS2], ARMS2_TXTR, size);
 }
 
 static void	txtr_list2(t_data *data)
@@ -95,6 +99,7 @@ static void	txtr_list2(t_data *data)
 	fill_txtr(data, &data->txtr[M_PLAYER_300], MINI_PLAYER_300_TXTR, size);
 	fill_txtr(data, &data->txtr[M_PLAYER_320], MINI_PLAYER_320_TXTR, size);
 	fill_txtr(data, &data->txtr[M_PLAYER_340], MINI_PLAYER_340_TXTR, size);
+	fill_txtr(data, &data->txtr[M_DOOR], MINI_DOOR_TXTR, size);
 }
 
 //	set all the txtr array to NULL

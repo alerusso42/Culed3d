@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 16:50:00 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 08:50:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@
 void	one_step(t_data *data, t_entity *entity, double angle[], int offset[]);
 
 /*
-	In our game, every entity (player, enemies, objects that moves?) is a
+	In our game, every entity (player, enemies, objects that moves) is a
 	vector.
 	When moving, your are just updating your vector data, and moving
 	according to those data.
+
+	angle[COS] is the rotation in the x axis, in radiant.
+	angle[SIN] is the rotation in the y axis, in radiant.
+	the last parameter, offset, is necessary to solve imprecision in
+	movement (	in UP and LEFT, the y axis goes one wrong step back;
+				in DOWN and RIGHT, the same happens for the x axis).
 */
 void	move(t_data *data, t_entity *entity, double angle[])
 {
@@ -49,6 +55,10 @@ void	move(t_data *data, t_entity *entity, double angle[])
 	}
 }
 
+/*
+	before updating the entity coordinates, we check, with some local temp
+	variables, if the player would collide to a wall or another entity.
+*/
 void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
 {
 	double	new_x;
@@ -90,6 +100,15 @@ void	rotate(t_data *data, t_entity *entity)
 	}
 }
 
+/*
+	mlx_mouse_get_pos:	store in two variables the current position of the mouse.
+	mlx_mouse_move:		set the mouse position in a defined position.
+
+	this function calculates the current distance between 
+	the middle of the screen (WSCREEN / 2, HSCREEN / 2) and the mouse position.
+	then, it multiplies this difference for RADIANT and for SENSITIVITY.
+	Lastly, the mouse is put in the middle of the screen again.
+*/
 void	mouse_input(t_data *data)
 {
 	int		pos[2];
@@ -103,7 +122,6 @@ void	mouse_input(t_data *data)
 	diff[X] *= SENSITIVITY;
 	diff[Y] *= SENSITIVITY;
 	data->player.pov[X] += (diff[X]  * -1);
-	printf("diff x: %f| diff y:%f\n", diff[X], diff[Y]);
 	if (data->player.pov[X] > PI * 2)
 		data->player.pov[X] -= PI * 2;
 	else if (data->player.pov[X] < 0)
@@ -132,5 +150,4 @@ void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 		data->map[entity->map[Y]][entity->map[X]] = data->map[new_y][new_x];
 	}
 	data->map[new_y][new_x] = entity->type;
-	print_matrix(data->map);
 }

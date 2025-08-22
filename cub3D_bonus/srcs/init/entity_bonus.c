@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 15:35:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 10:56:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_player(t_data *data)
 	else if (data->player.type == 'S')
 		data->player.pov[X] = RADIANT * (270);
 	init_animation(data, &data->player, 2, (int [2])\
-	{NORTH, EAST});
+	{ARMS1, ARMS2});
 	data->player.type = 'N';
 }
 

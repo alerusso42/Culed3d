@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 15:26:12 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 11:49:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
     //     y += sin_angle;
 
 int		ill_be_back(t_entity *entity, t_data *data, double angle);
+int		the_door_checker(t_entity *entity, t_data *data, double angle, int i);
 
 void line(t_data *data, t_entity *entity, double angle, int i)
 {
@@ -33,22 +34,41 @@ void line(t_data *data, t_entity *entity, double angle, int i)
     entity->curr_y = entity->screen[Y];
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-	// double	dda_data[2];
-	// dda_data[X] = atan2(sin_angle, cos_angle);
-	// dda_data[Y] = atan2(cos_angle, sin_angle);
-	// printf("atan x:%f\tatan y:%f\n", dda_data[X], dda_data[Y]);
     while (!the_wall_checker(entity, data, angle, i))
     {
         entity->curr_x += cos_angle;
         entity->curr_y += sin_angle;
     }
 	draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
-	// while (!ill_be_back(entity, data, angle))
-    // {
-    //     entity->curr_x -= cos_angle;
-    //     entity->curr_y -= sin_angle;
-    // }
-	// wall(data, entity->curr_x, data->textures[wall_face(data, line, angle)]);
+	// if (data->entities[0])
+	// {
+	// 	draw_wall(data, (int)data->entities[0]->curr_x, (int)data->entities[0]->curr_y, angle);
+	// 	data->entities[0]->contact_first[X] = -1;
+	// 	data->entities[0]->contact_first[Y] = -1;
+	// 	data->entities[0] = NULL;
+	// }
+}
+
+void doors(t_data *data, t_entity *entity, double angle, int i)
+{
+    float cos_angle;
+    float sin_angle;
+	int		map[2];
+	
+    entity->curr_x = entity->screen[X];
+    entity->curr_y = entity->screen[Y];
+	cos_angle = round_rad(cos(angle));
+	sin_angle = round_rad(sin(angle)) * -1;
+    while (!the_door_checker(entity, data, angle, i))
+    {
+        entity->curr_x += cos_angle;
+        entity->curr_y += sin_angle;
+    }
+	map[X] = (int)entity->curr_x / WIMG;
+	map[Y] = (int)entity->curr_y / HIMG;
+	if (ft_strchr(WALL_CHARS, data->map[map[Y]][map[X]]))
+		return ;
+	draw_wall(data, (int)entity->curr_x, (int)entity->curr_y, angle);
 }
 
 void	draw_wall(t_data *data, int x, int y, double ray_angle)

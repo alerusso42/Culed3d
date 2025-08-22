@@ -47,12 +47,15 @@
 # define VALID_CHARS " 01NSEWD"
 # define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
+# define WALL_CHARS "1 "
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
 # define WALL_TXTR "textures/mini_wall.xpm"
-# define DOOR_TXTR "textures/gabibbo.xpm"
+# define DOOR_TXTR "textures/dedoor.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
+# define ARMS1_TXTR "textures/possenza.xpm"
+# define ARMS2_TXTR "textures/possenza2.xpm"
 # define MINI_PLAYER_0_TXTR "textures/mini_player_0.xpm"
 # define MINI_PLAYER_20_TXTR "textures/mini_player_20.xpm"
 # define MINI_PLAYER_40_TXTR "textures/mini_player_40.xpm"
@@ -72,6 +75,7 @@
 # define MINI_PLAYER_320_TXTR "textures/mini_player_320.xpm"
 # define MINI_PLAYER_340_TXTR "textures/mini_player_340.xpm"
 # define MINI_PLAYER_360_TXTR "textures/mini_player_360.xpm"
+# define MINI_DOOR_TXTR "textures/mini_door.xpm"
 
 # define HIMG 64
 # define WIMG 64
@@ -93,24 +97,23 @@
 */
 # define RADIANT (PI / 180)
 
-//	see RADIANT for explaination.
-//	putting it to 1 makes the line sensibility to 1 degree.
-//	putting it to 20 makes the line sensibility to (1 degree / 20), and so on.
-//NOTE [L_A: 30; FOV: 64]
+//	Amount of radiant rotated for every rotation.
 # define ANGULAR_SPEED RADIANT * 2.5
+
+//	Amount of movement per frame.
 # define PLAYER_SPEED 5
+
+//	Mouse rotation speed, per frame.
 # define SENSITIVITY 0.4
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60
-
 
 # define PI 3.1415926
 
 //FIXME	This flag is in debug state.
 # define SPEED 0.01
 # define ANIMATION_SPEED 12
-# define TANTA 50
 
 # define ANGLE_0 0
 # define ANGLE_1 RADIANT
@@ -229,6 +232,9 @@ enum e_textures
 	M_PLAYER_300,
 	M_PLAYER_320,
 	M_PLAYER_340,
+	M_DOOR,
+	ARMS1,
+	ARMS2,
 	TEXTURES_NUM,
 };
 
@@ -351,8 +357,10 @@ int		get_pixel_color(t_txtr *txtr, int i);
 void	update_coord(t_entity *entity_data);
 int		bigger(int a, int b, int c, int d);
 void	ft_sleep(long long microsecond);
+void	normalize_angle(double *angle);
 void	clear_window(t_data *data);
 long	elapsed_time(t_time start);
+void	render_cross(t_data *data);
 void	*safe_malloc(size_t size);
 int		which_p(t_data *data);
 double	round_rad(double rad);
@@ -383,5 +391,6 @@ void	get_txtr(t_data *data);
 int		which_p(t_data *data);
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
+void	pix(t_data *data);
 
 #endif
