@@ -51,7 +51,6 @@ void	get_txtr(t_data *data)
 
 //	size is the expected size of the img
 */
-
 static void	txtr_list(t_data *data)
 {
 	int	size[2];
@@ -73,6 +72,7 @@ static void	txtr_list(t_data *data)
 	size[Y] = 300;
 	fill_txtr(data, &data->txtr[ARMS1], ARMS1_TXTR, size);
 	fill_txtr(data, &data->txtr[ARMS2], ARMS2_TXTR, size);
+	fill_txtr(data, &data->txtr[BAGUETTE], BAGUETTE_TXTR, size);
 }
 
 static void	txtr_list2(t_data *data)

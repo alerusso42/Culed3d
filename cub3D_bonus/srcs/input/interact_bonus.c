@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:17:51 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:31:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	interact(t_data *data)
 		return ;
 	if (ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
 		return ;
-	printf("door modified: %d\n", door_n);
 	if (data->doors[door_n].type == DOOR_CLOSED)
 		data->doors[door_n].type = DOOR_OPENED;
 	else if (data->doors[door_n].type == DOOR_OPENED)

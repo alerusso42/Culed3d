@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:11:04 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:44:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define DOOR_OPEN_TXTR "textures/door_open.xpm"
 # define DOOR_CLOSE_TXTR "textures/door_closed.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
+# define BAGUETTE_TXTR "textures/BAGUETTE.xpm"
 # define ARMS1_TXTR "textures/possenza.xpm"
 # define ARMS2_TXTR "textures/possenza2.xpm"
 # define MINI_PLAYER_0_TXTR "textures/mini_player_0.xpm"
@@ -188,7 +189,7 @@ typedef struct s_data
 	int			bpp;
 	int			size_line;
 	int			endian;
-	int			floor_rgb[3];
+	int			floor[3];
 	int			ceiling[3];
 	int			max_x;
 	int			max_y;
@@ -236,6 +237,7 @@ enum e_textures
 	M_DOOR,
 	ARMS1,
 	ARMS2,
+	BAGUETTE,
 	TEXTURES_NUM,
 };
 

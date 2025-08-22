@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:41:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:29:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_textures(t_data *data, int fd)
 check_file(data->txtr_south) == false || \
 check_file(data->txtr_east) == false || \
 check_file(data->txtr_west) == false || \
-check_colors(data->txtr_floor, data->floor_rgb) == false || \
+check_colors(data->txtr_floor, data->floor) == false || \
 check_colors(data->txtr_ceiling, data->ceiling) == false)
 	{
 		finish_him(fd);
