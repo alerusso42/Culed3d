@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2025/06/12 12:09:50 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:51:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ enum e_charsets
 };
 
 t_typelist	*ft_lstmap(t_typelist *lst, void *(*f)(void *), \
-						void (*del)(void *));
+void (*del)(void *));
 t_typelist	*ft_lstnew(void *content, void *type);
 t_typelist	*ft_lstlast(t_typelist *lst);
 void		ft_lstadd_front(t_typelist **lst, t_typelist *new);
@@ -169,7 +169,7 @@ long		ft_atol(const char *s);
 */
 
 char		*paste_string(char *src, char *catstr, size_t start, \
-							int which_free);
+int which_free);
 
 int			cut_string(char *string, size_t start, size_t end);
 

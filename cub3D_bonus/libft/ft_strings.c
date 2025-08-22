@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strings.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:16:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/06/11 18:05:21 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:54:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	sub_strlen(char *s, char *charset, int mode)
 	if (mode == INCLUDE)
 	{
 		while (((s[i] != '\0')) && \
-		(ft_strchr(charset, s[i])))
+(ft_strchr(charset, s[i])))
 		{
 			++i;
 		}
@@ -113,7 +113,7 @@ int	sub_strlen(char *s, char *charset, int mode)
 	else if (mode == EXCLUDE)
 	{
 		while (((s[i] != '\0')) && \
-		!(ft_strchr(charset, s[i])))
+!(ft_strchr(charset, s[i])))
 		{
 			++i;
 		}
@@ -136,7 +136,7 @@ int	sub_strcpy(char *dest, char *src, char *charset, int mode)
 	if (mode == INCLUDE)
 	{
 		while (((src[i] != '\0')) && \
-		(ft_strchr(charset, src[i])))
+(ft_strchr(charset, src[i])))
 		{
 			dest[i] = src[i];
 			++i;
@@ -145,7 +145,7 @@ int	sub_strcpy(char *dest, char *src, char *charset, int mode)
 	else if (mode == EXCLUDE)
 	{
 		while (((src[i] != '\0')) && \
-		!(ft_strchr(charset, src[i])))
+!(ft_strchr(charset, src[i])))
 		{
 			dest[i] = src[i];
 			++i;

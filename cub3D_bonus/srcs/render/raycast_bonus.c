@@ -6,23 +6,12 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:39:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:50:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-	// double	dda_data[2];
-	// dda_data[X] = atan2(sin_angle, cos_angle);
-	// dda_data[Y] = atan2(cos_angle, sin_angle);
-	// printf("atan x:%f\tatan y:%f\n", dda_data[X], dda_data[Y]);
-	// while (!the_wall_checker(entity, data))
-	// {
-	//     //put_pixel(data, (int)x, (int)y, 0xFF0000);
-	//     x += cos_angle;
-	//     y += sin_angle;
-
-int		ill_be_back(t_entity *entity, t_data *data, double angle);
 int		the_door_checker(t_entity *entity, t_data *data, double angle, int i);
 
 void	line(t_data *data, t_entity *entity, double angle, int i)

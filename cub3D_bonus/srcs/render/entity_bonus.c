@@ -6,14 +6,15 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 09:45:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:52:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
-#define FABIO fabs
 
 static void	render_one(t_data *data, t_entity *entity);
+static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h);
+static int	entity_height(t_data *data, double x, double y);
 
 void	render_entity(t_data *data)
 {
@@ -27,9 +28,6 @@ void	render_entity(t_data *data)
 	}
 }
 
-static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h);
-static int	entity_height(t_data *data, double x, double y);
-
 static void	render_one(t_data *data, t_entity *entity)
 {
 	double	ent_h;
@@ -41,7 +39,7 @@ static void	render_one(t_data *data, t_entity *entity)
 	txtr = texture_finder(data, entity->ray_angle, \
 entity->contact_first[X], entity->contact_first[Y]);
 	ent_h = entity_height(data, entity->contact_first[X], \
-		entity->contact_first[Y]);
+entity->contact_first[Y]);
 	pos[X] = entity->ray_num;
 	pos[X] = WSCREEN - TXTR - pos[X];
 	pos[Y] = HSCREEN / 2 + ent_h;
@@ -75,7 +73,6 @@ static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
 		++screen_x;
 	}
 }
-
 
 void	reset_entities(t_data *data)
 {

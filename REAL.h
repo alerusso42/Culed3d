@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 15:07:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:56:38 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define BWHITE		"\033[1;37m" /* Bold White*/
 
 # define FPS 60
-# define FRAME_TIME 16666
+# define FRAME_TIME (1000000 / FPS)
 
-# ifndef DEBUG
-#  define DEBUG true
+#ifndef DEBUG
+# define DEBUG true
 # endif
 # define VALID_CHARS " 01NSEWD"
 # define PLAYER_CHARS "NSEWP"
@@ -83,8 +83,8 @@
 # define HIMG_MINIMAP 24
 # define MINIMAP 15
 # define TXTR 300
-# define PIX_PLAYER 96
-# define PLAYER_OFFSET 32
+# define PIX_PLAYER HIMG + (HIMG / 2)
+# define PLAYER_OFFSET (HIMG / 2)
 # define SHADE_INTENSITY 60
 # define WSCREEN 1200
 # define HSCREEN 1080
@@ -95,10 +95,10 @@
 	180 degrees are PI radiant.
 	Degree changes every PI / 180.
 */
-# define RADIANT 0.017453292
+# define RADIANT (PI / 180)
 
 //	Amount of radiant rotated for every rotation.
-# define ANGULAR_SPEED 0.043633231
+# define ANGULAR_SPEED RADIANT * 2.5
 
 //	Amount of movement per frame.
 # define PLAYER_SPEED 5
@@ -117,11 +117,11 @@
 
 # define ANGLE_0 0
 # define ANGLE_1 RADIANT
-# define ANGLE_20 0.34906584
-# define ANGLE_90 1.5707963
-# define ANGLE_180 3.1415926
-# define ANGLE_270 4.7123889
-# define ANGLE_360 0
+# define ANGLE_20 (RADIANT * 20)
+# define ANGLE_90 (PI / 2)
+# define ANGLE_180 (PI)
+# define ANGLE_270 (ANGLE_90 * 3)
+# define ANGLE_360 (ANGLE_90 * 4)
 
 typedef struct timeval		t_time;
 
@@ -161,6 +161,7 @@ typedef struct s_entity
 	char	input;
 	bool	contact;
 }	t_entity;
+
 
 typedef struct s_data
 {
@@ -314,7 +315,7 @@ void	free_texture(t_data *data);
 //SECTION	input
 
 void	move(t_data *data, t_entity *entity, double angle[]);
-int		mouse_hook(int button, int x, int y, void *param);
+int	mouse_hook(int button, int x, int y, void* param);
 void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
@@ -344,7 +345,7 @@ void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		which_entity(t_data *data, int x, int y, int entity_type);
-int		wall_face(t_data *data, t_entity *entity, double angle);
+int		wall_face(t_data * data, t_entity *entity, double angle);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
 int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i);
 void	put_pixel(t_data *data, int x, int y, int color);
@@ -377,8 +378,8 @@ int		game_loop(t_data *data);
 
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
-void	line(t_data *data, t_entity *entity, double angle, int i);
 void	draw_wall(t_data *data, int pos[2], double ray_angle);
+void 	line(t_data *data, t_entity *entity, double angle, int i);
 void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
