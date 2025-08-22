@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:50:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:10:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	line(t_data *data, t_entity *entity, double angle, int i)
 {
 	float	cos_angle;
 	float	sin_angle;
-	int		pos[2];
+	// int		pos[2];
 
 	entity->curr_x = entity->screen[X];
 	entity->curr_y = entity->screen[Y];
@@ -30,15 +30,15 @@ void	line(t_data *data, t_entity *entity, double angle, int i)
 		entity->curr_y += sin_angle;
 	}
 	draw_wall(data, (int [2]){(int)entity->curr_x, (int)entity->curr_y}, angle);
-	if (data->entities[0])
-	{
-		pos[X] = (int)data->entities[0]->curr_x;
-		pos[Y] = (int)data->entities[0]->curr_y;
-		draw_wall(data, pos, angle);
-		data->entities[0]->contact_first[X] = -1;
-		data->entities[0]->contact_first[Y] = -1;
-		data->entities[0] = NULL;
-	}
+	// if (data->entities[0])
+	// {
+	// 	pos[X] = (int)data->entities[0]->curr_x;
+	// 	pos[Y] = (int)data->entities[0]->curr_y;
+	// 	draw_wall(data, pos, angle);
+	// 	data->entities[0]->contact_first[X] = -1;
+	// 	data->entities[0]->contact_first[Y] = -1;
+	// 	data->entities[0] = NULL;
+	// }
 }
 
 void	draw_wall(t_data *data, int pos[2], double ray_angle)

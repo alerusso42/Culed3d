@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:26:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:10:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
 	{
 		if (data->doors[we].type == DOOR_OPENED)
 			return (false);
+		return (true);
 		data->doors[we].ray_num = i;
 		data->doors[we].ray_angle = angle;
 		save_coord(data, &data->doors[we], (int [2]){map[X], map[Y]}, \

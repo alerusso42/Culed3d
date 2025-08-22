@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:35:04 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:14:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	animation(t_data *data, t_entity *entity)
 
 static void	update_animation(t_entity *entity)
 {
+	if (entity->speed == 7)
+		entity->f_time = ANIMATION_SPEED / 2;
+	else
+		entity->f_time = ANIMATION_SPEED;
 	if (entity->frames[entity->f_curr] == -1)
 	{
 		entity->f_curr = 0;

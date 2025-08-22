@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 15:07:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:09:05 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
 # define WALL_TXTR "textures/mini_wall.xpm"
-# define DOOR_TXTR "textures/gabibbo.xpm"
+# define DOOR_OPEN_TXTR "textures/door_open.xpm"
+# define DOOR_CLOSE_TXTR "textures/door_closed.xpm"
 # define CROSS_TXTR "textures/Crosshair.xpm"
 # define ARMS1_TXTR "textures/possenza.xpm"
 # define ARMS2_TXTR "textures/possenza2.xpm"
@@ -213,6 +214,7 @@ enum e_textures
 	PLAYER,
 	WALL,
 	DOOR,
+	DOOR_OPEN,
 	M_PLAYER_0,
 	M_PLAYER_20,
 	M_PLAYER_40,

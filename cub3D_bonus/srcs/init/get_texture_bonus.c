@@ -65,8 +65,9 @@ static void	txtr_list(t_data *data)
 	fill_txtr(data, &data->txtr[PLAYER], PLAYER_TXTR, size);
 	fill_txtr(data, &data->txtr[CROSSHAIR], CROSS_TXTR, size);
 	size[X] = TXTR;
-	size[Y] = 167;
-	fill_txtr(data, &data->txtr[DOOR], DOOR_TXTR, size);
+	size[Y] = TXTR;
+	fill_txtr(data, &data->txtr[DOOR], DOOR_CLOSE_TXTR, size);
+	fill_txtr(data, &data->txtr[DOOR_OPEN], DOOR_OPEN_TXTR, size);
 	txtr_list2(data);
 	size[X] = 700;
 	size[Y] = 300;
