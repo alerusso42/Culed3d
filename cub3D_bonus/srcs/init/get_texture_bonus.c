@@ -65,7 +65,7 @@ static void	txtr_list(t_data *data)
 	fill_txtr(data, &data->txtr[CROSSHAIR], CROSS_TXTR, size);
 	size[X] = TXTR;
 	size[Y] = TXTR;
-	fill_txtr(data, &data->txtr[DOOR], DOOR_CLOSE_TXTR, size);
+	fill_txtr(data, &data->txtr[DOOR_CLOSE], DOOR_CLOSE_TXTR, size);
 	fill_txtr(data, &data->txtr[DOOR_OPEN], DOOR_OPEN_TXTR, size);
 	txtr_list2(data);
 	size[X] = 700;
@@ -124,29 +124,11 @@ static void	set_to_null(t_data *data)
 */
 static void	fill_txtr(t_data *data, t_txtr *txtr, char *name, int size[2])
 {
-	char	*line;
-	char	*height;
-	int		fd;
-	int		counter;
-
 	txtr->ptr = mlx_xpm_file_to_image(data->mlx, name, &size[X], &size[Y]);
 	if (!txtr->ptr)
 		return (error(data, E_MLX_TEXTURE, name));
 	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, \
 &txtr->size[X], &txtr->endian);
 	txtr->shade = 1;
-	fd = open(name, O_RDONLY);
-	if (fd == -1)
-		return (error(data, E_OPEN, name));
-	counter = 5;
-	line = NULL;
-	while (--counter)
-		line = ft_restr(line, get_next_line(fd));
-	close(fd);
-	if (!line)
-		return (error(data, E_MLX_TEXTURE, name));
-	height = line + sub_strlen(line, " ", EXCLUDE) + 1;
-	txtr->size[Y] = ft_atoi(height);
-	txtr->total_size = txtr->size[X] * txtr->size[Y];
-	free(line);
+	parse_xpm(data, txtr, name);
 }

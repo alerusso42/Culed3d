@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:44:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:09:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,8 +214,8 @@ enum e_textures
 	CROSSHAIR,
 	PLAYER,
 	WALL,
-	DOOR,
 	DOOR_OPEN,
+	DOOR_CLOSE,
 	M_PLAYER_0,
 	M_PLAYER_20,
 	M_PLAYER_40,
@@ -300,8 +300,6 @@ enum e_utils
 	ENTITY_END = 0,
 	ENTITY_DOOR = 0,
 	ENTITY_ENEMY = 1,
-	DOOR_OPENED = 'D',
-	DOOR_CLOSED = 'O',
 	MOUSE_LEFT = 1,
 	MOUSE_RIGHT = 3,
 	MOUSE_MIDDLE = 2,
@@ -344,15 +342,16 @@ void	finish_him(int fd);
 //SECTION	utils
 
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
+int		the_wall_checker(t_entity *ray, t_data *data, double angle, int i);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
-int		which_entity(t_data *data, int x, int y, int entity_type);
 int		wall_face(t_data *data, t_entity *entity, double angle);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
-int		the_wall_checker(t_entity *entity, t_data *data, double angle, int i);
+void	parse_xpm(t_data *data, t_txtr *txtr, char *name);
 void	put_pixel(t_data *data, int x, int y, int color);
 bool	collision_entity(t_data *data, int x, int y);
+void	*which_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);

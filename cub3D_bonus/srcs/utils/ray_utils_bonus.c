@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:58:48 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:58:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,26 @@ void	save_coord(t_data *data, t_entity *ent, int map[2], double screen[2]);
 	4)	stop printing the line.
 		At that point, we could differentiate this method using DEBUG macro.
 */
-int	the_wall_checker(t_entity *entity, t_data *data, double angle, int i)
+int	the_wall_checker(t_entity *ray, t_data *data, double angle, int i)
 {
-	int		map[2];
-	int		we;
+	int			map[2];
+	t_entity	*entity;
 
-	map[X] = (int)entity->curr_x / WIMG;
-	map[Y] = (int)entity->curr_y / HIMG;
+	map[X] = (int)ray->curr_x / WIMG;
+	map[Y] = (int)ray->curr_y / HIMG;
 	if (ft_strchr(FFILL_CHARS, data->map[map[Y]][map[X]]))
 		return (false);
 	if (ft_strchr(WALL_CHARS, data->map[map[Y]][map[X]]))
 		return (true);
-	we = which_entity(data, map[X], map[Y], ENTITY_DOOR);
-	if (we != ENTITY_NOT_FOUND)
-	{
+	entity = which_entity(data, map[X], map[Y]);
+	if (!entity)
+		return (false);
+	if (entity->type == DOOR_OPEN || entity->type == DOOR_CLOSE)
 		return (true);
-		if (data->doors[we].type == DOOR_OPENED)
-			return (false);
-		return (true);
-		data->doors[we].ray_num = i;
-		data->doors[we].ray_angle = angle;
-		save_coord(data, &data->doors[we], (int [2]){map[X], map[Y]}, \
+	entity->ray_num = i;
+	entity->ray_angle = angle;
+	save_coord(data, entity, (int [2]){map[X], map[Y]}, \
 (double [2]){entity->curr_x, entity->curr_y});
-	}
 	return (false);
 }
 

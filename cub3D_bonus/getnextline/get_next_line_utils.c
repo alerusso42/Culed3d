@@ -83,3 +83,17 @@ char	*get_strjoin(char *s1, char *s2)
 	res[i] = '\0';
 	return (res);
 }
+
+char	**gnl_statik(int fd, int reset)
+{
+	static char	*statik[MAX_FD];
+
+	if (fd < 0 || fd >= MAX_FD)
+		return (NULL);
+	if (reset)
+	{
+		free(statik[fd]);
+		statik[fd] = NULL;
+	}
+	return (&statik[fd]);
+}

@@ -44,6 +44,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	utils/render3_bonus.c \
 	utils/texture_filters.c \
 	utils/texture_select.c \
+	utils/xpm_bonus.c \
 	render/game_loop_bonus.c \
 	render/raycast_bonus.c \
 	render/entity_bonus.c \

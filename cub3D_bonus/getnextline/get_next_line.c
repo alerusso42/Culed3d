@@ -79,27 +79,27 @@ char	*ft_cacatore(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*statik[MAX_FD];
 	char		*result;
 	char		*buffer;
+	char		**statik;
 
+	statik = gnl_statik(fd, false);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		free(statik[fd]);
+		gnl_statik(fd, true);
 		free(buffer);
-		statik[fd] = NULL;
 		buffer = NULL;
 		return (NULL);
 	}
 	if (!buffer)
 		return (NULL);
-	result = ft_schiavista(fd, statik[fd], buffer);
+	result = ft_schiavista(fd, *statik, buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!result)
 		return (NULL);
-	statik[fd] = ft_cacatore(result);
+	*statik = ft_cacatore(result);
 	return (result);
 }
 

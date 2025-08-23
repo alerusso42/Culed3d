@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:45:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:43:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:48:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,20 @@ data->ceiling[2] * 0.90);
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2])
 {
-	int	i;
-	int	j;
-	int	size_minimap[2];
+	int			size_minimap[2];
+	t_entity	*ent;
 
 	size_minimap[X] = WIMG_MINIMAP;
 	size_minimap[Y] = HIMG_MINIMAP;
-	i = offset[X] * WIMG_MINIMAP;
-	j = offset[Y] * HIMG_MINIMAP;
 	if (data->map[pos[Y]][pos[X]] == '1')
 		put_image_resize(data, WALL, offset, size_minimap);
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
 	{
 		put_image_resize(data, which_p(data), offset, size_minimap);
 	}
-	else if (data->map[pos[Y]][pos[X]] == 'D')
-	{
-		if (entity_type(data, pos[X], pos[Y]) == DOOR_CLOSED)
-			put_image_resize(data, M_DOOR, offset, size_minimap);
-	}
+	ent = which_entity(data, pos[X], pos[Y]);
+	if (!ent)
+		return ;
+	if (ent->type == DOOR_CLOSE)
+		put_image_resize(data, M_DOOR, offset, size_minimap);
 }

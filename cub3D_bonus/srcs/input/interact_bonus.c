@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interact_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:31:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:50:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static	int	the_entity_checker(t_entity *entity, t_data *data);
 
 void	interact(t_data *data)
 {
-	int		door_n;
-	int		x;
-	int		y;
-	double	angle;
+	t_entity	*entity;
+	int			x;
+	int			y;
+	double		angle;
 
 	angle = data->player.pov[X];
 	door_line(data, &data->player, angle);
@@ -28,15 +28,15 @@ void	interact(t_data *data)
 	y = data->player.curr_y / HIMG;
 	if (data->map[y][x] != 'D')
 		return ;
-	door_n = which_entity(data, x, y, ENTITY_DOOR);
-	if (door_n == ENTITY_NOT_FOUND)
+	entity = which_entity(data, x, y);
+	if (!entity)
 		return ;
 	if (ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
 		return ;
-	if (data->doors[door_n].type == DOOR_CLOSED)
-		data->doors[door_n].type = DOOR_OPENED;
-	else if (data->doors[door_n].type == DOOR_OPENED)
-		data->doors[door_n].type = DOOR_CLOSED;
+	if (entity->type == DOOR_CLOSE)
+		entity->type = DOOR_OPEN;
+	else if (entity->type == DOOR_OPEN)
+		entity->type = DOOR_CLOSE;
 }
 
 static	void	door_line(t_data *data, t_entity *entity, double angle)

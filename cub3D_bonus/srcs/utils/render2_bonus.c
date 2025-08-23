@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:31:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:02:38 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,35 +94,4 @@ int	wall_height(t_data *data, double x, double y, double ray_angle)
 	ray = safe_division((HSCREEN * 10), ray);
 	height = round(ray / 1.5);
 	return ((int)height);
-}
-
-t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
-{
-	int	we;
-
-	if (all_collision(data, hit_x / WIMG, hit_y / HIMG) == true)
-	{
-		we = which_entity(data, hit_x / WIMG, hit_y / HIMG, ENTITY_DOOR);
-		if (data->doors[we].type == DOOR_OPENED)
-			return (&data->txtr[DOOR_OPEN]);
-		else
-			return (&data->txtr[DOOR]);
-	}
-	else
-		return (&data->txtr[wall_face(data, &data->player, ray_angle)]);
-}
-
-int	texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y)
-{
-	int			wall_txtr;
-	int			pixel;
-
-	wall_txtr = wall_face(data, &data->player, ray_angle);
-	if (wall_txtr == NORTH || wall_txtr == SOUTH)
-		pixel = (int)((((double)hit_x / WIMG) - (int)(hit_x / WIMG)) * TXTR);
-	else
-		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * TXTR);
-	if (wall_txtr == WEST || wall_txtr == SOUTH)
-		pixel = TXTR - pixel;
-	return (pixel * (data->bpp / 8));
 }

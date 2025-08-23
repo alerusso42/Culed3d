@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:47:51 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:41:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_doors(t_data *data, int n_doors)
 			{
 				data->doors[curr_door] = (t_entity){0};
 				default_settings(&data->doors[curr_door], x, y);
-				data->doors[curr_door].type = DOOR_CLOSED;
+				data->doors[curr_door].type = DOOR_CLOSE;
 				curr_door++;
 			}
 		}
