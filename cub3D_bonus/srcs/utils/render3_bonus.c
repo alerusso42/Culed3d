@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:32:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 13:35:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	render_cross(t_data *data)
 {
 	int	pos[2];
 
-	pos[X] = (WSCREEN / 2) - 64;
-	pos[Y] = (HSCREEN / 2) + 32;
+	pos[X] = (WSCREEN / 2) - data->txtr[CROSSHAIR].size[X] / 8;
+	pos[Y] = (HSCREEN / 2) - data->txtr[CROSSHAIR].size[Y] / 2;
 	put_image_to_image(data, CROSSHAIR, pos, (int [2]){WIMG, HIMG});
 }
 

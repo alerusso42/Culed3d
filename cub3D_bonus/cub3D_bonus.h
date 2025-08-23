@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 12:09:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:43:25 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@
 
 //FIXME	This flag is in debug state.
 # define SPEED 0.01
-# define ANIMATION_SPEED 12
+# define ANIMATION_SPEED 30
 
 # define ANGLE_0 0
 # define ANGLE_1 RADIANT
@@ -135,6 +135,7 @@ typedef struct s_texture
 	double	shade;
 	double	scaler[2];
 	int		size[2];
+	int		i;
 	int		bpp;
 	int		endian;
 	int		total_size;
@@ -153,7 +154,7 @@ typedef struct s_entity
 	int		contact_last[2];
 	int		screen[2];
 	int		map[2];
-	int		*frames;
+	t_txtr	**frames;
 	int		f_curr;
 	int		f_time;
 	int		f_elapsed;
@@ -344,6 +345,7 @@ void	finish_him(int fd);
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
 int		the_wall_checker(t_entity *ray, t_data *data, double angle, int i);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
+void	init_animation(t_data *data, t_entity *entity, int n, int first);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		wall_face(t_data *data, t_entity *entity, double angle);

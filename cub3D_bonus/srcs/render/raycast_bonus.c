@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 13:44:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	draw_wall(t_data *data, int pos[2], double ray_angle)
 	wall_h = wall_height(data, pos[X], pos[Y], ray_angle);
 	txtr = texture_finder(data, ray_angle, pos[X], pos[Y]);
 	txtr->offset = texture_x_offset(data, ray_angle, pos[X], pos[Y]);
+	txtr->offset *= txtr->scaler[X];
 	txtr->shade = wall_h / SHADE_INTENSITY;
 	if (txtr->shade > 1)
 		txtr->shade = 1;

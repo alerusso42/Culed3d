@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:31:12 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:41:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	commands_press(int keycode, t_data *data)
 	if (keycode == XK_Right)
 		data->player.input |= R_RIGHT;
 	if (keycode == XK_Shift_L)
-		data->player.speed = 7;
+		data->player.speed += 3;
 	if (keycode == XK_e)
 		interact(data);
 	return (0);
@@ -58,7 +58,7 @@ int	commands_release(int keycode, t_data *data)
 	if (keycode == XK_Right)
 		data->player.input ^= R_RIGHT;
 	if (keycode == XK_Shift_L)
-		data->player.speed = 5;
+		data->player.speed -= 3;
 	return (0);
 }
 

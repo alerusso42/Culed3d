@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:14:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:44:08 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,18 @@ void	animation(t_data *data, t_entity *entity)
 
 	if (entity->type == 'N' && entity->input & MOVEMENT)
 		update_animation(entity);
-	size[X] = data->txtr[entity->frames[entity->f_curr]].size[X] / 4;
-	size[Y] = data->txtr[entity->frames[entity->f_curr]].size[Y];
+	size[X] = entity->frames[entity->f_curr]->size[X] / 4;
+	size[Y] = entity->frames[entity->f_curr]->size[Y];
 	pos[X] = 300;
 	pos[Y] = 700;
-	put_image_to_image(data, entity->frames[entity->f_curr], pos, size);
+	put_image_to_image(data, entity->frames[entity->f_curr]->i, pos, size);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
 static void	update_animation(t_entity *entity)
 {
-	if (entity->speed == 7)
-		entity->f_time = ANIMATION_SPEED / 2;
-	else
-		entity->f_time = ANIMATION_SPEED;
-	if (entity->frames[entity->f_curr] == -1)
+	entity->f_time = ANIMATION_SPEED / entity->speed;
+	if (!entity->frames[entity->f_curr])
 	{
 		entity->f_curr = 0;
 		entity->f_elapsed = 0;
@@ -46,11 +43,28 @@ static void	update_animation(t_entity *entity)
 		entity->f_curr += 1;
 		entity->f_elapsed = 0;
 	}
-	if (entity->frames[entity->f_curr] == -1)
+	if (entity->frames[entity->f_curr] == NULL)
 	{
 		entity->f_curr = 0;
 		entity->f_elapsed = 0;
 		return ;
 	}
 	entity->f_elapsed += 1;
+}
+
+void	init_animation(t_data *data, t_entity *entity, int n, int first)
+{
+	int	i;
+
+	entity->f_time = ANIMATION_SPEED;
+	entity->frames = ft_calloc((n + 1), sizeof(t_txtr));
+	if (!entity->frames)
+		return (error(data, E_MALLOC, NULL));
+	i = 0;
+	while (i < n)
+	{
+		entity->frames[i] = &data->txtr[first + i];
+		++i;
+	}
+	entity->frames[i] = NULL;
 }

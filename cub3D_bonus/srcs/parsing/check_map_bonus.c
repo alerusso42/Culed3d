@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:13:19 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	is_it_valid(t_data *data, int x, int y, int flag);
-static void	count_chars(t_data *data, int *p_count, int *d_count);
+static int	count_chars(t_data *data, int *count, char *search);
 
-static void	count_chars(t_data *data, int *p_count, int *d_count)
+static int	count_chars(t_data *data, int *count, char *search)
 {
 	int	i;
 	int	j;
@@ -27,15 +27,12 @@ static void	count_chars(t_data *data, int *p_count, int *d_count)
 		while (data->map && data->map[i][++j])
 		{
 			if (ft_strchr(VALID_CHARS, data->map[i][j]) == NULL)
-				error(data, E_CHAR, NULL);
-			if (ft_strchr(PLAYER_CHARS, data->map[i][j]))
-				(*p_count)++;
-			if (data->map[i][j] == 'D')
-			{
-				(*d_count)++;
-			}
+				return (error(data, E_CHAR, NULL), -1);
+			if (ft_strchr(search, data->map[i][j]))
+				(*count)++;
 		}
 	}
+	return (*count);
 }
 
 // printf("char invalido(cioe che non puo camminare): [%c]", data->map[j][i]);
@@ -49,17 +46,21 @@ void	check_chars(t_data *data)
 {
 	int		player_count;
 	int		door_count;
+	int		enemies_count;
+	int		item_count;
 
 	if (DEBUG == true)
 		print_matrix(data->map);
 	player_count = 0;
 	door_count = 0;
-	count_chars(data, &player_count, &door_count);
+	enemies_count = 0;
+	item_count = 0;
+	count_chars(data, &player_count, PLAYER_CHARS);
+	count_chars(data, &door_count, "D");
+	count_chars(data, &enemies_count, "F");
+	count_chars(data, &item_count, "C");
 	init_doors(data, door_count);
-	data->renderer = ft_calloc(door_count + 2, sizeof(t_entity *));
-	if (!data->renderer)
-		error(data, E_MALLOC, NULL);
-	data->ent_num = door_count;
+	data->ent_num = player_count + door_count + enemies_count + item_count;
 	if (player_count == 0)
 		error(data, E_NO_PLAYER, NULL);
 	else if (player_count > 1)

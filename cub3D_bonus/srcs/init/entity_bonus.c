@@ -6,14 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 11:41:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:43:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	default_settings(t_entity *entity, int x, int y);
-static void	init_animation(t_data *data, t_entity *entity, int n, int *frames);
 
 /*
 	set player struct data.
@@ -40,7 +39,7 @@ void	init_player(t_data *data)
 		data->player.pov[X] = RADIANT * (180);
 	else if (data->player.type == 'S')
 		data->player.pov[X] = RADIANT * (270);
-	init_animation(data, &data->player, 2, (int [2]){ARMS1, ARMS2});
+	init_animation(data, &data->player, 2, ARMS1);
 	data->player.type = 'N';
 }
 
@@ -81,21 +80,4 @@ static void	default_settings(t_entity *entity, int x, int y)
 	entity->map[Y] = y;
 	entity->screen[X] = y * WIMG;
 	entity->screen[Y] = x * HIMG;
-}
-
-static void	init_animation(t_data *data, t_entity *entity, int n, int *frames)
-{
-	int	i;
-
-	entity->f_time = ANIMATION_SPEED;
-	entity->frames = ft_calloc((n + 1), sizeof(int));
-	if (!entity->frames)
-		return (error(data, E_MALLOC, NULL));
-	i = 0;
-	while (i < n)
-	{
-		entity->frames[i] = frames[i];
-		++i;
-	}
-	entity->frames[i] = -1;
 }
