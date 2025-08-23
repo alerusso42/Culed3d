@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:40:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 10:50:57 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:37:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ void	delete(void **ptr)
 {
 	free(*ptr);
 	*ptr = NULL;
+}
+
+void	init_matrix(void **matrix, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i != size)
+	{
+		matrix[i] = NULL;
+		++i;
+	} 
 }

@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 14:43:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:47:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # ifndef DEBUG
 #  define DEBUG true
 # endif
-# define VALID_CHARS " 01NSEWD"
+# define VALID_CHARS " 01NSEWDFC"
 # define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
 # define WALL_CHARS "1 "
@@ -172,6 +172,7 @@ typedef struct s_data
 	t_entity	**renderer;
 	t_entity	*doors;
 	t_entity	*enemies;
+	t_entity	*items;
 	void		*mlx;
 	void		*win;
 	t_txtr		*txtr;
@@ -308,6 +309,7 @@ enum e_utils
 	MOUSE_DOWN = 5,
 };
 
+void	init_entity(t_data *data, t_entity **entity, int n, char c);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
 void	lets_start_the_party(t_data *data);
@@ -349,6 +351,7 @@ void	init_animation(t_data *data, t_entity *entity, int n, int first);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		wall_face(t_data *data, t_entity *entity, double angle);
+int		count_chars(t_data *data, int *count, char *search);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
 void	parse_xpm(t_data *data, t_txtr *txtr, char *name);
 void	put_pixel(t_data *data, int x, int y, int color);
@@ -389,6 +392,7 @@ void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);
 void	wall(t_data *data, double x, void *txtr);
 int		compute_line(t_data *data, double pov_x);
+void	init_matrix(void **matrix, int size);
 int		commands(int key, t_data *data);
 void	reset_renderer(t_data *data);
 void	render_entity(t_data *data);

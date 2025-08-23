@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 14:44:08 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:18:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	animation(t_data *data, t_entity *entity)
 	pos[X] = 300;
 	pos[Y] = 700;
 	put_image_to_image(data, entity->frames[entity->f_curr]->i, pos, size);
-	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
 static void	update_animation(t_entity *entity)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:25:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:42:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	reset_renderer(t_data *data)
 		data->doors[i].contact_last[Y] = -1;
 	}
 	i = -1;
-	while (data->renderer && ++i != data->ent_num + 1)
-	{
+	while (data->renderer[++i])
 		data->renderer[i] = NULL;
-	}
 }

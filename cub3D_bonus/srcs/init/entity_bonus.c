@@ -6,13 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 14:43:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:49:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void	default_settings(t_entity *entity, int x, int y);
+static void	initialize(t_entity *entity, int x, int y, char c);
 
 /*
 	set player struct data.
@@ -45,39 +45,44 @@ void	init_player(t_data *data)
 
 //	doors are allocated in an array of doors.
 //	the data struct is the same as the player (t_entity).
-void	init_doors(t_data *data, int n_doors)
+void	init_entity(t_data *data, t_entity **entity, int n, char c)
 {
 	int		y;
 	int		x;
-	int		curr_door;
+	int		i;
 
-	data->doors = malloc((n_doors + 1) * sizeof(t_entity));
-	if (!data->doors)
+	(*entity) = ft_calloc((n + 2), sizeof(t_entity));
+	if (!(*entity))
 		error(data, E_MALLOC, NULL);
-	data->doors[n_doors] = (t_entity){0};
-	curr_door = 0;
+	i = 0;
 	y = -1;
 	while (data->map && data->map[++y])
 	{
 		x = -1;
 		while (data->map && data->map[y][++x])
 		{
-			if (data->map[y][x] == 'D')
+			if (data->map[y][x] == c)
 			{
-				data->doors[curr_door] = (t_entity){0};
-				default_settings(&data->doors[curr_door], x, y);
-				data->doors[curr_door].type = DOOR_CLOSE;
-				curr_door++;
+				initialize(&((*entity)[i]), x, y, c);
+				i++;
 			}
 		}
 	}
+	(*entity)[i] = (t_entity){0};
 }
 
-//	default settings for every entity.
-static void	default_settings(t_entity *entity, int x, int y)
+//	initialize every entity.
+static void	initialize(t_entity *entity, int x, int y, char c)
 {
+	*entity = (t_entity){0};
 	entity->map[X] = x;
 	entity->map[Y] = y;
 	entity->screen[X] = y * WIMG;
 	entity->screen[Y] = x * HIMG;
+	entity->speed = 4;
+	entity->pov[X] = 0;
+	if (c == 'D')
+		entity->type = DOOR_CLOSE;
+	if (c == 'F')
+		entity->type = ENTITY_ENEMY;
 }

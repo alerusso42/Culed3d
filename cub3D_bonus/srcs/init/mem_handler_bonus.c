@@ -6,13 +6,14 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/23 14:05:39 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:38:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	free_entities(t_entity *entity);
+static void	init_entities(t_data *data);
 
 /*
 https://www.youtube.com/watch?v=U06jlgpMtQs
@@ -49,12 +50,34 @@ void	lets_start_the_party(t_data *data)
 	if (!data->txtr)
 		error(data, E_MALLOC, NULL);
 	get_txtr(data);
+	init_player(data);
+	init_entities(data);
 	data->renderer = ft_calloc(data->ent_num + 2, sizeof(t_entity *));
 	if (!data->renderer)
 		error(data, E_MALLOC, NULL);
-	init_player(data);
+	init_matrix((void **)data->renderer, data->ent_num + 2);
 	data->screen = mlx_get_data_addr(data->txtr[SCREEN].ptr, &data->bpp, \
 &data->size_line, &data->endian);
+}
+
+void	init_entities(t_data *data)
+{
+	int		door_count;
+	int		enemies_count;
+	int		item_count;
+
+	door_count = 0;
+	enemies_count = 0;
+	item_count = 0;
+	count_chars(data, &door_count, "D");
+	count_chars(data, &enemies_count, "F");
+	count_chars(data, &item_count, "C");
+	init_entity(data, &data->doors, door_count, 'D');
+	if (enemies_count)
+		init_entity(data, &data->enemies, enemies_count, 'F');
+	if (item_count)
+		init_entity(data, &data->items, item_count, 'C');
+	data->ent_num = 1 + door_count + enemies_count + item_count;
 }
 
 /*
