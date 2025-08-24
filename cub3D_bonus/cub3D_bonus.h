@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 15:47:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:37:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
+# define DEBUG true
 # ifndef DEBUG
 #  define DEBUG true
 # endif
@@ -90,6 +91,7 @@
 # define SHADE_INTENSITY 60
 # define WSCREEN 1200
 # define HSCREEN 1080
+# define ENTITY_WIDTH 25
 
 //# define RADIANT 0.008726
 
@@ -149,16 +151,16 @@ typedef struct s_entity
 	double	curr_y;
 	double	pov[2];
 	double	speed;
-	double	ray_angle;
-	int		contact_first[2];
-	int		contact_last[2];
+	double	first_ray;
+	double	last_ray;
 	int		screen[2];
 	int		map[2];
+	int		contact_column;
+	int		contact_num;
 	t_txtr	**frames;
 	int		f_curr;
 	int		f_time;
 	int		f_elapsed;
-	int		ray_num;
 	int		vite_rimaste;
 	char	type;
 	char	input;
@@ -300,8 +302,9 @@ enum e_utils
 	ENDIAN = 2,
 	ENTITY_NOT_FOUND = -1,
 	ENTITY_END = 0,
-	ENTITY_DOOR = 0,
-	ENTITY_ENEMY = 1,
+	ENTITY_DOOR = 1,
+	ENTITY_ENEMY = 'F',
+	ENTITY_ITEM = 'C',
 	MOUSE_LEFT = 1,
 	MOUSE_RIGHT = 3,
 	MOUSE_MIDDLE = 2,
@@ -344,8 +347,9 @@ void	finish_him(int fd);
 
 //SECTION	utils
 
+int		collision_checker(t_entity *ray, t_data *data, double angle, char type);
 t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y);
-int		the_wall_checker(t_entity *ray, t_data *data, double angle, int i);
+bool	collision_entity(t_data *data, int x, int y, bool discard_open_door);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 void	init_animation(t_data *data, t_entity *entity, int n, int first);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
@@ -355,14 +359,16 @@ int		count_chars(t_data *data, int *count, char *search);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
 void	parse_xpm(t_data *data, t_txtr *txtr, char *name);
 void	put_pixel(t_data *data, int x, int y, int color);
-bool	collision_entity(t_data *data, int x, int y);
+void	render_arms(t_data *data, t_entity *player);
 void	*which_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
 int		get_pixel_color(t_txtr *txtr, int i);
+void	update_all_animations(t_data *data);
 void	update_coord(t_entity *entity_data);
+void	update_animation(t_entity *entity);
 int		bigger(int a, int b, int c, int d);
 void	ft_sleep(long long microsecond);
 void	normalize_angle(double *angle);
@@ -386,7 +392,7 @@ int		game_loop(t_data *data);
 
 void	put_image_to_image(t_data *data, int which, int pos[2], int size[2]);
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2]);
-void	line(t_data *data, t_entity *entity, double angle, int i);
+void	line(t_data *data, t_entity *entity, double angle, char collision);
 void	draw_wall(t_data *data, int pos[2], double ray_angle);
 void	render_column(t_data *data, t_txtr *txtr, double h);
 void	animation(t_data *data, t_entity *entity);
@@ -401,7 +407,7 @@ void	get_txtr(t_data *data);
 int		which_p(t_data *data);
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
-void	pix(t_data *data);
+void	render_sync(t_data *data);
 int		texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y);
 bool	all_collision(t_data *data, int x, int y);
 

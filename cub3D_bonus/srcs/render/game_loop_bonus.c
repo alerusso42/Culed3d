@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 15:42:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:27:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-void	line(t_data *data, t_entity *entity, double angle, int i);
-
 /*
 	reset_renderer:	set the list of entity to render to zero.
 	backgrounder:	put the background on the screen. It deletes last render.
@@ -67,11 +65,12 @@ void	frame_render(t_data *data)
 	while (--i >= 0)
 	{
 		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		line(data, &data->player, pov[X] + angle, i);
+		line(data, &data->player, pov[X] + angle, '1');
 		++data->column;
 	}
 	render_entity(data);
-	animation(data, &data->player);
+	update_all_animations(data);
+	render_arms(data, &data->player);
 	render_cross(data);
 	map_start(data, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);

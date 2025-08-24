@@ -6,15 +6,15 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 15:42:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:47:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void	render_one(t_data *data, t_entity *entity);
-static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h);
-static int	entity_height(t_data *data, double x, double y);
+static void		render_one(t_data *data, t_entity *entity);
+static double	entity_scaler_x(t_entity *entity, t_txtr *txtr, double h);
+static void	draw_one(t_data *data, t_txtr *txtr, double scaler_x, double h);
 
 void	render_entity(t_data *data)
 {
@@ -23,70 +23,67 @@ void	render_entity(t_data *data)
 	i = 0;
 	while (data->renderer[i])
 	{
-		render_one(data, &data->doors[i]);
+		if (data->renderer[i]->frames)
+			render_one(data, data->renderer[i]);
 		++i;
 	}
 }
 
 static void	render_one(t_data *data, t_entity *entity)
 {
-	double	ent_h;
-	int		pos[2];
-	t_txtr	*txtr;
-
-	entity->contact_first[X] *= WIMG;
-	entity->contact_first[Y] *= HIMG;
-	txtr = texture_finder(data, entity->ray_angle, \
-entity->contact_first[X], entity->contact_first[Y]);
-	ent_h = entity_height(data, entity->contact_first[X], \
-entity->contact_first[Y]);
-	pos[X] = entity->ray_num;
-	pos[X] = WSCREEN - TXTR - pos[X];
-	pos[Y] = HSCREEN / 2 + ent_h;
-	put_entity(data, txtr, pos, ent_h);
-}
-
-static int	entity_height(t_data *data, double x, double y)
-{
-	double	ray;
-	double	height;
-
-	ray = ray_lenght(data, x, y);
-	ray = safe_division((HSCREEN * 10), ray);
-	height = round(ray * 2.5);
-	return ((int)height);
-}
-
-static void	put_entity(t_data *data, t_txtr *txtr, int pos[2], double ent_h)
-{
-	int		screen_x;
 	double	scaler_x;
+	t_txtr	*txtr;
+	double	h;
 
-	screen_x = 0;
+	txtr = entity->frames[entity->f_curr];
+	h = wall_height(data, entity->screen[X], entity->screen[Y], \
+entity->first_ray);
+	scaler_x = entity_scaler_x(entity, txtr, h);
+	data->column = entity->contact_column;
+	txtr->shade = h / (SHADE_INTENSITY / 2);
+	if (txtr->shade > 1)
+		txtr->shade = 1;
+	draw_one(data, txtr, scaler_x, h);
+	entity->contact_num = 0;
+	entity->contact = false;
 	txtr->offset = 0;
-	scaler_x = txtr->size[X] / TXTR;
-	while (screen_x < TXTR - ent_h)
+}
+
+static void	draw_one(t_data *data, t_txtr *txtr, double scaler_x, double h)
+{
+	double	offset;
+
+	offset = 0;
+	while (txtr->offset < txtr->size[X])
 	{
-		data->column = pos[X] + screen_x;
-		render_column(data, txtr, ent_h);
-		txtr->offset += scaler_x;
-		++screen_x;
+		render_column(data, txtr, h);
+		++data->column;
+		offset += scaler_x;
+		txtr->offset = (int)offset;
+		while (txtr->offset % (txtr->bpp / 8))
+			--txtr->offset;
 	}
+}
+
+static double		entity_scaler_x(t_entity *entity, t_txtr *txtr, double h)
+{
+	int		i;
+	double	scaler;
+	double	wide;
+
+	wide = h / ENTITY_WIDTH;
+	i = entity->contact_num;
+	scaler = (WSCREEN / (double)i);
+	scaler /= wide;
+	scaler = scaler * (txtr->bpp / 8);
+	scaler *= txtr->scaler[X];
+	return (scaler);
 }
 
 void	reset_renderer(t_data *data)
 {
 	int	i;
 
-	i = -1;
-	while (data->doors && data->doors[++i].type != ENTITY_END)
-	{
-		data->doors[i].contact = false;
-		data->doors[i].contact_first[X] = -1;
-		data->doors[i].contact_first[Y] = -1;
-		data->doors[i].contact_last[X] = -1;
-		data->doors[i].contact_last[Y] = -1;
-	}
 	i = -1;
 	while (data->renderer[++i])
 		data->renderer[i] = NULL;

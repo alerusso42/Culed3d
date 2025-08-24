@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:32:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:11:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
 map_x < 0 || map_x >= data->max_x)
 		return ;
 	if (ft_strchr("1 ", data->map[map_y][map_x]) || \
-collision_entity(data, map_x, map_y) == true)
+collision_entity(data, map_x, map_y, true) == true)
 		return ;
 	entity->screen[X] = new_x;
 	entity->screen[Y] = new_y;
@@ -113,6 +113,8 @@ void	mouse_input(t_data *data)
 	int		pos[2];
 	double	diff[2];
 
+	if (DEBUG)
+		return ;
 	mlx_mouse_get_pos(data->mlx, data->win, &pos[X], &pos[Y]);
 	diff[X] = RADIANT * (pos[X] - (WSCREEN / 2));
 	diff[Y] = RADIANT * (pos[Y] - (HSCREEN / 2));

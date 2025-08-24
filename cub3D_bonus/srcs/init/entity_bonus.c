@@ -6,13 +6,14 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 15:49:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:16:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void	initialize(t_entity *entity, int x, int y, char c);
+static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
+;
 
 /*
 	set player struct data.
@@ -26,8 +27,8 @@ static void	initialize(t_entity *entity, int x, int y, char c);
 */
 void	init_player(t_data *data)
 {
-	data->player.screen[X] = data->player.map[X] * WIMG;
-	data->player.screen[Y] = data->player.map[Y] * HIMG;
+	data->player.screen[X] = (data->player.map[X] * WIMG) + (WIMG / 2);
+	data->player.screen[Y] = (data->player.map[Y] * HIMG) + (HIMG / 2);
 	data->player.curr_x = data->player.screen[X];
 	data->player.curr_y = data->player.screen[Y];
 	data->player.speed = 5;
@@ -63,7 +64,7 @@ void	init_entity(t_data *data, t_entity **entity, int n, char c)
 		{
 			if (data->map[y][x] == c)
 			{
-				initialize(&((*entity)[i]), x, y, c);
+				initialize(data, &((*entity)[i]), (int [2]){x, y}, c);
 				i++;
 			}
 		}
@@ -72,17 +73,29 @@ void	init_entity(t_data *data, t_entity **entity, int n, char c)
 }
 
 //	initialize every entity.
-static void	initialize(t_entity *entity, int x, int y, char c)
+static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
 {
 	*entity = (t_entity){0};
-	entity->map[X] = x;
-	entity->map[Y] = y;
-	entity->screen[X] = y * WIMG;
-	entity->screen[Y] = x * HIMG;
+	entity->map[X] = pos[X];
+	entity->map[Y] = pos[Y];
+	entity->screen[X] = (pos[X] * WIMG) + (WIMG / 2);
+	entity->screen[Y] = (pos[Y] * HIMG) + (HIMG / 2);
 	entity->speed = 4;
 	entity->pov[X] = 0;
+	entity->contact_num = 0;
 	if (c == 'D')
+	{
 		entity->type = DOOR_CLOSE;
-	if (c == 'F')
+		init_animation(data, entity, 1, DOOR_CLOSE);
+	}
+	else if (c == 'F')
+	{
 		entity->type = ENTITY_ENEMY;
+		init_animation(data, entity, 2, DOOR_OPEN);
+	}
+	else
+	{
+		entity->type = ENTITY_ITEM;
+		init_animation(data, entity, 1, BAGUETTE);
+	}
 }

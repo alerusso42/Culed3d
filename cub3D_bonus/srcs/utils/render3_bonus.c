@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 13:35:31 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:29:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@ void	render_cross(t_data *data)
 	pos[X] = (WSCREEN / 2) - data->txtr[CROSSHAIR].size[X] / 8;
 	pos[Y] = (HSCREEN / 2) - data->txtr[CROSSHAIR].size[Y] / 2;
 	put_image_to_image(data, CROSSHAIR, pos, (int [2]){WIMG, HIMG});
+}
+
+void	render_arms(t_data *data, t_entity *player)
+{
+	int	pos[2];
+	int	size[2];
+
+	if (player->type == 'N' && player->input & MOVEMENT)
+		update_animation(player);
+	size[X] = player->frames[player->f_curr]->size[X] / 4;
+	size[Y] = player->frames[player->f_curr]->size[Y];
+	pos[X] = 300;
+	pos[Y] = 700;
+	put_image_to_image(data, player->frames[player->f_curr]->i, pos, size);
 }
 
 /*

@@ -6,29 +6,28 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 15:18:17 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:31:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void	update_animation(t_entity *entity);
-
-void	animation(t_data *data, t_entity *entity)
+void	update_all_animations(t_data *data)
 {
-	int	pos[2];
-	int	size[2];
+	int	i;
 
-	if (entity->type == 'N' && entity->input & MOVEMENT)
-		update_animation(entity);
-	size[X] = entity->frames[entity->f_curr]->size[X] / 4;
-	size[Y] = entity->frames[entity->f_curr]->size[Y];
-	pos[X] = 300;
-	pos[Y] = 700;
-	put_image_to_image(data, entity->frames[entity->f_curr]->i, pos, size);
+	i = -1;
+	while (data->doors[++i].type != ENTITY_END)
+		update_animation(&data->doors[i]);
+	i = -1;
+	while (data->enemies[++i].type != ENTITY_END)
+		update_animation(&data->enemies[i]);
+	i = -1;
+	while (data->items[++i].type != ENTITY_END)
+		update_animation(&data->items[i]);
 }
 
-static void	update_animation(t_entity *entity)
+void	update_animation(t_entity *entity)
 {
 	entity->f_time = ANIMATION_SPEED / entity->speed;
 	if (!entity->frames[entity->f_curr])

@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 13:44:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:04:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,21 @@
 
 int		the_door_checker(t_entity *entity, t_data *data, double angle, int i);
 
-void	line(t_data *data, t_entity *entity, double angle, int i)
+void	line(t_data *data, t_entity *entity, double angle, char collision)
 {
 	float	cos_angle;
 	float	sin_angle;
-	// int		pos[2];
 
 	entity->curr_x = entity->screen[X];
 	entity->curr_y = entity->screen[Y];
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-	while (!the_wall_checker(entity, data, angle, i))
+	while (!collision_checker(entity, data, angle, collision))
 	{
 		entity->curr_x += cos_angle;
 		entity->curr_y += sin_angle;
 	}
 	draw_wall(data, (int [2]){(int)entity->curr_x, (int)entity->curr_y}, angle);
-	// if (data->renderer[0])
-	// {
-	// 	pos[X] = (int)data->renderer[0]->curr_x;
-	// 	pos[Y] = (int)data->renderer[0]->curr_y;
-	// 	draw_wall(data, pos, angle);
-	// 	data->renderer[0]->contact_first[X] = -1;
-	// 	data->renderer[0]->contact_first[Y] = -1;
-	// 	data->renderer[0] = NULL;
-	// }
 }
 
 void	draw_wall(t_data *data, int pos[2], double ray_angle)

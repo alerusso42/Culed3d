@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/23 15:38:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:36:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	init_entities(t_data *data)
 	count_chars(data, &door_count, "D");
 	count_chars(data, &enemies_count, "F");
 	count_chars(data, &item_count, "C");
-	init_entity(data, &data->doors, door_count, 'D');
+	if (door_count)
+		init_entity(data, &data->doors, door_count, 'D');
 	if (enemies_count)
 		init_entity(data, &data->enemies, enemies_count, 'F');
 	if (item_count)

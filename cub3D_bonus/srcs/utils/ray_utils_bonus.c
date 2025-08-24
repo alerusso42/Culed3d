@@ -6,13 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 11:58:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:13:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-void	save_coord(t_data *data, t_entity *ent, int map[2], double screen[2]);
+void	save_coord(t_data *data, t_entity *ent, double angle);
 
 /*
 	//FIXME To optimize line, we should:
@@ -21,8 +21,18 @@ void	save_coord(t_data *data, t_entity *ent, int map[2], double screen[2]);
 	3)	calling this function normally;
 	4)	stop printing the line.
 		At that point, we could differentiate this method using DEBUG macro.
+
+	//REVIEW - collision_checker
+
+	1)	save current minimap position. Then, we check collisions;
+	2)	if the position has player or void space, no collisions (FALSE);
+	3)	if the position has a wall, TRUE;
+	4)	if the position has a door, TRUE;
+	5)	if the position has the requested type, TRUE;
+	6)	In other case, we save the entity data, and return FALSE.
+		Entities are saved in the render array, and print after raycasting.
 */
-int	the_wall_checker(t_entity *ray, t_data *data, double angle, int i)
+int	collision_checker(t_entity *ray, t_data *data, double angle, char type)
 {
 	int			map[2];
 	t_entity	*entity;
@@ -33,36 +43,34 @@ int	the_wall_checker(t_entity *ray, t_data *data, double angle, int i)
 		return (false);
 	if (ft_strchr(WALL_CHARS, data->map[map[Y]][map[X]]))
 		return (true);
+	if (data->map[map[Y]][map[X]] == 'D')
+		return (true);
+	if (data->map[map[Y]][map[X]] == type)
+		return (true);
 	entity = which_entity(data, map[X], map[Y]);
 	if (!entity)
 		return (false);
-	if (entity->type == DOOR_OPEN || entity->type == DOOR_CLOSE)
-		return (true);
-	entity->ray_num = i;
-	entity->ray_angle = angle;
-	save_coord(data, entity, (int [2]){map[X], map[Y]}, \
-(double [2]){entity->curr_x, entity->curr_y});
+	save_coord(data, entity, angle);
 	return (false);
 }
 
-void	save_coord(t_data *data, t_entity *ent, int map[2], double screen[2])
+void	save_coord(t_data *data, t_entity *ent, double angle)
 {
 	int	i;
 
-	ent->contact = true;
-	if (ent->contact_first[X] == -1 && ent->contact_first[Y] == -1)
+	if (!ent->contact)
 	{
-		ent->contact_first[X] = map[X];
-		ent->contact_first[Y] = map[Y];
+		ent->first_ray = angle;
 		i = 0;
 		while (data->renderer && data->renderer[i])
 			++i;
 		data->renderer[i] = ent;
-		ent->curr_x = screen[X];
-		ent->curr_y = screen[Y];
+		ent->contact_column = data->column;
+		ent->contact = true;
 	}
-	ent->contact_last[X] = map[X];
-	ent->contact_last[Y] = map[Y];
+	if (angle != ent->last_ray)
+		ent->contact_num += 1;
+	ent->last_ray = angle;
 }
 
 double	ray_lenght(t_data *data, int rx, int ry)

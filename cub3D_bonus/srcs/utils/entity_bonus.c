@@ -6,11 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 11:52:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:14:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
+
+static bool	check_one(t_entity *ent, int pos[2], bool discard_open_door);
 
 //	given x, y and an entity type, it returns the index of the entity
 //	in its array.
@@ -25,6 +27,8 @@ void	*which_entity(t_data *data, int x, int y)
 		entity = data->doors;
 	else if (type == ENTITY_ENEMY)
 		entity = data->enemies;
+	else if (type == ENTITY_ITEM)
+		entity = data->items;
 	else
 		return (NULL);
 	i = 0;
@@ -39,32 +43,28 @@ void	*which_entity(t_data *data, int x, int y)
 	return ((void *)&entity[i]);
 }
 
-bool	collision_entity(t_data *data, int x, int y)
+bool	collision_entity(t_data *data, int x, int y, bool discard_open_door)
 {
-	int	i;
-
-	i = -1;
-	while (data->doors[++i].type != ENTITY_END)
-	{
-		if (data->doors[i].map[X] == x && data->doors[i].map[Y] == y)
-		{
-			if (data->doors[i].type == DOOR_OPEN)
-				return (false);
-			return (true);
-		}
-	}
+	if (check_one(data->doors, (int [2]){x, y}, discard_open_door))
+		return (true);
+	if (check_one(data->enemies, (int [2]){x, y}, discard_open_door))
+		return (true);
+	if (check_one(data->items, (int [2]){x, y}, discard_open_door))
+		return (true);
 	return (false);
 }
 
-bool	all_collision(t_data *data, int x, int y)
+static bool	check_one(t_entity *ent, int pos[2], bool discard_open_door)
 {
 	int	i;
 
 	i = -1;
-	while (data->doors[++i].type != ENTITY_END)
+	while (ent[++i].type != ENTITY_END)
 	{
-		if (data->doors[i].map[X] == x && data->doors[i].map[Y] == y)
+		if (ent[i].map[X] == pos[X] && ent[i].map[Y] == pos[Y])
 		{
+			if (ent[i].type == DOOR_OPEN && discard_open_door)
+				return (false);
 			return (true);
 		}
 	}
@@ -77,7 +77,9 @@ int	entity_type(t_data *data, int x, int y)
 		return (data->player.type);
 	if (data->map[y][x] == 'D')
 		return (ENTITY_DOOR);
-	if (data->map[y][x] == 'F')
+	else if (data->map[y][x] == 'F')
 		return (ENTITY_ENEMY);
+	else if (data->map[y][x] == 'C')
+		return (ENTITY_ITEM);
 	return (ENTITY_NOT_FOUND);
 }

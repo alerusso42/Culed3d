@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:04 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 12:02:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:22:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ t_txtr	*texture_finder(t_data *data, double ray_angle, int hit_x, int hit_y)
 {
 	t_entity	*entity;
 
-	if (all_collision(data, hit_x / WIMG, hit_y / HIMG) == true)
+	if (collision_entity(data, hit_x / WIMG, hit_y / HIMG, false) == true)
 	{
 		entity = which_entity(data, hit_x / WIMG, hit_y / HIMG);
 		if (!entity)
 			return (&data->txtr[ARMS1]);
-		return (&data->txtr[(int)entity->type]);
+		return (entity->frames[entity->f_curr]);
 	}
 	else
 		return (&data->txtr[wall_face(data, &data->player, ray_angle)]);

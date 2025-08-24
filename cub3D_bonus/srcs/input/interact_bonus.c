@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 11:50:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:25:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,15 @@ void	interact(t_data *data)
 	if (ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
 		return ;
 	if (entity->type == DOOR_CLOSE)
+	{
 		entity->type = DOOR_OPEN;
+		entity->frames[0] = &data->txtr[DOOR_OPEN];
+	}
 	else if (entity->type == DOOR_OPEN)
+	{
 		entity->type = DOOR_CLOSE;
+		entity->frames[0] = &data->txtr[DOOR_CLOSE];
+	}
 }
 
 static	void	door_line(t_data *data, t_entity *entity, double angle)

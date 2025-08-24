@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 12:02:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/24 13:57:41 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ int	wall_face(t_data *data, t_entity *entity, double angle)
 
 static bool	check_north_collision(t_data *data, t_entity *entity)
 {
-	int	x[3];
-	int	y[3];
+	int		x[3];
+	int		y[3];
+	char	c;
 
 	x[0] = (int)(entity->curr_x) / WIMG;
 	y[0] = (int)(entity->curr_y) / HIMG;
@@ -73,13 +74,12 @@ static bool	check_north_collision(t_data *data, t_entity *entity)
 	y[1] = (int)(entity->curr_y) / HIMG;
 	x[2] = (int)(entity->curr_x + 1) / WIMG;
 	y[2] = (int)(entity->curr_y) / HIMG;
-	if ((ft_strchr("1D", data->map[y[0]][x[0]])) && \
-(ft_strchr("1D", data->map[y[1]][x[1]])) && \
-(ft_strchr("1D", data->map[y[2]][x[2]])))
+	c = data->map[y[0]][x[0]];
+	if (c != data->map[y[1]][x[1]] && c != data->map[y[2]][x[2]])
 	{
-		return (true);
+		return (false);
 	}
-	return (false);
+	return (true);
 }
 
 int	wall_height(t_data *data, double x, double y, double ray_angle)
