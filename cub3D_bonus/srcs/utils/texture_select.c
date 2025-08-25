@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_select.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:04 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 12:22:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 08:30:48 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

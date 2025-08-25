@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:37:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 08:28:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@
 # define SHADE_INTENSITY 60
 # define WSCREEN 1200
 # define HSCREEN 1080
-# define ENTITY_WIDTH 25
+# define ENTITY_WIDTH 30
 
 //# define RADIANT 0.008726
 
