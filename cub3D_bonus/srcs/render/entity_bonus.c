@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 10:23:26 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:32:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ void	render_entity(t_data *data)
 {
 	int	i;
 
+	sort_render(data->renderer);
 	i = 0;
 	while (data->renderer[i])
 	{
-		if (data->renderer[i]->frames)
+		if (data->renderer[i]->frames && data->renderer[i]->contact_num)
 			render_one(data, data->renderer[i]);
 		++i;
 	}
@@ -54,6 +55,7 @@ static void	render_one(t_data *data, t_entity *entity)
 	txtr = entity->frames[entity->f_curr];
 	h = wall_height(data, entity->screen[X], entity->screen[Y], \
 entity->first_ray);
+	h *= 3;
 	scaler_x = entity_scaler_x(entity, txtr, h);
 	data->column = entity->contact_column;
 	txtr->shade = h / (SHADE_INTENSITY / 3);
@@ -138,6 +140,7 @@ static double		entity_scaler_x(t_entity *entity, t_txtr *txtr, double h)
 	double	scaler;
 	double	wide;
 
+	scaler = 0;
 	wide = h / ENTITY_WIDTH;
 	scaler = (WSCREEN / (double)entity->contact_num);
 	scaler /= wide;

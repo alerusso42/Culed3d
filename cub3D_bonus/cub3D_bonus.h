@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 11:21:40 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:04:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
-# define DEBUG false
+# define DEBUG true
 # ifndef DEBUG
 #  define DEBUG true
 # endif
@@ -62,6 +62,16 @@
 # define COIN_TXTR "textures/coin.xpm"
 # define FOE1_TXTR "textures/foe_1.xpm"
 # define FOE2_TXTR "textures/foe_2.xpm"
+# define FOE3_TXTR "textures/foe_3.xpm"
+# define FOE4_TXTR "textures/foe_4.xpm"
+# define FOE5_TXTR "textures/foe_5.xpm"
+# define FOE6_TXTR "textures/foe_6.xpm"
+# define FOE7_TXTR "textures/foe_7.xpm"
+# define FOE8_TXTR "textures/foe_8.xpm"
+# define FOE9_TXTR "textures/foe_9.xpm"
+# define FOE10_TXTR "textures/foe_10.xpm"
+# define FOE11_TXTR "textures/foe_11.xpm"
+# define FOE12_TXTR "textures/foe_12.xpm"
 # define MINI_COIN_TXTR "textures/mini_coin.xpm"
 # define MINI_FOE_TXTR "textures/mini_foe.xpm"
 # define MINI_BACKGROUND_TXTR "textures/mini_background.xpm"
@@ -97,7 +107,7 @@
 # define SHADE_INTENSITY 60
 # define WSCREEN 1200
 # define HSCREEN 1080
-# define ENTITY_WIDTH 30
+# define ENTITY_WIDTH 42
 
 //# define RADIANT 0.008726
 
@@ -163,6 +173,7 @@ typedef struct s_entity
 	int		map[2];
 	int		contact_column;
 	int		contact_num;
+	int		distance;
 	t_txtr	**frames;
 	int		f_curr;
 	int		f_time;
@@ -249,6 +260,17 @@ enum e_textures
 	M_COIN,
 	M_FOE,
 	FOE1,
+	FOE2,
+	FOE3,
+	FOE4,
+	FOE5,
+	FOE6,
+	FOE7,
+	FOE8,
+	FOE9,
+	FOE10,
+	FOE11,
+	FOE12,
 	COIN,
 	ARMS1,
 	ARMS2,
@@ -323,6 +345,11 @@ enum e_utils
 	MOUSE_DOWN = 5,
 };
 
+void	fill_txtr(t_data *data, int index, char *name, int size[2]);
+void	txtr_list(t_data *data);
+void	txtr_list2(t_data *data);
+void 	mini_player_txtr_list(t_data *data, int *size);
+void	foe_txtr_list(t_data *data, int *size);
 void	init_entity(t_data *data, t_entity **entity, int n, char c);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
@@ -381,6 +408,7 @@ void	update_all_animations(t_data *data);
 void	update_coord(t_entity *entity_data);
 void	update_animation(t_entity *entity);
 int		bigger(int a, int b, int c, int d);
+void	sort_render(t_entity **renderer);
 void	ft_sleep(long long microsecond);
 void	normalize_angle(double *angle);
 void	clear_window(t_data *data);

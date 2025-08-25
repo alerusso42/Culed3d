@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:13:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:45:04 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-void	save_coord(t_data *data, t_entity *ent, double angle);
-
+void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle);
 /*
 	//FIXME To optimize line, we should:
 	1)	calculate minimal vectors using DDA;
@@ -50,11 +49,11 @@ int	collision_checker(t_entity *ray, t_data *data, double angle, char type)
 	entity = which_entity(data, map[X], map[Y]);
 	if (!entity)
 		return (false);
-	save_coord(data, entity, angle);
+	save_coord(data, entity, ray, angle);
 	return (false);
 }
 
-void	save_coord(t_data *data, t_entity *ent, double angle)
+void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle)
 {
 	int	i;
 
@@ -66,6 +65,7 @@ void	save_coord(t_data *data, t_entity *ent, double angle)
 			++i;
 		data->renderer[i] = ent;
 		ent->contact_column = data->column;
+		ent->distance = ray_lenght(data, (int)ray->curr_x, (int)ray->curr_y);
 		ent->contact = true;
 	}
 	if (angle != ent->last_ray)

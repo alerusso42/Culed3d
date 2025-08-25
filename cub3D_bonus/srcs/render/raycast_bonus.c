@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:27:25 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:04:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:56:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	render_column(t_data *data, t_txtr *txtr, double h)
 	double	txtr_line;
 	double	scaler_y;
 
+	if (txtr->offset < 0)
+		return ;
 	scaler_y = (txtr->size[Y] / h) / 2;
 	txtr_line = txtr->size[Y] - 1;
 	screen_y = (HSCREEN / 2) + h;

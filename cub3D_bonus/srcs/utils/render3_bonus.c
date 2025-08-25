@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 11:17:24 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:18:56 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,36 @@ void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
 	x = pos[X] * size[X];
 	y = pos[Y] * size[Y];
 	put_image_to_image(data, which, (int [2]){x, y}, size);
+}
+
+/*
+//REVIEW - sort_matrix
+
+	A bubble sort algorithm to sort a matrix of strings in 
+	ASCII ascending order.
+*/
+void	sort_render(t_entity **renderer)
+{
+	t_entity	*temp;
+	int			i;
+	int			j;
+
+	if (!renderer || !renderer[0])
+		return ;
+	i = 0;
+	while (renderer[i + 1])
+	{
+		j = 0;
+		while (renderer[j + 1])
+		{
+			if (renderer[j]->distance < renderer[j + 1]->distance)
+			{
+				temp = renderer[j];
+				renderer[j] = renderer[j + 1];
+				renderer[j + 1] = temp;
+			}
+			++j;
+		}
+		++i;
+	}
 }

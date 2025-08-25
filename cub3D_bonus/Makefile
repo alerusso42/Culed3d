@@ -20,6 +20,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	init/mem_handler_bonus.c \
 	init/entity_bonus.c \
 	init/get_texture_bonus.c \
+	init/texture_list_bonus.c \
 	input/commands_bonus.c \
 	input/interact_bonus.c \
 	input/move_bonus.c \

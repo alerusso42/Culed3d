@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:45:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 11:11:06 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:20:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 static void	minimap_print(t_data *data, int offset[2], int pos[2]);
 static void	background(t_data *data);
 
+/*
+	i and j:	coordinates of the screen.
+	x and y:	map coordinates.
+				they are passed as parameter cause of norminette.
+				they are set to 1, to skip a block for the border.
+				
+*/
 int	map_start(t_data *data, int i, int j)
 {
 	int	x;
@@ -45,26 +52,14 @@ int	map_start(t_data *data, int i, int j)
 
 static void	background(t_data *data)
 {
-	int			x;
-	int			y;
-	// static int	color;
+	int	x;
+	int	y;
 
-// 	if (!color)
-// 		color = rgb(data->ceiling[0] * 0.90, data->ceiling[1] * 0.90, \
-// data->ceiling[2] * 0.90);
-	x = 408;
-	y = 408;
+	if (TEXTURES_NUM <= M_BACKGROUND)
+		return ;
+	x = data->txtr[M_BACKGROUND].size[X] / (data->txtr[M_BACKGROUND].bpp / 8);
+	y = data->txtr[M_BACKGROUND].size[Y];
 	put_image_resize(data, M_BACKGROUND, (int [2]){0, 0}, (int [2]){x, y});
-	// while (x > 0)
-	// {
-	// 	y = (MINIMAP * 24);
-	// 	while (y > 0)
-	// 	{
-	// 		put_pixel(data, x, y, color);
-	// 		y--;
-	// 	}
-	// 	x--;
-	// }
 }
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2])
@@ -79,9 +74,9 @@ static void	minimap_print(t_data *data, int offset[2], int pos[2])
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
 		put_image_resize(data, which_p(data), offset, size_minimap);
 	else if (data->map[pos[Y]][pos[X]] == 'C')
-		put_image_resize(data, M_COIN, pos, size_minimap);
+		put_image_resize(data, M_COIN, offset, size_minimap);
 	else if (data->map[pos[Y]][pos[X]] == 'F')
-		put_image_resize(data, M_FOE, pos, size_minimap);
+		put_image_resize(data, M_FOE, offset, size_minimap);
 	ent = which_entity(data, pos[X], pos[Y]);
 	if (!ent)
 		return ;

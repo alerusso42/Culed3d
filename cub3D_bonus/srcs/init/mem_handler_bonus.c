@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/24 11:36:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:28:11 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	spread_democracy(t_data *data)
 	delete((void **)&data->player.frames);
 	free_entities(data->enemies);
 	free_entities(data->doors);
+	free_entities(data->items);
 	free_texture(data);
 	free_matrix(data->map);
 	free(data->doors);
