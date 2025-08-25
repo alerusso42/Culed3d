@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:29:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:17:24 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 
 void	put_image_resize(t_data *data, int which, int pos[2], int size[2])
 {
-	pos[X] *= size[X];
-	pos[Y] *= size[Y];
-	put_image_to_image(data, which, pos, size);
+	int	x;
+	int	y;
+
+	x = pos[X] * size[X];
+	y = pos[Y] * size[Y];
+	put_image_to_image(data, which, (int [2]){x, y}, size);
 }

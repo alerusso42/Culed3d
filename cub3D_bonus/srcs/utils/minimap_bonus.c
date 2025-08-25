@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:45:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/23 11:48:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:11:06 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,24 @@ static void	background(t_data *data)
 {
 	int			x;
 	int			y;
-	static int	color;
+	// static int	color;
 
-	if (!color)
-		color = rgb(data->ceiling[0] * 0.90, data->ceiling[1] * 0.90, \
-data->ceiling[2] * 0.90);
-	x = ((MINIMAP + 2) * 24);
-	y = (MINIMAP * 24);
-	while (x > 0)
-	{
-		y = (MINIMAP * 24);
-		while (y > 0)
-		{
-			put_pixel(data, x, y, color);
-			y--;
-		}
-		x--;
-	}
+// 	if (!color)
+// 		color = rgb(data->ceiling[0] * 0.90, data->ceiling[1] * 0.90, \
+// data->ceiling[2] * 0.90);
+	x = 408;
+	y = 408;
+	put_image_resize(data, M_BACKGROUND, (int [2]){0, 0}, (int [2]){x, y});
+	// while (x > 0)
+	// {
+	// 	y = (MINIMAP * 24);
+	// 	while (y > 0)
+	// 	{
+	// 		put_pixel(data, x, y, color);
+	// 		y--;
+	// 	}
+	// 	x--;
+	// }
 }
 
 static void	minimap_print(t_data *data, int offset[2], int pos[2])
@@ -76,9 +77,11 @@ static void	minimap_print(t_data *data, int offset[2], int pos[2])
 	if (data->map[pos[Y]][pos[X]] == '1')
 		put_image_resize(data, WALL, offset, size_minimap);
 	else if (ft_strchr(PLAYER_CHARS, data->map[pos[Y]][pos[X]]))
-	{
 		put_image_resize(data, which_p(data), offset, size_minimap);
-	}
+	else if (data->map[pos[Y]][pos[X]] == 'C')
+		put_image_resize(data, M_COIN, pos, size_minimap);
+	else if (data->map[pos[Y]][pos[X]] == 'F')
+		put_image_resize(data, M_FOE, pos, size_minimap);
 	ent = which_entity(data, pos[X], pos[Y]);
 	if (!ent)
 		return ;

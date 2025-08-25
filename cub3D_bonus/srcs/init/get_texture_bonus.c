@@ -16,6 +16,7 @@ static void	set_to_null(t_data *data);
 static void	txtr_list(t_data *data);
 static void	txtr_list2(t_data *data);
 static void	fill_txtr(t_data *data, int index, char *name, int size[2]);
+static void mini_player_txtr_list(t_data *data, int *size);
 
 /*
 //REVIEW	get_txtr
@@ -68,11 +69,16 @@ static void	txtr_list(t_data *data)
 	fill_txtr(data, DOOR_CLOSE, DOOR_CLOSE_TXTR, size);
 	fill_txtr(data, DOOR_OPEN, DOOR_OPEN_TXTR, size);
 	fill_txtr(data, BAGUETTE, BAGUETTE_TXTR, size);
+	fill_txtr(data, COIN, COIN_TXTR, size);
 	txtr_list2(data);
 	size[X] = 700;
 	size[Y] = 300;
 	fill_txtr(data, ARMS1, ARMS1_TXTR, size);
 	fill_txtr(data, ARMS2, ARMS2_TXTR, size);
+	size[X] = 300;
+	size[Y] = 667;
+	fill_txtr(data, FOE1, FOE1_TXTR, size);
+	// fill_txtr(data, FOE2, FOE2_TXTR, size);
 }
 
 static void	txtr_list2(t_data *data)
@@ -82,6 +88,17 @@ static void	txtr_list2(t_data *data)
 	size[X] = WIMG_MINIMAP;
 	size[Y] = HIMG_MINIMAP;
 	fill_txtr(data, WALL, WALL_TXTR, size);
+	mini_player_txtr_list(data, size);
+	fill_txtr(data, M_DOOR, MINI_DOOR_TXTR, size);
+	fill_txtr(data, M_COIN, MINI_COIN_TXTR, size);
+	fill_txtr(data, M_FOE, MINI_FOE_TXTR, size);
+	size[X] = 408;
+	size[Y] = 408;
+	fill_txtr(data, M_BACKGROUND, MINI_BACKGROUND_TXTR, size);
+}
+
+static void mini_player_txtr_list(t_data *data, int *size)
+{
 	fill_txtr(data, M_PLAYER_0, MINI_PLAYER_0_TXTR, size);
 	fill_txtr(data, M_PLAYER_20, MINI_PLAYER_20_TXTR, size);
 	fill_txtr(data, M_PLAYER_40, MINI_PLAYER_40_TXTR, size);
@@ -100,7 +117,6 @@ static void	txtr_list2(t_data *data)
 	fill_txtr(data, M_PLAYER_300, MINI_PLAYER_300_TXTR, size);
 	fill_txtr(data, M_PLAYER_320, MINI_PLAYER_320_TXTR, size);
 	fill_txtr(data, M_PLAYER_340, MINI_PLAYER_340_TXTR, size);
-	fill_txtr(data, M_DOOR, MINI_DOOR_TXTR, size);
 }
 
 //	set all the txtr array to NULL

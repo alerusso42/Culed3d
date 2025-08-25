@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 08:28:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:21:40 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
-# define DEBUG true
+# define DEBUG false
 # ifndef DEBUG
 #  define DEBUG true
 # endif
@@ -59,6 +59,12 @@
 # define BAGUETTE_TXTR "textures/BAGUETTE.xpm"
 # define ARMS1_TXTR "textures/possenza.xpm"
 # define ARMS2_TXTR "textures/possenza2.xpm"
+# define COIN_TXTR "textures/coin.xpm"
+# define FOE1_TXTR "textures/foe_1.xpm"
+# define FOE2_TXTR "textures/foe_2.xpm"
+# define MINI_COIN_TXTR "textures/mini_coin.xpm"
+# define MINI_FOE_TXTR "textures/mini_foe.xpm"
+# define MINI_BACKGROUND_TXTR "textures/mini_background.xpm"
 # define MINI_PLAYER_0_TXTR "textures/mini_player_0.xpm"
 # define MINI_PLAYER_20_TXTR "textures/mini_player_20.xpm"
 # define MINI_PLAYER_40_TXTR "textures/mini_player_40.xpm"
@@ -220,6 +226,7 @@ enum e_textures
 	WALL,
 	DOOR_OPEN,
 	DOOR_CLOSE,
+	M_BACKGROUND,
 	M_PLAYER_0,
 	M_PLAYER_20,
 	M_PLAYER_40,
@@ -239,6 +246,10 @@ enum e_textures
 	M_PLAYER_320,
 	M_PLAYER_340,
 	M_DOOR,
+	M_COIN,
+	M_FOE,
+	FOE1,
+	COIN,
 	ARMS1,
 	ARMS2,
 	BAGUETTE,
