@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 12:15:31 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:34:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	if (data->menu && button == MOUSE_LEFT)
 	{
 		if (data->button & PLAY)
+		{
+			mlx_mouse_hide(data->mlx, data->win);
+			play_audio(SFX_GAME, data);
 			data->menu = false;
+		}
 		else if (data->button & EXIT)
 			ft_cross_close(data);
 	}

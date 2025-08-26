@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 12:16:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:49:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	txtr_list2(t_data *data)
 	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
 	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_array(1920, 1077, size);
-	fill_txtr(data, MENU_FRAME, MENU_FRAME_TXTR, size);
+	if (DEBUG == false)
+		fill_txtr(data, MENU_FRAME, SCREEN_TXTR, size);
+	else
+		fill_txtr(data, MENU_FRAME, MENU_FRAME_TXTR, size);
 }
 
 void mini_player_txtr_list(t_data *data, int *size)

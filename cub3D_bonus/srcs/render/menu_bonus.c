@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 12:13:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:26:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	main_menu(t_data *data)
 	fill_array(700, 600, pos);
 	toggle_button(data, EXIT_BUTTON, check_mouse(data, pos, size));
 	put_image_to_image(data, EXIT_BUTTON, pos, size);
-	clear_window(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
 static bool	check_mouse(t_data *data, int left_angle[2], int size[2])
@@ -60,10 +60,10 @@ static void	toggle_button(t_data *data, int button, bool on)
 	}
 	else
 	{
-		data->txtr[button].filters ^= FILTER_BUTTON_PRESSED;
+		bitwise_xor(&data->txtr[button].filters, (char)FILTER_BUTTON_PRESSED);
 		if (button == PLAY_BUTTON)
-			data->button ^= PLAY;
+			bitwise_xor(&data->button, PLAY);
 		else
-			data->button ^= EXIT;
+			bitwise_xor(&data->button, EXIT);
 	}
 }

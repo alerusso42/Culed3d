@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 16:18:56 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:51:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	render_cross(t_data *data)
 {
 	int	pos[2];
 
-	pos[X] = (WSCREEN / 2) - data->txtr[CROSSHAIR].size[X] / 8;
-	pos[Y] = (HSCREEN / 2) - data->txtr[CROSSHAIR].size[Y] / 2;
+	pos[X] = (WSCREEN / 2) - (data->txtr[CROSSHAIR].size[X] / 8);
+	pos[Y] = (HSCREEN / 2) - (data->txtr[CROSSHAIR].size[Y] / 2);
 	put_image_to_image(data, CROSSHAIR, pos, (int [2]){WIMG, HIMG});
 }
 
@@ -26,11 +26,11 @@ void	render_arms(t_data *data, t_entity *player)
 	int	pos[2];
 	int	size[2];
 
-	if (player->type == 'N' && player->input & MOVEMENT)
+	if (player->input & MOVEMENT)
 		update_animation(player);
 	size[X] = player->frames[player->f_curr]->size[X] / 4;
 	size[Y] = player->frames[player->f_curr]->size[Y];
-	pos[X] = 300;
+	pos[X] = WSCREEN / 4;
 	pos[Y] = 700;
 	put_image_to_image(data, player->frames[player->f_curr]->i, pos, size);
 }
@@ -56,9 +56,7 @@ void	put_image_to_image(t_data *data, int which, int pos[2], int size[2])
 			index = y * txtr->size[X] + x * (txtr->bpp / 8);
 			if (index > txtr->total_size - 1)
 				return ;
-			color = txtr->xpm[index] & 0xFF;
-			color = color | ((txtr->xpm[index + 1] & 0xFF) << 8);
-			color = color | ((txtr->xpm[index + 2] & 0xFF) << 16);
+			color = get_pixel_color(&data->txtr[which], index);
 			put_pixel(data, pos[X] + x, pos[Y] + y, color);
 			++x;
 		}

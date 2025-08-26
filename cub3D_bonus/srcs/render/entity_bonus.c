@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 16:32:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:31:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,23 @@ static void		draw_one(t_data *data, t_txtr *txtr, double scaler_x, double h);
 void	render_entity(t_data *data)
 {
 	int	i;
+	int	audio_stop;
 
+	audio_stop = true;
 	sort_render(data->renderer);
 	i = 0;
 	while (data->renderer[i])
 	{
+		if (data->renderer[i]->distance < 150)
+			audio_stop = false;
 		if (data->renderer[i]->frames && data->renderer[i]->contact_num)
 			render_one(data, data->renderer[i]);
 		++i;
+	}
+	if (audio_stop && data->enemy_audio)
+	{
+		data->enemy_audio = false;
+		play_audio(SFX_GAME, data);
 	}
 }
 

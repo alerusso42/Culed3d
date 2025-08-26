@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/22 14:21:34 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:36:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
+	malloc(500000000000);
 	data = (t_data){0};
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
@@ -33,8 +34,8 @@ int	main(int argc, char *argv[])
 	mlx_hook(data.win, 2, 1L << 0, commands_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, commands_release, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
-	mlx_mouse_hide(data.mlx, data.win);
 	gettimeofday(&data.start, NULL);
+	play_audio(SFX_OP, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	spread_democracy(&data);

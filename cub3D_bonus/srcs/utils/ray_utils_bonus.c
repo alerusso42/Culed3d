@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 15:45:04 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:04:18 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle)
 		data->renderer[i] = ent;
 		ent->contact_column = data->column;
 		ent->distance = ray_lenght(data, (int)ray->curr_x, (int)ray->curr_y);
+		if (ent->distance < 150 && !data->enemy_audio)
+		{
+			data->enemy_audio = true;
+			play_audio(SFX_ENEMY, data);
+		}
 		ent->contact = true;
 	}
 	if (angle != ent->last_ray)

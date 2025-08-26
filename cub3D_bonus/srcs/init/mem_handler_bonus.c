@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/26 10:52:57 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:12:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ https://www.youtube.com/watch?v=U06jlgpMtQs
 */
 void	spread_democracy(t_data *data)
 {
+	stop_audio(data);
 	delete((void **)&data->renderer);
 	delete((void **)&data->player.frames);
 	free_entities(data->enemies);
+	delete((void **)&data->enemies);
 	free_entities(data->doors);
+	delete((void **)&data->doors);
 	free_entities(data->items);
+	delete((void **)&data->items);
 	free_texture(data);
 	free_matrix(data->map);
 	free(data->doors);

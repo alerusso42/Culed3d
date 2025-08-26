@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 12:13:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:30:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <limits.h>
 # include <math.h>
 # include <sys/time.h>
+# include <sys/stat.h>
+# include <signal.h>
 # include <stdbool.h>
 # include "./minilibx-linux/mlx.h"
 # include <math.h>
@@ -41,10 +43,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
-# define DEBUG true
-# ifndef DEBUG
-#  define DEBUG true
-# endif
+# define DEBUG false
 # define VALID_CHARS " 01NSEWDFC"
 # define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
@@ -108,8 +107,8 @@
 # define PIX_PLAYER 96
 # define PLAYER_OFFSET 32
 # define SHADE_INTENSITY 60
-# define WSCREEN 1200
-# define HSCREEN 1080
+# define WSCREEN 1920
+# define HSCREEN 1200
 # define ENTITY_WIDTH 42
 
 //# define RADIANT 0.008726
@@ -208,7 +207,6 @@ typedef struct s_data
 	char		*txtr_ceiling;
 	char		*txtr_player;
 	char		*img_ptr;
-	char		button;
 	int			ent_num;
 	int			img_data[3];
 	int			bpp;
@@ -220,8 +218,16 @@ typedef struct s_data
 	int			max_y;
 	int			column;
 	int			color;
+	int			audio_pid;
+	int			enemy_audio;
+	char		audio_play;
+	char		button;
 	bool		menu;
 }	t_data;
+
+# define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
+# define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
+#define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
 
 typedef enum e_timecode
 {
@@ -420,6 +426,7 @@ void	update_all_animations(t_data *data);
 void	update_coord(t_entity *entity_data);
 void	update_animation(t_entity *entity);
 int		bigger(int a, int b, int c, int d);
+void	bitwise_xor(char *byte, char bit);
 void	sort_render(t_entity **renderer);
 void	ft_sleep(long long microsecond);
 void	normalize_angle(double *angle);
@@ -462,5 +469,8 @@ void	update_map(t_data *data, t_entity *entity, int new_x, int new_y);
 void	render_sync(t_data *data);
 int		texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y);
 bool	all_collision(t_data *data, int x, int y);
+
+void    play_audio(char *audio_path, t_data *data);
+void    stop_audio(t_data *data);
 
 #endif

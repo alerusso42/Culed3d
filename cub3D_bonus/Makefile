@@ -31,6 +31,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	parsing/check_map_bonus.c \
 	parsing/check_map_access_bonus.c \
 	utils/animation.c \
+	utils/bitwise_bonus.c \
 	utils/debug_bonus.c \
 	utils/strings_bonus.c \
 	utils/entity_bonus.c \
@@ -51,6 +52,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	render/raycast_bonus.c \
 	render/entity_bonus.c \
 	render/menu_bonus.c \
+	sfx/sfx_bonus.c \
 )
 all: $(NAME)
 
