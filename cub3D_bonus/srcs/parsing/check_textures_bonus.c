@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 17:29:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:43:39 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ static int	check_file(char *texture_name)
 	if (fd < 0)
 		return (false);
 	close(fd);
-	return (true);
-}
+	fd = open(texture_name, __O_DIRECTORY);
+	if (fd < 0)
+		return (true);
+	close(fd);
+	return (false);
+}	
 
 bool	check_colors(char *texture, int rgb[3])
 {

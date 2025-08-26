@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 11:12:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:15:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	commands_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		ft_cross_close(data);
+	if (data->menu)
+		return (0);
 	if (keycode == XK_w)
 		data->player.input |= UP;
 	if (keycode == XK_d)
@@ -45,6 +47,8 @@ int	commands_press(int keycode, t_data *data)
 //	The xor operator ^ removes a bit in a byte.
 int	commands_release(int keycode, t_data *data)
 {
+	if (data->menu)
+		return (0);
 	if (keycode == XK_w)
 		data->player.input ^= UP;
 	if (keycode == XK_d)
@@ -62,9 +66,18 @@ int	commands_release(int keycode, t_data *data)
 	return (0);
 }
 
-int	mouse_hook(int button, int x, int y, void *data)
+int	mouse_hook(int button, int x, int y, t_data *data)
 {
 	(void)x, (void)y;
+	if (data->menu && button == MOUSE_LEFT)
+	{
+		if (data->button & PLAY)
+			data->menu = false;
+		else if (data->button & EXIT)
+			ft_cross_close(data);
+	}
+	if (data->menu)
+		return (0);
 	if (button == MOUSE_UP)
 		printf("pov y not implemented.\n");
 	else if (button == MOUSE_DOWN)

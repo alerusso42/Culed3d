@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:27:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:12:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ int	game_loop(t_data *data)
 	if (elapsed_time(data->start) > FRAME_TIME)
 	{
 		t1 = elapsed_time(data->start);
-		move_player(data);
-		mouse_input(data);
-		frame_render(data);
+		if (data->menu)
+			main_menu(data);
+		else 
+		{
+			move_player(data);
+			mouse_input(data);
+			frame_render(data);
+		}
 		t2 = elapsed_time(data->start);
 		t_diff = (t2 - t1) / (int)1e3;
-		printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
 		gettimeofday(&data->start, NULL);
+		printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
 	}
 	return (0);
 }

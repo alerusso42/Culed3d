@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 16:04:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:13:38 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@
 # define MINI_PLAYER_340_TXTR "textures/mini_player_340.xpm"
 # define MINI_PLAYER_360_TXTR "textures/mini_player_360.xpm"
 # define MINI_DOOR_TXTR "textures/mini_door.xpm"
+# define MENU_FRAME_TXTR "textures/menu_il_destino.xpm"
+# define MENU_PLAY_TXTR "textures/play_button.xpm"
+# define MENU_EXIT_TXTR "textures/exit_button.xpm"
 
 # define HIMG 64
 # define WIMG 64
@@ -205,6 +208,7 @@ typedef struct s_data
 	char		*txtr_ceiling;
 	char		*txtr_player;
 	char		*img_ptr;
+	char		button;
 	int			ent_num;
 	int			img_data[3];
 	int			bpp;
@@ -216,6 +220,7 @@ typedef struct s_data
 	int			max_y;
 	int			column;
 	int			color;
+	bool		menu;
 }	t_data;
 
 typedef enum e_timecode
@@ -275,6 +280,9 @@ enum e_textures
 	ARMS1,
 	ARMS2,
 	BAGUETTE,
+	MENU_FRAME,
+	PLAY_BUTTON,
+	EXIT_BUTTON,
 	TEXTURES_NUM,
 };
 
@@ -312,6 +320,7 @@ enum	e_texture_filters
 {
 	FILTER_ON = 255,
 	FILTER_BLACK_WHITE = 1,
+	FILTER_BUTTON_PRESSED = 2,
 };
 
 enum e_utils
@@ -343,6 +352,8 @@ enum e_utils
 	MOUSE_MIDDLE = 2,
 	MOUSE_UP = 4,
 	MOUSE_DOWN = 5,
+	PLAY = 1,
+	EXIT = 2,
 };
 
 void	fill_txtr(t_data *data, int index, char *name, int size[2]);
@@ -360,7 +371,7 @@ void	free_texture(t_data *data);
 //SECTION	input
 
 void	move(t_data *data, t_entity *entity, double angle[]);
-int		mouse_hook(int button, int x, int y, void *param);
+int		mouse_hook(int button, int x, int y, t_data *param);
 void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
@@ -403,6 +414,7 @@ double	ray_lenght(t_data *data, int rx, int ry);
 double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
+void	fill_array(int a, int b, int array[2]);
 int		get_pixel_color(t_txtr *txtr, int i);
 void	update_all_animations(t_data *data);
 void	update_coord(t_entity *entity_data);
@@ -442,6 +454,7 @@ int		commands(int key, t_data *data);
 void	reset_renderer(t_data *data);
 void	render_entity(t_data *data);
 void	backgrounder(t_data *data);
+void	main_menu(t_data *data);
 void	get_txtr(t_data *data);
 int		which_p(t_data *data);
 

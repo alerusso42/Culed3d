@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 14:33:48 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:16:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,23 @@ void	txtr_list(t_data *data)
 {
 	int	size[2];
 
-	size[X] = WIMG;
-	size[Y] = HIMG;
+	fill_array(WIMG, HIMG, size);
 	fill_txtr(data, NORTH, data->txtr_north, size);
 	fill_txtr(data, EAST, data->txtr_east, size);
 	fill_txtr(data, SOUTH, data->txtr_south, size);
 	fill_txtr(data, WEST, data->txtr_west, size);
 	fill_txtr(data, PLAYER, PLAYER_TXTR, size);
 	fill_txtr(data, CROSSHAIR, CROSS_TXTR, size);
-	size[X] = TXTR;
-	size[Y] = TXTR;
+	fill_array(TXTR, TXTR, size);
 	fill_txtr(data, DOOR_CLOSE, DOOR_CLOSE_TXTR, size);
 	fill_txtr(data, DOOR_OPEN, DOOR_OPEN_TXTR, size);
 	fill_txtr(data, BAGUETTE, BAGUETTE_TXTR, size);
 	fill_txtr(data, COIN, COIN_TXTR, size);
 	txtr_list2(data);
-	size[X] = 700;
-	size[Y] = 300;
+	fill_array(700, 300, size);
 	fill_txtr(data, ARMS1, ARMS1_TXTR, size);
 	fill_txtr(data, ARMS2, ARMS2_TXTR, size);
-	size[X] = 300;
-	size[Y] = 667;
+	fill_array(300, 667, size);
 	foe_txtr_list(data, size);
 }
 
@@ -52,16 +48,19 @@ void	txtr_list2(t_data *data)
 {
 	int	size[2];
 
-	size[X] = WIMG_MINIMAP;
-	size[Y] = HIMG_MINIMAP;
+	fill_array(HIMG_MINIMAP, WIMG_MINIMAP, size);
 	fill_txtr(data, WALL, WALL_TXTR, size);
 	mini_player_txtr_list(data, size);
 	fill_txtr(data, M_DOOR, MINI_DOOR_TXTR, size);
 	fill_txtr(data, M_COIN, MINI_COIN_TXTR, size);
 	fill_txtr(data, M_FOE, MINI_FOE_TXTR, size);
-	size[X] = 408;
-	size[Y] = 408;
+	fill_array(408, 408, size);
 	fill_txtr(data, M_BACKGROUND, MINI_BACKGROUND_TXTR, size);
+	fill_array(500, 150, size);
+	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
+	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
+	fill_array(1920, 1077, size);
+	fill_txtr(data, MENU_FRAME, MENU_FRAME_TXTR, size);
 }
 
 void mini_player_txtr_list(t_data *data, int *size)

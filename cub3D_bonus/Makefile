@@ -50,6 +50,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	render/game_loop_bonus.c \
 	render/raycast_bonus.c \
 	render/entity_bonus.c \
+	render/menu_bonus.c \
 )
 all: $(NAME)
 

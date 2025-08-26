@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:40:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/23 15:37:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:03:29 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,10 @@ void	init_matrix(void **matrix, int size)
 		matrix[i] = NULL;
 		++i;
 	} 
+}
+
+void	fill_array(int a, int b, int array[2])
+{
+	array[X] = a;
+	array[Y] = b;
 }

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/25 16:28:11 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:52:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	spread_democracy(t_data *data)
 
 void	lets_start_the_party(t_data *data)
 {
+	data->menu = true;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error(data, 0, NULL);
