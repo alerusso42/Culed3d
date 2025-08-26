@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/26 17:36:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:42:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	malloc(500000000000);
 	data = (t_data){0};
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
