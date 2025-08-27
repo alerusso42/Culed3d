@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 14:49:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:56:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,10 @@ void	foe_txtr_list(t_data *data, int *size)
 	fill_txtr(data, FOE10, FOE10_TXTR, size);
 	fill_txtr(data, FOE11, FOE11_TXTR, size);
 	fill_txtr(data, FOE12, FOE12_TXTR, size);
+	fill_array(300, 300, size);
+	fill_txtr(data, FOE_BIT1, FOE_BIT1_TXTR, size);
+	fill_txtr(data, FOE_BIT2, FOE_BIT2_TXTR, size);
+	fill_txtr(data, FOE_BIT3, FOE_BIT3_TXTR, size);
+	fill_txtr(data, FOE_BIT4, FOE_BIT4_TXTR, size);
+	
 }

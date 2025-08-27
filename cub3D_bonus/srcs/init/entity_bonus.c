@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 16:41:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:55:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
 	else if (c == 'F')
 	{
 		entity->type = ENTITY_ENEMY;
-		init_animation(data, entity, 12, FOE1);
+		init_animation(data, entity, 4, FOE_BIT1);
 	}
 	else
 	{

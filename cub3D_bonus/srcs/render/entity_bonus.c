@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 16:31:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:20:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	render_one(t_data *data, t_entity *entity)
 	txtr = entity->frames[entity->f_curr];
 	h = wall_height(data, entity->screen[X], entity->screen[Y], \
 entity->first_ray);
-	h *= 3;
+	h *= 2.5;
 	scaler_x = entity_scaler_x(entity, txtr, h);
 	data->column = entity->contact_column;
 	txtr->shade = h / (SHADE_INTENSITY / 3);

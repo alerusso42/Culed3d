@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 16:30:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:24:03 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define FRAME_TIME 16666
 
 # define DEBUG false
+# define PC_ALE false
 # define VALID_CHARS " 01NSEWDFC"
 # define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
@@ -71,6 +72,10 @@
 # define FOE10_TXTR "textures/foe_10.xpm"
 # define FOE11_TXTR "textures/foe_11.xpm"
 # define FOE12_TXTR "textures/foe_12.xpm"
+# define FOE_BIT1_TXTR "textures/barbarian_1left.xpm"
+# define FOE_BIT2_TXTR "textures/barbarian_1left.xpm"
+# define FOE_BIT3_TXTR "textures/barbarian_1right.xpm"
+# define FOE_BIT4_TXTR "textures/barbarian_2right.xpm"
 # define MINI_COIN_TXTR "textures/mini_coin.xpm"
 # define MINI_FOE_TXTR "textures/mini_foe.xpm"
 # define MINI_BACKGROUND_TXTR "textures/mini_background.xpm"
@@ -97,6 +102,16 @@
 # define MENU_FRAME_TXTR "textures/menu_il_destino.xpm"
 # define MENU_PLAY_TXTR "textures/play_button.xpm"
 # define MENU_EXIT_TXTR "textures/exit_button.xpm"
+
+# if PC_ALE == true
+#  define SFX_OP "/home/alerusso/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
+#  define SFX_GAME "/home/alerusso/Culed3d/cub3D_bonus/sfxs/game.wav"
+#  define SFX_ENEMY "/home/alerusso/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+# else
+#  define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
+#  define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
+#  define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+# endif
 
 # define HIMG 64
 # define WIMG 64
@@ -225,10 +240,6 @@ typedef struct s_data
 	bool		menu;
 }	t_data;
 
-# define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
-# define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
-#define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
-
 typedef enum e_timecode
 {
 	SECONDS,
@@ -282,6 +293,10 @@ enum e_textures
 	FOE10,
 	FOE11,
 	FOE12,
+	FOE_BIT1,
+	FOE_BIT2,
+	FOE_BIT3,
+	FOE_BIT4,
 	COIN,
 	ARMS1,
 	ARMS2,
