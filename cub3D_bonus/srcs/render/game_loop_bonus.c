@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 14:53:48 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:47:14 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	game_loop(t_data *data)
 		t1 = elapsed_time(data->start);
 		if (data->menu)
 			main_menu(data);
-		else 
+		else
 		{
 			move_player(data);
 			mouse_input(data);

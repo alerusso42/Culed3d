@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   interact_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 12:25:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:33:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static	void	door_line(t_data *data, t_entity *entity, double angle);
-static	int	the_entity_checker(t_entity *entity, t_data *data);
+static	char	entity_line(t_data *data, t_entity *ray, double angle);
+static	char	the_entity_checker(t_data *data, t_entity *ray);
 
 void	interact(t_data *data)
 {
@@ -23,15 +23,14 @@ void	interact(t_data *data)
 	double		angle;
 
 	angle = data->player.pov[X];
-	door_line(data, &data->player, angle);
+	entity_line(data, &data->player, angle);
 	x = data->player.curr_x / WIMG;
 	y = data->player.curr_y / HIMG;
 	if (data->map[y][x] != 'D')
 		return ;
 	entity = which_entity(data, x, y);
-	if (!entity)
-		return ;
-	if (ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
+	if (!entity || \
+ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
 		return ;
 	if (entity->type == DOOR_CLOSE)
 	{
@@ -45,44 +44,47 @@ void	interact(t_data *data)
 	}
 }
 
-static	void	door_line(t_data *data, t_entity *entity, double angle)
+static	char	entity_line(t_data *data, t_entity *ray, double angle)
 {
-	double	x;
-	double	y;
+	double	pos[2];
 	float	cos_angle;
 	float	sin_angle;
+	char	ent_type;
 
-	x = entity->screen[X];
-	y = entity->screen[Y];
-	entity->curr_x = x;
-	entity->curr_y = y;
+	pos[X] = ray->screen[X];
+	pos[Y] = ray->screen[Y];
+	ray->curr_x = pos[X];
+	ray->curr_y = pos[Y];
 	if (angle > (2 * PI))
 		angle -= (2 * PI);
 	else if (angle < 0)
 		angle += (2 * PI);
 	cos_angle = round_rad(cos(angle));
 	sin_angle = round_rad(sin(angle)) * -1;
-	while (!the_entity_checker(entity, data))
+	ent_type = the_entity_checker(data, ray);
+	while (!ent_type)
 	{
-		x += cos_angle;
-		y += sin_angle;
-		entity->curr_x = x;
-		entity->curr_y = y;
+		pos[X] += cos_angle;
+		pos[Y] += sin_angle;
+		ray->curr_x = pos[X];
+		ray->curr_y = pos[Y];
+		ent_type = the_entity_checker(data, ray);
 	}
+	return (ent_type);
 }
 
-static int	the_entity_checker(t_entity *entity, t_data *data)
+static char	the_entity_checker(t_data *data, t_entity *ray)
 {
 	int	x;
 	int	y;
 
-	x = (int)entity->curr_x / WIMG;
-	y = (int)entity->curr_y / HIMG;
+	x = (int)ray->curr_x / WIMG;
+	y = (int)ray->curr_y / HIMG;
 	if (data->player.map[X] == x && data->player.map[Y] == y)
 		return (false);
-	if (data->map[y][x] == 'D' || data->map[y][x] == '1')
+	if (ft_strchr(WALL_CHARS, data->map[y][x]))
 	{
-		return (true);
+		return ('1');
 	}
-	return (false);
+	return (data->map[y][x]);
 }

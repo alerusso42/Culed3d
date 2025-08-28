@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/27 18:24:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:18:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,7 +380,7 @@ enum e_utils
 void	fill_txtr(t_data *data, int index, char *name, int size[2]);
 void	txtr_list(t_data *data);
 void	txtr_list2(t_data *data);
-void 	mini_player_txtr_list(t_data *data, int *size);
+void	mini_player_txtr_list(t_data *data, int *size);
 void	foe_txtr_list(t_data *data, int *size);
 void	init_entity(t_data *data, t_entity **entity, int n, char c);
 void	parsing(t_data *data, int argc, char **argv);
@@ -485,7 +485,7 @@ void	render_sync(t_data *data);
 int		texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y);
 bool	all_collision(t_data *data, int x, int y);
 
-void    play_audio(char *audio_path, t_data *data);
-void    stop_audio(t_data *data);
+void	play_audio(char *audio_path, t_data *data);
+void	stop_audio(t_data *data);
 
 #endif

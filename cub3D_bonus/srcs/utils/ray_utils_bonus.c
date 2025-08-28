@@ -6,13 +6,14 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 17:04:18 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:15:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle);
+
 /*
 	//FIXME To optimize line, we should:
 	1)	calculate minimal vectors using DDA;

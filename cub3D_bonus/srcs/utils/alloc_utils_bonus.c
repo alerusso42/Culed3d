@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:40:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/26 11:03:29 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:15:32 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_matrix(void **matrix, int size)
 	{
 		matrix[i] = NULL;
 		++i;
-	} 
+	}
 }
 
 void	fill_array(int a, int b, int array[2])

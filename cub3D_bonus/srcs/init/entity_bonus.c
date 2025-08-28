@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:27:19 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/27 17:55:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:49:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
-;
+static void	initialize(t_data *data, t_entity *entity, int pos[2], char c);
 
 /*
 	set player struct data.
@@ -91,7 +90,7 @@ static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
 	else if (c == 'F')
 	{
 		entity->type = ENTITY_ENEMY;
-		init_animation(data, entity, 4, FOE_BIT1);
+		init_animation(data, entity, 12, FOE1);
 	}
 	else
 	{

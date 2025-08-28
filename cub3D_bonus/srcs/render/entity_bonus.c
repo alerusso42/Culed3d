@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:44:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/27 18:20:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 09:43:18 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	render_one(t_data *data, t_entity *entity)
 	h = wall_height(data, entity->screen[X], entity->screen[Y], \
 entity->first_ray);
 	h *= 2.5;
+	if (h < 20)
+		h = 20;
 	scaler_x = entity_scaler_x(entity, txtr, h);
 	data->column = entity->contact_column;
 	txtr->shade = h / (SHADE_INTENSITY / 3);
@@ -144,13 +146,17 @@ static void	draw_one(t_data *data, t_txtr *txtr, double scaler_x, double h)
 		In this way, all images are normalized by TXTR macro;
 	6)	after this steps, the scaler is returned back to render_one.
 */
-static double		entity_scaler_x(t_entity *entity, t_txtr *txtr, double h)
+static double	entity_scaler_x(t_entity *entity, t_txtr *txtr, double h)
 {
 	double	scaler;
 	double	wide;
 
 	scaler = 0;
 	wide = h / ENTITY_WIDTH;
+	if (wide < 1)
+		wide = 1;
+	else if (wide > 4)
+		wide = 4;
 	scaler = (WSCREEN / (double)entity->contact_num);
 	scaler /= wide;
 	scaler = scaler * (txtr->bpp / 8);

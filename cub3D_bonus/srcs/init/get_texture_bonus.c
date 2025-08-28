@@ -13,6 +13,7 @@
 #include "../../cub3D_bonus.h"
 
 static void	set_to_null(t_data *data);
+
 /*
 //REVIEW	get_txtr
 
