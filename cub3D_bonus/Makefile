@@ -56,7 +56,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 )
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(SRCS) cub3D_bonus.h
+$(NAME): $(LIBFT) $(SRCS) cub3D_bonus.h files_bonus.h
 	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(LFLAGS) -o $(NAME)
 
 $(LIBFT): 
