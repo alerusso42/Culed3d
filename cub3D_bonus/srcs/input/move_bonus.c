@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/27 18:03:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:24:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,12 @@ void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)
 
 	if (entity->map[X] == new_x && entity->map[Y] == new_y)
 		return ;
-	if (data->map[new_y][new_x] == 'D')
+	if (new_x == -1 && new_y == -1)
+	{
+		data->map[entity->map[Y]][entity->map[X]] = '0';
+		return ;
+	}
+	else if (data->map[new_y][new_x] == 'D')
 	{
 		data->map[entity->map[Y]][entity->map[X]] = '0';
 		temp = 'D';

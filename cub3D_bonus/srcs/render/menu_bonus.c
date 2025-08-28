@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 09:16:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:56:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	main_menu(t_data *data)
 
 	fill_array(0, 0, pos);
 	fill_array(WSCREEN, HSCREEN, size);
-	put_image_to_image(data, MENU_FRAME, pos, size);
+	if (DEBUG == false)
+		put_image_to_image(data, MENU_FRAME, pos, size);
 	fill_array(700, 355, pos);
 	fill_array(500, 150, size);
 	toggle_button(data, PLAY_BUTTON, check_mouse(data, pos, size));

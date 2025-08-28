@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 14:35:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:50:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,28 @@ long	elapsed_time(t_time start)
 	diff = (tv.tv_sec - start.tv_sec) * 1000000 \
 + (tv.tv_usec - start.tv_usec);
 	return (diff);
+}
+
+bool	aspettanding(int time_to_wait, int i)
+{
+	static int elapsed[100];
+	int			index;
+
+	if (i < 0)
+	{
+		index = -1;
+		while (++index < 100)
+			elapsed[index] = 0;
+	}
+	if (i >= 100)
+		return (false);
+	if (elapsed[i] < time_to_wait)
+	{
+		elapsed[i]++;
+		return (false);
+	}
+	else
+	{
+		return (true);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 12:33:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:50:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
-# define DEBUG false
+# define DEBUG true
 # define PC_ALE false
 # define VALID_CHARS " 01NSEWDFC"
 # define PLAYER_CHARS "NSEWP"
@@ -62,6 +62,8 @@
 # define SHADE_INTENSITY 60
 # define WSCREEN 1920
 # define HSCREEN 1200
+# define HALF_SCREEN_X 960
+# define HALF_SCREEN_Y 600
 # define ENTITY_WIDTH 42
 
 //# define RADIANT 0.008726
@@ -147,6 +149,7 @@ typedef struct s_data
 	t_entity	*doors;
 	t_entity	*enemies;
 	t_entity	*items;
+	t_entity	*foe;
 	void		*mlx;
 	void		*win;
 	t_txtr		*txtr;
@@ -175,7 +178,10 @@ typedef struct s_data
 	int			enemy_audio;
 	char		audio_play;
 	char		button;
+	char		enemy_choice;
+	int			result;
 	bool		menu;
+	bool		battle;
 }	t_data;
 
 typedef enum e_timecode
@@ -184,66 +190,6 @@ typedef enum e_timecode
 	MILLISECONDS,
 	MICROSECONDS,
 }	t_timecode;
-
-enum e_textures
-{
-	SCREEN,
-	NORTH,
-	EAST,
-	SOUTH,
-	WEST,
-	CROSSHAIR,
-	PLAYER,
-	WALL,
-	DOOR_OPEN,
-	DOOR_CLOSE,
-	M_BACKGROUND,
-	M_PLAYER_0,
-	M_PLAYER_20,
-	M_PLAYER_40,
-	M_PLAYER_60,
-	M_PLAYER_80,
-	M_PLAYER_100,
-	M_PLAYER_120,
-	M_PLAYER_140,
-	M_PLAYER_160,
-	M_PLAYER_180,
-	M_PLAYER_200,
-	M_PLAYER_220,
-	M_PLAYER_240,
-	M_PLAYER_260,
-	M_PLAYER_280,
-	M_PLAYER_300,
-	M_PLAYER_320,
-	M_PLAYER_340,
-	M_DOOR,
-	M_COIN,
-	M_FOE,
-	FOE1,
-	FOE2,
-	FOE3,
-	FOE4,
-	FOE5,
-	FOE6,
-	FOE7,
-	FOE8,
-	FOE9,
-	FOE10,
-	FOE11,
-	FOE12,
-	FOE_BIT1,
-	FOE_BIT2,
-	FOE_BIT3,
-	FOE_BIT4,
-	COIN,
-	ARMS1,
-	ARMS2,
-	BAGUETTE,
-	MENU_FRAME,
-	PLAY_BUTTON,
-	EXIT_BUTTON,
-	TEXTURES_NUM,
-};
 
 enum	e_errors
 {
@@ -313,6 +259,13 @@ enum e_utils
 	MOUSE_DOWN = 5,
 	PLAY = 1,
 	EXIT = 2,
+	CHOICE_ROCK = 1,
+	CHOICE_PAPER = 2,
+	CHOICE_SCISSOR = 3,
+	CHOICES = 3,
+	RESULT_WIN,
+	RESULT_LOSS,
+	RESULT_DRAW,
 };
 
 void	fill_txtr(t_data *data, int index, char *name, int size[2]);
@@ -331,6 +284,7 @@ void	free_texture(t_data *data);
 
 void	move(t_data *data, t_entity *entity, double angle[]);
 int		mouse_hook(int button, int x, int y, t_data *param);
+void	battle_commands(t_data *data, int keycode);
 void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);
 int		commands_press(int keycode, t_data *data);
@@ -374,6 +328,7 @@ double	safe_division(double delta, double sum);
 bool	value_changed(void *value, size_t type);
 int		entity_type(t_data *data, int x, int y);
 void	fill_array(int a, int b, int array[2]);
+bool	aspettanding(int time_to_wait, int i);
 int		get_pixel_color(t_txtr *txtr, int i);
 void	update_all_animations(t_data *data);
 void	update_coord(t_entity *entity_data);
@@ -389,6 +344,7 @@ void	render_cross(t_data *data);
 void	*safe_malloc(size_t size);
 int		rgb(int r, int g, int b);
 int		which_p(t_data *data);
+int		get_rand(int max);
 double	round_rad(double rad);
 double	grad2rad(double rad);
 double	rad2deg(double rad);
@@ -425,5 +381,7 @@ bool	all_collision(t_data *data, int x, int y);
 
 void	play_audio(char *audio_path, t_data *data);
 void	stop_audio(t_data *data);
+
+void	battle(t_data *data);
 
 #endif

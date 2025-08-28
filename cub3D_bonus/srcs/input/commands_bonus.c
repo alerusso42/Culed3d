@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 16:34:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:33:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	commands_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		ft_cross_close(data);
+	if (data->battle)
+		battle_commands(data, keycode);
 	if (data->menu)
 		return (0);
 	if (keycode == XK_w)
@@ -76,6 +78,7 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 			mlx_mouse_hide(data->mlx, data->win);
 			play_audio(SFX_GAME, data);
 			data->menu = false;
+			data->button = 0;
 		}
 		else if (data->button & EXIT)
 			ft_cross_close(data);

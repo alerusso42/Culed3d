@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/26 14:51:53 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:43:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	render_arms(t_data *data, t_entity *player)
 		update_animation(player);
 	size[X] = player->frames[player->f_curr]->size[X] / 4;
 	size[Y] = player->frames[player->f_curr]->size[Y];
-	pos[X] = WSCREEN / 4;
+	pos[X] = (WSCREEN / 2) - (size[X] / 2);
 	pos[Y] = 700;
 	put_image_to_image(data, player->frames[player->f_curr]->i, pos, size);
 }

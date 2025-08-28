@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:28:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/22 16:39:23 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:41:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int	bigger(int a, int b, int c, int d)
 	return (bigger);
 }
 
-int	rgb(int r, int g, int b)
+int	get_rand(int max)
 {
-	return ((r << 16) | (g << 8) | b);
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_usec % max);
 }

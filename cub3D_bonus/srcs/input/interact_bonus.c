@@ -6,14 +6,15 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 09:33:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:46:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static	char	entity_line(t_data *data, t_entity *ray, double angle);
-static	char	the_entity_checker(t_data *data, t_entity *ray);
+static char	entity_line(t_data *data, t_entity *ray, double angle);
+static char	the_entity_checker(t_data *data, t_entity *ray);
+static void	interactions(t_data *data, t_entity *entity);
 
 void	interact(t_data *data)
 {
@@ -26,22 +27,13 @@ void	interact(t_data *data)
 	entity_line(data, &data->player, angle);
 	x = data->player.curr_x / WIMG;
 	y = data->player.curr_y / HIMG;
-	if (data->map[y][x] != 'D')
+	if (ft_strchr(WALL_CHARS, data->map[y][x]))
 		return ;
 	entity = which_entity(data, x, y);
 	if (!entity || \
 ray_lenght(data, data->player.curr_x, data->player.curr_y) >= 150)
 		return ;
-	if (entity->type == DOOR_CLOSE)
-	{
-		entity->type = DOOR_OPEN;
-		entity->frames[0] = &data->txtr[DOOR_OPEN];
-	}
-	else if (entity->type == DOOR_OPEN)
-	{
-		entity->type = DOOR_CLOSE;
-		entity->frames[0] = &data->txtr[DOOR_CLOSE];
-	}
+	interactions(data, entity);
 }
 
 static	char	entity_line(t_data *data, t_entity *ray, double angle)
@@ -87,4 +79,25 @@ static char	the_entity_checker(t_data *data, t_entity *ray)
 		return ('1');
 	}
 	return (data->map[y][x]);
+}
+
+static void	interactions(t_data *data, t_entity *entity)
+{
+	if (entity->type == DOOR_CLOSE)
+	{
+		entity->type = DOOR_OPEN;
+		entity->frames[0] = &data->txtr[DOOR_OPEN];
+	}
+	else if (entity->type == DOOR_OPEN)
+	{
+		entity->type = DOOR_CLOSE;
+		entity->frames[0] = &data->txtr[DOOR_CLOSE];
+	}
+	else if (entity->type == ENTITY_ENEMY)
+	{
+		data->battle = true;
+		data->foe = entity;
+	}
+	else if (entity->type == ENTITY_ITEM)
+		update_map(data, entity, -1, -1);
 }

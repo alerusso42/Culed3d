@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 09:38:34 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:18:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,10 @@ data->floor[2];
 	while (++j < WSCREEN)
 	{
 		i = -1;
-		while (++i <= HSCREEN / 2)
+		while (++i <= HALF_SCREEN_Y)
 		{
 			put_pixel(data, j, i, ceiling);
-			put_pixel(data, j, i + (HSCREEN / 2), floor);
+			put_pixel(data, j, i + HALF_SCREEN_Y, floor);
 		}
 	}
 }

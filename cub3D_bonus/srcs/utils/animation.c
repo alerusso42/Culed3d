@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:59:16 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:31:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:40:29 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	update_all_animations(t_data *data)
 	int	i;
 
 	i = -1;
-	while (data->doors[++i].type != ENTITY_END)
+	while (data->doors && data->doors[++i].type != ENTITY_END)
 		update_animation(&data->doors[i]);
 	i = -1;
-	while (data->enemies[++i].type != ENTITY_END)
+	while (data->enemies && data->enemies[++i].type != ENTITY_END)
 		update_animation(&data->enemies[i]);
 	i = -1;
-	while (data->items[++i].type != ENTITY_END)
+	while (data->items && data->items[++i].type != ENTITY_END)
 		update_animation(&data->items[i]);
 }
 

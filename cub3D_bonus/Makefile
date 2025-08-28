@@ -22,6 +22,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	init/get_texture_bonus.c \
 	init/texture_list_bonus.c \
 	input/commands_bonus.c \
+	input/commands2_bonus.c \
 	input/interact_bonus.c \
 	input/move_bonus.c \
 	parsing/parsing_bonus.c \
@@ -48,6 +49,7 @@ SRCS = $(addprefix $(SRC_PATH), \
 	utils/texture_filters.c \
 	utils/texture_select.c \
 	utils/xpm_bonus.c \
+	render/battle_bonus.c \
 	render/game_loop_bonus.c \
 	render/raycast_bonus.c \
 	render/entity_bonus.c \

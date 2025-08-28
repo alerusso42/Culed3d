@@ -24,13 +24,9 @@ static void	set_to_null(t_data *data);
 */
 void	get_txtr(t_data *data)
 {
-	int		size[2];
 	int		i;
 
-	size[X] = WSCREEN;
-	size[Y] = HSCREEN;
 	set_to_null(data);
-	fill_txtr(data, SCREEN, SCREEN_TXTR, size);
 	txtr_list(data);
 	i = -1;
 	while (++i < TEXTURES_NUM)

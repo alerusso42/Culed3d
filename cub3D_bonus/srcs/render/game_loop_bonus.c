@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 09:47:14 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:23:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	game_loop(t_data *data)
 		t1 = elapsed_time(data->start);
 		if (data->menu)
 			main_menu(data);
+		else if (data->battle || data->result == RESULT_DRAW)
+			battle(data);
 		else
 		{
 			move_player(data);
@@ -40,8 +42,10 @@ int	game_loop(t_data *data)
 		}
 		t2 = elapsed_time(data->start);
 		t_diff = (t2 - t1) / (int)1e3;
-		gettimeofday(&data->start, NULL);
+		if (t_diff <= 0)
+			return (0);
 		printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
+		gettimeofday(&data->start, NULL);
 	}
 	return (0);
 }

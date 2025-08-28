@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:55:07 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 12:14:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:39:02 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static bool	check_one(t_entity *ent, int pos[2], bool discard_open_door)
 {
 	int	i;
 
+	if (!ent)
+		return (false);
 	i = -1;
 	while (ent[++i].type != ENTITY_END)
 	{

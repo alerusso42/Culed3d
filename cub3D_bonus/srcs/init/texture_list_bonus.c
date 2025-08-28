@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 09:20:19 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:17:23 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,20 @@ void	txtr_list(t_data *data)
 	fill_txtr(data, ARMS2, ARMS2_TXTR, size);
 	fill_array(300, 667, size);
 	foe_txtr_list(data, size);
+	fill_array(200, 300, size);
+	fill_txtr(data, PHILIP, PHILIP_TXTR, size);
 }
 
 void	txtr_list2(t_data *data)
 {
 	int	size[2];
 
+	fill_array(WSCREEN, HSCREEN, size);
+	fill_txtr(data, SCREEN, SCREEN_TXTR, size);
+	if (DEBUG == false)
+		fill_txtr(data, BATTLE_FRAME, BATTLE_FRAME_TXTR, size);
+	else
+		fill_txtr(data, BATTLE_FRAME, SCREEN_TXTR, size);
 	fill_array(HIMG_MINIMAP, WIMG_MINIMAP, size);
 	fill_txtr(data, WALL, WALL_TXTR, size);
 	mini_player_txtr_list(data, size);
@@ -60,7 +68,7 @@ void	txtr_list2(t_data *data)
 	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
 	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_array(1920, 1077, size);
-	if (DEBUG == false)
+	if (DEBUG == true)
 		fill_txtr(data, MENU_FRAME, SCREEN_TXTR, size);
 	else
 		fill_txtr(data, MENU_FRAME, MENU_FRAME_TXTR, size);
