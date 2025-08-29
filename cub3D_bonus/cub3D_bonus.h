@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 09:48:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:00:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ typedef struct s_data
 	void		*mlx;
 	void		*win;
 	t_txtr		*txtr;
-	char		*screen;
 	char		**map;
 	char		*txtr_north;
 	char		*txtr_west;
@@ -161,13 +160,7 @@ typedef struct s_data
 	char		*txtr_east;
 	char		*txtr_floor;
 	char		*txtr_ceiling;
-	char		*txtr_player;
-	char		*img_ptr;
 	int			ent_num;
-	int			img_data[3];
-	int			bpp;
-	int			size_line;
-	int			endian;
 	int			floor[3];
 	int			ceiling[3];
 	int			max_x;

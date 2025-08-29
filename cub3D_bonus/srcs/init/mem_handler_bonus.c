@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/26 17:12:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:50:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	lets_start_the_party(t_data *data)
 	if (!data->renderer)
 		error(data, E_MALLOC, NULL);
 	init_matrix((void **)data->renderer, data->ent_num + 2);
-	data->screen = mlx_get_data_addr(data->txtr[SCREEN].ptr, &data->bpp, \
-&data->size_line, &data->endian);
 }
 
 void	init_entities(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:04 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/25 08:30:48 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:58:11 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ int	texture_x_offset(t_data *data, double ray_angle, int hit_x, int hit_y)
 		pixel = (int)((((double)hit_y / WIMG) - (int)(hit_y / WIMG)) * TXTR);
 	if (wall_txtr == WEST || wall_txtr == SOUTH)
 		pixel = TXTR - pixel;
-	return (pixel * (data->bpp / 8));
+	return (pixel * (data->txtr[SCREEN].bpp / 8));
 }

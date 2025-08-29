@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 14:18:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:56:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	put_pixel(t_data *data, int x, int y, int color)
 		return ;
 	if (!color)
 		return ;
-	index = y * data->size_line + (x * (data->bpp / 8));
-	data->screen[index] = color & 255;
-	data->screen[index + 1] = (color >> 8) & 255;
-	data->screen[index + 2] = (color >> 16) & 255;
+	index = y * data->txtr[SCREEN].size[X] + (x * (data->txtr[SCREEN].bpp / 8));
+	data->txtr[SCREEN].xpm[index] = color & 255;
+	data->txtr[SCREEN].xpm[index + 1] = (color >> 8) & 255;
+	data->txtr[SCREEN].xpm[index + 2] = (color >> 16) & 255;
 }
 
 // void	put_pixel(t_data *data, int x, int y, int color)
@@ -88,17 +88,21 @@ void	clear_window(t_data *data)
 	int	y;
 	int	x;
 	int	index;
+	int	size_x;
+	int	bpp;
 
+	size_x = data->txtr[SCREEN].size[X];
+	bpp = data->txtr[SCREEN].bpp;
 	y = -1;
 	while (++y < HSCREEN)
 	{
 		x = -1;
 		while (++x < WSCREEN)
 		{
-			index = y * data->size_line + x * data->bpp / 8;
-			data->screen[index] = 0;
-			data->screen[index + 1] = 0;
-			data->screen[index + 2] = 0;
+			index = y * size_x + x * bpp / 8;
+			data->txtr[SCREEN].xpm[index] = 0;
+			data->txtr[SCREEN].xpm[index] = 0;
+			data->txtr[SCREEN].xpm[index] = 0;
 		}
 	}
 }
