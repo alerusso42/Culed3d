@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 10:32:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:09:20 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@
 # define FPS 60
 # define FRAME_TIME 16666
 
-# define DEBUG true
-# define PC_ALE false
+# define DEBUG false
 # define VALID_CHARS " 01NSEWDFC"
 # define PLAYER_CHARS "NSEWP"
 # define FFILL_CHARS "0NSEW"
@@ -81,7 +80,7 @@
 # define PLAYER_SPEED 5
 
 //	Mouse rotation speed, per frame.
-# define SENSITIVITY 0.4
+# define SENSITIVITY 0.2
 
 //	FOV (=Field Of View) represents the angle of the player vision.
 # define FOV 60
@@ -164,11 +163,11 @@ typedef struct s_data
 	int			column;
 	int			audio_pid;
 	int			enemy_audio;
+	int			result;
 	char		audio_play;
 	char		button;
 	char		enemy_choice;
-	int			result;
-	bool		menu;
+	char		menu;
 	bool		battle;
 }	t_data;
 
@@ -372,5 +371,6 @@ void	play_audio(char *audio_path, t_data *data);
 void	stop_audio(t_data *data);
 
 void	battle(t_data *data);
+void	hai_guardato(t_data *data);
 
 #endif

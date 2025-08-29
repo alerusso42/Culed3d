@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 09:56:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:38:11 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,15 @@ void	clear_window(t_data *data)
 	int	x;
 	int	index;
 	int	size_x;
-	int	bpp;
 
 	size_x = data->txtr[SCREEN].size[X];
-	bpp = data->txtr[SCREEN].bpp;
 	y = -1;
 	while (++y < HSCREEN)
 	{
 		x = -1;
-		while (++x < WSCREEN)
+		while (++x < size_x)
 		{
-			index = y * size_x + x * bpp / 8;
+			index = y * size_x + x;
 			data->txtr[SCREEN].xpm[index] = 0;
 			data->txtr[SCREEN].xpm[index] = 0;
 			data->txtr[SCREEN].xpm[index] = 0;

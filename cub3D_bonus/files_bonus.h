@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   files_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:12 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 15:14:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:20:52 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILES_BONUS_H
 # define FILES_BONUS_H
+
+# define PC_ALE false
+# define PC_LEO true
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
@@ -39,6 +42,17 @@
 # define FOE_BIT2_TXTR "textures/barbarian_1left.xpm"
 # define FOE_BIT3_TXTR "textures/barbarian_1right.xpm"
 # define FOE_BIT4_TXTR "textures/barbarian_2right.xpm"
+# define PHILIP_CHILL_TXTR "textures/philip_chill.xpm"
+# define PHILIP_ROCK_TXTR "textures/philip_rock.xpm"
+# define PHILIP_PAPER_TXTR "textures/philip_paper.xpm"
+# define PHILIP_SCISSOR_TXTR "textures/philip_scissors.xpm"
+# define PHILIP_SCARED_TXTR "textures/philip_scared.xpm"
+# define PHILIP_LOOK_TXTR "textures/philip_look.xpm"
+# define BARBARIAN_CHILL_TXTR "textures/barbarian_chill.xpm"
+# define BARBARIAN_ROCK_TXTR "textures/barbarian_rock.xpm"
+# define BARBARIAN_PAPER_TXTR "textures/barbarian_paper.xpm"
+# define BARBARIAN_SCISSOR_TXTR "textures/barbarian_scissors.xpm"
+# define BARBARIAN_SCARED_TXTR "textures/barbarian_scared.xpm"
 # define PHILIP_TXTR "textures/philip.xpm"
 # define MINI_COIN_TXTR "textures/mini_coin.xpm"
 # define MINI_FOE_TXTR "textures/mini_foe.xpm"
@@ -67,15 +81,39 @@
 # define MENU_PLAY_TXTR "textures/play_button.xpm"
 # define MENU_EXIT_TXTR "textures/exit_button.xpm"
 # define BATTLE_FRAME_TXTR "textures/holy_fight_scenario.xpm"
+# define WIN_MSG_TXTR "textures/win_msg.xpm"
+# define LOSS_MSG_TXTR "textures/loss_msg.xpm"
+# define DRAW_MSG_TXTR "textures/draw_msg.xpm"
+# define DEATH1_TXTR "textures/death1.xpm"
+# define DEATH2_TXTR "textures/death2.xpm"
+# define DEATH3_TXTR "textures/death3.xpm"
+# define DEATH4_TXTR "textures/death4.xpm"
+# define DEATH5_TXTR "textures/death5.xpm"
+# define DEATH6_TXTR "textures/death6.xpm"
+# define DEATH7_TXTR "textures/death7.xpm"
+# define ROCK_TXTR "textures/rock.xpm"
+# define PAPER_TXTR "textures/paper.xpm"
+# define SCISSORS_TXTR "textures/scissors.xpm"
 
 # if PC_ALE == true
 #  define SFX_OP "/home/alerusso/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
 #  define SFX_GAME "/home/alerusso/Culed3d/cub3D_bonus/sfxs/game.wav"
 #  define SFX_ENEMY "/home/alerusso/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+#  define SFX_HAI_GUARDATO "/home/alerusso/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+# elif PC_LEO == true
+#  define SFX_OP "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
+/cubetto/cub3D_bonus/sfxs/main_menu.wav"
+#  define SFX_GAME "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
+/cubetto/cub3D_bonus/sfxs/game.wav"
+#  define SFX_ENEMY "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
+/cubetto/cub3D_bonus/sfxs/enemy.wav"
+#  define SFX_HAI_GUARDATO "/home/lparolis/Desktop/gitspace/CommonCore/\
+Milestone_04/cubetto/cub3D_bonus/sfxs/hai_guardato.wav"
 # else
 #  define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
 #  define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
 #  define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+#  define SFX_HAI_GUARDATO "/home/Culed3d/cub3D_bonus/sfxs/enemy.wav"
 # endif
 
 enum e_textures
@@ -124,11 +162,20 @@ enum e_textures
 	FOE10,
 	FOE11,
 	FOE12,
-	PHILIP,
 	FOE_BIT1,
 	FOE_BIT2,
 	FOE_BIT3,
 	FOE_BIT4,
+	BARBARIAN_CHILL,
+	BARBARIAN_ROCK,
+	BARBARIAN_PAPER,
+	BARBARIAN_SCISSOR,
+	BARBARIAN_SCARED,
+	PHILIP_CHILL,
+	PHILIP_ROCK,
+	PHILIP_PAPER,
+	PHILIP_SCISSOR,
+	PHILIP_LOOK,
 	COIN,
 	ARMS1,
 	ARMS2,
@@ -137,6 +184,19 @@ enum e_textures
 	PLAY_BUTTON,
 	EXIT_BUTTON,
 	BATTLE_FRAME,
+	LOSS_MSG,
+	WIN_MSG,
+	DRAW_MSG,
+	DEATH1,
+	DEATH2,
+	DEATH3,
+	DEATH4,
+	DEATH5,
+	DEATH6,
+	DEATH7,
+	ROCK,
+	PAPER,
+	SCISSORS,
 	TEXTURES_NUM,
 };
 

@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:21:37 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
+
+static void	battle_txtr(t_data *data, int *size);
+
 
 /*	
 //	data->txtr is an array of textures.
@@ -42,8 +45,7 @@ void	txtr_list(t_data *data)
 	fill_txtr(data, ARMS2, ARMS2_TXTR, size);
 	fill_array(300, 667, size);
 	foe_txtr_list(data, size);
-	fill_array(200, 300, size);
-	fill_txtr(data, PHILIP, PHILIP_TXTR, size);
+	battle_txtr(data, size);
 }
 
 void	txtr_list2(t_data *data)
@@ -66,6 +68,11 @@ void	txtr_list2(t_data *data)
 	fill_txtr(data, M_BACKGROUND, MINI_BACKGROUND_TXTR, size);
 	fill_array(500, 150, size);
 	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
+	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
+	fill_txtr(data, LOSS_MSG, LOSS_MSG_TXTR, size);
+	fill_txtr(data, DRAW_MSG, DRAW_MSG_TXTR, size);
+	fill_txtr(data, WIN_MSG, WIN_MSG_TXTR, size);
+	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_array(1920, 1077, size);
 	if (DEBUG == true)
@@ -115,4 +122,31 @@ void	foe_txtr_list(t_data *data, int *size)
 	fill_txtr(data, FOE_BIT2, FOE_BIT2_TXTR, size);
 	fill_txtr(data, FOE_BIT3, FOE_BIT3_TXTR, size);
 	fill_txtr(data, FOE_BIT4, FOE_BIT4_TXTR, size);
+}
+
+static void	battle_txtr(t_data *data, int *size)
+{
+	fill_array(450, 450, size);
+	fill_txtr(data, BARBARIAN_CHILL, BARBARIAN_CHILL_TXTR, size);
+	fill_txtr(data, BARBARIAN_ROCK, BARBARIAN_ROCK_TXTR, size);
+	fill_txtr(data, BARBARIAN_PAPER, BARBARIAN_PAPER_TXTR, size);
+	fill_txtr(data, BARBARIAN_SCISSOR, BARBARIAN_SCISSOR_TXTR, size);
+	fill_txtr(data, BARBARIAN_SCARED, BARBARIAN_SCARED_TXTR, size);
+	fill_array(300, 450, size);
+	fill_txtr(data, PHILIP_CHILL, PHILIP_CHILL_TXTR, size);
+	fill_txtr(data, PHILIP_ROCK, PHILIP_ROCK_TXTR, size);
+	fill_txtr(data, PHILIP_PAPER, PHILIP_PAPER_TXTR, size);
+	fill_txtr(data, PHILIP_SCISSOR, PHILIP_SCISSOR_TXTR, size);
+	fill_txtr(data, PHILIP_LOOK, PHILIP_LOOK_TXTR, size);
+	fill_array(1920, 1080, size);
+	fill_txtr(data, DEATH1, DEATH1_TXTR, size);
+	fill_txtr(data, DEATH2, DEATH2_TXTR, size);
+	fill_txtr(data, DEATH3, DEATH3_TXTR, size);
+	fill_txtr(data, DEATH4, DEATH4_TXTR, size);
+	fill_txtr(data, DEATH5, DEATH5_TXTR, size);
+	fill_txtr(data, DEATH6, DEATH6_TXTR, size);
+	fill_txtr(data, DEATH7, DEATH7_TXTR, size);
+	fill_txtr(data, ROCK, ROCK_TXTR, size);
+	fill_txtr(data, PAPER, PAPER_TXTR, size);
+	fill_txtr(data, SCISSORS, SCISSORS_TXTR, size);
 }

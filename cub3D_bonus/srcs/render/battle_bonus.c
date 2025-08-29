@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:29:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 09:45:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:27:59 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,22 @@ static void	put_textures(t_data *data)
 	int	philip;
 	int	barbarian;
 
-	philip = PHILIP + data->button;
-	barbarian = FOE_BIT1 + data->enemy_choice;
-	fill_array(200, TXTR, size);
-	fill_array(300, 450, pos);
+	philip = PHILIP_CHILL + data->button;
+	barbarian = BARBARIAN_CHILL + data->enemy_choice;
+	fill_array(300, 450, size);
+	fill_array(300, 550, pos);
 	put_image_to_image(data, philip, pos, size);
-	fill_array(TXTR, TXTR, size);
-	fill_array(1350, 450, pos);
+	fill_array(450, 450, size);
+	fill_array(1350, 550, pos);
 	put_image_to_image(data, barbarian, pos, size);
+	fill_array(100, 100, size);
+	fill_array(1060, 780, pos);
+	put_image_to_image(data, SCISSORS, pos, size);
+	fill_array(910, 780, pos);
+	put_image_to_image(data, PAPER, pos, size);
+	fill_array(760, 780, pos);
+	put_image_to_image(data, ROCK, pos, size);
+
 }
 
 static void	main_battle(t_data *data)
@@ -63,12 +71,12 @@ static void	main_battle(t_data *data)
 		return ;
 	if (data->result == RESULT_WIN)
 	{
+		data->battle = false;
 		data->map[data->foe->map[Y]][data->foe->map[X]] = '0';
 		data->foe = NULL;
 	}
 	if (data->result == RESULT_LOSS)
 		ft_cross_close(data);
-	data->battle = false;
 	data->enemy_choice = 0;
 	data->button = 0;
 	data->result = 0;
@@ -101,17 +109,28 @@ static void	put_result_screen(t_data *data)
 	int	size[2];
 	int	pos[2];
 	int	which;
+	int la_madonna;
 
+	la_madonna = 0;
 	if (data->result == RESULT_DRAW)
-		which = BAGUETTE;
+		which = DRAW_MSG;
 	else if (data->result == RESULT_WIN)
-		which = DOOR_CLOSE;
+		which = WIN_MSG;
 	else if (data->result == RESULT_LOSS)
-		which = COIN;
+	{
+		if (aspettanding(30, 0) == true)
+			data->menu = -1;
+		which = LOSS_MSG;
+	}
 	else
 		which = MENU_FRAME;
-	fill_array(0, 0, pos);
+	la_madonna = (data->txtr[which].size[X] / (data->txtr[which].bpp / 8)) / 2;
+	fill_array(((WSCREEN / 2) - la_madonna), HSCREEN / 2, pos);
 	size[X] = data->txtr[which].size[X] / (data->txtr[which].bpp / 8);
 	size[Y] = data->txtr[which].size[Y];
 	put_image_to_image(data, which, pos, size);
+	// if(aspettanding(30, 0) == true && data->result == RESULT_LOSS)
+	// {
+	// 	data->menu = -1;
+	// }
 }
