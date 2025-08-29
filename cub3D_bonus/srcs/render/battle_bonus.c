@@ -6,13 +6,15 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:29:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 18:13:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:45:33 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	battle_result(t_data *data);
+static void	put_textures(t_data *data);
+static void	put_result_screen(t_data *data);
 
 static void	main_battle(t_data *data);
 
@@ -28,33 +30,36 @@ void	battle(t_data *data)
 	else
 		backgrounder(data);
 	main_battle(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
-void	put_textures(t_data *data, int philip, int barbarian)
+static void	put_textures(t_data *data)
 {
 	int	size[2];
 	int	pos[2];
+	int	philip;
+	int	barbarian;
 
+	philip = PHILIP + data->button;
+	barbarian = FOE_BIT1 + data->enemy_choice;
 	fill_array(200, TXTR, size);
 	fill_array(300, 450, pos);
 	put_image_to_image(data, philip, pos, size);
 	fill_array(TXTR, TXTR, size);
 	fill_array(1350, 450, pos);
 	put_image_to_image(data, barbarian, pos, size);
-	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
 static void	main_battle(t_data *data)
 {
-	put_textures(data, PHILIP + data->button, FOE_BIT1 + data->enemy_choice);
-	if (!data->button || aspettanding(1, PHILIP) == false)
-		return ;
+	if (!data->button || aspettanding(10, 0) == false)
+		return (put_textures(data));
 	if (!data->result)
 		battle_result(data);
-	if (aspettanding(1, FOE_BIT1) == false)
-		return ;
-	//printare le schermate di vittoria e sconfitta
-	if (aspettanding(1, 0) == false)
+	if (aspettanding(30, 1) == false)
+		return (put_textures(data));
+	put_result_screen(data);
+	if (aspettanding(30, 2) == false)
 		return ;
 	if (data->result == RESULT_WIN)
 	{
@@ -91,3 +96,22 @@ static void	battle_result(t_data *data)
 		data->result = RESULT_WIN;
 }
 
+static void	put_result_screen(t_data *data)
+{
+	int	size[2];
+	int	pos[2];
+	int	which;
+
+	if (data->result == RESULT_DRAW)
+		which = BAGUETTE;
+	else if (data->result == RESULT_WIN)
+		which = DOOR_CLOSE;
+	else if (data->result == RESULT_LOSS)
+		which = COIN;
+	else
+		which = MENU_FRAME;
+	fill_array(0, 0, pos);
+	size[X] = data->txtr[which].size[X] / (data->txtr[which].bpp / 8);
+	size[Y] = data->txtr[which].size[Y];
+	put_image_to_image(data, which, pos, size);
+}

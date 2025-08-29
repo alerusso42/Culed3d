@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 17:50:57 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:48:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ typedef struct s_data
 	int			max_x;
 	int			max_y;
 	int			column;
-	int			color;
 	int			audio_pid;
 	int			enemy_audio;
 	char		audio_play;

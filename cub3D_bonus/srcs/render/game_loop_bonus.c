@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 17:23:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:47:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	frame_render(t_data *data)
 	reset_renderer(data);
 	backgrounder(data);
 	data->column = 0;
-	data->color = 0xff000d;
 	pov[X] = data->player.pov[X] - (RADIANT * (FOV / 2));
 	pov[Y] = 0;
 	i = WSCREEN;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 13:57:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:42:57 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	wall_face(t_data *data, t_entity *entity, double angle)
 {
 	char	face;
 
+	normalize_angle(&angle);
 	face = 0;
 	if ((((int)(entity->curr_y) % HIMG == 0) || \
 ((int)(entity->curr_y + 1) % HIMG == 0) || \
