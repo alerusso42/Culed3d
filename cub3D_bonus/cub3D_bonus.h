@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 10:00:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:32:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,6 @@ typedef struct s_data
 	void		*win;
 	t_txtr		*txtr;
 	char		**map;
-	char		*txtr_north;
-	char		*txtr_west;
-	char		*txtr_south;
-	char		*txtr_east;
 	char		*txtr_floor;
 	char		*txtr_ceiling;
 	int			ent_num;
@@ -269,6 +265,7 @@ void	init_entity(t_data *data, t_entity **entity, int n, char c);
 void	parsing(t_data *data, int argc, char **argv);
 void	error(t_data *data, int err, char *file);
 void	lets_start_the_party(t_data *data);
+void	set_txtr_null(t_data *data);
 void	spread_democracy(t_data *data);
 void	free_texture(t_data *data);
 

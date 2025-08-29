@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/22 14:36:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ static bool	cub3d_substr(t_data *data, char *line, int type)
 {
 	while (ft_isspace(line[0]))
 		line += 1;
-	if (type == NO && data->txtr_north == NULL)
-		data->txtr_north = ft_strdup(line);
-	else if (type == SO && data->txtr_south == NULL)
-		data->txtr_south = ft_strdup(line);
-	else if (type == WE && data->txtr_west == NULL)
-		data->txtr_west = ft_strdup(line);
-	else if (type == EA && data->txtr_east == NULL)
-		data->txtr_east = ft_strdup(line);
+	if (type == NO && data->txtr[NORTH].path == NULL)
+		data->txtr[NORTH].path = ft_strdup(line);
+	else if (type == SO && data->txtr[SOUTH].path == NULL)
+		data->txtr[SOUTH].path = ft_strdup(line);
+	else if (type == WE && data->txtr[WEST].path == NULL)
+		data->txtr[WEST].path = ft_strdup(line);
+	else if (type == EA && data->txtr[EAST].path == NULL)
+		data->txtr[EAST].path = ft_strdup(line);
 	else if (type == F && data->txtr_floor == NULL)
 		data->txtr_floor = ft_strdup(line);
 	else if (type == C && data->txtr_ceiling == NULL)

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 15:17:23 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //	data->txtr is an array of textures.
 	the array stores everything mlx returns, and other info (like img height).
 
-//	data->txtr_north are the names taken from the parsing of the .cub
+//	data->txtr[NORTH].path are the names taken from the parsing of the .cub
 
 //	size is the expected size of the img
 */
@@ -25,10 +25,10 @@ void	txtr_list(t_data *data)
 	int	size[2];
 
 	fill_array(WIMG, HIMG, size);
-	fill_txtr(data, NORTH, data->txtr_north, size);
-	fill_txtr(data, EAST, data->txtr_east, size);
-	fill_txtr(data, SOUTH, data->txtr_south, size);
-	fill_txtr(data, WEST, data->txtr_west, size);
+	fill_txtr(data, NORTH, data->txtr[NORTH].path, size);
+	fill_txtr(data, EAST, data->txtr[EAST].path, size);
+	fill_txtr(data, SOUTH, data->txtr[SOUTH].path, size);
+	fill_txtr(data, WEST, data->txtr[WEST].path, size);
 	fill_txtr(data, PLAYER, PLAYER_TXTR, size);
 	fill_txtr(data, CROSSHAIR, CROSS_TXTR, size);
 	fill_array(TXTR, TXTR, size);

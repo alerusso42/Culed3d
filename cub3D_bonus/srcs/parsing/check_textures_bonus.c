@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 09:16:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ programmi e poi restituiamo errore sullo standard error
 */
 void	check_textures(t_data *data, int fd)
 {
-	data->txtr_north[ft_strlen(data->txtr_north) - 1] = '\0';
-	data->txtr_south[ft_strlen(data->txtr_south) - 1] = '\0';
-	data->txtr_east[ft_strlen(data->txtr_east) - 1] = '\0';
-	data->txtr_west[ft_strlen(data->txtr_west) - 1] = '\0';
+	data->txtr[NORTH].path[ft_strlen(data->txtr[NORTH].path) - 1] = '\0';
+	data->txtr[SOUTH].path[ft_strlen(data->txtr[SOUTH].path) - 1] = '\0';
+	data->txtr[EAST].path[ft_strlen(data->txtr[EAST].path) - 1] = '\0';
+	data->txtr[WEST].path[ft_strlen(data->txtr[WEST].path) - 1] = '\0';
 	data->txtr_floor[ft_strlen(data->txtr_floor) - 1] = '\0';
 	data->txtr_ceiling[ft_strlen(data->txtr_ceiling) - 1] = '\0';
-	if (check_file(data->txtr_north) == false || \
-check_file(data->txtr_south) == false || \
-check_file(data->txtr_east) == false || \
-check_file(data->txtr_west) == false || \
+	if (check_file(data->txtr[NORTH].path) == false || \
+check_file(data->txtr[SOUTH].path) == false || \
+check_file(data->txtr[EAST].path) == false || \
+check_file(data->txtr[WEST].path) == false || \
 check_colors(data->txtr_floor, data->floor) == false || \
 check_colors(data->txtr_ceiling, data->ceiling) == false)
 	{

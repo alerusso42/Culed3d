@@ -12,8 +12,6 @@
 
 #include "../../cub3D_bonus.h"
 
-static void	set_to_null(t_data *data);
-
 /*
 //REVIEW	get_txtr
 
@@ -26,7 +24,6 @@ void	get_txtr(t_data *data)
 {
 	int		i;
 
-	set_to_null(data);
 	txtr_list(data);
 	i = -1;
 	while (++i < TEXTURES_NUM)
@@ -37,10 +34,13 @@ void	get_txtr(t_data *data)
 }
 
 //	set all the txtr array to NULL
-static void	set_to_null(t_data *data)
+void	set_txtr_null(t_data *data)
 {
 	int	i;
 
+	data->txtr = ft_calloc(TEXTURES_NUM + 1, sizeof(t_txtr));
+	if (!data->txtr)
+		error(data, E_MALLOC, NULL);
 	i = -1;
 	while (++i < TEXTURES_NUM)
 		data->txtr[i] = (t_txtr){0};

@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/28 15:36:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/08/29 10:14:47 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	data = (t_data){0};
+	set_txtr_null(&data);
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
 	mlx_hook(data.win, 17, 1, ft_cross_close, &data);
