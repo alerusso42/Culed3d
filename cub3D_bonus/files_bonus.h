@@ -14,7 +14,7 @@
 # define FILES_BONUS_H
 
 # define PC_ALE false
-# define PC_LEO true
+# define PC_LEO false
 
 # define SCREEN_TXTR "textures/screen.xpm"
 # define PLAYER_TXTR "textures/pisnelo.xpm"
@@ -113,7 +113,8 @@ Milestone_04/cubetto/cub3D_bonus/sfxs/hai_guardato.wav"
 #  define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
 #  define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
 #  define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
-#  define SFX_HAI_GUARDATO "/home/Culed3d/cub3D_bonus/sfxs/enemy.wav"
+#  define SFX_HAI_GUARDATO "/home/alerusso/Desktop/Culed3d/cub3D_bonus\
+/sfxs/hai_guardato.wav"
 # endif
 
 enum e_textures

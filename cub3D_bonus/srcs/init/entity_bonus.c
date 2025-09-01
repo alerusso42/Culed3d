@@ -90,7 +90,7 @@ static void	initialize(t_data *data, t_entity *entity, int pos[2], char c)
 	else if (c == 'F')
 	{
 		entity->type = ENTITY_ENEMY;
-		init_animation(data, entity, 12, FOE1);
+		init_animation(data, entity, 4, FOE_BIT1);
 	}
 	else
 	{
