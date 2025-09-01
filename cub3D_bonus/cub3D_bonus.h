@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 16:09:20 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/09/01 12:07:15 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ enum	e_errors
 	E_TYPE,
 	E_FORMAT,
 	E_TEXTURE,
+	E_COLORS,
 	E_NO_MAP,
 	E_CHAR,
 	E_NO_PLAYER,
@@ -195,6 +196,7 @@ enum	e_errors
 	E_MLX_TEXTURE,
 	E_INVALID_PATH,
 	E_INVALID_DOOR,
+	E_INVALID_ENEMY,
 };
 
 enum	e_type_identifers
@@ -289,6 +291,7 @@ void	check_textures(t_data *data, int fd);
 void	get_type(t_data *data, int fd);
 void	check_map_access(t_data *data);
 void	get_map(t_data *data, int fd);
+void	check_other(t_data *data);
 void	check_chars(t_data *data);
 void	check_walls(t_data *data);
 void	check_doors(t_data *data);

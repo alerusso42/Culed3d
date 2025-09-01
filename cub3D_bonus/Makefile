@@ -70,7 +70,6 @@ gdb: $(NAME)
 gdbtui: $(NAME)
 	gdb --tui -x a.gdb --args ./cub3D_bonus maps/debug.cub
 
-
 clean:
 	rm -rf $(OBJ_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
@@ -93,10 +92,10 @@ push:
 	(cd ../ ; ./upd.sh)
 
 run:
-	clear ; make && ./$(NAME) maps/debug.cub
+	clear ; make && ./$(NAME) maps/$(MAP).cub
 
-val: 
-	valgrind --suppressions=../s.supp --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./$(NAME) maps/debug.cub
+val: all
+	valgrind --suppressions=../s.supp --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./$(NAME) maps/$(MAP).cub
 
 mini: 
 	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git

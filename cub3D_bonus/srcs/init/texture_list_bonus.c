@@ -6,14 +6,13 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 17:21:37 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:26:29 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	battle_txtr(t_data *data, int *size);
-
 
 /*	
 //	data->txtr is an array of textures.
@@ -67,11 +66,6 @@ void	txtr_list2(t_data *data)
 	fill_array(408, 408, size);
 	fill_txtr(data, M_BACKGROUND, MINI_BACKGROUND_TXTR, size);
 	fill_array(500, 150, size);
-	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
-	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
-	fill_txtr(data, LOSS_MSG, LOSS_MSG_TXTR, size);
-	fill_txtr(data, DRAW_MSG, DRAW_MSG_TXTR, size);
-	fill_txtr(data, WIN_MSG, WIN_MSG_TXTR, size);
 	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
 	fill_array(1920, 1077, size);
@@ -122,6 +116,12 @@ void	foe_txtr_list(t_data *data, int *size)
 	fill_txtr(data, FOE_BIT2, FOE_BIT2_TXTR, size);
 	fill_txtr(data, FOE_BIT3, FOE_BIT3_TXTR, size);
 	fill_txtr(data, FOE_BIT4, FOE_BIT4_TXTR, size);
+	fill_array(500, 150, size);
+	fill_txtr(data, PLAY_BUTTON, MENU_PLAY_TXTR, size);
+	fill_txtr(data, EXIT_BUTTON, MENU_EXIT_TXTR, size);
+	fill_txtr(data, LOSS_MSG, LOSS_MSG_TXTR, size);
+	fill_txtr(data, DRAW_MSG, DRAW_MSG_TXTR, size);
+	fill_txtr(data, WIN_MSG, WIN_MSG_TXTR, size);
 }
 
 static void	battle_txtr(t_data *data, int *size)

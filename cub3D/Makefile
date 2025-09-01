@@ -48,13 +48,16 @@ $(LIBFT):
 	$(MAKE) bonus -C $(LIBFT_DIR)
 
 gdb: $(NAME)
-	gdb -x a.gdb --args ./cub3D maps/min.cub
+	gdb -x a.gdb --args ./cub3D maps/$(MAP)
 
 gdbtui: $(NAME)
 	gdb --tui -x a.gdb --args ./cub3D cub.cub
 
-val: 
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./cub3D maps/biggie.cub
+val: all
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --suppressions=../s.supp ./cub3D maps/$(MAP).cub
+
+script: all
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --suppressions=../s.supp ./cub3D $(MAP)
 
 clean:
 	rm -rf $(OBJ_DIR)

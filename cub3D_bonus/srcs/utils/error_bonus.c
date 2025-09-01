@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/28 15:10:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 12:12:07 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	error(t_data *data, int err, char *file)
 	else if (err == E_ARGC)
 		three_dots(2, "Bad_agruments", "volevo dire agrumi\n");
 	else if (err == E_EXT)
-		fd_printf(2, "Belin l'estensione di %s.\n", file);
+		fd_printf(2, "Belin l'estensione di \"%s\"\n", file);
 	else if (err == E_TYPE)
 		fd_printf(2, "Belin il type.\n");
 	else if (err == E_FORMAT)
@@ -59,8 +59,12 @@ static void	error2(int err)
 		fd_printf(2, "Can't access the whole map\n");
 	else if (err == E_INVALID_DOOR)
 		fd_printf(2, "Chi e' quel mona che sbatte la porta\n");
+	else if (err == E_INVALID_ENEMY)
+		three_dots(2, "The barbarian king is omnipotent", "\nNot that much tho\n");
 	else if (err == E_CHAR)
 		fd_printf(2, "Invalid char in map.\n");
+	else if (err == E_COLORS)
+		fd_printf(2, "RAINBOW DASH.\n");
 }
 
 static void	three_dots(int fd, char *first, char *second)

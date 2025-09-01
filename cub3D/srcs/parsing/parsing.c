@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 14:43:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:50:46 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	parsing(t_data *data, int argc, char **argv)
 
 	if (argc != 2)
 		error(data, E_ARGC, NULL);
-	else if (check_file_extension(argv[1]))
-		error(data, E_EXT, NULL);
+	else if (check_file_extension(argv[1]) == 1)
+		error(data, E_EXT, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		error(data, E_OPEN, argv[1]);
@@ -42,9 +42,9 @@ static int	check_file_extension(char *file)
 {
 	file = ft_strrchr(file, '.');
 	if (file)
-		if (ft_strncmp(file, ".ber", 4) == 0)
-			return (true);
-	return (false);
+		if (ft_strncmp(file, ".cub", 4) == 0)
+			return (0);
+	return (1);
 }
 
 /*

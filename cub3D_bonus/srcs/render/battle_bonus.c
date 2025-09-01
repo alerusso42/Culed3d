@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:29:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 17:27:59 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:21:43 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	put_textures(t_data *data)
 	put_image_to_image(data, PAPER, pos, size);
 	fill_array(760, 780, pos);
 	put_image_to_image(data, ROCK, pos, size);
-
 }
 
 static void	main_battle(t_data *data)
@@ -109,7 +108,7 @@ static void	put_result_screen(t_data *data)
 	int	size[2];
 	int	pos[2];
 	int	which;
-	int la_madonna;
+	int	la_madonna;
 
 	la_madonna = 0;
 	if (data->result == RESULT_DRAW)
@@ -129,8 +128,4 @@ static void	put_result_screen(t_data *data)
 	size[X] = data->txtr[which].size[X] / (data->txtr[which].bpp / 8);
 	size[Y] = data->txtr[which].size[Y];
 	put_image_to_image(data, which, pos, size);
-	// if(aspettanding(30, 0) == true && data->result == RESULT_LOSS)
-	// {
-	// 	data->menu = -1;
-	// }
 }

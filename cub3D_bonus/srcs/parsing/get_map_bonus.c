@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/04 12:04:32 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/09/01 12:08:33 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	parse_map(t_data *data)
 {
 	check_chars(data);
 	check_walls(data);
-	check_doors(data);
+	check_other(data);
 	check_map_access(data);
 }
 

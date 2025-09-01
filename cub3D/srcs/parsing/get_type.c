@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 11:49:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:41:13 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	get_type(t_data *data, int fd)
 
 	count_types = 0;
 	data->line = get_next_line(fd);
+	if (!data->line)
+		error(data, E_NO_MAP, NULL);
 	while (count_types != TYPE_IDENTIFIERS_NUM && data->line)
 	{
 		i = 0;

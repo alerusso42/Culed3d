@@ -6,7 +6,7 @@
 /*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 16:52:31 by lparolis         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:30:23 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // static void	render_button(t_data *data);
 static bool	check_mouse(t_data *data, int left_angle[2], int size[2]);
 static void	toggle_button(t_data *data, int button, bool on);
-static int	the_frame();
+static int	the_frame(int *time, int nframes);
 
 void	main_menu(t_data *data)
 {
@@ -89,7 +89,7 @@ void	hai_guardato(t_data *data)
 	}
 	fill_array(0, 0, pos);
 	fill_array(1920, 1080, size);
-	death_frame = the_frame();
+	death_frame = the_frame((int [7]){10, 10, 10, 16, 24, 50, 65}, 7);
 	if (death_frame == -1)
 		ft_cross_close(data);
 	if (death_frame <= DEATH7)
@@ -99,32 +99,18 @@ void	hai_guardato(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
-static int	the_frame()
+static int	the_frame(int *time, int nframes)
 {
-	int	death_frame;
+	int	i;
 
-	death_frame = DEATH1;
-	if (aspettanding(10, DEATH1) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(10, DEATH2) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(10, DEATH3) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(16, DEATH4) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(24, DEATH5) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(50, DEATH6) == false)
-		return (death_frame);
-	death_frame += 1;
-	if (aspettanding(65, DEATH7) == false)
-		return (death_frame);
+	i = 0;
+	while (i < nframes)
+	{
+		if (aspettanding(time[i], DEATH1 + i) == false)
+			return (DEATH1 + i);
+		i += 1;
+	}
 	if (aspettanding(1, 0) == true)
 		return (-1);
-	return (death_frame);
+	return (DEATH1 + i);
 }

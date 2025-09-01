@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:17:46 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/23 14:53:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 12:06:35 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_walls(t_data *data)
 	}
 }
 
-void	check_doors(t_data *data)
+void	check_other(t_data *data)
 {
 	int		i;
 	int		j;
@@ -65,6 +65,8 @@ void	check_doors(t_data *data)
 		{
 			if (data->map[i][j] == 'D')
 				is_it_valid(data, j, i, E_INVALID_DOOR);
+			if (data->map[i][j] == 'F')
+				is_it_valid(data, j, i, E_INVALID_ENEMY);
 		}
 	}
 }

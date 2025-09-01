@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:47:48 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@ void	check_textures(t_data *data, int fd)
 	if (check_file(data->txtr[NORTH].path) == false || \
 check_file(data->txtr[SOUTH].path) == false || \
 check_file(data->txtr[EAST].path) == false || \
-check_file(data->txtr[WEST].path) == false || \
-check_colors(data->txtr_floor, data->floor) == false || \
-check_colors(data->txtr_ceiling, data->ceiling) == false)
+check_file(data->txtr[WEST].path) == false)
 	{
 		finish_him(fd);
 		error(data, E_TEXTURE, NULL);
+	}
+	else if (check_colors(data->txtr_floor, data->floor) == false || \
+check_colors(data->txtr_ceiling, data->ceiling) == false)
+	{
+		finish_him(fd);
+		error(data, E_COLORS, NULL);
 	}
 }
 

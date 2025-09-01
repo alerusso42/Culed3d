@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/21 09:59:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:10:55 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	get_map(t_data *data, int fd)
 		return (error(data, E_NO_MAP, NULL));
 	data->map = ft_split(pre_split, '\n');
 	free(pre_split);
+	if (data->map[0] == NULL)
+		return (error(data, E_NO_MAP, NULL));
 	resize_map(data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_type_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:31:35 by lparolis          #+#    #+#             */
-/*   Updated: 2025/08/29 10:03:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:42:36 by lparolis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void	get_type(t_data *data, int fd)
 {
 	int			count_types;
 	char		*line;
-	int			i;
+	static int	i;
 
 	count_types = 0;
 	line = get_next_line(fd);
 	while (count_types != TYPE_IDENTIFIERS_NUM && line)
 	{
-		i = 0;
 		i += sub_strlen(line, " ", INCLUDE);
 		if (line[i] == '\0')
 			return (finish_him(fd), free(line), close(fd), \
