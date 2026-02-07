@@ -1,0 +1,41 @@
+#ifndef MINI_PLAYER_220_H
+# define MINI_PLAYER_220_H
+
+static const char *mini_player_220_data = 
+"/* XPM */\n"
+"static char *result[] = {\n"
+"/* columns rows colors chars-per-pixel */\n"
+"\"24 24 4 1 \",\n"
+"\"  c gray1\",\n"
+"\". c #860000\",\n"
+"\"X c #DC0000\",\n"
+"\"o c black\",\n"
+"/* pixels */\n"
+"\"oooooooooooooooooooooooo\",\n"
+"\"ooooooooo  ooooooooooooo\",\n"
+"\"ooooooooo   oooooooooooo\",\n"
+"\"oooooooo  X  ooooooooooo\",\n"
+"\"oooooooo XXX  oooooooooo\",\n"
+"\"oooooooo XXXX  ooooooooo\",\n"
+"\"ooooooo  XXXXX ooooooooo\",\n"
+"\"ooooooo XXXXXX  oooooooo\",\n"
+"\"ooooooo XXXXXXX  ooooooo\",\n"
+"\"oooooo  XXXXXX.X  oooooo\",\n"
+"\"oooooo XXXXXX.XXX  ooooo\",\n"
+"\"oooooo XXXXX.XXXXX  oooo\",\n"
+"\"ooooo  XXX..XXXXXXX oooo\",\n"
+"\"ooooo XXX.XXXXXXXXX  ooo\",\n"
+"\"oooo  .X.XXXXXXXXXXX  oo\",\n"
+"\"oooo ...XXXXXXXXXXXXX  o\",\n"
+"\"oooo ....XXXXXX        o\",\n"
+"\"ooo  ....       oooooooo\",\n"
+"\"ooo .     oooooooooooooo\",\n"
+"\"ooo   oooooooooooooooooo\",\n"
+"\"oooooooooooooooooooooooo\",\n"
+"\"oooooooooooooooooooooooo\",\n"
+"\"oooooooooooooooooooooooo\",\n"
+"\"oooooooooooooooooooooooo\"\n"
+"};\n"
+;
+
+#endif

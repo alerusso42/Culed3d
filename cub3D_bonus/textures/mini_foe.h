@@ -1,0 +1,42 @@
+#ifndef MINI_FOE_H
+# define MINI_FOE_H
+
+static const char *mini_foe_data = 
+"/* XPM */\n"
+"static char *_5504003cb864bea8a663ed521b41ed7mKNiK9XpzcXMMqYm[] = {\n"
+"/* columns rows colors chars-per-pixel */\n"
+"\"24 24 5 1 \",\n"
+"\"  c #212519\",\n"
+"\". c #53340D\",\n"
+"\"X c #E94D0E\",\n"
+"\"o c #7EC000\",\n"
+"\"O c #1ED8E6\",\n"
+"/* pixels */\n"
+"\"o......................o\",\n"
+"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
+"\".OOOOOOOOOOO  OOOOOOOOO.\",\n"
+"\".OOOOOOOOOOO  O  O  OOO.\",\n"
+"\".OOOOOOOOOOO  O  O  OOO.\",\n"
+"\".OOOOOOOOOOOO O  OXXOOO.\",\n"
+"\".OOOOOO  OOO  OO O  OOO.\",\n"
+"\".OOOOO    OO  O  OO OOO.\",\n"
+"\".OOOO  O   O  O  O  OOO.\",\n"
+"\".OOO  OOO  O  O  O  OOO.\",\n"
+"\".OOO  OOO  O  O  O  OOO.\",\n"
+"\".OOOOOOOO   O  O O  OOO.\",\n"
+"\".OOO  OOOO        O OOO.\",\n"
+"\".OOO  OOOO          OOO.\",\n"
+"\".OOO  OOOO          OOO.\",\n"
+"\".OOO   OO           OOO.\",\n"
+"\".OOOO               OOO.\",\n"
+"\".OOOO               OOO.\",\n"
+"\".OOOOO              OOO.\",\n"
+"\".OOOOO              OOO.\",\n"
+"\".OOOOOO            OOOO.\",\n"
+"\".OOOOOOO           OOOO.\",\n"
+"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
+"\"o......................o\"\n"
+"};\n"
+;
+
+#endif
