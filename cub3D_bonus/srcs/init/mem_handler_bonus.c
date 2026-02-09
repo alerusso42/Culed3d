@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2025/09/01 10:20:01 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:33:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	spread_democracy(t_data *data)
 	free(data->doors);
 	data->doors = NULL;
 	data->map = NULL;
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
 	data->win = NULL;
 	if (data->mlx)
 		free(data->mlx);
@@ -46,12 +44,6 @@ void	spread_democracy(t_data *data)
 void	lets_start_the_party(t_data *data)
 {
 	data->menu = true;
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		error(data, 0, NULL);
-	data->win = mlx_new_window(data->mlx, WSCREEN, HSCREEN, "BONUS");
-	if (!data->win)
-		error(data, 0, NULL);
 	get_txtr(data);
 	init_player(data);
 	init_entities(data);
@@ -89,19 +81,12 @@ void	free_texture(t_data *data)
 {
 	int	i;
 
-	delete((void **)&data->txtr[EAST].path);
-	delete((void **)&data->txtr[WEST].path);
-	delete((void **)&data->txtr[NORTH].path);
-	delete((void **)&data->txtr[SOUTH].path);
-	delete((void **)&data->txtr_floor);
-	delete((void **)&data->txtr_ceiling);
 	if (!data->txtr)
 		return ;
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
-		if (data->txtr[i].ptr)
-			mlx_destroy_image(data->mlx, data->txtr[i].ptr);
+		free(data->txtr[i].ptr);
 	}
 	delete((void **)&data->txtr);
 }

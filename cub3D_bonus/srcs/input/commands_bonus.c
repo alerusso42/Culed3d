@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 16:06:05 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:33:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	{
 		if (data->button & PLAY)
 		{
-			mlx_mouse_hide(data->mlx, data->win);
-			play_audio(SFX_GAME, data);
+			//play_audio(SFX_GAME, data);
 			data->menu = false;
 			data->button = 0;
 		}

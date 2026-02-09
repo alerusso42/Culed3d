@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:29:20 by alerusso          #+#    #+#             */
-/*   Updated: 2025/09/01 10:21:43 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:34:25 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	battle(t_data *data)
 	else
 		backgrounder(data);
 	main_battle(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	//mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }
 
 static void	put_textures(t_data *data)

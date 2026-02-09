@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2025/08/21 14:51:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:50:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <stdbool.h>
 # include "game_bfs.h"
 # include "../getnextline/get_next_line.h"
+# include "list/list.h"
+# include "map/map.h"
 
 typedef struct s_bfs	t_bfs;
 

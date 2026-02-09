@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/09/01 12:07:15 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:26:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@
 # include <sys/stat.h>
 # include <signal.h>
 # include <stdbool.h>
-# include "./minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdlib.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
 # include "libft/libft.h"
 # include "files_bonus.h"
 
@@ -257,7 +254,7 @@ enum e_utils
 	RESULT_DRAW,
 };
 
-void	fill_txtr(t_data *data, int index, char *name, int size[2]);
+void	fill_txtr(t_data *data, int index, int size[2]);
 void	txtr_list(t_data *data);
 void	txtr_list2(t_data *data);
 void	mini_player_txtr_list(t_data *data, int *size);
@@ -310,8 +307,8 @@ void	update_delta(double pov, double *delta_x, double *delta_y);
 int		wall_face(t_data *data, t_entity *entity, double angle);
 int		count_chars(t_data *data, int *count, char *search);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
-void	parse_xpm(t_data *data, t_txtr *txtr, char *name);
 void	put_pixel(t_data *data, int x, int y, int color);
+void	parse_xpm(t_data *data, t_txtr *txtr, int name);
 void	render_arms(t_data *data, t_entity *player);
 void	*which_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);

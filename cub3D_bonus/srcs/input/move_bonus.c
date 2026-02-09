@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 17:24:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:34:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	mouse_input(t_data *data)
 
 	if (DEBUG == true)
 		return ;
-	mlx_mouse_get_pos(data->mlx, data->win, &pos[X], &pos[Y]);
+//	mlx_mouse_get_pos(data->mlx, data->win, &pos[X], &pos[Y]);
 	diff[X] = RADIANT * (pos[X] - (WSCREEN / 2));
 	diff[Y] = RADIANT * (pos[Y] - (HSCREEN / 2));
 	if (diff[X] == 0 && diff[Y] == 0)
@@ -127,7 +127,7 @@ void	mouse_input(t_data *data)
 		data->player.pov[X] -= PI * 2;
 	else if (data->player.pov[X] < 0)
 		data->player.pov[X] += PI * 2;
-	mlx_mouse_move(data->mlx, data->win, WSCREEN / 2, HSCREEN / 2);
+	//mlx_mouse_move(data->mlx, data->win, WSCREEN / 2, HSCREEN / 2);
 }
 
 void	update_map(t_data *data, t_entity *entity, int new_x, int new_y)

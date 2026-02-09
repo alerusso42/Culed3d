@@ -1,80 +1,80 @@
 #ifndef PISNELO_H
 # define PISNELO_H
 
-static const char *pisnelo_data = 
-"/* XPM */\n"
-"static char *_a7562b36afa40b6f8597b8e0a5a4f28Zlv9A1X6Tum3IdQG[] = {\n"
-"/* columns rows colors chars-per-pixel */\n"
-"\"64 64 3 1 \",\n"
-"\"   c #7AFF00\",\n"
-"\".  c #000000\",\n"
-"\"X c #070bff\",\n"
-"/* pixels */\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                            XXXXXXXXXXX                         \",\n"
-"\"                         XXXXXXXXXXXXXXXXX                      \",\n"
-"\"                      XXXXXXXXXXXXXXXXXXXXXXX                   \",\n"
-"\"                    XXXXXXXXXXXXXXXXXXXXXXXXXXX                 \",\n"
-"\"                   XXXXXXXXXX.........XXXXXXXXXX                \",\n"
-"\"                 XXXXXXXX.................XXXXXXXX              \",\n"
-"\"                XXXXXXX.....................XXXXXXX             \",\n"
-"\"               XXXXXX.........................XXXXXX            \",\n"
-"\"              XXXXXX...........................XXXXXX           \",\n"
-"\"             XXXXXX.............................XXXXXX          \",\n"
-"\"            XXXXXX...............................XXXXXX         \",\n"
-"\"            XXXXX.................................XXXXX         \",\n"
-"\"           XXXXX...................................XXXXX        \",\n"
-"\"          XXXXX.....................................XXXXX       \",\n"
-"\"          XXXX.......................................XXXX       \",\n"
-"\"         XXXXX.......XXXXXXXX..........XXXXXXX.......XXXXX      \",\n"
-"\"         XXXX........XXXXXXXX..........XXXXXXX........XXXX      \",\n"
-"\"         XXXX........XXXXXXXX..........XXXXXXX........XXXX      \",\n"
-"\"        XXXX.........XXXXXXXX..........XXXXXXX.........XXXX     \",\n"
-"\"        XXXX..........XXXX..............XXXX...........XXXX     \",\n"
-"\"        XXXX..........XXXX..............XXXX...........XXXX     \",\n"
-"\"       XXXXX...........................................XXXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX.............................................XXXX    \",\n"
-"\"       XXXX..........XXXXXXXXXXXXXXXXXXXXXXXXXX.........XXXX    \",\n"
-"\"       XXXX..........XXXX..XXXX.XXXX.XXXX..XXXX.........XXXX    \",\n"
-"\"       XXXX..........XXXXX..XX..XXXX.XXXX..XXXX.........XXXX    \",\n"
-"\"       XXXXX.........XXXXX..XX..XXXX...XX.XXXXX........XXXXX    \",\n"
-"\"        XXXX..........XXXX..XX...XX...XXX.XXXXX........XXXX     \",\n"
-"\"        XXXX..........XXXXX..X....X....X..XXXXX........XXXX     \",\n"
-"\"        XXXX...........XXXX....X....X....XXXXX.........XXXX     \",\n"
-"\"         XXXX..........XXXXX...XX...X...XXXXXX........XXXX      \",\n"
-"\"         XXXX..........XXXXXX..XX..XXX..XXXXX.........XXXX      \",\n"
-"\"         XXXXX..........XXXXX.XXXX.XXX..XXXXX........XXXXX      \",\n"
-"\"          XXXX..........XXXXXXXXXXXXXXXXXXXX.........XXXX       \",\n"
-"\"          XXXXX...........XXXXXXXXXXXXXXXXX.........XXXXX       \",\n"
-"\"           XXXXX.............XXXXXXXXXXXXX.........XXXXX        \",\n"
-"\"            XXXXX..............XXXXXXXXXX.........XXXXX         \",\n"
-"\"            XXXXXX...............................XXXXXX         \",\n"
-"\"             XXXXXX.............................XXXXXX          \",\n"
-"\"              XXXXXX...........................XXXXXX           \",\n"
-"\"               XXXXXX.........................XXXXXX            \",\n"
-"\"                XXXXXXX.....................XXXXXXX             \",\n"
-"\"                 XXXXXXXX.................XXXXXXXX              \",\n"
-"\"                   XXXXXXXXXX.........XXXXXXXXXX                \",\n"
-"\"                    XXXXXXXXXXXXXXXXXXXXXXXXXXX                 \",\n"
-"\"                      XXXXXXXXXXXXXXXXXXXXXXX                   \",\n"
-"\"                         XXXXXXXXXXXXXXXXX                      \",\n"
-"\"                            XXXXXXXXXXX                         \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \",\n"
-"\"                                                                \"\n"
-"};\n"
-;
+# define PISNELO_data \
+"/* XPM */" \
+"static char *_a7562b36afa40b6f8597b8e0a5a4f28Zlv9A1X6Tum3IdQG[] = {" \
+"/* columns rows colors chars-per-pixel */" \
+"\"64 64 3 1 \"," \
+"\"   c #7AFF00\"," \
+"\".  c #000000\"," \
+"\"X c #070bff\"," \
+"/* pixels */" \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                            XXXXXXXXXXX                         \"," \
+"\"                         XXXXXXXXXXXXXXXXX                      \"," \
+"\"                      XXXXXXXXXXXXXXXXXXXXXXX                   \"," \
+"\"                    XXXXXXXXXXXXXXXXXXXXXXXXXXX                 \"," \
+"\"                   XXXXXXXXXX.........XXXXXXXXXX                \"," \
+"\"                 XXXXXXXX.................XXXXXXXX              \"," \
+"\"                XXXXXXX.....................XXXXXXX             \"," \
+"\"               XXXXXX.........................XXXXXX            \"," \
+"\"              XXXXXX...........................XXXXXX           \"," \
+"\"             XXXXXX.............................XXXXXX          \"," \
+"\"            XXXXXX...............................XXXXXX         \"," \
+"\"            XXXXX.................................XXXXX         \"," \
+"\"           XXXXX...................................XXXXX        \"," \
+"\"          XXXXX.....................................XXXXX       \"," \
+"\"          XXXX.......................................XXXX       \"," \
+"\"         XXXXX.......XXXXXXXX..........XXXXXXX.......XXXXX      \"," \
+"\"         XXXX........XXXXXXXX..........XXXXXXX........XXXX      \"," \
+"\"         XXXX........XXXXXXXX..........XXXXXXX........XXXX      \"," \
+"\"        XXXX.........XXXXXXXX..........XXXXXXX.........XXXX     \"," \
+"\"        XXXX..........XXXX..............XXXX...........XXXX     \"," \
+"\"        XXXX..........XXXX..............XXXX...........XXXX     \"," \
+"\"       XXXXX...........................................XXXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX.............................................XXXX    \"," \
+"\"       XXXX..........XXXXXXXXXXXXXXXXXXXXXXXXXX.........XXXX    \"," \
+"\"       XXXX..........XXXX..XXXX.XXXX.XXXX..XXXX.........XXXX    \"," \
+"\"       XXXX..........XXXXX..XX..XXXX.XXXX..XXXX.........XXXX    \"," \
+"\"       XXXXX.........XXXXX..XX..XXXX...XX.XXXXX........XXXXX    \"," \
+"\"        XXXX..........XXXX..XX...XX...XXX.XXXXX........XXXX     \"," \
+"\"        XXXX..........XXXXX..X....X....X..XXXXX........XXXX     \"," \
+"\"        XXXX...........XXXX....X....X....XXXXX.........XXXX     \"," \
+"\"         XXXX..........XXXXX...XX...X...XXXXXX........XXXX      \"," \
+"\"         XXXX..........XXXXXX..XX..XXX..XXXXX.........XXXX      \"," \
+"\"         XXXXX..........XXXXX.XXXX.XXX..XXXXX........XXXXX      \"," \
+"\"          XXXX..........XXXXXXXXXXXXXXXXXXXX.........XXXX       \"," \
+"\"          XXXXX...........XXXXXXXXXXXXXXXXX.........XXXXX       \"," \
+"\"           XXXXX.............XXXXXXXXXXXXX.........XXXXX        \"," \
+"\"            XXXXX..............XXXXXXXXXX.........XXXXX         \"," \
+"\"            XXXXXX...............................XXXXXX         \"," \
+"\"             XXXXXX.............................XXXXXX          \"," \
+"\"              XXXXXX...........................XXXXXX           \"," \
+"\"               XXXXXX.........................XXXXXX            \"," \
+"\"                XXXXXXX.....................XXXXXXX             \"," \
+"\"                 XXXXXXXX.................XXXXXXXX              \"," \
+"\"                   XXXXXXXXXX.........XXXXXXXXXX                \"," \
+"\"                    XXXXXXXXXXXXXXXXXXXXXXXXXXX                 \"," \
+"\"                      XXXXXXXXXXXXXXXXXXXXXXX                   \"," \
+"\"                         XXXXXXXXXXXXXXXXX                      \"," \
+"\"                            XXXXXXXXXXX                         \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"," \
+"\"                                                                \"" \
+"};" \
+""
 
 #endif

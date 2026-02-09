@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:12 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 17:20:52 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:20:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@
 # define ROCK_TXTR "textures/rock.xpm"
 # define PAPER_TXTR "textures/paper.xpm"
 # define SCISSORS_TXTR "textures/scissors.xpm"
+
+# include "textures/game_assets.h"
 
 # if PC_ALE == true
 #  define SFX_OP "/home/alerusso/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
@@ -199,6 +201,88 @@ enum e_textures
 	PAPER,
 	SCISSORS,
 	TEXTURES_NUM,
+};
+
+static const char *g_textures[TEXTURES_NUM] = {
+	[SCREEN] = SCREEN_data,
+	[NORTH] = NORTH_data,
+	[EAST] = EAST_data,
+	[SOUTH] = SOUTH_data,
+	[WEST] = WEST_data,
+	[CROSSHAIR] = CROSSHAIR_data,
+	[PLAYER] = BARBARIAN_CHILL_data,
+	[WALL] = DEBUG_WALL_data,
+	[DOOR_OPEN] = DOOR_OPEN_data,
+	[DOOR_CLOSE] = DOOR_CLOSED_data,
+	[M_BACKGROUND] = MINI_BACKGROUND_data,
+	[M_PLAYER_0] = MINI_PLAYER_0_data,
+	[M_PLAYER_20] = MINI_PLAYER_20_data,
+	[M_PLAYER_40] = MINI_PLAYER_40_data,
+	[M_PLAYER_60] = MINI_PLAYER_60_data,
+	[M_PLAYER_80] = MINI_PLAYER_80_data,
+	[M_PLAYER_100] = MINI_PLAYER_100_data,
+	[M_PLAYER_120] = MINI_PLAYER_120_data,
+	[M_PLAYER_140] = MINI_PLAYER_140_data,
+	[M_PLAYER_160] = MINI_PLAYER_160_data,
+	[M_PLAYER_180] = MINI_PLAYER_180_data,
+	[M_PLAYER_200] = MINI_PLAYER_200_data,
+	[M_PLAYER_220] = MINI_PLAYER_220_data,
+	[M_PLAYER_240] = MINI_PLAYER_240_data,
+	[M_PLAYER_260] = MINI_PLAYER_260_data,
+	[M_PLAYER_280] = MINI_PLAYER_280_data,
+	[M_PLAYER_300] = MINI_PLAYER_300_data,
+	[M_PLAYER_320] = MINI_PLAYER_320_data,
+	[M_PLAYER_340] = MINI_PLAYER_340_data,
+	[M_DOOR] = MINI_DOOR_data,
+	[M_COIN] = MINI_COIN_data,
+	[M_FOE] = MINI_FOE_data,
+	[FOE1] = FOE_1_data,
+	[FOE2] = FOE_2_data,
+	[FOE3] = FOE_3_data,
+	[FOE4] = FOE_4_data,
+	[FOE5] = FOE_5_data,
+	[FOE6] = FOE_6_data,
+	[FOE7] = FOE_7_data,
+	[FOE8] = FOE_8_data,
+	[FOE9] = FOE_9_data,
+	[FOE10] = FOE_10_data,
+	[FOE11] = FOE_11_data,
+	[FOE12] = FOE_12_data,
+	[FOE_BIT1] = DEATH1_data,
+	[FOE_BIT2] = DEATH2_data,
+	[FOE_BIT3] = DEATH3_data,
+	[FOE_BIT4] = DEATH4_data,
+	[BARBARIAN_CHILL] = BARBARIAN_CHILL_data,
+	[BARBARIAN_ROCK] = BARBARIAN_ROCK_data,
+	[BARBARIAN_PAPER] = BARBARIAN_PAPER_data,
+	[BARBARIAN_SCISSOR] = BARBARIAN_SCISSORS_data,
+	[BARBARIAN_SCARED] = BARBARIAN_SCARED_data,
+	[PHILIP_CHILL] = PHILIP_CHILL_data,
+	[PHILIP_ROCK] = PHILIP_ROCK_data,
+	[PHILIP_PAPER] = PHILIP_PAPER_data,
+	[PHILIP_SCISSOR] = PHILIP_SCISSORS_data,
+	[PHILIP_LOOK] = PHILIP_LOOK_data,
+	[COIN] = COIN_data,
+	[ARMS1] = BARBARIAN_1LEFT_data,
+	[ARMS2] = BARBARIAN_1RIGHT_data,
+	[BAGUETTE] = BAGUETTE_data,
+	[MENU_FRAME] = MENU_IL_DESTINO_data,
+	[PLAY_BUTTON] = PLAY_BUTTON_data,
+	[EXIT_BUTTON] = EXIT_BUTTON_data,
+	[BATTLE_FRAME] = HOLY_FIGHT_SCENARIO_data,
+	[LOSS_MSG] = LOSS_MSG_data,
+	[WIN_MSG] = WIN_MSG_data,
+	[DRAW_MSG] = DRAW_MSG_data,
+	[DEATH1] = DEATH1_data,
+	[DEATH2] = DEATH2_data,
+	[DEATH3] = DEATH3_data,
+	[DEATH4] = DEATH4_data,
+	[DEATH5] = DEATH5_data,
+	[DEATH6] = DEATH6_data,
+	[DEATH7] = DEATH7_data,
+	[ROCK] = ROCK_data,
+	[PAPER] = PAPER_data,
+	[SCISSORS] = SCISSORS_data
 };
 
 #endif

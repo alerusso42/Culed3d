@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 09:13:59 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/24 17:37:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/09 22:35:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	value_changed(void *value, size_t type)
 }
 
 void	render_sync(t_data *data)
-{
-	mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-	mlx_do_sync(data->mlx);
+{(void)data;
+	//mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
+	//mlx_do_sync(data->mlx);
 }

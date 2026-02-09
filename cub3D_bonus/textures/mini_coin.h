@@ -1,42 +1,42 @@
 #ifndef MINI_COIN_H
 # define MINI_COIN_H
 
-static const char *mini_coin_data = 
-"/* XPM */\n"
-"static char *_17ea53497e54d9e8fc85682200c77f9zelOC8SLY8VtSSz1[] = {\n"
-"/* columns rows colors chars-per-pixel */\n"
-"\"24 24 5 1 \",\n"
-"\"  c #212519\",\n"
-"\". c #53340D\",\n"
-"\"X c #7EC000\",\n"
-"\"o c #FFD500\",\n"
-"\"O c #1ED8E6\",\n"
-"/* pixels */\n"
-"\"X......................X\",\n"
-"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
-"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
-"\".OOOOOOOO     OOOOOOOOO.\",\n"
-"\".OOOOOO   oooo  OOOOOOO.\",\n"
-"\".OOOOO  oooooooo OOOOOO.\",\n"
-"\".OOOO  ooooooooo  OOOOO.\",\n"
-"\".OOO  ooooo  oooo  OOOO.\",\n"
-"\".OOO ooooo    oooo OOOO.\",\n"
-"\".OO  oooo      ooo  OOO.\",\n"
-"\".OO ooooo  oo  oooo OOO.\",\n"
-"\".OO ooooo  oo  oooo OOO.\",\n"
-"\".OO ooooo  oo  oooo OOO.\",\n"
-"\".OO  oooo      ooo  OOO.\",\n"
-"\".OOO ooooo    oooo OOOO.\",\n"
-"\".OOO  ooooo  oooo  OOOO.\",\n"
-"\".OOOO  ooooooooo  OOOOO.\",\n"
-"\".OOOOO  oooooooo OOOOOO.\",\n"
-"\".OOOOOO   oooo  OOOOOOO.\",\n"
-"\".OOOOOOOO     OOOOOOOOO.\",\n"
-"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
-"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
-"\".OOOOOOOOOOOOOOOOOOOOOO.\",\n"
-"\"X......................X\"\n"
-"};\n"
-;
+# define MINI_COIN_data \
+"/* XPM */" \
+"static char *_17ea53497e54d9e8fc85682200c77f9zelOC8SLY8VtSSz1[] = {" \
+"/* columns rows colors chars-per-pixel */" \
+"\"24 24 5 1 \"," \
+"\"  c #212519\"," \
+"\". c #53340D\"," \
+"\"X c #7EC000\"," \
+"\"o c #FFD500\"," \
+"\"O c #1ED8E6\"," \
+"/* pixels */" \
+"\"X......................X\"," \
+"\".OOOOOOOOOOOOOOOOOOOOOO.\"," \
+"\".OOOOOOOOOOOOOOOOOOOOOO.\"," \
+"\".OOOOOOOO     OOOOOOOOO.\"," \
+"\".OOOOOO   oooo  OOOOOOO.\"," \
+"\".OOOOO  oooooooo OOOOOO.\"," \
+"\".OOOO  ooooooooo  OOOOO.\"," \
+"\".OOO  ooooo  oooo  OOOO.\"," \
+"\".OOO ooooo    oooo OOOO.\"," \
+"\".OO  oooo      ooo  OOO.\"," \
+"\".OO ooooo  oo  oooo OOO.\"," \
+"\".OO ooooo  oo  oooo OOO.\"," \
+"\".OO ooooo  oo  oooo OOO.\"," \
+"\".OO  oooo      ooo  OOO.\"," \
+"\".OOO ooooo    oooo OOOO.\"," \
+"\".OOO  ooooo  oooo  OOOO.\"," \
+"\".OOOO  ooooooooo  OOOOO.\"," \
+"\".OOOOO  oooooooo OOOOOO.\"," \
+"\".OOOOOO   oooo  OOOOOOO.\"," \
+"\".OOOOOOOO     OOOOOOOOO.\"," \
+"\".OOOOOOOOOOOOOOOOOOOOOO.\"," \
+"\".OOOOOOOOOOOOOOOOOOOOOO.\"," \
+"\".OOOOOOOOOOOOOOOOOOOOOO.\"," \
+"\"X......................X\"" \
+"};" \
+""
 
 #endif

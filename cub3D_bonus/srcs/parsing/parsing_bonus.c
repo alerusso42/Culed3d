@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2025/09/01 11:50:37 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 21:49:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parsing(t_data *data, int argc, char **argv)
 {
 	int	fd;
 
-	if (argc != 2)
+	if (argc < 2)
 		error(data, E_ARGC, NULL);
 	else if (check_file_extension(argv[1]) == 1)
 		error(data, E_EXT, argv[1]);
@@ -59,7 +59,6 @@ ________________________________________________________________
 */
 static void	parse_cub(t_data *data, int fd)
 {
-	get_type(data, fd);
 	check_textures(data, fd);
 	get_map(data, fd);
 	parse_map(data);

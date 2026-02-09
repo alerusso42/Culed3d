@@ -1,41 +1,41 @@
 #ifndef MINI_PLAYER_320_H
 # define MINI_PLAYER_320_H
 
-static const char *mini_player_320_data = 
-"/* XPM */\n"
-"static char *result[] = {\n"
-"/* columns rows colors chars-per-pixel */\n"
-"\"24 24 4 1 \",\n"
-"\"  c gray1\",\n"
-"\". c #860000\",\n"
-"\"X c #DC0000\",\n"
-"\"o c black\",\n"
-"/* pixels */\n"
-"\"oooooooooooooooooooooooo\",\n"
-"\"ooooooooooooo  ooooooooo\",\n"
-"\"oooooooooooo   ooooooooo\",\n"
-"\"ooooooooooo  X ooooooooo\",\n"
-"\"oooooooooo  XX  oooooooo\",\n"
-"\"ooooooooo  XXXX oooooooo\",\n"
-"\"oooooooo  XXXXX  ooooooo\",\n"
-"\"oooooooo XXXXXXX ooooooo\",\n"
-"\"ooooooo  XXXXXXX ooooooo\",\n"
-"\"oooooo  X.XXXXXX  oooooo\",\n"
-"\"ooooo  XXX.XXXXXX oooooo\",\n"
-"\"oooo  XXXXX.XXXXX oooooo\",\n"
-"\"ooo  XXXXXXX.XXXX  ooooo\",\n"
-"\"ooo XXXXXXXXX.XXXX ooooo\",\n"
-"\"oo  XXXXXXXXXX.XX. ooooo\",\n"
-"\"o  XXXXXXXXXXXX...  oooo\",\n"
-"\"o        XXXXX..... oooo\",\n"
-"\"oooooooo       ....  ooo\",\n"
-"\"oooooooooooooo     . ooo\",\n"
-"\"oooooooooooooooooo   ooo\",\n"
-"\"oooooooooooooooooooooooo\",\n"
-"\"oooooooooooooooooooooooo\",\n"
-"\"oooooooooooooooooooooooo\",\n"
-"\"oooooooooooooooooooooooo\"\n"
-"};\n"
-;
+# define MINI_PLAYER_320_data \
+"/* XPM */" \
+"static char *result[] = {" \
+"/* columns rows colors chars-per-pixel */" \
+"\"24 24 4 1 \"," \
+"\"  c gray1\"," \
+"\". c #860000\"," \
+"\"X c #DC0000\"," \
+"\"o c black\"," \
+"/* pixels */" \
+"\"oooooooooooooooooooooooo\"," \
+"\"ooooooooooooo  ooooooooo\"," \
+"\"oooooooooooo   ooooooooo\"," \
+"\"ooooooooooo  X ooooooooo\"," \
+"\"oooooooooo  XX  oooooooo\"," \
+"\"ooooooooo  XXXX oooooooo\"," \
+"\"oooooooo  XXXXX  ooooooo\"," \
+"\"oooooooo XXXXXXX ooooooo\"," \
+"\"ooooooo  XXXXXXX ooooooo\"," \
+"\"oooooo  X.XXXXXX  oooooo\"," \
+"\"ooooo  XXX.XXXXXX oooooo\"," \
+"\"oooo  XXXXX.XXXXX oooooo\"," \
+"\"ooo  XXXXXXX.XXXX  ooooo\"," \
+"\"ooo XXXXXXXXX.XXXX ooooo\"," \
+"\"oo  XXXXXXXXXX.XX. ooooo\"," \
+"\"o  XXXXXXXXXXXX...  oooo\"," \
+"\"o        XXXXX..... oooo\"," \
+"\"oooooooo       ....  ooo\"," \
+"\"oooooooooooooo     . ooo\"," \
+"\"oooooooooooooooooo   ooo\"," \
+"\"oooooooooooooooooooooooo\"," \
+"\"oooooooooooooooooooooooo\"," \
+"\"oooooooooooooooooooooooo\"," \
+"\"oooooooooooooooooooooooo\"" \
+"};" \
+""
 
 #endif

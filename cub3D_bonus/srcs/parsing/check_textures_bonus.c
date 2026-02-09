@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/09/01 10:47:48 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/09 21:52:17 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,29 @@ programmi e poi restituiamo errore sullo standard error
 */
 void	check_textures(t_data *data, int fd)
 {
-	data->txtr[NORTH].path[ft_strlen(data->txtr[NORTH].path) - 1] = '\0';
-	data->txtr[SOUTH].path[ft_strlen(data->txtr[SOUTH].path) - 1] = '\0';
-	data->txtr[EAST].path[ft_strlen(data->txtr[EAST].path) - 1] = '\0';
-	data->txtr[WEST].path[ft_strlen(data->txtr[WEST].path) - 1] = '\0';
-	data->txtr_floor[ft_strlen(data->txtr_floor) - 1] = '\0';
-	data->txtr_ceiling[ft_strlen(data->txtr_ceiling) - 1] = '\0';
-	if (check_file(data->txtr[NORTH].path) == false || \
-check_file(data->txtr[SOUTH].path) == false || \
-check_file(data->txtr[EAST].path) == false || \
-check_file(data->txtr[WEST].path) == false)
+	char	*floor;
+	char	*ceiling;
+
+	floor = get_next_line(fd);
+	ceiling = get_next_line(fd);
+	free(get_next_line(fd));
+	if (!floor || !ceiling)
 	{
-		finish_him(fd);
-		error(data, E_TEXTURE, NULL);
-	}
-	else if (check_colors(data->txtr_floor, data->floor) == false || \
-check_colors(data->txtr_ceiling, data->ceiling) == false)
-	{
+		free(floor);
+		free(ceiling);
 		finish_him(fd);
 		error(data, E_COLORS, NULL);
 	}
+	if (check_colors(data->txtr_floor, data->floor) == false || \
+	check_colors(data->txtr_ceiling, data->ceiling) == false)
+	{
+		free(floor);
+		free(ceiling);
+		finish_him(fd);
+		error(data, E_COLORS, NULL);
+	}
+	free(floor);
+	free(ceiling);
 }
 
 static int	check_file(char *texture_name)

@@ -55,17 +55,14 @@ void	set_txtr_null(t_data *data)
 	3)	we save the size of the xpm char * array given by mlx, calculating
 		it by taking the size of the xpm.
 */
-void	fill_txtr(t_data *data, int index, char *name, int size[2])
+void	fill_txtr(t_data *data, int index, int size[2])
 {
 	t_txtr	*txtr;
 
+	(void)size;
 	txtr = &data->txtr[index];
-	txtr->ptr = mlx_xpm_file_to_image(data->mlx, name, &size[X], &size[Y]);
-	if (!txtr->ptr)
-		return (error(data, E_MLX_TEXTURE, name));
-	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, \
-&txtr->size[X], &txtr->endian);
-	parse_xpm(data, txtr, name);
+//	txtr->xpm = mlx_get_data_addr(txtr->ptr, &txtr->bpp, &txtr->size[X], &txtr->endian);
+	parse_xpm(data, txtr, index);
 	txtr->shade = 1;
 	txtr->scaler[X] = (txtr->size[X] / (txtr->bpp / 8)) / TXTR;
 	txtr->scaler[Y] = txtr->size[Y] / TXTR;
