@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/09 22:33:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 09:18:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	free_texture(t_data *data)
 	i = -1;
 	while (++i < TEXTURES_NUM)
 	{
-		free(data->txtr[i].ptr);
+		free(data->txtr[i].xpm);
 	}
 	delete((void **)&data->txtr);
 }

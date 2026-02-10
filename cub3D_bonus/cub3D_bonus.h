@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:26:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 09:58:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ typedef struct s_texture
 	int		size[2];
 	int		i;
 	int		bpp;
+	int		cpp;
 	int		endian;
 	int		total_size;
 	int		offset;
+	int		colors;
 	char	filters;
 }	t_txtr;
 
@@ -254,7 +256,8 @@ enum e_utils
 	RESULT_DRAW,
 };
 
-void	fill_txtr(t_data *data, int index, int size[2]);
+//void	fill_txtr(t_data *data, t_map *map, int index, int size[2]);
+void	fill_txtr(t_data *data, t_map *map, int index);
 void	txtr_list(t_data *data);
 void	txtr_list2(t_data *data);
 void	mini_player_txtr_list(t_data *data, int *size);
@@ -303,12 +306,12 @@ bool	collision_entity(t_data *data, int x, int y, bool discard_open_door);
 void	init_line_data(t_data *data, t_entity *entity_data, double pov_x);
 void	init_animation(t_data *data, t_entity *entity, int n, int first);
 int		wall_height(t_data *data, double x, double y, double ray_angle);
+void	parse_xpm(t_data *data, t_txtr *txtr, t_map *map, int name);
 void	update_delta(double pov, double *delta_x, double *delta_y);
 int		wall_face(t_data *data, t_entity *entity, double angle);
 int		count_chars(t_data *data, int *count, char *search);
 void	txtr_filters(t_txtr *txtr, int *r, int *g, int *b);
 void	put_pixel(t_data *data, int x, int y, int color);
-void	parse_xpm(t_data *data, t_txtr *txtr, int name);
 void	render_arms(t_data *data, t_entity *player);
 void	*which_entity(t_data *data, int x, int y);
 double	ray_lenght(t_data *data, int rx, int ry);

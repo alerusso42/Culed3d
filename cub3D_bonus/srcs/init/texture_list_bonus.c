@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:45:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 09:40:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //static void	battle_txtr(t_data *data, int *size);
 
+/*
 void	txtr_list(t_data *data)
 {
 	int	i;
@@ -21,10 +22,10 @@ void	txtr_list(t_data *data)
 	i = 0;
 	while (i != TEXTURE_NUM)
 	{
-		fill_txtr(data, index, (int [2]){0, 0});
+		fill_txtr(data, i, (int [2]){0, 0});
 		++i;
 	}
-}
+}*/
 
 /*	
 //	data->txtr is an array of textures.
