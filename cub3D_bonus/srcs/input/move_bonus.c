@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:34:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:32:20 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	rotate(t_data *data, t_entity *entity)
 */
 void	mouse_input(t_data *data)
 {
-	int		pos[2];
+	int		pos[2] = {0, 0};
 	double	diff[2];
 
 	if (DEBUG == true)

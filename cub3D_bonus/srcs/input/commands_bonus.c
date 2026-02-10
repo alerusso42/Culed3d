@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:33:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:01:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,49 @@ int	ft_cross_close(t_data *data)
 	spread_democracy(data);
 	exit(0);
 }
+
+void	execute_input(t_data *data, const char *input)
+{
+	while (*input)
+	{
+		switch (*input)
+		{
+			case ('w'):case ('W'):
+				data->player.input ^= UP;
+				break ;
+			case ('d'):case ('D'):
+				data->player.input ^= RIGHT;
+				break ;
+			case ('a'):case ('A'):
+				data->player.input ^= LEFT;
+				break ;
+			case ('s'):case ('S'):
+				data->player.input ^= DOWN;
+				break ;
+			case ('l'):case ('L'):
+				data->player.input ^= R_LEFT;
+				break ;
+			case ('r'):case ('R'):
+				data->player.input ^= R_RIGHT;
+				break ;
+			case ('z'):case ('Z'):
+				data->player.speed += 3;
+				break ;
+			case (' '):
+				interact(data);
+				break ;
+			case ('1'):case ('2'):case ('3'):case ('4'):case ('5'):\
+			case ('6'):case ('7'):case ('8'):case ('9'):case ('0'):
+				data->button = *input - '0';
+				break ;
+			case ('x'):case ('X'):
+				ft_cross_close(data);
+		}
+		++input;
+	}
+}
+
+/*
 
 //	The or operator | adds a bit in a byte.
 int	commands_press(int keycode, t_data *data)
@@ -67,6 +110,7 @@ int	commands_release(int keycode, t_data *data)
 		data->player.speed -= 3;
 	return (0);
 }
+*/
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {

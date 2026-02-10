@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:35:03 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:39:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ void	main_menu(t_data *data)
 
 static bool	check_mouse(t_data *data, int left_angle[2], int size[2])
 {
-	int	mouse_pos[2];
+	int	mouse_pos[2] = {0, 0};
 	int	right_angle[2];
 
+	(void)data;
 	fill_array(left_angle[X] + size[X], left_angle[Y] + size[Y], right_angle);
 	//mlx_mouse_get_pos(data->mlx, data->win, &mouse_pos[X], &mouse_pos[Y]);
 	if (mouse_pos[X] < left_angle[X] || mouse_pos[X] > right_angle[X])

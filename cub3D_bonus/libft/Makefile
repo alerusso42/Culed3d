@@ -2,8 +2,10 @@ NAME = libft.a
 GNL_PATH = ../getnextline
 
 
-SRC = 	$(shell ls . | grep .c) $(shell ls list | grep .c) $(shell ls map | grep .c) \ 
-		$(GNL_PATH)/get_next_line.c	 $(GNL_PATH)/get_next_line_utils.c \
+SRC = 	$(wildcard *.c) \
+      $(wildcard list/*.c) \
+      $(wildcard map/*.c) \
+		$(GNL_PATH)/get_next_line.c	 $(GNL_PATH)/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -35,4 +37,3 @@ bonus: $(OBJ) $(BONUSOBJ)
 	ar rcs $(NAME) $(OBJ) $(BONUSOBJ)
 
 .PHONY: all clean fclean re bonus
-.SILENT:

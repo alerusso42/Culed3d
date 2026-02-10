@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraccan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:45:38 by edraccan          #+#    #+#             */
-/*   Updated: 2025/04/07 18:14:20 by edraccan         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:31:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		else
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	}
-	if (s1[i] != s2[i])
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+//	if (s1[i] != s2[i])
+//		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }
 

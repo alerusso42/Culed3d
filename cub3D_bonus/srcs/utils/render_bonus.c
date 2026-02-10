@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 09:30:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:33:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	get_pixel_color(t_txtr *txtr, int i)
 	r = (txtr->xpm[i] & 255) * txtr->shade;
 	g = (txtr->xpm[i + 1] & 255) * txtr->shade;
 	b = (txtr->xpm[i + 2] & 255) * txtr->shade;
-	b = (txtr->xpm[i + 3] & 255) * txtr->shade;
+	a = (txtr->xpm[i + 3] & 255) * txtr->shade;
 	if (txtr->filters & FILTER_ON)
 		txtr_filters(txtr, &r, &g, &b);
 	rgb = r | (g << 8) | (b << 16) | (a << 24);

@@ -35,10 +35,13 @@ void	get_txtr(t_data *data)
 	map.alloc = t_map_alloc;
 	map.del = t_map_delete;
 	//txtr_list(data);
+	//i = -1;
 	i = -1;
+	int	fd = open("Forza_Milan.txt", O_CREAT, 0666);
 	while (++i != TEXTURES_NUM)
 	{
-		fill_txtr(data, i, (int [2]){0, 0});
+		fill_txtr(data, &map, i);
+		fd_printf(fd, "NUMBER %d:\n|%s|\n", i, data->txtr[i].xpm);
 		map_clear(&map);
 	}
 	i = -1;
@@ -47,6 +50,7 @@ void	get_txtr(t_data *data)
 		if (!data->txtr[i].xpm)
 			return (fd_printf(2, "%d\n", i), error(data, E_MLX_TEXTURE, NULL));
 	}
+	close(fd);
 }
 
 static void	t_map_delete(t_map_val *pair)

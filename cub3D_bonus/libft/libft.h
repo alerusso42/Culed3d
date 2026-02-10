@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2026/02/09 22:50:21 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:17:41 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@
 # include <math.h>
 # include <sys/time.h>
 # include <stdbool.h>
+# include <stdint.h>
 # include "game_bfs.h"
 # include "../getnextline/get_next_line.h"
 # include "list/list.h"
 # include "map/map.h"
 
+# define MALLOC malloc
+# define FREE free
 typedef struct s_bfs	t_bfs;
 
 /*

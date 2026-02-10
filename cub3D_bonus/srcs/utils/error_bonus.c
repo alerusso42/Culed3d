@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:10:26 by lparolis          #+#    #+#             */
-/*   Updated: 2025/09/01 12:12:07 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:12:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	error(t_data *data, int err, char *file)
 	else if (err == E_TEXTURE)
 		fd_printf(2, "Bro le texture.\n");
 	else if (err == E_MLX_TEXTURE)
-		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN: %s\n", file);
+		fd_printf(2, "BILD KANN NICHT ERSTELLT WERDEN: |%s|\n", file);
 	else
 		error2(err);
 	fd_printf(2, RST);
@@ -65,6 +65,8 @@ static void	error2(int err)
 		fd_printf(2, "Invalid char in map.\n");
 	else if (err == E_COLORS)
 		fd_printf(2, "RAINBOW DASH.\n");
+	else if (err == E_INPUT)
+		fd_printf(2, "read fail\n");
 }
 
 static void	three_dots(int fd, char *first, char *second)

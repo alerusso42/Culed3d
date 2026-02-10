@@ -6,13 +6,32 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:34:34 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:27:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
+int		game_loop(t_data *data);
+void	execute_input(t_data *data, const char *input);
 void	frame_render(t_data *data);
+
+void	webserv_porting(t_data *data)
+{
+	char	input[64] = {0};
+	int		bytes;
+
+	while (1)
+	{
+		if (read(0, input, sizeof(input) - 1) == -1)
+			error(data, E_INPUT, NULL);
+		execute_input(data, input);
+		game_loop(data);
+		bytes = write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
+		bytes = write(1, "\n----------\n", 12);
+		(void)bytes;
+	}
+}
 
 /*
 	1)	to avoid full CPU speed, we set a time that needs to pass between 
@@ -27,26 +46,23 @@ int	game_loop(t_data *data)
 	int		t2;
 	int		t_diff;
 
-	if (elapsed_time(data->start) > FRAME_TIME)
+	t1 = elapsed_time(data->start);
+	if (data->menu)
+		main_menu(data);
+	else if (data->battle || data->result == RESULT_DRAW)
+		battle(data);
+	else
 	{
-		t1 = elapsed_time(data->start);
-		if (data->menu)
-			main_menu(data);
-		else if (data->battle || data->result == RESULT_DRAW)
-			battle(data);
-		else
-		{
-			move_player(data);
-			mouse_input(data);
-			frame_render(data);
-		}
-		t2 = elapsed_time(data->start);
-		t_diff = (t2 - t1) / (int)1e3;
-		if (t_diff <= 0)
-			return (0);
-		printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
-		gettimeofday(&data->start, NULL);
+		move_player(data);
+		mouse_input(data);
+		frame_render(data);
 	}
+	t2 = elapsed_time(data->start);
+	t_diff = (t2 - t1) / (int)1e3;
+	if (t_diff <= 0)
+		return (0);
+	printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
+	gettimeofday(&data->start, NULL);
 	return (0);
 }
 

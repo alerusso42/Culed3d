@@ -5,7 +5,8 @@ SRC_PATH = srcs/
 # Compiler settings (lm == math.h)
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
-LFLAGS   =  -I./libft -Lminilibx-linux -lmlx -lX11 -lm -lXext
+#LFLAGS   =  -I./libft -Lminilibx-linux -lmlx -lX11 -lm -lXext
+LFLAGS   =  -I./libft -lm
 DEBUG    = -D DEBUG=true
 NORMAL   = -D DEBUG=false
 
@@ -81,9 +82,9 @@ fclean: clean
 
 bonus.c: fclean $(NAME)
 
-re: fclean mini all
+re: fclean all
 
-start: fclean mini all
+start: fclean all
 
 pull: 
 	(cd ../ ; git pull)
@@ -97,9 +98,7 @@ run:
 val: all
 	valgrind --suppressions=../s.supp --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./$(NAME) maps/$(MAP).cub
 
-mini: 
-	@ls | grep minilibx > /dev/null  && printf "Mini already exists\n" || git clone git@github.com:42paris/minilibx-linux.git > /dev/null ; rm -rf minilibx-linux/.git
-	$(MAKE) -C ./minilibx-linux
+#
 
 .PHONY: all clean fclean re libft
 .SILENT:

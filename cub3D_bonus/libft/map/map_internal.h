@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_internal.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 21:55:16 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 12:40:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:16:34 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # define MAP_NPOS (size_t)-1
 # if MAP_LOG_BOOL == true
-#  define MAP_SWITCH_LOG(s, ...) err_printf(s, ##__VA_ARGS__);break 
-#  define MAP_LOG(s, ...) err_printf(s, ##__VA_ARGS__)
+#  define MAP_SWITCH_LOG(s, ...) printf(s, ##__VA_ARGS__);break 
+#  define MAP_LOG(s, ...) printf(s, ##__VA_ARGS__)
 # else
 #  define MAP_SWITCH_LOG(s, ...) (void)0;break 
 #  define MAP_LOG(s, ...) (void)0

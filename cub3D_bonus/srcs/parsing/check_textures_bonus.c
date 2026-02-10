@@ -6,13 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:39:11 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 21:52:17 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:50:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static int	check_file(char *texture_name);
+//static int	check_file(char *texture_name);
 bool		check_colors(char *texture, int rgb[3]);
 
 /*REVIEW
@@ -23,31 +23,23 @@ programmi e poi restituiamo errore sullo standard error
 */
 void	check_textures(t_data *data, int fd)
 {
-	char	*floor;
-	char	*ceiling;
-
-	floor = get_next_line(fd);
-	ceiling = get_next_line(fd);
+	data->txtr_floor = get_next_line(fd);
+	data->txtr_ceiling = get_next_line(fd);
 	free(get_next_line(fd));
-	if (!floor || !ceiling)
+	if (!data->txtr_floor || !data->txtr_ceiling)
 	{
-		free(floor);
-		free(ceiling);
 		finish_him(fd);
 		error(data, E_COLORS, NULL);
 	}
 	if (check_colors(data->txtr_floor, data->floor) == false || \
 	check_colors(data->txtr_ceiling, data->ceiling) == false)
 	{
-		free(floor);
-		free(ceiling);
 		finish_him(fd);
 		error(data, E_COLORS, NULL);
 	}
-	free(floor);
-	free(ceiling);
 }
 
+/*
 static int	check_file(char *texture_name)
 {
 	int	fd;
@@ -61,7 +53,7 @@ static int	check_file(char *texture_name)
 		return (true);
 	close(fd);
 	return (false);
-}
+}*/
 
 bool	check_colors(char *texture, int rgb[3])
 {

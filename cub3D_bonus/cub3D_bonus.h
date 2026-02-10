@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 09:58:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:24:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,20 @@ typedef struct timeval		t_time;
 
 typedef struct s_texture
 {
-	void	*ptr;
-	char	*path;
-	char	*xpm;
-	double	shade;
-	double	scaler[2];
-	int		size[2];
-	int		i;
-	int		bpp;
-	int		cpp;
-	int		endian;
-	int		total_size;
-	int		offset;
-	int		colors;
-	char	filters;
+	void			*ptr;
+	char			*path;
+	unsigned char	*xpm;
+	double			shade;
+	double			scaler[2];
+	int				size[2];
+	int				i;
+	int				bpp;
+	int				cpp;
+	int				endian;
+	int				total_size;
+	int				offset;
+	int				colors;
+	char			filters;
 }	t_txtr;
 
 typedef struct s_entity
@@ -196,6 +196,7 @@ enum	e_errors
 	E_INVALID_PATH,
 	E_INVALID_DOOR,
 	E_INVALID_ENEMY,
+	E_INPUT,
 };
 
 enum	e_type_identifers
