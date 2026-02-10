@@ -3,7 +3,6 @@
 
 # define PHILIP_CHILL_data \
 "/* XPM */" \
-"static char * philip_chill_xpm[] = {" \
 "\"300 450 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #000105\"," \

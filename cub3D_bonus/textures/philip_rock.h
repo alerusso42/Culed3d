@@ -3,7 +3,6 @@
 
 # define PHILIP_ROCK_data \
 "/* XPM */" \
-"static char * philipp_rock_xpm[] = {" \
 "\"300 450 8855 3\"," \
 "\"   	c #000000\"," \
 "\".  	c #493000\"," \

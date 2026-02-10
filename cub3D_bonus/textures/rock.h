@@ -3,7 +3,6 @@
 
 # define ROCK_data \
 "/* XPM */" \
-"static char * rock_xpm[] = {" \
 "\"100 100 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #030005\"," \

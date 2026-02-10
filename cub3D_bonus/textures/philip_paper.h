@@ -3,7 +3,6 @@
 
 # define PHILIP_PAPER_data \
 "/* XPM */" \
-"static char * philip_paper_xpm[] = {" \
 "\"300 450 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #070000\"," \

@@ -3,8 +3,6 @@
 
 # define BARBARIAN_1RIGHT_data \
 "/* XPM */" \
-"static char *result[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 236 2 \"," \
 "\"   c #000000\"," \
 "\".  c #0B0401\"," \

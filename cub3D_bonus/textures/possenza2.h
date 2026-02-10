@@ -3,7 +3,6 @@
 
 # define POSSENZA2_data \
 "/* XPM */" \
-"static char * possenza2_xpm[] = {" \
 "\"700 300 32567 3\"," \
 "\"   	c None\"," \
 "\".  	c #B1B09A\"," \

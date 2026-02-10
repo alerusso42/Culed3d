@@ -3,8 +3,6 @@
 
 # define CROSSHAIR_data \
 "/* XPM */" \
-"static char *a528877bd5914b678fea1882926f1491BZuXsymui4k0pzZN[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"64 64 2 1 \"," \
 "\"  c black\"," \
 "\". c gray98\"," \

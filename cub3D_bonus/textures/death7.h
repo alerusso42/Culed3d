@@ -3,7 +3,6 @@
 
 # define DEATH7_data \
 "/* XPM */" \
-"static char * hai_guardato_xpm[] = {" \
 "\"1920 1080 255 2\"," \
 "\"  	c #000001\"," \
 "\". 	c #090200\"," \

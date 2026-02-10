@@ -3,8 +3,6 @@
 
 # define BAGUETTE_data \
 "/* XPM */" \
-"static char *_d0f8f3f5f864d28912e658ebe4835e1stuyxyW5wDfM1la4[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 210 2 \"," \
 "\"   c None\"," \
 "\".  c #25161B\"," \

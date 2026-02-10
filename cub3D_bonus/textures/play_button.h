@@ -3,7 +3,6 @@
 
 # define PLAY_BUTTON_data \
 "/* XPM */" \
-"static char * MENU_EXIT_xpm[] = {" \
 "\"500 150 203 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

@@ -3,7 +3,6 @@
 
 # define BARBARIAN_PAPER_data \
 "/* XPM */" \
-"static char * barbarian_paper_xpm[] = {" \
 "\"450 450 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #000000\"," \

@@ -3,8 +3,6 @@
 
 # define MINI_COIN_data \
 "/* XPM */" \
-"static char *_17ea53497e54d9e8fc85682200c77f9zelOC8SLY8VtSSz1[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"24 24 5 1 \"," \
 "\"  c #212519\"," \
 "\". c #53340D\"," \

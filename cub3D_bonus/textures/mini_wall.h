@@ -3,8 +3,6 @@
 
 # define MINI_WALL_data \
 "/* XPM */" \
-"static char *_5e0e439b0cb4c42b414a934e083523bfoTJ0cx2rpwYg8v4[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"24 24 7 1 \"," \
 "\"  c #212519\"," \
 "\". c #53340D\"," \

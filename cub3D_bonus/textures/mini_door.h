@@ -3,8 +3,6 @@
 
 # define MINI_DOOR_data \
 "/* XPM */" \
-"static char *_f0c9b4b445644e4d57b1416944d4863oOannGgjjhpXI5th[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"24 24 3 1 \"," \
 "\"  c black\"," \
 "\"x c #020202ff\"," \

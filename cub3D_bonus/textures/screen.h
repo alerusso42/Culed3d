@@ -3,8 +3,6 @@
 
 # define SCREEN_data \
 "/* XPM */" \
-"static char *_58faa1d7eda41b5bbe5bf0f1293ac85pudgRutevjoWMgPg[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"1920 1920 1 1 \"," \
 "\"  c black\"," \
 "/* pixels */" \

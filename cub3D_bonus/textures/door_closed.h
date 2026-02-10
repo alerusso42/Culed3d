@@ -3,8 +3,6 @@
 
 # define DOOR_CLOSED_data \
 "/* XPM */" \
-"static char *_9a45ff9e6874557da6b5dff940519243aAaF2YBFKJm9D8t[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 224 2 \"," \
 "\"   c #0E0B0D\"," \
 "\".  c #140E0F\"," \

@@ -3,7 +3,6 @@
 
 # define IL_DESTINO_data \
 "/* XPM */" \
-"static char * il_destino_xpm[] = {" \
 "\"1920 1077 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #00090C\"," \

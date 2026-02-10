@@ -3,7 +3,6 @@
 
 # define BARBARIAN_SCISSORS_data \
 "/* XPM */" \
-"static char * barbarian_scissors_xpm[] = {" \
 "\"450 450 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #000000\"," \

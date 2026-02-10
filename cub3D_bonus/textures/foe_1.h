@@ -3,8 +3,6 @@
 
 # define FOE_1_data \
 "/* XPM */" \
-"static char *_f76a1671c284672cd1efdcf166a52e6f4To0fWMBSHLFFvn[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 667 256 2 \"," \
 "\"   c None\"," \
 "\".  c #160A04\"," \

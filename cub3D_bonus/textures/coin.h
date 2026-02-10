@@ -3,8 +3,6 @@
 
 # define COIN_data \
 "/* XPM */" \
-"static char *_015c6f85bd647e5cdc288f46c68d800ZY5ujXWFtzMY1MHG[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 256 2 \"," \
 "\"   c None\"," \
 "\".  c #160C01\"," \

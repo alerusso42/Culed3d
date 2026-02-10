@@ -3,8 +3,6 @@
 
 # define DEBUG_WALL_data \
 "/* XPM */" \
-"static char *_0bd5cbd8a514326bce5b7358b664ac8LFXVdPjWUOgM2Nbr[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"64 64 2 1 \"," \
 "\"  c #7AFF00\"," \
 "\". c #09D9E8\"," \

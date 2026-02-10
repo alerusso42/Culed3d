@@ -3,7 +3,6 @@
 
 # define LOADING_MSG_data \
 "/* XPM */" \
-"static char * loading_xpm[] = {" \
 "\"500 150 235 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

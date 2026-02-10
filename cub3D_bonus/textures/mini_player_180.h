@@ -3,8 +3,6 @@
 
 # define MINI_PLAYER_180_data \
 "/* XPM */" \
-"static char *result[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"24 24 6 1 \"," \
 "\"  c gray1\"," \
 "\". c gray7\"," \

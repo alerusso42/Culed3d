@@ -3,8 +3,6 @@
 
 # define POSSENZA_data \
 "/* XPM */" \
-"static char * possenza_xpm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"700 300 32319 3\"," \
 "\"   	c None\"," \
 "\".  	c #AFAE99\"," \

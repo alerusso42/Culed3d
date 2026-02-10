@@ -3,7 +3,6 @@
 
 # define DEATH4_data \
 "/* XPM */" \
-"static char * death2_xpm[] = {" \
 "\"1920 1080 255 2\"," \
 "\"  	c #000001\"," \
 "\". 	c #080100\"," \

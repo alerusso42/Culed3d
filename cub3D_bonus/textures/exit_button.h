@@ -3,7 +3,6 @@
 
 # define EXIT_BUTTON_data \
 "/* XPM */" \
-"static char * exit_button_xpm[] = {" \
 "\"500 150 215 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

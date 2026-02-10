@@ -3,7 +3,6 @@
 
 # define HOLY_FIGHT_SCENARIO_data \
 "/* XPM */" \
-"static char * holy_fight_scenario_xpm[] = {" \
 "\"1920 1080 255 2\"," \
 "\"  	c #000001\"," \
 "\". 	c #000306\"," \

@@ -6,23 +6,31 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:07:11 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:57:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 01:23:25 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
+
+
 void	parse_xpm(t_data *data, t_txtr *txtr, int name)
 {
-	char	*line;
-	char	*height;
+	int	i;
+	int	colors;
+	int	chars_per_color;
 
-	char c = g_textures[name][0];
+	i = 10;
 	if (!line)
 		return (error(data, E_MLX_TEXTURE, name));
-	height = line + sub_strlen(line, " ", EXCLUDE) + 1;
-	txtr->size[X] = ft_atoi(line + 1) * (txtr->bpp / 8);
-	txtr->size[Y] = ft_atoi(height);
+	
+	txtr->size[X] = ft_atoi(&g_textures[name][i]) * 4;
+	i += sub_strlen(&g_textures[name][i], " ", EXCLUDE);
+	txtr->size[Y] = ft_atoi(&g_textures[name][i]);
+	i += sub_strlen(&g_textures[name][i], " ", EXCLUDE);
+	colors = ft_atoi(&g_textures[name][i]);
+	i += sub_strlen(&g_textures[name][i], " ", EXCLUDE);
+	chars_per_color = ft_atoi(&g_textures[name][i]);
 	txtr->total_size = txtr->size[X] * txtr->size[Y];
 	free(line);
 	gnl_statik(fd, true);

@@ -3,7 +3,6 @@
 
 # define BARBARIAN_CHILL_data \
 "/* XPM */" \
-"static char * barbarian_chill_xpm[] = {" \
 "\"450 450 256 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #000000\"," \

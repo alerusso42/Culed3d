@@ -3,8 +3,6 @@
 
 # define LOSS_MSG_data \
 "/* XPM */" \
-"static char * loss_msg_xpm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"500 150 225 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

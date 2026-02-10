@@ -3,8 +3,6 @@
 
 # define NORTH_data \
 "/* XPM */" \
-"static char *result[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 2 1 \"," \
 "\" c #f05108\"," \
 "\". c #0FDAFF\"," \

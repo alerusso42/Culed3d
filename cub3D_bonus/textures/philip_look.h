@@ -3,7 +3,6 @@
 
 # define PHILIP_LOOK_data \
 "/* XPM */" \
-"static char * philip_look_xpm[] = {" \
 "\"300 450 256 2\"," \
 "\"  	c None\"," \
 "\". 	c #000000\"," \

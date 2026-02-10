@@ -3,8 +3,6 @@
 
 # define MINI_FOE_data \
 "/* XPM */" \
-"static char *_5504003cb864bea8a663ed521b41ed7mKNiK9XpzcXMMqYm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"24 24 5 1 \"," \
 "\"  c #212519\"," \
 "\". c #53340D\"," \

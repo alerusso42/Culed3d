@@ -3,8 +3,6 @@
 
 # define MINIMAP_FRAME_data \
 "/* XPM */" \
-"static char *_e3e5bbc3a4b46b4fb19fce8ebb0cf94Pp4oI3Qvzu6zYvKK[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 15 1 \"," \
 "\"  c None\"," \
 "\". c #070606\"," \

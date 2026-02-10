@@ -3,7 +3,6 @@
 
 # define PAPER_data \
 "/* XPM */" \
-"static char * paper_xpm[] = {" \
 "\"100 100 255 2\"," \
 "\"  	c #000000\"," \
 "\". 	c #000105\"," \

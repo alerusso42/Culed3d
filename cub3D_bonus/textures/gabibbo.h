@@ -3,8 +3,6 @@
 
 # define GABIBBO_data \
 "/* XPM */" \
-"static char *_ea3286c0a234687d8d4c299c849a33aQQqvrSwzH84eY0BQ[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 167 256 2 \"," \
 "\"   c #000000\"," \
 "\".  c #0B0303\"," \

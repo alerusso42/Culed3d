@@ -3,8 +3,6 @@
 
 # define MENU_BARBARIAN_data \
 "/* XPM */" \
-"static char *result[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 230 2 \"," \
 "\"   c black\"," \
 "\".  c #1E0C02\"," \

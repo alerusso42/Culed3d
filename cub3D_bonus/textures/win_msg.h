@@ -3,8 +3,6 @@
 
 # define WIN_MSG_data \
 "/* XPM */" \
-"static char * win_msg_xpm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"500 150 229 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

@@ -3,8 +3,6 @@
 
 # define SASSOCARTA_data \
 "/* XPM */" \
-"static char *_2f31e9e56ca4b04c53d23488d5e7c64tAm4Qh1DnAOIgPba[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 221 2 \"," \
 "\"   c #1A181B\"," \
 "\".  c #231C1C\"," \

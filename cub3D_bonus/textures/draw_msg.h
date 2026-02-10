@@ -3,8 +3,6 @@
 
 # define DRAW_MSG_data \
 "/* XPM */" \
-"static char * draw_msg_xpm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"500 150 226 2\"," \
 "\"  	c #012310\"," \
 "\". 	c #0FB75A\"," \

@@ -3,8 +3,6 @@
 
 # define BARBARO_data \
 "/* XPM */" \
-"static char *f9fa287ddc714f169e08ce33dcd0ffe1pgLaGvVRydHELhqm[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 667 256 2 \"," \
 "\"   c #170C06\"," \
 "\".  c #1B0C06\"," \

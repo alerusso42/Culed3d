@@ -3,8 +3,6 @@
 
 # define DEDOOR_data \
 "/* XPM */" \
-"static char *_a694494b630400caf16d410b0c88094HlpmMKBrsAfZ5fGS[] = {" \
-"/* columns rows colors chars-per-pixel */" \
 "\"300 300 256 2 \"," \
 "\"   c #020301\"," \
 "\".  c #0A0501\"," \
