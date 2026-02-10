@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/10 09:18:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:51:48 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	spread_democracy(t_data *data)
 	delete((void **)&data->doors);
 	free_entities(data->items);
 	delete((void **)&data->items);
+	delete((void **)&data->txtr_ceiling);
+	delete((void **)&data->txtr_floor);
 	free_texture(data);
 	free_matrix(data->map);
 	free(data->doors);

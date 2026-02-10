@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/09 21:49:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:46:32 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ static void	parse_cub(t_data *data, int fd)
 	check_textures(data, fd);
 	get_map(data, fd);
 	parse_map(data);
+	gnl_statik(fd, true);
 }

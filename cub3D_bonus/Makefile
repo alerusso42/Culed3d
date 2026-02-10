@@ -78,7 +78,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
-	rm -rf minilibx-linux
+	rm -rf minilibx-linux *.out *.txt
 
 bonus.c: fclean $(NAME)
 

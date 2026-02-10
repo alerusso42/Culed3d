@@ -34,27 +34,23 @@ void	get_txtr(t_data *data)
 		error(data, E_MALLOC, NULL);
 	map.alloc = t_map_alloc;
 	map.del = t_map_delete;
-	//txtr_list(data);
-	//i = -1;
 	i = -1;
-	int	fd = open("Forza_Milan.txt", O_CREAT, 0666);
 	while (++i != TEXTURES_NUM)
 	{
 		fill_txtr(data, &map, i);
-		fd_printf(fd, "NUMBER %d:\n|%s|\n", i, data->txtr[i].xpm);
 		map_clear(&map);
-		close(fd);
-		if (i == 10)
-			error(data, 0, NULL);
-		fd = open("Forza_Milan.txt", O_CREAT | O_APPEND, 0666);
+		printf("xpm %d/%d\n", i + 1, TEXTURES_NUM);
 	}
 	i = -1;
+	//int	fd = open("Forza_Milan.txt", O_CREAT | O_RDWR, 0666);
 	while (++i < TEXTURES_NUM)
 	{
 		if (!data->txtr[i].xpm)
 			return (fd_printf(2, "%d\n", i), error(data, E_MLX_TEXTURE, NULL));
+		//fd_printf(fd, "NUMBER %d:\n|%s|\n", i, data->txtr[i].xpm);
 	}
-	close(fd);
+	map_free(&map);
+	//close(fd);
 }
 
 static void	t_map_delete(t_map_val *pair)
@@ -67,9 +63,12 @@ static void	t_map_delete(t_map_val *pair)
 static int	t_map_alloc(t_map_val *pair, char *key, void *val)
 {
 	pair->key = ft_strdup(key);
-	pair->val = ft_strdup(val);
-	if (!pair->key || !pair->val)
-		return (free(pair->key), free(pair->val), 1);
+	if (!pair->key)
+		return (1);
+	pair->val = malloc(5);
+	if (!pair->val)
+		return (free(pair->key), 1);
+	ft_memcpy(pair->val, val, 5);
 	return (0);
 }
 

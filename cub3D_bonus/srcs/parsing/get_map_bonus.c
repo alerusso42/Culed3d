@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:32:38 by lparolis          #+#    #+#             */
-/*   Updated: 2025/09/01 12:08:33 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:49:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	get_map(t_data *data, int fd)
 		pre_split = ft_rejoin(pre_split, line, true, true);
 		line = get_next_line(fd);
 	}
+	gnl_statik(fd, true);
 	close(fd);
 	if (!pre_split)
 		return (error(data, E_NO_MAP, NULL));

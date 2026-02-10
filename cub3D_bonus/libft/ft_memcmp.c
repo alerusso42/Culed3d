@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraccan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:18:26 by edraccan          #+#    #+#             */
-/*   Updated: 2024/11/25 11:58:53 by edraccan         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:09:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 			return (str1[i] - str2[i]);
 		i++;
 	}
-	if (i == 0 && str1[i] == '\0')
-		return (str1[i] - str2[i]);
+//	if (i == 0 && str1[i] == '\0')
+//		return (str1[i] - str2[i]);
 	return (0);
 }
 
