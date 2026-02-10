@@ -1,0 +1,357 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 98.27    186.11   186.11                             ft_strlen
+  1.69    189.31     3.20                             ft_bzero
+  0.01    189.33     0.02   917156     0.00     0.00  cache_get
+  0.01    189.35     0.02       10     2.00     4.00  xpm_put_colors
+  0.01    189.36     0.01                             check_c
+  0.01    189.37     0.01                             ft_strlcpy
+  0.01    189.38     0.01                             map_clear
+  0.00    189.38     0.00      631     0.00     0.00  t_map_alloc
+  0.00    189.38     0.00      631     0.00     0.00  t_map_delete
+  0.00    189.38     0.00      629     0.00     0.00  create_color_brga
+  0.00    189.38     0.00      618     0.00     0.00  cache_set
+  0.00    189.38     0.00      135     0.00     0.00  is_it_valid
+  0.00    189.38     0.00       13     0.00     0.00  safe_malloc
+  0.00    189.38     0.00       11     0.00     3.64  fill_txtr
+  0.00    189.38     0.00       11     0.00     3.64  parse_xpm
+  0.00    189.38     0.00       10     0.00     0.00  xpm_get_colors
+  0.00    189.38     0.00        6     0.00     0.00  delete
+  0.00    189.38     0.00        3     0.00     0.00  free_entities
+  0.00    189.38     0.00        2     0.00     0.00  check_colors
+  0.00    189.38     0.00        1     0.00     0.00  check_chars
+  0.00    189.38     0.00        1     0.00     0.00  check_map_access
+  0.00    189.38     0.00        1     0.00     0.00  check_other
+  0.00    189.38     0.00        1     0.00     0.00  check_textures
+  0.00    189.38     0.00        1     0.00     0.00  check_walls
+  0.00    189.38     0.00        1     0.00     0.00  count_chars
+  0.00    189.38     0.00        1     0.00     0.00  error
+  0.00    189.38     0.00        1     0.00     0.00  error2
+  0.00    189.38     0.00        1     0.00     0.00  free_texture
+  0.00    189.38     0.00        1     0.00     0.00  get_map
+  0.00    189.38     0.00        1     0.00    40.00  get_txtr
+  0.00    189.38     0.00        1     0.00    40.00  lets_start_the_party
+  0.00    189.38     0.00        1     0.00     0.00  parse_cub
+  0.00    189.38     0.00        1     0.00     0.00  parse_map
+  0.00    189.38     0.00        1     0.00     0.00  parsing
+  0.00    189.38     0.00        1     0.00     0.00  path_checker
+  0.00    189.38     0.00        1     0.00     0.00  path_finder
+  0.00    189.38     0.00        1     0.00     0.00  player_finder
+  0.00    189.38     0.00        1     0.00     0.00  resize_map
+  0.00    189.38     0.00        1     0.00     0.00  set_txtr_null
+  0.00    189.38     0.00        1     0.00     0.00  spread_democracy
+  0.00    189.38     0.00        1     0.00     0.00  stop_audio
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.01% of 189.38 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     98.3  186.11    0.00                 ft_strlen [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]      1.7    3.20    0.00                 ft_bzero [2]
+-----------------------------------------------
+                0.00    0.04      11/11          get_txtr [6]
+[3]      0.0    0.00    0.04      11         fill_txtr [3]
+                0.00    0.04      11/11          parse_xpm [4]
+-----------------------------------------------
+                0.00    0.04      11/11          fill_txtr [3]
+[4]      0.0    0.00    0.04      11         parse_xpm [4]
+                0.02    0.02      10/10          xpm_put_colors [5]
+                0.00    0.00      10/10          xpm_get_colors [19]
+-----------------------------------------------
+                0.02    0.02      10/10          parse_xpm [4]
+[5]      0.0    0.02    0.02      10         xpm_put_colors [5]
+                0.02    0.00  917156/917156      cache_get [9]
+                0.00    0.00     618/618         cache_set [16]
+-----------------------------------------------
+                0.00    0.04       1/1           lets_start_the_party [7]
+[6]      0.0    0.00    0.04       1         get_txtr [6]
+                0.00    0.04      11/11          fill_txtr [3]
+                0.00    0.00       1/1           error [29]
+-----------------------------------------------
+                0.00    0.04       1/1           main [8]
+[7]      0.0    0.00    0.04       1         lets_start_the_party [7]
+                0.00    0.04       1/1           get_txtr [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      0.0    0.00    0.04                 main [8]
+                0.00    0.04       1/1           lets_start_the_party [7]
+                0.00    0.00       1/1           set_txtr_null [40]
+                0.00    0.00       1/1           parsing [35]
+-----------------------------------------------
+                0.02    0.00  917156/917156      xpm_put_colors [5]
+[9]      0.0    0.02    0.00  917156         cache_get [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]     0.0    0.01    0.00                 check_c [10]
+-----------------------------------------------
+                                                 <spontaneous>
+[11]     0.0    0.01    0.00                 ft_strlcpy [11]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     0.0    0.01    0.00                 map_clear [12]
+-----------------------------------------------
+                0.00    0.00     631/631         _map_insert [207]
+[13]     0.0    0.00    0.00     631         t_map_alloc [13]
+-----------------------------------------------
+                0.00    0.00     631/631         lst_delone [134]
+[14]     0.0    0.00    0.00     631         t_map_delete [14]
+-----------------------------------------------
+                0.00    0.00     629/629         xpm_get_colors [19]
+[15]     0.0    0.00    0.00     629         create_color_brga [15]
+-----------------------------------------------
+                0.00    0.00     618/618         xpm_put_colors [5]
+[16]     0.0    0.00    0.00     618         cache_set [16]
+-----------------------------------------------
+                0.00    0.00       9/135         check_other [25]
+                0.00    0.00     126/135         check_walls [27]
+[17]     0.0    0.00    0.00     135         is_it_valid [17]
+-----------------------------------------------
+                0.00    0.00      13/13          resize_map [39]
+[18]     0.0    0.00    0.00      13         safe_malloc [18]
+-----------------------------------------------
+                0.00    0.00      10/10          parse_xpm [4]
+[19]     0.0    0.00    0.00      10         xpm_get_colors [19]
+                0.00    0.00     629/629         create_color_brga [15]
+-----------------------------------------------
+                0.00    0.00       1/6           free_texture [31]
+                0.00    0.00       5/6           spread_democracy [41]
+[20]     0.0    0.00    0.00       6         delete [20]
+-----------------------------------------------
+                0.00    0.00       3/3           spread_democracy [41]
+[21]     0.0    0.00    0.00       3         free_entities [21]
+-----------------------------------------------
+                0.00    0.00       2/2           check_textures [26]
+[22]     0.0    0.00    0.00       2         check_colors [22]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_map [34]
+[23]     0.0    0.00    0.00       1         check_chars [23]
+                0.00    0.00       1/1           count_chars [28]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_map [34]
+[24]     0.0    0.00    0.00       1         check_map_access [24]
+                0.00    0.00       1/1           player_finder [38]
+                0.00    0.00       1/1           path_finder [37]
+                0.00    0.00       1/1           path_checker [36]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_map [34]
+[25]     0.0    0.00    0.00       1         check_other [25]
+                0.00    0.00       9/135         is_it_valid [17]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cub [33]
+[26]     0.0    0.00    0.00       1         check_textures [26]
+                0.00    0.00       2/2           check_colors [22]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_map [34]
+[27]     0.0    0.00    0.00       1         check_walls [27]
+                0.00    0.00     126/135         is_it_valid [17]
+-----------------------------------------------
+                0.00    0.00       1/1           check_chars [23]
+[28]     0.0    0.00    0.00       1         count_chars [28]
+-----------------------------------------------
+                0.00    0.00       1/1           get_txtr [6]
+[29]     0.0    0.00    0.00       1         error [29]
+                0.00    0.00       1/1           spread_democracy [41]
+                0.00    0.00       1/1           error2 [30]
+-----------------------------------------------
+                0.00    0.00       1/1           error [29]
+[30]     0.0    0.00    0.00       1         error2 [30]
+-----------------------------------------------
+                0.00    0.00       1/1           spread_democracy [41]
+[31]     0.0    0.00    0.00       1         free_texture [31]
+                0.00    0.00       1/6           delete [20]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cub [33]
+[32]     0.0    0.00    0.00       1         get_map [32]
+                0.00    0.00       1/1           resize_map [39]
+-----------------------------------------------
+                0.00    0.00       1/1           parsing [35]
+[33]     0.0    0.00    0.00       1         parse_cub [33]
+                0.00    0.00       1/1           check_textures [26]
+                0.00    0.00       1/1           get_map [32]
+                0.00    0.00       1/1           parse_map [34]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cub [33]
+[34]     0.0    0.00    0.00       1         parse_map [34]
+                0.00    0.00       1/1           check_walls [27]
+                0.00    0.00       1/1           check_chars [23]
+                0.00    0.00       1/1           check_other [25]
+                0.00    0.00       1/1           check_map_access [24]
+-----------------------------------------------
+                0.00    0.00       1/1           main [8]
+[35]     0.0    0.00    0.00       1         parsing [35]
+                0.00    0.00       1/1           parse_cub [33]
+-----------------------------------------------
+                0.00    0.00       1/1           check_map_access [24]
+[36]     0.0    0.00    0.00       1         path_checker [36]
+-----------------------------------------------
+                                 544             path_finder [37]
+                0.00    0.00       1/1           check_map_access [24]
+[37]     0.0    0.00    0.00       1+544     path_finder [37]
+                                 544             path_finder [37]
+-----------------------------------------------
+                0.00    0.00       1/1           check_map_access [24]
+[38]     0.0    0.00    0.00       1         player_finder [38]
+-----------------------------------------------
+                0.00    0.00       1/1           get_map [32]
+[39]     0.0    0.00    0.00       1         resize_map [39]
+                0.00    0.00      13/13          safe_malloc [18]
+-----------------------------------------------
+                0.00    0.00       1/1           main [8]
+[40]     0.0    0.00    0.00       1         set_txtr_null [40]
+-----------------------------------------------
+                0.00    0.00       1/1           error [29]
+[41]     0.0    0.00    0.00       1         spread_democracy [41]
+                0.00    0.00       5/6           delete [20]
+                0.00    0.00       3/3           free_entities [21]
+                0.00    0.00       1/1           stop_audio [42]
+                0.00    0.00       1/1           free_texture [31]
+-----------------------------------------------
+                0.00    0.00       1/1           spread_democracy [41]
+[42]     0.0    0.00    0.00       1         stop_audio [42]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [9] cache_get (xpm_bonus.c) [3] fill_txtr              [35] parsing
+  [16] cache_set (xpm_bonus.c) [21] free_entities (mem_handler_bonus.c) [36] path_checker (check_map_access_bonus.c)
+  [10] check_c (ft_strrchr.c) [31] free_texture           [37] path_finder (check_map_access_bonus.c)
+  [23] check_chars             [2] ft_bzero               [38] player_finder (check_map_access_bonus.c)
+  [22] check_colors           [11] ft_strlcpy             [39] resize_map (get_map_bonus.c)
+  [24] check_map_access        [1] ft_strlen              [18] safe_malloc
+  [25] check_other            [32] get_map                [40] set_txtr_null
+  [26] check_textures          [6] get_txtr               [41] spread_democracy
+  [27] check_walls            [17] is_it_valid (check_map_bonus.c) [42] stop_audio
+  [28] count_chars             [7] lets_start_the_party   [13] t_map_alloc (get_texture_bonus.c)
+  [15] create_color_brga (xpm_bonus.c) [12] map_clear     [14] t_map_delete (get_texture_bonus.c)
+  [20] delete                 [33] parse_cub (parsing_bonus.c) [19] xpm_get_colors (xpm_bonus.c)
+  [29] error                  [34] parse_map               [5] xpm_put_colors (xpm_bonus.c)
+  [30] error2 (error_bonus.c)  [4] parse_xpm

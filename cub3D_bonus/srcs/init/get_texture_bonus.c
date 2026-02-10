@@ -43,6 +43,10 @@ void	get_txtr(t_data *data)
 		fill_txtr(data, &map, i);
 		fd_printf(fd, "NUMBER %d:\n|%s|\n", i, data->txtr[i].xpm);
 		map_clear(&map);
+		close(fd);
+		if (i == 10)
+			error(data, 0, NULL);
+		fd = open("Forza_Milan.txt", O_CREAT | O_APPEND, 0666);
 	}
 	i = -1;
 	while (++i < TEXTURES_NUM)

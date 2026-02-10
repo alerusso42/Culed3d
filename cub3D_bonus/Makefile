@@ -98,6 +98,15 @@ run:
 val: all
 	valgrind --suppressions=../s.supp --leak-check=full --show-leak-kinds=all --track-origins=yes -s --quiet ./$(NAME) maps/$(MAP).cub
 
+# Target speciale per il profiling
+prof: CFLAGS += -pg
+prof: LDFLAGS += -pg
+prof: re
+	./cub3D_bonus; gprof ./cub3D_bonus gmon.out > profiling_results.txt; make prof_read
+	
+prof_read:
+	less profiling_results.txt
+
 #
 
 .PHONY: all clean fclean re libft

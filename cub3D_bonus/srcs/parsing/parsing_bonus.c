@@ -28,10 +28,11 @@ void	parsing(t_data *data, int argc, char **argv)
 	int	fd;
 
 	if (argc < 2)
-		error(data, E_ARGC, NULL);
+		fd = open("maps/debug.cub", O_RDONLY);
 	else if (check_file_extension(argv[1]) == 1)
 		error(data, E_EXT, argv[1]);
-	fd = open(argv[1], O_RDONLY);
+	else
+		fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		error(data, E_OPEN, argv[1]);
 	parse_cub(data, fd);
