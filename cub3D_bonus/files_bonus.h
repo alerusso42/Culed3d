@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:12 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:34:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:18:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,5 +204,6 @@ enum e_textures
 };
 
 extern char *g_textures[TEXTURES_NUM];
+extern unsigned char bmp_header[54];
 
 #endif

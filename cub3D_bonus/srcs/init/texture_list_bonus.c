@@ -3,168 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:33:46 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:18:05 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
-
-//static void	battle_txtr(t_data *data, int *size);
-
-/*
-void	txtr_list(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i != TEXTURE_NUM)
-	{
-		fill_txtr(data, i, (int [2]){0, 0});
-		++i;
-	}
-}*/
-
-/*	
-//	data->txtr is an array of textures.
-	the array stores everything mlx returns, and other info (like img height).
-
-//	data->txtr[NORTH].path are the names taken from the parsing of the .cub
-
-//	size is the expected size of the img
-*/
-
-/*
-void	txtr_list(t_data *data)
-{
-	int	size[2];
-
-	fill_array(WIMG, HIMG, size);
-	fill_txtr(data, NORTH, size);
-	fill_txtr(data, EAST, size);
-	fill_txtr(data, SOUTH, size);
-	fill_txtr(data, WEST, size);
-	fill_txtr(data, PLAYER, size);
-	fill_txtr(data, CROSSHAIR, size);
-	fill_array(TXTR, TXTR, size);
-	fill_txtr(data, DOOR_CLOSE, size);
-	fill_txtr(data, DOOR_OPEN, size);
-	fill_txtr(data, BAGUETTE, size);
-	fill_txtr(data, COIN, size);
-	txtr_list2(data);
-	fill_array(700, 300, size);
-	fill_txtr(data, ARMS1, size);
-	fill_txtr(data, ARMS2, size);
-	fill_array(300, 667, size);
-	foe_txtr_list(data, size);
-	battle_txtr(data, size);
-}
-
-void	txtr_list2(t_data *data)
-{
-	int	size[2];
-
-	fill_array(WSCREEN, HSCREEN, size);
-	fill_txtr(data, SCREEN, size);
-	if (DEBUG == false)
-		fill_txtr(data, BATTLE_FRAME, size);
-	else
-		fill_txtr(data, BATTLE_FRAME, size);
-	fill_array(HIMG_MINIMAP, size);
-	fill_txtr(data, WALL, WALL_TXTR, size);
-	mini_player_txtr_list(data, size);
-	fill_txtr(data, M_DOOR, size);
-	fill_txtr(data, M_COIN, size);
-	fill_txtr(data, M_FOE, size);
-	fill_array(408, 408, size);
-	fill_txtr(data, M_BACKGROUND, size);
-	fill_array(500, 150, size);
-	fill_txtr(data, EXIT_BUTTON, size);
-	fill_txtr(data, EXIT_BUTTON, size);
-	fill_array(1920, 1077, size);
-	if (DEBUG == true)
-		fill_txtr(data, MENU_FRAME,size);
-	else
-		fill_txtr(data, MENU_FRAME, size);
-}
-
-void	mini_player_txtr_list(t_data *data, int *size)
-{
-	fill_txtr(data, M_PLAYER_0, size);
-	fill_txtr(data, M_PLAYER_20, size);
-	fill_txtr(data, M_PLAYER_40, size);
-	fill_txtr(data, M_PLAYER_60, size);
-	fill_txtr(data, M_PLAYER_80, size);
-	fill_txtr(data, M_PLAYER_100, size);
-	fill_txtr(data, M_PLAYER_120, size);
-	fill_txtr(data, M_PLAYER_140, size);
-	fill_txtr(data, M_PLAYER_160, size);
-	fill_txtr(data, M_PLAYER_180, size);
-	fill_txtr(data, M_PLAYER_200, size);
-	fill_txtr(data, M_PLAYER_220, size);
-	fill_txtr(data, M_PLAYER_240, size);
-	fill_txtr(data, M_PLAYER_260, size);
-	fill_txtr(data, M_PLAYER_280, size);
-	fill_txtr(data, M_PLAYER_300, size);
-	fill_txtr(data, M_PLAYER_320, size);
-	fill_txtr(data, M_PLAYER_340, size);
-}
-
-void	foe_txtr_list(t_data *data, int *size)
-{
-	fill_txtr(data, FOE1, size);
-	fill_txtr(data, FOE2, size);
-	fill_txtr(data, FOE3, size);
-	fill_txtr(data, FOE4, size);
-	fill_txtr(data, FOE5, size);
-	fill_txtr(data, FOE6, size);
-	fill_txtr(data, FOE7, size);
-	fill_txtr(data, FOE8, size);
-	fill_txtr(data, FOE9, size);
-	fill_txtr(data, FOE10, size);
-	fill_txtr(data, FOE11, size);
-	fill_txtr(data, FOE12, size);
-	fill_array(300, 300, size);
-	fill_txtr(data, FOE_BIT1, size);
-	fill_txtr(data, FOE_BIT2, size);
-	fill_txtr(data, FOE_BIT3, size);
-	fill_txtr(data, FOE_BIT4, size);
-	fill_array(500, 150, size);
-	fill_txtr(data, PLAY_BUTTON, size);
-	fill_txtr(data, EXIT_BUTTON, size);
-	fill_txtr(data, LOSS_MSG, size);
-	fill_txtr(data, DRAW_MSG, size);
-	fill_txtr(data, WIN_MSG, size);
-}
-
-static void	battle_txtr(t_data *data, int *size)
-{
-	fill_array(450, 450, size);
-	fill_txtr(data, BARBARIAN_CHILL, size);
-	fill_txtr(data, BARBARIAN_ROCK, size);
-	fill_txtr(data, BARBARIAN_PAPER, size);
-	fill_txtr(data, BARBARIAN_SCISSOR, size);
-	fill_txtr(data, BARBARIAN_SCARED, size);
-	fill_array(300, 450, size);
-	fill_txtr(data, PHILIP_CHILL, size);
-	fill_txtr(data, PHILIP_ROCK, size);
-	fill_txtr(data, PHILIP_PAPER, size);
-	fill_txtr(data, PHILIP_SCISSOR, size);
-	fill_txtr(data, PHILIP_LOOK, size);
-	fill_array(1920, 1080, size);
-	fill_txtr(data, DEATH1, size);
-	fill_txtr(data, DEATH2, size);
-	fill_txtr(data, DEATH3, size);
-	fill_txtr(data, DEATH4, size);
-	fill_txtr(data, DEATH5, size);
-	fill_txtr(data, DEATH6, size);
-	fill_txtr(data, DEATH7, size);
-	fill_txtr(data, ROCK, size);
-	fill_txtr(data, PAPER, size);
-	fill_txtr(data, SCISSORS, size);
-}*/
 
 char *g_textures[TEXTURES_NUM] = {
 	[SCREEN] = SCREEN_data,
@@ -246,4 +92,25 @@ char *g_textures[TEXTURES_NUM] = {
 	[ROCK] = ROCK_data,
 	[PAPER] = PAPER_data,
 	[SCISSORS] = SCISSORS_data
+};
+
+unsigned char bmp_header[54] = {
+	// --- BITMAP FILE HEADER (14 bytes) ---
+	0x42, 0x4D,             // "BM" MAGIC NUMBER
+	0x36, 0x00, 0x96, 0x00, // Dimensione totale file (9.830.454 bytes)
+	0x00, 0x00, 0x00, 0x00, // Riservato
+	0x36, 0x00, 0x00, 0x00, // Offset inizio dati pixel (54)
+
+	// --- DIB HEADER (BITMAPINFOHEADER - 40 bytes) ---
+	0x28, 0x00, 0x00, 0x00, // Dimensione di questo header (40)
+	0x80, 0x07, 0x00, 0x00, // Larghezza: 1920
+	0x00, 0xFB, 0xFF, 0xFF, // Altezza: -1280 (Top-Down, Complemento a due)
+	0x01, 0x00,             // Piani (sempre 1)
+	0x20, 0x00,             // Bit per Pixel (32)
+	0x00, 0x00, 0x00, 0x00, // Compressione (0 = BI_RGB, nessuna)
+	0x00, 0x00, 0x96, 0x00, // Dimensione dati immagine (9.830.400 bytes)
+	0x13, 0x0B, 0x00, 0x00, // Ris. Orizzontale (2835 pixel/m)
+	0x13, 0x0B, 0x00, 0x00, // Ris. Verticale (2835 pixel/m)
+	0x00, 0x00, 0x00, 0x00, // Colori usati (0 = tutti)
+	0x00, 0x00, 0x00, 0x00  // Colori importanti (0 = tutti)
 };

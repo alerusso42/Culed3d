@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 15:24:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:24:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,8 @@ enum e_utils
 	RESULT_LOSS,
 	RESULT_DRAW,
 };
+
+void	webserv_porting(t_data *data);
 
 //void	fill_txtr(t_data *data, t_map *map, int index, int size[2]);
 void	fill_txtr(t_data *data, t_map *map, int index);

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/09 22:31:24 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:25:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D_bonus.h"
+#define RENDER_FILE "render.bmp"
 
 /*
 	FUNCTION NAME			DESCRIPTION
@@ -31,6 +32,7 @@ int	main(int argc, char *argv[])
 	parsing(&data, argc, argv);
 	lets_start_the_party(&data);
 	gettimeofday(&data.start, NULL);
+	webserv_porting(&data);
 	spread_democracy(&data);
 	return (0);
 }
