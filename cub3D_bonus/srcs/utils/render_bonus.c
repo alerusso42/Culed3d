@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:33:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:08:32 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	if (!color)
 		return ;
 	index = y * data->txtr[SCREEN].size[X] + (x * (data->txtr[SCREEN].bpp / 8));
-	data->txtr[SCREEN].xpm[index] = color & 255;
+	data->txtr[SCREEN].xpm[index + 2] = color & 255;
 	data->txtr[SCREEN].xpm[index + 1] = (color >> 8) & 255;
-	data->txtr[SCREEN].xpm[index + 2] = (color >> 16) & 255;
+	data->txtr[SCREEN].xpm[index] = (color >> 16) & 255;
 	data->txtr[SCREEN].xpm[index + 3] = (color >> 24) & 255;
 }
 
@@ -102,8 +102,9 @@ void	clear_window(t_data *data)
 		{
 			index = y * size_x + x;
 			data->txtr[SCREEN].xpm[index] = 0;
-			data->txtr[SCREEN].xpm[index] = 0;
-			data->txtr[SCREEN].xpm[index] = 0;
+			data->txtr[SCREEN].xpm[index + 1] = 0;
+			data->txtr[SCREEN].xpm[index + 2] = 0;
+			data->txtr[SCREEN].xpm[index + 3] = 0;
 		}
 	}
 }
@@ -115,12 +116,15 @@ void	backgrounder(t_data *data)
 	int	i;
 	int	j;
 
+	ceiling = 0xFFFFFF;
+	floor = 0xFFFFFF;
+/*
 	ceiling = (data->ceiling[0] << 16) | \
 (data->ceiling[1] << 8) | \
 data->ceiling[2];
 	floor = (data->floor[0] << 16) | \
 (data->floor[1] << 8) | \
-data->floor[2];
+data->floor[2];*/
 	j = -1;
 	while (++j < WSCREEN)
 	{

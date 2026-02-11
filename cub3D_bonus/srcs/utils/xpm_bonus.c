@@ -6,14 +6,14 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:07:11 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 10:53:00 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:03:21 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 static void	xpm_get_colors(t_data *data, t_txtr *txtr, t_map *map, int name);
-static void	create_color_brga(char *rgba, char *val);
+static void	create_color_rgba(char *rgba, char *val);
 static void	xpm_put_colors(t_data *data, t_txtr *txtr, t_map *map, int name);
 
 void	parse_xpm(t_data *data, t_txtr *txtr, t_map *map, int name)
@@ -65,7 +65,7 @@ static void	xpm_get_colors(t_data *data, t_txtr *txtr, t_map *map, int name)
 		switch (g_textures[name][i])
 		{
 			case ('#'):
-				create_color_brga(&g_textures[name][++i], val);
+				create_color_rgba(&g_textures[name][++i], val);
 				break ;
 			case ('B'):case ('b'):
 				ft_memcpy(val, ((char []){0, 0, 0, 255, 0}), 5);
@@ -88,7 +88,7 @@ static void	xpm_get_colors(t_data *data, t_txtr *txtr, t_map *map, int name)
 	txtr->i = i + 1;
 }
 
-static void	create_color_brga(char *rgba, char *val)
+static void	create_color_rgba(char *rgba, char *val)
 {
 	int			j;
 	static char	hex[] = {['0'] = 0, ['1'] = 1, ['2'] = 2, ['3'] = 3,\
@@ -98,15 +98,15 @@ static void	create_color_brga(char *rgba, char *val)
 						['a'] = 10, ['b'] = 11,\
 						['c'] = 12, ['d'] = 13, ['e'] = 14, ['f'] = 15,};
 
-	j = 2;
+	j = 0;
 	for (int i = 0; i != 3; i++)
 	{
 		val[j] = 0;
 		val[j] += ((hex[(int)rgba[i]]) << 4);
 		val[j] += (hex[(int)rgba[i + 1]]);
-		j--;
+		j++;
 	}
-	val[3] = 0;
+	val[3] = (char)255;
 	val[4] = 0;
 }
 
