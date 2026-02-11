@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:39:23 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 12:43:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:51:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int	get_pixel_color(char *img_ptr, int i)
 {
 	return ((img_ptr[i] & 255) | \
 ((img_ptr[i + 1] & 255) << 8) | \
-((img_ptr[i + 2] & 255) << 16));
+((img_ptr[i + 2] & 255) << 16) | \
+((img_ptr[i + 3] & 255) << 24));
 }

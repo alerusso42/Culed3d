@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:44:14 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/21 15:05:29 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:46:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	data->screen[index] = color & 0xFF;
 	data->screen[index + 1] = (color >> 8) & 0xFF;
 	data->screen[index + 2] = (color >> 16) & 0xFF;
+	data->screen[index + 3] = (color >> 24) & 0xFF;
 }
 
 /*
