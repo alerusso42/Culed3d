@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:27:55 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 09:18:05 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 08:20:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ char *g_textures[TEXTURES_NUM] = {
 	[FOE10] = FOE_10_data,
 	[FOE11] = FOE_11_data,
 	[FOE12] = FOE_12_data,
-	[FOE_BIT1] = DEATH1_data,
-	[FOE_BIT2] = DEATH2_data,
-	[FOE_BIT3] = DEATH3_data,
-	[FOE_BIT4] = DEATH4_data,
+	[FOE_BIT1] = BARBARIAN_1LEFT_data,
+	[FOE_BIT2] = BARBARIAN_2LEFT_data,
+	[FOE_BIT3] = BARBARIAN_1RIGHT_data,
+	[FOE_BIT4] = BARBARIAN_2RIGHT_data,
 	[BARBARIAN_CHILL] = BARBARIAN_CHILL_data,
 	[BARBARIAN_ROCK] = BARBARIAN_ROCK_data,
 	[BARBARIAN_PAPER] = BARBARIAN_PAPER_data,
@@ -72,8 +72,8 @@ char *g_textures[TEXTURES_NUM] = {
 	[PHILIP_SCISSOR] = PHILIP_SCISSORS_data,
 	[PHILIP_LOOK] = PHILIP_LOOK_data,
 	[COIN] = COIN_data,
-	[ARMS1] = BARBARIAN_1LEFT_data,
-	[ARMS2] = BARBARIAN_1RIGHT_data,
+	[ARMS1] = POSSENZA_data,
+	[ARMS2] = POSSENZA2_data,
 	[BAGUETTE] = BAGUETTE_data,
 	[MENU_FRAME] = MENU_IL_DESTINO_data,
 	[PLAY_BUTTON] = PLAY_BUTTON_data,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interact_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/28 16:46:06 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 07:51:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char	entity_line(t_data *data, t_entity *ray, double angle);
 static char	the_entity_checker(t_data *data, t_entity *ray);
 static void	interactions(t_data *data, t_entity *entity);
+static void	other_interactions(t_data *data);
 
 void	interact(t_data *data)
 {
@@ -23,6 +24,8 @@ void	interact(t_data *data)
 	int			y;
 	double		angle;
 
+	if (data->menu || data->battle)
+		return (other_interactions(data));
 	angle = data->player.pov[X];
 	entity_line(data, &data->player, angle);
 	x = data->player.curr_x / WIMG;
@@ -101,3 +104,21 @@ static void	interactions(t_data *data, t_entity *entity)
 	else if (entity->type == ENTITY_ITEM)
 		update_map(data, entity, -1, -1);
 }
+
+static void	other_interactions(t_data *data)
+{
+	if (data->menu)
+	{
+		if (data->player.input & UP)
+		{
+			//play_audio(SFX_GAME, data);
+			data->menu = false;
+			data->button = 0;
+		}
+		else if (data->player.input & DOWN)
+			data->menu = -1;
+	}
+}
+/*
+
+*/

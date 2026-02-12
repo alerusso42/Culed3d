@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:07:11 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 11:03:21 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 07:32:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	create_color_rgba(char *rgba, char *val)
 						['c'] = 12, ['d'] = 13, ['e'] = 14, ['f'] = 15,};
 
 	j = 0;
-	for (int i = 0; i != 3; i++)
+	for (int i = 0; i != 6; i += 2)
 	{
 		val[j] = 0;
 		val[j] += ((hex[(int)rgba[i]]) << 4);

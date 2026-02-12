@@ -6,14 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:39:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 07:54:16 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
 // static void	render_button(t_data *data);
-static bool	check_mouse(t_data *data, int left_angle[2], int size[2]);
 static void	toggle_button(t_data *data, int button, bool on);
 static int	the_frame(int *time, int nframes);
 
@@ -33,27 +32,12 @@ void	main_menu(t_data *data)
 		put_image_to_image(data, MENU_FRAME, pos, size);
 	fill_array(700, 355, pos);
 	fill_array(500, 150, size);
-	toggle_button(data, PLAY_BUTTON, check_mouse(data, pos, size));
+	toggle_button(data, PLAY_BUTTON, data->player.input & UP);
 	put_image_to_image(data, PLAY_BUTTON, pos, size);
 	fill_array(700, 600, pos);
-	toggle_button(data, EXIT_BUTTON, check_mouse(data, pos, size));
+	toggle_button(data, EXIT_BUTTON, data->player.input & DOWN);
 	put_image_to_image(data, EXIT_BUTTON, pos, size);
 	//mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
-}
-
-static bool	check_mouse(t_data *data, int left_angle[2], int size[2])
-{
-	int	mouse_pos[2] = {0, 0};
-	int	right_angle[2];
-
-	(void)data;
-	fill_array(left_angle[X] + size[X], left_angle[Y] + size[Y], right_angle);
-	//mlx_mouse_get_pos(data->mlx, data->win, &mouse_pos[X], &mouse_pos[Y]);
-	if (mouse_pos[X] < left_angle[X] || mouse_pos[X] > right_angle[X])
-		return (false);
-	if (mouse_pos[Y] < left_angle[Y] || mouse_pos[Y] > right_angle[Y])
-		return (false);
-	return (true);
 }
 
 static void	toggle_button(t_data *data, int button, bool on)

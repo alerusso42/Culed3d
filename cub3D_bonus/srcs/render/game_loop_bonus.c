@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 09:32:29 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 09:05:49 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	webserv_porting(t_data *data)
 
 	while (1)
 	{
-		if (read(0, input, sizeof(input) - 1) == -1)
-			error(data, E_INPUT, NULL);
-		execute_input(data, input);
 		game_loop(data);
 		bmp_fd = open(RENDER_FILE, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		if (bmp_fd < 0)
@@ -35,8 +32,13 @@ void	webserv_porting(t_data *data)
 		bytes = write(bmp_fd, bmp_header, sizeof(bmp_header));
 		bytes = write(bmp_fd, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
 		close(bmp_fd);
-		(void)bytes;
+		ft_memset(input, 0, sizeof(input));
+		if (read(0, input, sizeof(input) - 1) == -1)
+			error(data, E_INPUT, NULL);
+		execute_input(data, input);
 	}
+	(void)bytes;
+	(void)input;
 }
 
 /*
@@ -103,5 +105,4 @@ void	frame_render(t_data *data)
 	render_arms(data, &data->player);
 	render_cross(data);
 	map_start(data, 0, 0);
-	//mlx_put_image_to_window(data->mlx, data->win, data->txtr[SCREEN].ptr, 0, 0);
 }

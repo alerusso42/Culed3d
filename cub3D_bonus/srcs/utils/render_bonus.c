@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 08:25:45 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 11:08:32 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 08:10:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	data->txtr[SCREEN].xpm[index + 2] = color & 255;
 	data->txtr[SCREEN].xpm[index + 1] = (color >> 8) & 255;
 	data->txtr[SCREEN].xpm[index] = (color >> 16) & 255;
-	data->txtr[SCREEN].xpm[index + 3] = (color >> 24) & 255;
+	//data->txtr[SCREEN].xpm[index + 3] = (color >> 24) & 255;
 }
 
 // void	put_pixel(t_data *data, int x, int y, int color)
@@ -50,7 +50,7 @@ int	get_pixel_color(t_txtr *txtr, int i)
 	int	r;
 	int	g;
 	int	b;
-	int	a;
+	//int	a;
 	int	rgb;
 
 	if (i > txtr->total_size)
@@ -58,30 +58,12 @@ int	get_pixel_color(t_txtr *txtr, int i)
 	r = (txtr->xpm[i] & 255) * txtr->shade;
 	g = (txtr->xpm[i + 1] & 255) * txtr->shade;
 	b = (txtr->xpm[i + 2] & 255) * txtr->shade;
-	a = (txtr->xpm[i + 3] & 255) * txtr->shade;
+	//a = (txtr->xpm[i + 3] & 255) * txtr->shade;
 	if (txtr->filters & FILTER_ON)
 		txtr_filters(txtr, &r, &g, &b);
-	rgb = r | (g << 8) | (b << 16) | (a << 24);
+	rgb = r | (g << 8) | (b << 16) ;//| (a << 24);
 	return (rgb);
 }
-
-// int	get_pixel_color(t_txtr *txtr, int i)
-// {
-// 	int	r;
-// 	int	g;
-// 	int	b;
-// 	int	rgb;
-
-// 	if (i > txtr->total_size)
-// 		return (0);
-// 	r = (*(txtr->xpm + i) & 255) * txtr->shade;
-// 	g = (*(txtr->xpm + i + 1) & 255) * txtr->shade;
-// 	b = (*(txtr->xpm + i + 2) & 255) * txtr->shade;
-// 	if (txtr->filters & FILTER_ON)
-// 		txtr_filters(txtr, &r, &g, &b);
-// 	rgb = r | (g << 8) | (b << 16);
-// 	return (rgb);
-// }
 
 /*
 	Fill the screen texture stream data with black.
@@ -116,15 +98,13 @@ void	backgrounder(t_data *data)
 	int	i;
 	int	j;
 
-	ceiling = 0xFFFFFF;
-	floor = 0xFFFFFF;
-/*
+
 	ceiling = (data->ceiling[0] << 16) | \
 (data->ceiling[1] << 8) | \
 data->ceiling[2];
 	floor = (data->floor[0] << 16) | \
 (data->floor[1] << 8) | \
-data->floor[2];*/
+data->floor[2];
 	j = -1;
 	while (++j < WSCREEN)
 	{

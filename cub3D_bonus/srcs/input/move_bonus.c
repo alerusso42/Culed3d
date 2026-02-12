@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:13:44 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:32:20 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 08:44:06 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,7 @@ void	mouse_input(t_data *data)
 	int		pos[2] = {0, 0};
 	double	diff[2];
 
-	if (DEBUG == true)
-		return ;
+	return ;
 //	mlx_mouse_get_pos(data->mlx, data->win, &pos[X], &pos[Y]);
 	diff[X] = RADIANT * (pos[X] - (WSCREEN / 2));
 	diff[Y] = RADIANT * (pos[Y] - (HSCREEN / 2));

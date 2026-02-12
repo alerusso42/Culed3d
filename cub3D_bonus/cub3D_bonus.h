@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 09:24:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 08:53:38 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
 # define ANGULAR_SPEED 0.043633231
 
 //	Amount of movement per frame.
-# define PLAYER_SPEED 5
+# define PLAYER_SPEED 10000
 
 //	Mouse rotation speed, per frame.
 # define SENSITIVITY 0.2

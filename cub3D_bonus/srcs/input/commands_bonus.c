@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/10 14:01:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 07:48:39 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	execute_input(t_data *data, const char *input)
 		switch (*input)
 		{
 			case ('w'):case ('W'):
+				if (data->menu == true)
+					data->player.input &= (~DOWN);  
 				data->player.input ^= UP;
 				break ;
 			case ('d'):case ('D'):
@@ -34,6 +36,8 @@ void	execute_input(t_data *data, const char *input)
 				data->player.input ^= LEFT;
 				break ;
 			case ('s'):case ('S'):
+				if (data->menu == true)
+					data->player.input &= (~UP);
 				data->player.input ^= DOWN;
 				break ;
 			case ('l'):case ('L'):
@@ -58,59 +62,6 @@ void	execute_input(t_data *data, const char *input)
 		++input;
 	}
 }
-
-/*
-
-//	The or operator | adds a bit in a byte.
-int	commands_press(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-		ft_cross_close(data);
-	if (data->battle)
-		battle_commands(data, keycode);
-	if (data->menu)
-		return (0);
-	if (keycode == XK_w)
-		data->player.input |= UP;
-	if (keycode == XK_d)
-		data->player.input |= RIGHT;
-	if (keycode == XK_a)
-		data->player.input |= LEFT;
-	if (keycode == XK_s)
-		data->player.input |= DOWN;
-	if (keycode == XK_Left)
-		data->player.input |= R_LEFT;
-	if (keycode == XK_Right)
-		data->player.input |= R_RIGHT;
-	if (keycode == XK_Shift_L)
-		data->player.speed += 3;
-	if (keycode == XK_e)
-		interact(data);
-	return (0);
-}
-
-//	The xor operator ^ removes a bit in a byte.
-int	commands_release(int keycode, t_data *data)
-{
-	if (data->menu)
-		return (0);
-	if (keycode == XK_w)
-		data->player.input ^= UP;
-	if (keycode == XK_d)
-		data->player.input ^= RIGHT;
-	if (keycode == XK_a)
-		data->player.input ^= LEFT;
-	if (keycode == XK_s)
-		data->player.input ^= DOWN;
-	if (keycode == XK_Left)
-		data->player.input ^= R_LEFT;
-	if (keycode == XK_Right)
-		data->player.input ^= R_RIGHT;
-	if (keycode == XK_Shift_L)
-		data->player.speed -= 3;
-	return (0);
-}
-*/
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
