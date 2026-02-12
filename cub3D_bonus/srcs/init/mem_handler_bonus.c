@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/11 09:25:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:22:24 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=U06jlgpMtQs
 */
 void	spread_democracy(t_data *data)
 {
-	stop_audio(data);
+	//stop_audio(data);
 	delete((void **)&data->renderer);
 	delete((void **)&data->player.frames);
 	free_entities(data->enemies);
@@ -46,6 +46,8 @@ void	spread_democracy(t_data *data)
 void	lets_start_the_party(t_data *data)
 {
 	data->menu = true;
+	ft_memcpy(data->events, "OK|", 3);
+	ft_memcpy(&data->events[3], SFX_OP, ft_strlen(SFX_OP));
 	get_txtr(data);
 	init_player(data);
 	init_entities(data);

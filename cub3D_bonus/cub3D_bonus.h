@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 08:53:38 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:10:44 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_entity
 
 typedef struct s_data
 {
+	char		events[64];
 	t_entity	player;
 	t_time		start;
 	t_entity	**renderer;

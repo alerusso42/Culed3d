@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 09:05:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:31:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,20 @@ void	webserv_porting(t_data *data)
 	while (1)
 	{
 		game_loop(data);
+		write(1, data->events, sizeof(data->events));
+		ft_memset(&data->events[3], 0, sizeof(data->events) - 3);
 		bmp_fd = open(RENDER_FILE, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		if (bmp_fd < 0)
 			error(data, E_OPEN, RENDER_FILE);
 		bytes = write(bmp_fd, bmp_header, sizeof(bmp_header));
 		bytes = write(bmp_fd, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
 		close(bmp_fd);
-		ft_memset(input, 0, sizeof(input));
-		if (read(0, input, sizeof(input) - 1) == -1)
+		bytes = read(0, input, sizeof(input) - 1);
+		if (bytes == -1)
 			error(data, E_INPUT, NULL);
+		input[bytes] = 0;
 		execute_input(data, input);
 	}
-	(void)bytes;
 	(void)input;
 }
 

@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 21:55:16 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:50:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:46:55 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_map_val	t_map_val;
  * | delete key    | `void map_del(t_map *ptr, char *key)`				  	|
  * |:------------..|:-------------------------------------------------------|
  */
-struct s_map
+typedef struct s_map
 {
 	size_t(*hasher)(const char*);
 	int(*alloc)(t_map_val*, char *key, void *val);
@@ -83,7 +83,7 @@ struct s_map
 	size_t			size;
 	size_t			hash_size;
 	bool			fail;
-};
+}		t_map;
 
 /*
 -	accessed from t_map::values by keys

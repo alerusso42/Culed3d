@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:48:36 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 07:51:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:26:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	other_interactions(t_data *data)
 	{
 		if (data->player.input & UP)
 		{
-			//play_audio(SFX_GAME, data);
+			ft_memcpy(&data->events[3], SFX_GAME, ft_strlen(SFX_GAME));
 			data->menu = false;
 			data->button = 0;
 		}

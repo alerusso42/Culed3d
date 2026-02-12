@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lparolis <lparolis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:31:50 by alerusso          #+#    #+#             */
-/*   Updated: 2025/09/01 12:06:02 by lparolis         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:24:51 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle)
 		if (ent->distance < 150 && !data->enemy_audio)
 		{
 			data->enemy_audio = true;
-			play_audio(SFX_ENEMY, data);
+			ft_memcpy(&data->events[3], SFX_ENEMY, ft_strlen(SFX_ENEMY));
 		}
 		ent->contact = true;
 	}

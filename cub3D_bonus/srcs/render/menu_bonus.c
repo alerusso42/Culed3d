@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 07:54:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:29:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	hai_guardato(t_data *data)
 	if (data->menu == -1)
 	{
 		clear_window(data);
-		play_audio(SFX_HAI_GUARDATO, data);
+		ft_memcpy(&data->events[3], SFX_HAI_GUARDATO, ft_strlen(SFX_HAI_GUARDATO));
 		data->menu = -2;
 	}
 	fill_array(0, 0, pos);

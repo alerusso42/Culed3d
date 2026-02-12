@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:12 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/11 09:18:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:16:08 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,27 +97,10 @@
 
 # include "textures/game_assets.h"
 
-# if PC_ALE == true
-#  define SFX_OP "/home/alerusso/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
-#  define SFX_GAME "/home/alerusso/Culed3d/cub3D_bonus/sfxs/game.wav"
-#  define SFX_ENEMY "/home/alerusso/Culed3d/cub3D_bonus/sfxs/enemy.wav"
-#  define SFX_HAI_GUARDATO "/home/alerusso/Culed3d/cub3D_bonus/sfxs/enemy.wav"
-# elif PC_LEO == true
-#  define SFX_OP "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
-/cubetto/cub3D_bonus/sfxs/main_menu.wav"
-#  define SFX_GAME "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
-/cubetto/cub3D_bonus/sfxs/game.wav"
-#  define SFX_ENEMY "/home/lparolis/Desktop/gitspace/CommonCore/Milestone_04\
-/cubetto/cub3D_bonus/sfxs/enemy.wav"
-#  define SFX_HAI_GUARDATO "/home/lparolis/Desktop/gitspace/CommonCore/\
-Milestone_04/cubetto/cub3D_bonus/sfxs/hai_guardato.wav"
-# else
-#  define SFX_OP "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/main_menu.wav"
-#  define SFX_GAME "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/game.wav"
-#  define SFX_ENEMY "/home/alerusso/Desktop/Culed3d/cub3D_bonus/sfxs/enemy.wav"
-#  define SFX_HAI_GUARDATO "/home/alerusso/Desktop/Culed3d/cub3D_bonus\
-/sfxs/hai_guardato.wav"
-# endif
+#  define SFX_OP "MUSIC-OP"
+#  define SFX_GAME "MUSIC-GAME"
+#  define SFX_ENEMY "MUSIC-ENEMY"
+#  define SFX_HAI_GUARDATO "MUSIC-HAI_GUARDATO"
 
 enum e_textures
 {
