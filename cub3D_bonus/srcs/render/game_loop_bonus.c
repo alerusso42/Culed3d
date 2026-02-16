@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 16:31:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/16 11:18:12 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
-#define RENDER_FILE "render.bmp"
+#define RENDER_FILE "www/var/render.bmp"
 
 int		game_loop(t_data *data);
 void	execute_input(t_data *data, const char *input);
@@ -52,11 +52,6 @@ void	webserv_porting(t_data *data)
 */
 int	game_loop(t_data *data)
 {
-	int		t1;
-	int		t2;
-	int		t_diff;
-
-	t1 = elapsed_time(data->start);
 	if (data->menu)
 		main_menu(data);
 	else if (data->battle || data->result == RESULT_DRAW)
@@ -67,12 +62,6 @@ int	game_loop(t_data *data)
 		mouse_input(data);
 		frame_render(data);
 	}
-	t2 = elapsed_time(data->start);
-	t_diff = (t2 - t1) / (int)1e3;
-	if (t_diff <= 0)
-		return (0);
-	printf("~Time:%d ms~;\tFPS:%f\n", t_diff, (1e0 / t_diff) * 1e3);
-	gettimeofday(&data->start, NULL);
 	return (0);
 }
 
