@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/16 11:18:12 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/17 10:00:31 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
-#define RENDER_FILE "www/var/render.bmp"
 
 int		game_loop(t_data *data);
 void	execute_input(t_data *data, const char *input);
@@ -19,28 +18,22 @@ void	frame_render(t_data *data);
 
 void	webserv_porting(t_data *data)
 {
-	char	input[64] = {0};
+	char	input[(1 << 14)] = {0};
 	int		bytes;
-	int		bmp_fd;
 
 	while (1)
 	{
 		game_loop(data);
 		write(1, data->events, sizeof(data->events));
 		ft_memset(&data->events[3], 0, sizeof(data->events) - 3);
-		bmp_fd = open(RENDER_FILE, O_RDWR | O_CREAT | O_TRUNC, 0666);
-		if (bmp_fd < 0)
-			error(data, E_OPEN, RENDER_FILE);
-		bytes = write(bmp_fd, bmp_header, sizeof(bmp_header));
-		bytes = write(bmp_fd, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
-		close(bmp_fd);
+		bytes = write(1, bmp_header, sizeof(bmp_header));
+		bytes = write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
 		bytes = read(0, input, sizeof(input) - 1);
 		if (bytes == -1)
 			error(data, E_INPUT, NULL);
 		input[bytes] = 0;
 		execute_input(data, input);
 	}
-	(void)input;
 }
 
 /*

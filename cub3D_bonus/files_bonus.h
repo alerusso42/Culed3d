@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:12 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 16:16:08 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/17 09:47:07 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@
 
 # include "textures/game_assets.h"
 
-#  define SFX_OP "MUSIC-OP"
-#  define SFX_GAME "MUSIC-GAME"
-#  define SFX_ENEMY "MUSIC-ENEMY"
-#  define SFX_HAI_GUARDATO "MUSIC-HAI_GUARDATO"
+#  define SFX_OP "MUSIC-OP|"
+#  define SFX_GAME "MUSIC-GAME|"
+#  define SFX_ENEMY "MUSIC-ENEMY|"
+#  define SFX_HAI_GUARDATO "MUSIC-HAI_GUARDATO|"
 
 enum e_textures
 {
