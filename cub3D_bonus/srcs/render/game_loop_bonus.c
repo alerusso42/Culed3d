@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/17 10:00:31 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:20:10 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	webserv_porting(t_data *data)
 		ft_memset(&data->events[3], 0, sizeof(data->events) - 3);
 		bytes = write(1, bmp_header, sizeof(bmp_header));
 		bytes = write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
+		fd_printf(2, "Cub3D output len: %d\n", sizeof(data->events) + sizeof(bmp_header) + data->txtr[SCREEN].total_size);
 		bytes = read(0, input, sizeof(input) - 1);
 		if (bytes == -1)
 			error(data, E_INPUT, NULL);
