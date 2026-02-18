@@ -39,7 +39,7 @@ void	get_txtr(t_data *data)
 	{
 		fill_txtr(data, &map, i);
 		map_clear(&map);
-		printf("xpm %d/%d\n", i + 1, TEXTURES_NUM);
+		fd_printf(2, "xpm %d/%d\n", i + 1, TEXTURES_NUM);
 	}
 	i = -1;
 	//int	fd = open("Forza_Milan.txt", O_CREAT | O_RDWR, 0666);

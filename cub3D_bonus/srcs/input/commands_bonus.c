@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/12 07:48:39 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:15:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	if (data->menu)
 		return (0);
 	if (button == MOUSE_UP)
-		printf("pov y not implemented.\n");
+		fd_printf(2, "pov y not implemented.\n");
 	else if (button == MOUSE_DOWN)
-		printf("pov y not implemented.\n");
+		fd_printf(2, "pov y not implemented.\n");
 	else if (button == MOUSE_LEFT || button == MOUSE_RIGHT)
 		interact(data);
-	printf("button:%d\n", button);
+	fd_printf(2, "button:%d\n", button);
 	return (0);
 }
 
