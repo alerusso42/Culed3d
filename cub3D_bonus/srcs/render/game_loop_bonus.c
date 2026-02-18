@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/18 23:20:10 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:57:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	webserv_porting(t_data *data)
 		if (bytes == -1)
 			error(data, E_INPUT, NULL);
 		input[bytes] = 0;
+		fd_printf(2, "Cub3D input: %s\n", input);
 		execute_input(data, input);
 	}
 }
