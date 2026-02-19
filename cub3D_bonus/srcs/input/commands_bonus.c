@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/18 23:15:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/19 08:07:00 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	ft_cross_close(t_data *data)
 {
+	fd_printf(2, "Cub3D: spread democracy\n");
 	spread_democracy(data);
 	exit(0);
 }
 
 void	execute_input(t_data *data, const char *input)
 {
-	while (*input)
+	while (*input && *input != '%')
 	{
 		switch (*input)
 		{
@@ -49,7 +50,7 @@ void	execute_input(t_data *data, const char *input)
 			case ('z'):case ('Z'):
 				data->player.speed += 3;
 				break ;
-			case (' '):
+			case (' '):case ('i'):
 				interact(data);
 				break ;
 			case ('1'):case ('2'):case ('3'):case ('4'):case ('5'):\
