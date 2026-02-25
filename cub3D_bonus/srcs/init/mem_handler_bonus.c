@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/25 09:11:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/25 10:15:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	lets_start_the_party(t_data *data)
 {
 	data->menu = true;
 	ft_memcpy(data->events, "OK|0014745654|", 14);
-	ft_memcpy(&data->events[3], SFX_OP, ft_strlen(SFX_OP));
+	ft_memcpy(&data->events[14], SFX_OP, ft_strlen(SFX_OP));
 	get_txtr(data);
 	init_player(data);
 	init_entities(data);
