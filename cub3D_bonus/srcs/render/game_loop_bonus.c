@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/18 23:57:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/25 09:12:32 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ void	webserv_porting(t_data *data)
 	{
 		game_loop(data);
 		write(1, data->events, sizeof(data->events));
-		ft_memset(&data->events[3], 0, sizeof(data->events) - 3);
+		ft_memset(&data->events[14], 0, sizeof(data->events) - 3);
 		bytes = write(1, bmp_header, sizeof(bmp_header));
-		bytes = write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
-		fd_printf(2, "Cub3D output len: %d\n", sizeof(data->events) + sizeof(bmp_header) + data->txtr[SCREEN].total_size);
+		bytes += write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
+		//fd_printf(2, "Cub3D output len: %d\n", sizeof(bmp_header) + data->txtr[SCREEN].total_size);
 		bytes = read(0, input, sizeof(input) - 1);
 		if (bytes == -1)
 			error(data, E_INPUT, NULL);
 		input[bytes] = 0;
-		fd_printf(2, "Cub3D input: %s\n", input);
 		execute_input(data, input);
 	}
 }
