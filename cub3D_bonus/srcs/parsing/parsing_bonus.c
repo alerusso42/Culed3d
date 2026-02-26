@@ -6,13 +6,13 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/26 12:53:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:33:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
-static int	check_file_extension(char *file);
+//static int	check_file_extension(char *file);
 static void	parse_cub(t_data *data, int fd);
 
 /* REVIEW
@@ -40,14 +40,14 @@ void	parsing(t_data *data, int argc, char **argv)
 }
 
 //	strrchr moves file ptr to the last '.' it finds.
-static int	check_file_extension(char *file)
+/*static int	check_file_extension(char *file)
 {
 	file = ft_strrchr(file, '.');
 	if (file)
 		if (ft_strncmp(file, ".cub", 4) == 0)
 			return (0);
 	return (1);
-}
+}*/
 
 /*
 //REVIEW parse_cub
