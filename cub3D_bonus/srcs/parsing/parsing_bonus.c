@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:12:16 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/11 09:04:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:53:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	parsing(t_data *data, int argc, char **argv)
 	fd = -1;
 	if (argc < 2)
 		fd = open("maps/debug.cub", O_RDONLY);
-	else if (check_file_extension(argv[1]) == 1)
-		error(data, E_EXT, argv[1]);
 	else
 		fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		fd = open("www/cgi-bin/cub3D/debug.cub", O_RDONLY);
 	if (fd < 0)
 		error(data, E_OPEN, argv[1]);
 	parse_cub(data, fd);
