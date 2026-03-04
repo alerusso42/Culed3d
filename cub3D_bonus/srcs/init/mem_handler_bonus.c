@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_handler_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:09:12 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/25 10:33:07 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/04 23:52:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	spread_democracy(t_data *data)
 void	lets_start_the_party(t_data *data)
 {
 	data->menu = true;
+	data->button = PHILIP_CHILL;
 	ft_memcpy(data->web_data, "OK|0014745654|", 14);
 	ft_memcpy(data->events, SFX_OP, ft_strlen(SFX_OP));
 	get_txtr(data);

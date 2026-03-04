@@ -6,17 +6,20 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/19 08:07:00 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:16:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_bonus.h"
 
+int	main(int ac, char **av);
+
 int	ft_cross_close(t_data *data)
 {
 	fd_printf(2, "Cub3D: spread democracy\n");
+	fd_printf(2, "Cub3D: restarting...\n");
 	spread_democracy(data);
-	exit(0);
+	return (main(0, NULL));
 }
 
 void	execute_input(t_data *data, const char *input)
@@ -26,31 +29,32 @@ void	execute_input(t_data *data, const char *input)
 		switch (*input)
 		{
 			case ('w'):case ('W'):
-				if (data->menu == true)
-					data->player.input &= (~DOWN);  
+				data->player.input &= (~DOWN);
 				data->player.input ^= UP;
 				break ;
 			case ('d'):case ('D'):
+				data->player.input &= (~LEFT);
 				data->player.input ^= RIGHT;
 				break ;
 			case ('a'):case ('A'):
+				data->player.input &= (~RIGHT);
 				data->player.input ^= LEFT;
 				break ;
 			case ('s'):case ('S'):
-				if (data->menu == true)
-					data->player.input &= (~UP);
+				data->player.input &= (~UP);
 				data->player.input ^= DOWN;
 				break ;
-			case ('l'):case ('L'):
+			case ('j'):case ('J'):
 				data->player.input ^= R_LEFT;
 				break ;
-			case ('r'):case ('R'):
+			case ('l'):case ('L'):
 				data->player.input ^= R_RIGHT;
 				break ;
-			case ('z'):case ('Z'):
-				data->player.speed += 3;
+			case ('q'):case ('Q'):
+				data->player.input ^= DASH;
+				data->player.speed += (data->player.input & DASH) ? PLAYER_SPEED : -PLAYER_SPEED;
 				break ;
-			case (' '):case ('i'):
+			case ('e'):case ('E'):
 				interact(data);
 				break ;
 			case ('1'):case ('2'):case ('3'):case ('4'):case ('5'):\

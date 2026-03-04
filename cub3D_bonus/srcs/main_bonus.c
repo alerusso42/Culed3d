@@ -6,11 +6,19 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2026/02/12 16:20:52 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:05:01 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D_bonus.h"
+
+int	run = true;
+
+void	handler_ctrl_c()
+{
+	fd_printf(2, "Cub3D: spread democracy\n");
+	run = false;
+}
 
 /*
 	FUNCTION NAME			DESCRIPTION
@@ -26,6 +34,7 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
+	signal(SIGINT, handler_ctrl_c);
 	data = (t_data){0};
 	set_txtr_null(&data);
 	parsing(&data, argc, argv);

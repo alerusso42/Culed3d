@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/25 10:33:55 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:06:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	webserv_porting(t_data *data)
 	char	input[(1 << 14)] = {0};
 	int		bytes;
 
-	while (1)
+	while (run == true)
 	{
 		game_loop(data);
 		write(1, data->web_data, sizeof(data->web_data));
@@ -30,6 +30,8 @@ void	webserv_porting(t_data *data)
 		bytes = write(1, bmp_header, sizeof(bmp_header));
 		bytes += write(1, data->txtr[SCREEN].xpm, data->txtr[SCREEN].total_size);
 		//fd_printf(2, "Cub3D output len: %d\n", sizeof(bmp_header) + data->txtr[SCREEN].total_size);
+		if (run == false)
+			return ;
 		bytes = read(0, input, sizeof(input) - 1);
 		if (bytes == -1)
 			error(data, E_INPUT, NULL);

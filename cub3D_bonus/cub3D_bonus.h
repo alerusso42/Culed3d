@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/25 10:32:15 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/04 23:59:36 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 # include "files_bonus.h"
+
+extern int	run;
 
 # define RST		"\033[0m" /* Reset to default color */
 # define RED		"\033[1;31m" /* Bold Red */
@@ -235,6 +237,7 @@ enum e_utils
 	R_LEFT = 16,
 	R_RIGHT = 32,
 	ROTATION = R_LEFT | R_RIGHT,
+	DASH = 64,
 	BPP = 0,
 	SIZE = 1,
 	ENDIAN = 2,
