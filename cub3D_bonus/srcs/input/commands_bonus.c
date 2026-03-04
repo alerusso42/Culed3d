@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/03/05 00:16:59 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:38:13 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,47 @@ void	execute_input(t_data *data, const char *input)
 	{
 		switch (*input)
 		{
-			case ('w'):case ('W'):
-				data->player.input &= (~DOWN);
-				data->player.input ^= UP;
-				break ;
-			case ('d'):case ('D'):
-				data->player.input &= (~LEFT);
-				data->player.input ^= RIGHT;
-				break ;
-			case ('a'):case ('A'):
-				data->player.input &= (~RIGHT);
-				data->player.input ^= LEFT;
-				break ;
-			case ('s'):case ('S'):
+			case ('w'):
 				data->player.input &= (~UP);
-				data->player.input ^= DOWN;
 				break ;
-			case ('j'):case ('J'):
-				data->player.input ^= R_LEFT;
+			case ('W'):
+				data->player.input |= UP;
 				break ;
-			case ('l'):case ('L'):
-				data->player.input ^= R_RIGHT;
+			case ('d'):
+				data->player.input &= (~RIGHT);
 				break ;
-			case ('q'):case ('Q'):
-				data->player.input ^= DASH;
-				data->player.speed += (data->player.input & DASH) ? PLAYER_SPEED : -PLAYER_SPEED;
+			case ('D'):
+				data->player.input |= RIGHT;
+				break ;
+			case ('a'):
+				data->player.input &= (~LEFT);
+				break ;
+			case ('A'):
+				data->player.input |= LEFT;
+				break ;
+			case ('s'):
+				data->player.input &= (~DOWN);
+				break ;
+			case ('S'):
+				data->player.input |= DOWN;
+				break ;
+			case ('j'):
+				data->player.input &= (~R_LEFT);
+				break ;
+			case ('J'):
+				data->player.input |= R_LEFT;
+				break ;
+			case ('l'):
+				data->player.input &= (~R_RIGHT);
+				break ;
+			case ('L'):
+				data->player.input |= R_RIGHT;
+				break ;
+			case ('q'):
+				data->player.speed -= PLAYER_SPEED;
+				break ;
+			case ('Q'):
+				data->player.speed += PLAYER_SPEED;
 				break ;
 			case ('e'):case ('E'):
 				interact(data);
