@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:49:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/03/05 00:38:13 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:40:59 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ int	ft_cross_close(t_data *data)
 {
 	fd_printf(2, "Cub3D: spread democracy\n");
 	fd_printf(2, "Cub3D: restarting...\n");
+	aspettanding(-1, -1);
 	spread_democracy(data);
 	return (main(0, NULL));
 }
 
 void	execute_input(t_data *data, const char *input)
 {
-	while (*input && *input != '%')
+	while (*input && *input != '%' && *input != '&')
 	{
 		switch (*input)
 		{
@@ -64,10 +65,10 @@ void	execute_input(t_data *data, const char *input)
 			case ('L'):
 				data->player.input |= R_RIGHT;
 				break ;
-			case ('q'):
+			case ('k'):
 				data->player.speed -= PLAYER_SPEED;
 				break ;
-			case ('Q'):
+			case ('K'):
 				data->player.speed += PLAYER_SPEED;
 				break ;
 			case ('e'):case ('E'):
@@ -77,7 +78,9 @@ void	execute_input(t_data *data, const char *input)
 			case ('6'):case ('7'):case ('8'):case ('9'):case ('0'):
 				data->button = *input - '0';
 				break ;
-			case ('x'):case ('X'):
+			case ('x'):
+				break ;
+			case ('X'):
 				ft_cross_close(data);
 		}
 		++input;

@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:19:17 by alerusso          #+#    #+#             */
-/*   Updated: 2026/03/04 23:59:36 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:49:45 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 # include "files_bonus.h"
+# define WEBSERV_DELTATIME 4.5
 
 extern int	run;
 

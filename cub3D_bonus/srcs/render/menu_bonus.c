@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:53:43 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/25 10:15:40 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:34:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	main_menu(t_data *data)
 		hai_guardato(data);
 		return ;
 	}
+	data->button = 0;
 	fill_array(0, 0, pos);
 	fill_array(WSCREEN, HSCREEN, size);
 	if (DEBUG == false)

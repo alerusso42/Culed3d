@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:55:18 by alerusso          #+#    #+#             */
-/*   Updated: 2025/08/29 09:44:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:38:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ bool	aspettanding(int time_to_wait, int i)
 	}
 	if (i >= 100)
 		return (false);
-	if (elapsed[i] < time_to_wait)
+	if (elapsed[i] < time_to_wait / WEBSERV_DELTATIME)
 	{
 		elapsed[i]++;
 		return (false);

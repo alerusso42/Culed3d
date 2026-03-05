@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:29:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/02/09 22:34:25 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:18:48 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ static void	put_textures(t_data *data)
 
 static void	main_battle(t_data *data)
 {
-	if (!data->button || aspettanding(10, 0) == false)
+	if (!data->button || aspettanding(1, 0) == false)
 		return (put_textures(data));
 	if (!data->result)
 		battle_result(data);
-	if (aspettanding(30, 1) == false)
+	if (aspettanding(3, 1) == false)
 		return (put_textures(data));
 	put_result_screen(data);
-	if (aspettanding(30, 2) == false)
+	if (aspettanding(3, 2) == false)
 		return ;
 	if (data->result == RESULT_WIN)
 	{

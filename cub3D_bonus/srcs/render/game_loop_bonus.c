@@ -6,7 +6,7 @@
 /*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:36:20 by alerusso          #+#    #+#             */
-/*   Updated: 2026/03/05 00:06:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/03/05 01:28:26 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	game_loop(t_data *data)
 		battle(data);
 	else
 	{
+		data->button = 0;
 		move_player(data);
 		mouse_input(data);
 		frame_render(data);
