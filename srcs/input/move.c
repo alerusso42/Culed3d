@@ -12,7 +12,7 @@
 
 #include "../../cub3D.h"
 
-void	one_step(t_data *data, t_entity *entity, double angle[], int offset[]);
+void	one_step(t_data *data, t_entity *entity, double angle[]);
 
 /*
 	In our game, every entity (player, enemies, objects that moves) is a
@@ -22,9 +22,8 @@ void	one_step(t_data *data, t_entity *entity, double angle[], int offset[]);
 
 	angle[COS] is the rotation in the x axis, in radiant.
 	angle[SIN] is the rotation in the y axis, in radiant.
-	the last parameter, offset, is necessary to solve imprecision in
-	movement (	in UP and LEFT, the y axis goes one wrong step back;
-				in DOWN and RIGHT, the same happens for the x axis).
+	screen coordinates are doubles: storing them as int would truncate
+	the small component of every step, making the player drift.
 */
 void	move(t_data *data, t_entity *entity, double angle[])
 {
@@ -32,25 +31,25 @@ void	move(t_data *data, t_entity *entity, double angle[])
 	{
 		angle[COS] = cos(entity->pov[X]);
 		angle[SIN] = sin(entity->pov[X]) * -1;
-		one_step(data, entity, angle, (int [2]){0, 1});
+		one_step(data, entity, angle);
 	}
 	if (entity->input & LEFT)
 	{
 		angle[COS] = cos(entity->pov[X] + ANGLE_90);
 		angle[SIN] = sin(entity->pov[X] + ANGLE_90) * -1;
-		one_step(data, entity, angle, (int [2]){0, 1});
+		one_step(data, entity, angle);
 	}
 	if (entity->input & DOWN)
 	{
 		angle[COS] = cos(entity->pov[X]) * -1;
 		angle[SIN] = sin(entity->pov[X]);
-		one_step(data, entity, angle, (int [2]){1, 0});
+		one_step(data, entity, angle);
 	}
 	if (entity->input & RIGHT)
 	{
 		angle[COS] = cos(entity->pov[X] - ANGLE_90);
 		angle[SIN] = sin(entity->pov[X] - ANGLE_90) * -1;
-		one_step(data, entity, angle, (int [2]){1, 0});
+		one_step(data, entity, angle);
 	}
 }
 
@@ -58,15 +57,15 @@ void	move(t_data *data, t_entity *entity, double angle[])
 	before updating the entity coordinates, we check, with some local temp
 	variables, if the player would collide to a wall or another entity.
 */
-void	one_step(t_data *data, t_entity *entity, double angle[], int offset[])
+void	one_step(t_data *data, t_entity *entity, double angle[])
 {
 	double	new_x;
 	double	new_y;
 	int		map_x;
 	int		map_y;
 
-	new_x = entity->screen[X] + (angle[COS] * entity->speed) + offset[X];
-	new_y = entity->screen[Y] + (angle[SIN] * entity->speed) + offset[Y];
+	new_x = entity->screen[X] + (angle[COS] * entity->speed);
+	new_y = entity->screen[Y] + (angle[SIN] * entity->speed);
 	map_x = (int)(new_x) / WIMG;
 	map_y = (int)(new_y) / HIMG;
 	if (map_y < 0 || map_y >= data->max_y || \

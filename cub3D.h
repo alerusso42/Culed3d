@@ -125,7 +125,7 @@ typedef struct s_entity
 	double	speed;
 	double	first_ray;
 	double	last_ray;
-	int		screen[2];
+	double	screen[2];
 	int		map[2];
 	int		contact_column;
 	int		contact_num;
@@ -273,7 +273,7 @@ void	free_texture(t_data *data);
 //SECTION	input
 
 void	move(t_data *data, t_entity *entity, double angle[]);
-int		mouse_hook(int button, int x, int y, t_data *param);
+int		mouse_hook(int button, int x, int y, void *param);
 void	battle_commands(t_data *data, int keycode);
 void	rotate(t_data *data, t_entity *entity);
 int		commands_release(int keycode, t_data *data);

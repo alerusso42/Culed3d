@@ -82,8 +82,8 @@ void	save_coord(t_data *data, t_entity *ent, t_entity *ray, double angle)
 double	ray_lenght(t_data *data, int rx, int ry)
 {
 	double	ray;
-	int		px;
-	int		py;
+	double	px;
+	double	py;
 
 	px = data->player.screen[X];
 	py = data->player.screen[Y];

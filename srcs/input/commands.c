@@ -68,8 +68,11 @@ int	commands_release(int keycode, t_data *data)
 	return (0);
 }
 
-int	mouse_hook(int button, int x, int y, t_data *data)
+int	mouse_hook(int button, int x, int y, void *param)
 {
+	t_data	*data;
+
+	data = param;
 	(void)x, (void)y;
 	if (data->menu && button == MOUSE_LEFT)
 	{
