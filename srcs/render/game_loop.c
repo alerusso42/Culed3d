@@ -60,20 +60,19 @@ int	game_loop(t_data *data)
 */
 void	frame_render(t_data *data)
 {
-	double	pov[2];
 	double	angle;
+	double	plane_position;
 	int		i;
 
 	reset_renderer(data);
 	backgrounder(data);
 	data->column = 0;
-	pov[X] = data->player.pov[X] - (RADIANT * (FOV / 2));
-	pov[Y] = 0;
+	plane_position = tan(RADIANT * (FOV / 2));
 	i = WSCREEN;
 	while (--i >= 0)
 	{
-		angle = ((RADIANT * i) / WSCREEN) * (FOV);
-		line(data, &data->player, pov[X] + angle, '1');
+		angle = atan(((2.0 * i / WSCREEN) - 1) * plane_position);
+		line(data, &data->player, data->player.pov[X] + angle, '1');
 		++data->column;
 	}
 	render_entity(data);

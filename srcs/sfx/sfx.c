@@ -32,7 +32,8 @@ void	play_audio(char *audio_path, t_data *data)
 	fd = popen(command, "r");
 	if (fd)
 	{
-		fscanf(fd, "%d", &data->audio_pid);
+		if (fscanf(fd, "%d", &data->audio_pid) != 0)
+			return;
 		pclose(fd);
 		data->audio_play = true;
 	}
