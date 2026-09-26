@@ -63,7 +63,7 @@ void	render_column(t_data *data, t_txtr *txtr, double h)
 		txtr_line -= (screen_y - (HSCREEN - 1)) * scaler_y;
 		screen_y = HSCREEN - 1;
 	}
-	while (screen_y >= (HSCREEN / 2) - h && txtr_line > 0)
+	while (screen_y >= (HSCREEN / 2) - h && txtr_line > 0 && screen_y >= 0)
 	{
 		i = txtr->offset + (txtr->size[X] * (int)txtr_line);
 		txtr_line -= scaler_y;
