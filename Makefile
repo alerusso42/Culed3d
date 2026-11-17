@@ -3,7 +3,7 @@ NAME     = cub3D
 SRC_PATH = srcs/
 
 # Compiler settings (lm == math.h)
-CC       = cc
+CC       = gcc
 CFLAGS   = -Wall -Werror -Wextra -g -O2
 LFLAGS   =  -I./libft -Lminilibx-linux -lmlx -lX11 -lm -lXext
 DEBUG    = -D DEBUG=true
