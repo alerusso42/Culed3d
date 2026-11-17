@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso42 <alerusso42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:49:06 by edraccan          #+#    #+#             */
-/*   Updated: 2026/02/10 14:17:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/11/17 12:19:55 by alerusso42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include <bsd/string.h>
 # include <ctype.h>
 # include <limits.h>
 # include <math.h>

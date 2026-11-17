@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alerusso <alessandro.russo.frc@gmail.co    +#+  +:+       +#+        */
+/*   By: alerusso42 <alerusso42@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:39:28 by lparolis          #+#    #+#             */
-/*   Updated: 2026/03/05 00:05:01 by alerusso         ###   ########.fr       */
+/*   Updated: 2026/11/17 12:21:16 by alerusso42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	signal(SIGINT, handler_ctrl_c);
+	signal(SIGINT, (void *)handler_ctrl_c);
 	data = (t_data){0};
 	set_txtr_null(&data);
 	parsing(&data, argc, argv);
